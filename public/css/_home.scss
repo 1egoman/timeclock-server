@@ -1,0 +1,17 @@
+.hero {
+  @extend .jumbotron;
+  margin-top: 2em;
+
+  img {
+    float: left;
+    width: 20%;
+  }
+
+  .text-body {
+    margin-left: 25%;
+
+    h1 {
+      font-size: 3rem;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+<% include header %>
+
+<div class="container-report">
+  <div class="report-header">
+    <a href="/"><img class="logo" src="/img/logo.svg" /></a>
+    <div class="report-header-inner">
+      <h1>
+        <%= repo.full_name %>
+        <small><%= repo.description %></small>
+        <span class="ref"><%= current_ref %></span>
+      </h1>
+    </div>
+  </div>
+
+  <div class="body">
+    <%= report %>
+  </div>
+</div>
+
+<% include footer %>

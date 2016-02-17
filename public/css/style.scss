@@ -1,0 +1,16 @@
+@import "bootstrap";
+
+.form-control {
+  &:focus {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+  }
+}
+
+@import "home";
+@import "report";
+
+a {
+  color: #00B7FF;
+}
+
