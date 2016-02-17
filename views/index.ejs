@@ -1,14 +1,35 @@
 <% include header %>
 
-<div class="container">
-  <div class="hero clearfix">
+<!-- Not authorized -->
+<div class="hero clearfix">
+  <div class="container">
     <img class="logo" src="/img/logo.svg" />
     <div class="text-body">
       <h1>Manage invoices without managing invoices.</h1>
-      <p>More value propish stuff here</p>
-      <a class="btn btn-primary" href="/oauth/redirect">Take a look</a>
+      <p>
+        As simple as:
+        <pre><code>
+  $ npm install -g timeclock
+  $ clock in
+  $ # go do some work
+  $ clock out
+  $ git add .timecard.json && git push origin master
+      </code></pre>
+      </p>
+      <% if (!user) { %>
+        <a class="btn btn-primary btn-lg" href="/auth/github">Sign in with Github</a>
+      <% } %>
     </div>
   </div>
 </div>
+
+<% if (user) { %>
+  <div class="container">
+    <h1>Choose a Repo</h1>
+    <ul class="list-group">
+      <%- repos.map((repo) => include("repository", {repo: repo})).join("") %>
+    </ul>
+  </div>
+<% } %>
 
 <% include footer %>

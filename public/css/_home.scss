@@ -1,6 +1,7 @@
 .hero {
   @extend .jumbotron;
   margin-top: 2em;
+  width: 100%;
 
   img {
     float: left;

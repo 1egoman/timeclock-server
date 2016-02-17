@@ -6,6 +6,7 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const session = require("express-session");
 
 const routes = require('./routes/index');
 const users = require('./routes/user');
@@ -13,16 +14,12 @@ const repo = require('./routes/repository');
 
 const app = express();
 
-// const redis = require("redis");
-// const redis_client = redis.createClient("redis://1egoman:979a65616ce4c858bd9f082bb0657745@50.30.35.9:3403/");
-// redis_client.on('connect', function() {
-//   console.log('connected to redis');
-// });
+const passport = require("passport");
+const GithubStrategy = require("passport-github2");
 
-// app.use(function(req, res, next) {
-//   res.redis_client = redis_client;
-//   next();
-// });
+const mongoose = require("mongoose");
+mongoose.connect("mongodb://clock:clock@ds011278.mongolab.com:11278/clock-server");
+const User = require("./lib/models/user");
 
 const env = process.env.NODE_ENV || 'development';
 app.locals.ENV = env;
@@ -32,6 +29,9 @@ app.locals.ENV_DEVELOPMENT = env == 'development';
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// ----------------------------------------------------------------------------
+// middleware
+// ------------------------------------------------------------------------------
 // app.use(favicon(__dirname + '/public/img/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -40,10 +40,60 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({ secret: 'keyboard cat' }));
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.use('/', routes);
+
+// ----------------------------------------------------------------------------
+// passport auth routes
+// ------------------------------------------------------------------------------
+passport.serializeUser(function(user, done) {
+  done(null, user._id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+// github strategy
+passport.use(new GithubStrategy({
+    clientID: "4cee013f4f8ff83a2930",
+    clientSecret: "a46f06736c59fcaedf9ff846bbbcccf3bca3e0e1",
+    callbackURL: "http://127.0.0.1:8000/auth/github/callback"
+}, function(access_token, refresh_token, profile, done) {
+  let user = {
+    github_id: profile.id,
+    access_token: access_token,
+    refresh_token: refresh_token,
+  };
+
+  User.findOne({github_id: profile.id}, (err, existing_user) => {
+    if (err) {
+      return done(err);
+    } else if (existing_user) {
+      return done(null, existing_user);
+    } else {
+      (new User(user)).save((err, new_user) => {
+        return done(err, new_user);
+      });
+    }
+  });
+}));
+
+app.get('/auth/github', passport.authenticate('github', {
+  scope: [ 'user', 'public_repo' ]
+}));
+
+app.get('/auth/github/callback', passport.authenticate(
+  'github', { failureRedirect: '/login' }
+), (req, res) => res.redirect('/'));
+
+
 app.use('/users', users);
-app.use('/repo', repo);
+repo(app);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
