@@ -84,7 +84,7 @@ passport.use(new GithubStrategy({
 }));
 
 app.get('/auth/github', passport.authenticate('github', {
-  scope: [ 'user', 'public_repo' ]
+  scope: [ 'user', 'repo']
 }));
 
 app.get('/auth/github/callback', passport.authenticate(

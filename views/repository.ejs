@@ -1,4 +1,9 @@
 <li class="list-group-item clearfix">
-  <h3 class="pull-left"><%= repo.full_name %></h3>
+  <h3 class="pull-left">
+    <%= repo.full_name %>
+    <% if (repo.private) { %>
+      <code>Private</code>
+    <% } %>
+  </h3>
   <a class="btn btn-primary pull-right" href="/<%= repo.full_name %>">Pick Me</a>
 </li>

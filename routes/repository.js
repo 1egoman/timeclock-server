@@ -21,6 +21,7 @@ function getRepo(req, res, next) {
 
 function doError(res, code) {
   return (err) => {
+    console.error(err);
     res.status(code).send(err);
   };
 }
@@ -45,34 +46,44 @@ module.exports = function(app) {
       }
     });
 
-
+  // get a repo
   app.get('/:username/:repo/:ref?', isAuthenticated, getRepo, function(req, res) {
     let ref = req.params.ref || req.parent_repo.default_branch || "master";
     repo.getFileFromRepo(
       req.params.username,
       req.params.repo,
       null,
-      ref
+      ref,
+      req.user
     ).then((timecard) => {
       if (card.assertIsCard(timecard)) {
 
         // make the report
         card.getReportTemplate(timecard.reportFormat || "default").then((template) => {
-            let ejs_data = card.getTimecardRenderDetails(timecard);
-            let report = ejs.render(template, ejs_data);
-            res.render("report", {
-              title: `Invoice for ${req.params.username}/${req.params.repo}`,
-              repo: req.parent_repo.error ? {
-                full_name: `${req.params.username}/${req.params.repo}`,
-              } : req.parent_repo,
-              current_ref: ref,
-              report: report.replace("<script>", "&lt;script&gt;").replace("</script>", "&lt;/script&gt;"), 
-            });
+          let ejs_data = card.getTimecardRenderDetails(timecard);
+          let report = ejs.render(template, ejs_data);
+          res.render("report", {
+            title: `Invoice for ${req.params.username}/${req.params.repo}`,
+            repo: req.parent_repo.error ? {
+              full_name: `${req.params.username}/${req.params.repo}`,
+            } : req.parent_repo,
+            current_ref: ref,
+            report: report.replace("<script>", "&lt;script&gt;").replace("</script>", "&lt;/script&gt;"), 
+          });
         }).catch(doError(res, 400));
 
       } else {
         res.status(400).send("Timecard is malformed.");
       }
-    }).catch(doError(res, 400));
+    }).catch((err) => {
+      if (err.code === 404) {
+        res.render("error", {
+          title: "Error",
+          msg: "There isn't a <code>.timecard.json</code> file in this repo (on the master branch). Add one and refresh the page."
+        });
+      } else {
+        doError(res, 404)(err);
+      }
+    });
   });
 };
