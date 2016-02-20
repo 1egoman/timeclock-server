@@ -24,78 +24,6 @@
   </div>
 </div>
 
-<div class="master">
-  <section class="container">
-    <h1>The Problem</h1>
-    <p>
-      Invoices are a pain, especially for freelance developers. From calculating
-      the amount of hours that you've put into a project, to creating the actual
-      invoice and doing design work, most developers would rather do
-      something else. Wouldn't you love to get rid of the process?
-    </p>
-  </section>
-  <section class="container">
-    <div class="section-img on-top">
-      <img src="/img/clock.svg" class="timecard" />
-    </div>
-    <div class="section-text">
-      <h1>The Solution</h1>
-      <p>
-        Easily track the time you work on a project with <code>clock</code>. Before
-        you start your work for the day, be sure to <code>clock in</code>. Need to
-        run a few errands or get out of the house? Run <code>clock out</code>. Too
-        lazy for that dance? Instead, run <code>clock watch</code> to listen
-        for changes and auto-clock you in or out. In addition to an invoice for
-        the client, you also get work-time metrics for yourself.
-      </p>
-    </div>
-    <div class="section-img on-right">
-      <img src="/img/clock.svg" class="timecard" />
-    </div>
-  </section>
-  <section class="container">
-    <div class="section-img">
-      <img src="/img/money.svg" class="money" />
-    </div>
-    <div class="section-text">
-      <h1>Paycheck time</h1>
-      <p>
-        Time to get paid? Push up your latest changes, and visit
-        <code>http://clock-flag.herokuapp.com/username/repo</code>. Don't like
-        what you see? Open up <code>.timecard.json</code> within the project, and change
-        <code>reportFormat</code> to any of the themes below, or make <a
-        href="/docs/make-a-theme">your own</a>. After pushing up your changes, take a look at your
-        new invoice. Was that hard?
-      </p>
-    </div>
-  </section>
-</div>
-
-<section class="container">
-  <h1>Themes</h1>
-  <div class="row">
-    <div class="col-xs-6 col-md-3">
-      <span href="#" class="thumbnail">
-        <h3>default</h3>
-        <p>
-          A simple theme with a custom-colored top section. Also, it just so
-          happens to be the default in a new timecard.
-        </p>
-        <img src="/img/themes/default.png" />
-      </span>
-    </div>
-    <div class="col-xs-6 col-md-3">
-      <span href="#" class="thumbnail">
-        <h3>clean</h3>
-        <p>
-          A minimalist theme that consists mostly of text.
-        </p>
-        <img src="/img/themes/clean.png" />
-      </span>
-    </div>
-  </div>
-</section>
-
 <% if (user) { %>
   <div class="container">
     <h1>Choose a Repo:</h1>
@@ -104,6 +32,80 @@
       <%- repos.map((repo) => include("repository", {repo: repo})).join("") %>
       </ul>
   </div>
+<% } else { %>
+
+  <div class="master">
+    <section class="container">
+      <h1>The Problem</h1>
+      <p>
+        Invoices are a pain, especially for freelance developers. From calculating
+        the amount of hours that you've put into a project, to creating the actual
+        invoice and doing design work, most developers would rather do
+        something else. Wouldn't you love to get rid of the process?
+      </p>
+    </section>
+    <section class="container">
+      <div class="section-img on-top">
+        <img src="/img/clock.svg" class="timecard" />
+      </div>
+      <div class="section-text">
+        <h1>The Solution</h1>
+        <p>
+          Easily track the time you work on a project with <code>clock</code>. Before
+          you start your work for the day, be sure to <code>clock in</code>. Need to
+          run a few errands or get out of the house? Run <code>clock out</code>. Too
+          lazy for that dance? Instead, run <code>clock watch</code> to listen
+          for changes and auto-clock you in or out. In addition to an invoice for
+          the client, you also get work-time metrics for yourself.
+        </p>
+      </div>
+      <div class="section-img on-right">
+        <img src="/img/clock.svg" class="timecard" />
+      </div>
+    </section>
+    <section class="container">
+      <div class="section-img">
+        <img src="/img/money.svg" class="money" />
+      </div>
+      <div class="section-text">
+        <h1>Paycheck time</h1>
+        <p>
+          Time to get paid? Push up your latest changes, and visit
+          <code>http://clock-flag.herokuapp.com/username/repo</code>. Don't like
+          what you see? Open up <code>.timecard.json</code> within the project, and change
+          <code>reportFormat</code> to any of the themes below, or make <a
+          href="/docs/make-a-theme">your own</a>. After pushing up your changes, take a look at your
+          new invoice. Was that hard?
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <section class="container">
+    <h1>Themes</h1>
+    <div class="row">
+      <div class="col-xs-6 col-md-3">
+        <span href="#" class="thumbnail">
+          <h3>default</h3>
+          <p>
+            A simple theme with a custom-colored top section. Also, it just so
+            happens to be the default in a new timecard.
+          </p>
+          <img src="/img/themes/default.png" />
+        </span>
+      </div>
+      <div class="col-xs-6 col-md-3">
+        <span href="#" class="thumbnail">
+          <h3>clean</h3>
+          <p>
+            A minimalist theme that consists mostly of text.
+          </p>
+          <img src="/img/themes/clean.png" />
+        </span>
+      </div>
+    </div>
+  </section>
 <% } %>
+
 
 <% include footer %>
