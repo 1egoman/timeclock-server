@@ -1,6 +1,5 @@
 .hero {
   @extend .jumbotron;
-  margin-top: 2em;
   width: 100%;
 
   img {
@@ -13,6 +12,62 @@
 
     h1 {
       font-size: 3rem;
+    }
+  }
+}
+
+.master {
+  overflow-x: hidden;
+  section.container {
+    margin-top: 2em;
+    margin-bottom: 4em;
+
+    .section-text {
+      @include make-md-column(8);
+    }
+    p {
+      font-size: 1.4em;
+    }
+
+    .section-img {
+      @include make-md-column(4);
+
+      &.on-top { @media (min-width: $screen-md-min) { display: none; } }
+      &.on-right {
+        display: none;
+        @media (min-width: $screen-md-min) { display: block; }
+      }
+
+      .money {
+        @media (min-width: $screen-md-min) {
+          margin-left: -360px;
+        }
+      }
+      .timecard {
+        @media (min-width: $screen-md-min) {
+          margin-right: -360px;
+        }
+      }
+    }
+
+  }
+}
+
+// thumbnails on home page
+.row {
+  .thumbnail {
+    padding: 1.4em;
+    margin-bottom: 300px;
+    h3:before, h3:after { content: '"'; }
+    p {
+      font-size: 1.2em;
+      height: 8.4em;
+    }
+    img {
+      margin-left: -12%;
+      max-width: 124%;
+      float: left;
+      border: 2px solid $gray-lighter;
     }
   }
 }
