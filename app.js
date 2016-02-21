@@ -8,7 +8,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require("express-session");
 
-const routes = require('./routes/index');
 const badges = require('./routes/badge');
 const repo = require('./routes/repository');
 
