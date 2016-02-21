@@ -5905,9 +5905,18 @@ button.close {
     .container-report .report-header .report-header-inner h1 {
       font-size: 1.8rem; }
       .container-report .report-header .report-header-inner h1 .ref {
+        color: #777777;
+        margin-right: 0.25em; }
+        .container-report .report-header .report-header-inner h1 .ref:before {
+          content: "@ "; }
+      .container-report .report-header .report-header-inner h1 .repo-badge {
         float: right;
-        font-size: 0.8em;
-        margin-top: 0.8em; }
+        cursor: pointer; }
+        .container-report .report-header .report-header-inner h1 .repo-badge .text {
+          margin-top: -1em; }
+        .container-report .report-header .report-header-inner h1 .repo-badge .popover {
+          cursor: text;
+          font-size: 0.6em; }
 
 .btn.btn-xl {
   border-radius: 0px;

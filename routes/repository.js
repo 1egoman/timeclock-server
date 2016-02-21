@@ -80,7 +80,9 @@ module.exports = function(app) {
         }).catch(doError(res, 400));
 
       } else {
-        res.status(400).send("Timecard is malformed.");
+        res.status(400).send({
+          error: "Timecard is malformed.",
+        });
       }
     }).catch(doError(res, 404));
   });

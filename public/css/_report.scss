@@ -25,9 +25,19 @@
       h1 {
         font-size: 1.8rem;
         .ref {
+          &:before { content: "@ "; }
+          color: $gray-light;
+          margin-right: 0.25em;
+        }
+
+        .repo-badge {
           float: right;
-          font-size: 0.8em;
-          margin-top: 0.8em;
+          cursor: pointer;
+          .text { margin-top: -1em; }
+          .popover {
+            cursor: text;
+            font-size: 0.6em;
+          }
         }
       }
     }

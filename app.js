@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 const session = require("express-session");
 
 const routes = require('./routes/index');
-const users = require('./routes/user');
+const badges = require('./routes/badge');
 const repo = require('./routes/repository');
 
 const app = express();
@@ -92,7 +92,7 @@ app.get('/auth/github/callback', passport.authenticate(
 ), (req, res) => res.redirect('/'));
 
 
-app.use('/users', users);
+badges(app);
 repo(app);
 
 /// catch 404 and forward to error handler
