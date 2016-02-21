@@ -14,7 +14,8 @@
           data-toggle="popover"
           title="Embeddable Badge"
           data-content="[![Clock Status](https://clock-flag.herokuapp.com/<%=
-          repo.full_name %>.svg)](https://clock-flag.herokuapp.com/<%=
+          repo.full_name %>.svg<%= repo.private ? '?token='+user.badge_token :
+          '' %>)](https://clock-flag.herokuapp.com/<%=
           repo.full_name %>)"
           data-placement="bottom"
         >

@@ -78,6 +78,7 @@ module.exports = function(app) {
               full_name: `${req.params.username}/${req.params.repo}`,
             } : req.parent_repo,
             current_ref: ref,
+            user: req.user,
             report: report.replace("<script>", "&lt;script&gt;").replace("</script>", "&lt;/script&gt;"), 
           });
         }).catch(doError(res, 400));
