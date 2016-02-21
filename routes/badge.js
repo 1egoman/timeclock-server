@@ -5,6 +5,7 @@ const request = require('request'),
       Promise = require('promise'),
       User = require("../lib/models/user");
 
+// given a logged in user or token, return the equivilent user.
 function getAuthenticatedUser(req) {
   return new Promise((resolve, reject) => {
     if (req.user) {

@@ -43,14 +43,14 @@ module.exports = function(app) {
       if (req.user) {
         repo.getUserRepos(req).then((repos) => {
           res.render('index', {
-            title: 'Clock',
+            title: 'Waltz',
             user: req.user,
             repos: repos,
           });
         }).catch(doError);
       } else {
         res.render('index', {
-          title: 'Clock',
+          title: 'Waltz',
           user: req.user,
         });
       }
