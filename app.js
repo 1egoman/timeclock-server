@@ -12,14 +12,15 @@ const routes = require('./routes/index');
 const badges = require('./routes/badge');
 const repo = require('./routes/repository');
 
+const authStrategy = require("./lib/auth/strategy");
+const authSerializer = require("./lib/auth/serialization");
+
 const app = express();
 
 const passport = require("passport");
-const GithubStrategy = require("passport-github2");
 
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://clock:clock@ds011278.mongolab.com:11278/clock-server");
-const User = require("./lib/models/user");
 
 const env = process.env.NODE_ENV || 'development';
 app.locals.ENV = env;
@@ -44,44 +45,12 @@ app.use(session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+authSerializer(passport); // attaches passport.serializeUser and passport.deserializeUser
+passport.use(authStrategy);
 
 // ----------------------------------------------------------------------------
 // passport auth routes
 // ------------------------------------------------------------------------------
-passport.serializeUser(function(user, done) {
-  done(null, user._id);
-});
-
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
-  });
-});
-
-// github strategy
-passport.use(new GithubStrategy({
-    clientID: "4cee013f4f8ff83a2930",
-    clientSecret: "a46f06736c59fcaedf9ff846bbbcccf3bca3e0e1",
-    callbackURL: "http://clock-flag.herokuapp.com/auth/github/callback"
-}, function(access_token, refresh_token, profile, done) {
-  let user = {
-    github_id: profile.id,
-    access_token: access_token,
-    refresh_token: refresh_token,
-  };
-
-  User.findOne({github_id: profile.id}, (err, existing_user) => {
-    if (err) {
-      return done(err);
-    } else if (existing_user) {
-      return done(null, existing_user);
-    } else {
-      (new User(user)).save((err, new_user) => {
-        return done(err, new_user);
-      });
-    }
-  });
-}));
 
 app.get('/auth/github', passport.authenticate('github', {
   scope: [ 'user', 'repo']
@@ -91,7 +60,14 @@ app.get('/auth/github/callback', passport.authenticate(
   'github', { failureRedirect: '/login' }
 ), (req, res) => res.redirect('/'));
 
+app.get('/auth/logout', (req, res) => {
+  req.logout();
+  res.redirect('/');
+});
 
+// ----------------------------------------------------------------------------
+// Routes
+// ------------------------------------------------------------------------------
 badges(app);
 repo(app);
 

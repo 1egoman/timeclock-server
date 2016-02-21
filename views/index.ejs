@@ -16,9 +16,11 @@
   $ git add .timecard.json && git push origin master
       </code></pre>
       </p>
+      <a class="btn btn-success btn-xl btn-50" href="/1egoman/clockmaker">See an example</a>
       <% if (!user) { %>
-        <a class="btn btn-success btn-xl btn-50" href="/1egoman/clockmaker">See an example</a>
         <a class="btn btn-primary btn-xl btn-50" href="/auth/github">Sign in with Github</a>
+      <% } else { %>
+        <a class="btn btn-primary btn-xl btn-50" href="/auth/logout">Logout <%= user.username %></a>
       <% } %>
     </div>
   </div>
@@ -33,7 +35,6 @@
       </ul>
   </div>
 <% } else { %>
-
   <div class="master">
     <section class="container">
       <h1>The Problem</h1>
