@@ -28,7 +28,6 @@ module.exports = function(app) {
   app.get('/:username/:repo.svg', function(req, res) {
     getAuthenticatedUser(req)
     .then((user) => {
-      console.log(1)
       return repo.getFileFromRepo(
         req.params.username,
         req.params.repo,
