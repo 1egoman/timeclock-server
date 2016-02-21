@@ -5,5 +5,9 @@
       <code>Private</code>
     <% } %>
   </h3>
-  <a class="btn btn-primary pull-right" href="/<%= repo.full_name %>">Pick Me</a>
+  <% if (repo.timecard.name) { %>
+    <a class="btn btn-primary pull-right" href="/<%= repo.full_name %>">Pick Me</a>
+  <% } else { %>
+    <a class="btn btn-primary pull-right" disabled>No timecard in repo</a>
+  <% } %>
 </li>

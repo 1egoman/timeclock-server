@@ -16,7 +16,7 @@ module.exports = function(app) {
       let total = card.totalDuration(timecard),
           min = Math.floor(total / 60) % 60,
           hour = Math.floor(total / 3600);
-      request(`https://img.shields.io/badge/clock-${hour}h ${min}m-blue.svg`).pipe(res);
+      request(`https://img.shields.io/badge/unpaid-${hour}h ${min}m-blue.svg`).pipe(res);
     }).catch((err) => {
       res.send({
         error: err,

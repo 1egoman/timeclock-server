@@ -28,7 +28,10 @@ function doError(res, code) {
       });
     } else {
       console.error(err);
-      res.status(code).send(err);
+      res.status(code).render("error", {
+        title: "Error",
+        msg: err,
+      });
     }
   };
 }
