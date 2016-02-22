@@ -36,58 +36,62 @@ function doError(res, code) {
   };
 }
 
-module.exports = function(app) {
-
     /* GET home page. */
-    app.get('/', function(req, res) {
-      if (req.user) {
-        repo.getUserRepos(req).then((repos) => {
-          res.render('index', {
-            title: 'Waltz',
-            user: req.user,
-            repos: repos,
-          });
-        }).catch(doError);
-      } else {
-        res.render('index', {
-          title: 'Waltz',
-          user: req.user,
-        });
-      }
+function index(req, res) {
+  if (req.user) {
+    repo.getUserRepos(req).then((repos) => {
+      res.render('index', {
+        title: 'Waltz',
+        user: req.user,
+        repos: repos,
+      });
+    }).catch(doError);
+  } else {
+    res.render('index', {
+      title: 'Waltz',
+      user: req.user,
     });
+  }
+}
 
   // get a repo
-  app.get('/:username/:repo/:ref?', getRepo, function(req, res) {
-    let ref = req.params.ref || req.parent_repo.default_branch || "master";
-    repo.getFileFromRepo(
-      req.params.username,
-      req.params.repo,
-      null,
-      ref,
-      req.user
-    ).then((timecard) => {
-      if (card.assertIsCard(timecard)) {
+function doReport(req, res) {
+  let ref = req.params.ref || req.parent_repo.default_branch || "master";
+  repo.getFileFromRepo(
+    req.params.username,
+    req.params.repo,
+    null,
+    ref,
+    req.user
+  ).then((timecard) => {
+    if (card.assertIsCard(timecard)) {
 
-        // make the report
-        card.getReportTemplate(timecard.reportFormat || "default").then((template) => {
-          let ejs_data = card.getTimecardRenderDetails(timecard);
-          let report = ejs.render(template, ejs_data);
-          res.render("report", {
-            title: `Invoice for ${req.params.username}/${req.params.repo}`,
-            repo: req.parent_repo.error ? {
-              full_name: `${req.params.username}/${req.params.repo}`,
-            } : req.parent_repo,
-            current_ref: ref,
-            user: req.user,
-            report: report.replace("<script>", "&lt;script&gt;").replace("</script>", "&lt;/script&gt;"), 
-          });
-        }).catch(doError(res, 400));
-
-      } else {
-        res.status(400).send({
-          error: "Timecard is malformed.",
+      // make the report
+      card.getReportTemplate(timecard.reportFormat || "default").then((template) => {
+        let ejs_data = card.getTimecardRenderDetails(timecard);
+        let report = ejs.render(template, ejs_data);
+        res.render("report", {
+          title: `Invoice for ${req.params.username}/${req.params.repo}`,
+          repo: req.parent_repo.error ? {
+            full_name: `${req.params.username}/${req.params.repo}`,
+          } : req.parent_repo,
+          current_ref: ref,
+          user: req.user,
+          report: report.replace("<script>", "&lt;script&gt;").replace("</script>", "&lt;/script&gt;"), 
         });
-      }
-    }).catch(doError(res, 404));
-  });
-};
+      }).catch(doError(res, 400));
+
+    } else {
+      res.status(400).send({
+        error: "Timecard is malformed.",
+      });
+    }
+  }).catch(doError(res, 404));
+}
+
+module.exports = {
+  getRepo: getRepo,
+  doError: doError,
+  index: index,
+  doReport: doReport,
+}
