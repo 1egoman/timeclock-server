@@ -25,29 +25,30 @@ function getAuthenticatedUser(req) {
 }
 
 // get a badge for this repo
-module.exports = function(app) {
-  app.get('/:username/:repo.svg', function(req, res) {
-    getAuthenticatedUser(req)
-    .then((user) => {
-      return repo.getFileFromRepo(
-        req.params.username,
-        req.params.repo,
-        null,
-        req.query.ref || "master",
-        user
-      );
-    })
-    .then((timecard) => {
-      let total = card.totalDuration(timecard),
-          min = Math.floor(total / 60) % 60,
-          hour = Math.floor(total / 3600);
-      request(`https://img.shields.io/badge/unpaid-${hour}h ${min}m-blue.svg`).pipe(res);
-    }).catch((err) => {
-      res.send({
-        error: err,
-      });
+function fetchBadge(req, res) {
+  getAuthenticatedUser(req)
+  .then((user) => {
+    return repo.getFileFromRepo(
+      req.params.username,
+      req.params.repo,
+      null,
+      req.query.ref || "master",
+      user
+    );
+  })
+  .then((timecard) => {
+    let total = card.totalDuration(timecard),
+        min = Math.floor(total / 60) % 60,
+        hour = Math.floor(total / 3600);
+    request(`https://img.shields.io/badge/unpaid-${hour}h ${min}m-blue.svg`).pipe(res);
+  }).catch((err) => {
+    console.log(1)
+    res.send({
+      error: err,
     });
   });
+}
 
-  return app;
+module.exports = {
+  fetchBadge: fetchBadge,
 };

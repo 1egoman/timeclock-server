@@ -67,7 +67,7 @@ app.get('/auth/logout', (req, res) => {
 // ----------------------------------------------------------------------------
 // Routes
 // ------------------------------------------------------------------------------
-badges(app);
+app.get('/:username/:repo.svg', badges.fetchBadge);
 repo(app);
 
 /// catch 404 and forward to error handler
