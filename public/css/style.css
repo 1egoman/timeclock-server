@@ -5834,22 +5834,31 @@ button.close {
     margin: 0px auto;
     display: block; }
   .btn.btn-xl.btn-50 {
-    width: 48%;
-    margin: 0px auto;
+    width: 100%;
+    margin: 10px auto;
     display: block;
     margin-left: 1%;
-    margin-right: 1%;
-    float: left; }
+    margin-right: 1%; }
+    @media (min-width: 768px) {
+      .btn.btn-xl.btn-50 {
+        width: 48%;
+        float: left; } }
 
 .hero {
   width: 100%; }
   .hero img {
-    float: left;
-    width: 20%; }
-  .hero .text-body {
-    margin-left: 25%; }
-    .hero .text-body h1 {
-      font-size: 4rem; }
+    margin: 0px auto;
+    width: 100px;
+    display: block; }
+    @media (min-width: 768px) {
+      .hero img {
+        float: left;
+        width: 20%; } }
+  @media (min-width: 768px) {
+    .hero .text-body {
+      margin-left: 25%; } }
+  .hero .text-body h1 {
+    font-size: 4rem; }
 
 .master {
   overflow-x: hidden; }

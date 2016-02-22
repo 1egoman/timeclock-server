@@ -3,12 +3,19 @@
   width: 100%;
 
   img {
-    float: left;
-    width: 20%;
+    margin: 0px auto;
+    width: 100px;
+    display: block;
+    @media (min-width: $screen-sm-min) {
+      float: left;
+      width: 20%;
+    }
   }
 
   .text-body {
-    margin-left: 25%;
+    @media (min-width: $screen-sm-min) {
+      margin-left: 25%;
+    }
 
     h1 {
       font-size: 4rem;
