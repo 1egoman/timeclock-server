@@ -68,10 +68,10 @@ app.get('/auth/logout', (req, res) => {
 // Routes
 // ------------------------------------------------------------------------------
 app.get('/', repo.index);
-app.get('/:username/:repo/:ref?', repo.getRepo, repo.doReport);
 app.get('/:username/:repo.svg', badges.fetchBadge);
+app.get('/:username/:repo/:ref?', repo.getRepo, repo.doReport);
 
-/// catch 404 and forward to error handler
+// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   let err = new Error('Not Found');
   err.status = 404;

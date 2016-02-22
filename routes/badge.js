@@ -28,6 +28,7 @@ function getAuthenticatedUser(req) {
 function fetchBadge(req, res) {
   getAuthenticatedUser(req)
   .then((user) => {
+    console.log(user)
     return repo.getFileFromRepo(
       req.params.username,
       req.params.repo,
@@ -42,7 +43,6 @@ function fetchBadge(req, res) {
         hour = Math.floor(total / 3600);
     request(`https://img.shields.io/badge/unpaid-${hour}h ${min}m-blue.svg`).pipe(res);
   }).catch((err) => {
-    console.log(1)
     res.send({
       error: err,
     });
