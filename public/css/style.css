@@ -5890,20 +5890,6 @@ button.close {
         .master section.container .section-img .timecard, .master .container-report .report-header section.report-header-inner .section-img .timecard, .container-report .report-header .master section.report-header-inner .section-img .timecard, .master .container-report section.body .section-img .timecard, .container-report .master section.body .section-img .timecard {
           margin-right: -360px; } }
 
-.row .thumbnail {
-  padding: 1.4em;
-  margin-bottom: 300px; }
-  .row .thumbnail h3:before, .row .thumbnail h3:after {
-    content: '"'; }
-  .row .thumbnail p {
-    font-size: 1.2em;
-    height: 8.4em; }
-  .row .thumbnail img {
-    margin-left: -12%;
-    max-width: 124%;
-    float: left;
-    border: 2px solid #eeeeee; }
-
 .themes.themes-hero {
   overflow-y: hidden; }
   .themes.themes-hero h1 {
@@ -5927,6 +5913,10 @@ button.close {
       z-index: 500;
       margin-left: -20%;
       margin-top: -20px; }
+
+.byline {
+  text-align: center;
+  margin-bottom: 20px; }
 
 .container-report .report-header {
   background: #EEE;

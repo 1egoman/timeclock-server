@@ -45,25 +45,6 @@
   }
 }
 
-// thumbnails on home page
-.row {
-  .thumbnail {
-    padding: 1.4em;
-    margin-bottom: 300px;
-    h3:before, h3:after { content: '"'; }
-    p {
-      font-size: 1.2em;
-      height: 8.4em;
-    }
-    img {
-      margin-left: -12%;
-      max-width: 124%;
-      float: left;
-      border: 2px solid $gray-lighter;
-    }
-  }
-}
-
 .themes.themes-hero {
   overflow-y: hidden;
 
@@ -95,4 +76,9 @@
       margin-top: -20px;
     }
   }
+}
+
+.byline {
+  text-align: center;
+  margin-bottom: 20px;
 }
