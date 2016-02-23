@@ -1,25 +1,10 @@
 .hero {
   @extend .jumbotron;
+  margin-bottom: 0px;
   width: 100%;
 
-  img {
-    margin: 0px auto;
-    width: 100px;
-    display: block;
-    @media (min-width: $screen-sm-min) {
-      float: left;
-      width: 20%;
-    }
-  }
-
-  .text-body {
-    @media (min-width: $screen-sm-min) {
-      margin-left: 25%;
-    }
-
-    h1 {
-      font-size: 4rem;
-    }
+  & > h1 {
+    font-weight: lighter;
   }
 }
 
@@ -75,6 +60,39 @@
       max-width: 124%;
       float: left;
       border: 2px solid $gray-lighter;
+    }
+  }
+}
+
+.themes.themes-hero {
+  overflow-y: hidden;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 2em;
+  }
+
+  img, object {
+    position: relative;
+    width: 33%;
+    background: #fff;
+    border: 3px solid $gray-lighter;
+
+    &.left {
+      float: left;
+      opacity: 0.5;
+    }
+    &.right {
+      float: right;
+      opacity: 0.5;
+    }
+    &.center {
+      position: absolute;
+      width: 40%;
+      left: 50%;
+      z-index: 500;
+      margin-left: -20%;
+      margin-top: -20px;
     }
   }
 }

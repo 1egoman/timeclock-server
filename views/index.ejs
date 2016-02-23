@@ -1,11 +1,33 @@
 <% include header %>
 
 <!-- Not authorized -->
+<section class="hero container-fluid themes themes-hero">
+  <h1>Waltz makes invoices easy.</h1>
+  <object class="left" type="image/svg+xml" data="/img/reports/bold.svg">
+    <img class="left" src="/img/reports/bold.svg" />
+  </object>
+  <object class="center" type="image/svg+xml" data="/img/reports/default.svg">
+    <img class="center" src="/img/reports/default.svg" />
+  </object>
+  <object class="right" type="image/svg+xml" data="/img/reports/clean.svg">
+    <img class="right" src="/img/reports/clean.svg" />
+  </object>
+
+  <script type="text/javascript">
+    setInterval(function() {
+      var items = ["#ff8080", "#a0e35d", "#5de3e3", "#a05de3"],
+      item = items[Math.floor(Math.random()*items.length)];
+      document
+      .querySelector(".center")
+      .getSVGDocument()
+      .getElementById("primary")
+      .style.fill = item;
+    }, 10000);
+  </script>
+</section>
 <div class="hero clearfix">
   <div class="container">
-    <img class="logo" src="/img/logo.svg" />
     <div class="text-body">
-      <h1>Waltz makes invoices easy.</h1>
       <p>
         As simple as:
         <pre><code>
@@ -81,31 +103,6 @@
       </div>
     </section>
   </div>
-
-  <section class="container">
-    <h1>Themes</h1>
-    <div class="row">
-      <div class="col-xs-6 col-md-3">
-        <span href="#" class="thumbnail">
-          <h3>default</h3>
-          <p>
-            A simple theme with a custom-colored top section. Also, it just so
-            happens to be the default in a new timecard.
-          </p>
-          <img src="/img/themes/default.png" />
-        </span>
-      </div>
-      <div class="col-xs-6 col-md-3">
-        <span href="#" class="thumbnail">
-          <h3>clean</h3>
-          <p>
-            A minimalist theme that consists mostly of text.
-          </p>
-          <img src="/img/themes/clean.png" />
-        </span>
-      </div>
-    </div>
-  </section>
 <% } %>
 
 
