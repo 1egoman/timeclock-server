@@ -3,7 +3,7 @@ $(document).ready(function () {
 
   // select the popover contents on click
   $("body").on("click", ".repo-badge .popover-content", function() {
-    let range = document.createRange();
+    range = document.createRange();
     range.selectNodeContents(this);
     window.getSelection().removeAllRanges();
     window.getSelection().addRange(range);

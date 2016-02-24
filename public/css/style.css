@@ -1500,24 +1500,24 @@ pre {
   max-height: 340px;
   overflow-y: scroll; }
 
-.container, .container-report .report-header .report-header-inner, .container-report .body {
+.container, .container-report .report-header .report-header-inner {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px; }
-  .container:before, .container-report .report-header .report-header-inner:before, .container-report .body:before, .container:after, .container-report .report-header .report-header-inner:after, .container-report .body:after {
+  .container:before, .container-report .report-header .report-header-inner:before, .container:after, .container-report .report-header .report-header-inner:after {
     content: " ";
     display: table; }
-  .container:after, .container-report .report-header .report-header-inner:after, .container-report .body:after {
+  .container:after, .container-report .report-header .report-header-inner:after {
     clear: both; }
   @media (min-width: 768px) {
-    .container, .container-report .report-header .report-header-inner, .container-report .body {
+    .container, .container-report .report-header .report-header-inner {
       width: 750px; } }
   @media (min-width: 992px) {
-    .container, .container-report .report-header .report-header-inner, .container-report .body {
+    .container, .container-report .report-header .report-header-inner {
       width: 970px; } }
   @media (min-width: 1200px) {
-    .container, .container-report .report-header .report-header-inner, .container-report .body {
+    .container, .container-report .report-header .report-header-inner {
       width: 1170px; } }
 
 .container-fluid {
@@ -3720,15 +3720,15 @@ tbody.collapse.in {
     .navbar-fixed-bottom .navbar-collapse {
       max-height: 200px; } }
 
-.container > .navbar-header, .container-report .report-header .report-header-inner > .navbar-header, .container-report .body > .navbar-header,
-.container > .navbar-collapse, .container-report .report-header .report-header-inner > .navbar-collapse, .container-report .body > .navbar-collapse,
+.container > .navbar-header, .container-report .report-header .report-header-inner > .navbar-header,
+.container > .navbar-collapse, .container-report .report-header .report-header-inner > .navbar-collapse,
 .container-fluid > .navbar-header,
 .container-fluid > .navbar-collapse {
   margin-right: -15px;
   margin-left: -15px; }
   @media (min-width: 768px) {
-    .container > .navbar-header, .container-report .report-header .report-header-inner > .navbar-header, .container-report .body > .navbar-header,
-    .container > .navbar-collapse, .container-report .report-header .report-header-inner > .navbar-collapse, .container-report .body > .navbar-collapse,
+    .container > .navbar-header, .container-report .report-header .report-header-inner > .navbar-header,
+    .container > .navbar-collapse, .container-report .report-header .report-header-inner > .navbar-collapse,
     .container-fluid > .navbar-header,
     .container-fluid > .navbar-collapse {
       margin-right: 0;
@@ -3772,7 +3772,7 @@ tbody.collapse.in {
   .navbar-brand > img {
     display: block; }
   @media (min-width: 768px) {
-    .navbar > .container .navbar-brand, .container-report .report-header .navbar > .report-header-inner .navbar-brand, .container-report .navbar > .body .navbar-brand,
+    .navbar > .container .navbar-brand, .container-report .report-header .navbar > .report-header-inner .navbar-brand,
     .navbar > .container-fluid .navbar-brand {
       margin-left: -15px; } }
 
@@ -4299,19 +4299,19 @@ a.badge:hover, a.badge:focus {
     font-weight: 200; }
   .jumbotron > hr, .hero > hr {
     border-top-color: #d5d5d5; }
-  .container .jumbotron, .container-report .report-header .report-header-inner .jumbotron, .container-report .body .jumbotron, .container .hero, .container-report .report-header .report-header-inner .hero, .container-report .body .hero,
+  .container .jumbotron, .container-report .report-header .report-header-inner .jumbotron, .container .hero, .container-report .report-header .report-header-inner .hero,
   .container-fluid .jumbotron,
   .container-fluid .hero {
     border-radius: 0px;
     padding-left: 15px;
     padding-right: 15px; }
-  .jumbotron .container, .hero .container, .jumbotron .container-report .report-header .report-header-inner, .container-report .report-header .jumbotron .report-header-inner, .hero .container-report .report-header .report-header-inner, .container-report .report-header .hero .report-header-inner, .jumbotron .container-report .body, .container-report .jumbotron .body, .hero .container-report .body, .container-report .hero .body {
+  .jumbotron .container, .hero .container, .jumbotron .container-report .report-header .report-header-inner, .container-report .report-header .jumbotron .report-header-inner, .hero .container-report .report-header .report-header-inner, .container-report .report-header .hero .report-header-inner {
     max-width: 100%; }
   @media screen and (min-width: 768px) {
     .jumbotron, .hero {
       padding-top: 48px;
       padding-bottom: 48px; }
-      .container .jumbotron, .container-report .report-header .report-header-inner .jumbotron, .container-report .body .jumbotron, .container .hero, .container-report .report-header .report-header-inner .hero, .container-report .body .hero,
+      .container .jumbotron, .container-report .report-header .report-header-inner .jumbotron, .container .hero, .container-report .report-header .report-header-inner .hero,
       .container-fluid .jumbotron,
       .container-fluid .hero {
         padding-left: 60px;
@@ -5852,42 +5852,42 @@ button.close {
 
 .master {
   overflow-x: hidden; }
-  .master section.container, .master .container-report .report-header section.report-header-inner, .container-report .report-header .master section.report-header-inner, .master .container-report section.body, .container-report .master section.body {
+  .master section.container, .master .container-report .report-header section.report-header-inner, .container-report .report-header .master section.report-header-inner {
     margin-top: 2em;
     margin-bottom: 4em; }
-    .master section.container .section-text, .master .container-report .report-header section.report-header-inner .section-text, .container-report .report-header .master section.report-header-inner .section-text, .master .container-report section.body .section-text, .container-report .master section.body .section-text {
+    .master section.container .section-text, .master .container-report .report-header section.report-header-inner .section-text, .container-report .report-header .master section.report-header-inner .section-text {
       position: relative;
       min-height: 1px;
       padding-left: 15px;
       padding-right: 15px; }
       @media (min-width: 992px) {
-        .master section.container .section-text, .master .container-report .report-header section.report-header-inner .section-text, .container-report .report-header .master section.report-header-inner .section-text, .master .container-report section.body .section-text, .container-report .master section.body .section-text {
+        .master section.container .section-text, .master .container-report .report-header section.report-header-inner .section-text, .container-report .report-header .master section.report-header-inner .section-text {
           float: left;
           width: 66.6666666667%; } }
-    .master section.container p, .master .container-report .report-header section.report-header-inner p, .container-report .report-header .master section.report-header-inner p, .master .container-report section.body p, .container-report .master section.body p {
+    .master section.container p, .master .container-report .report-header section.report-header-inner p, .container-report .report-header .master section.report-header-inner p {
       font-size: 1.4em; }
-    .master section.container .section-img, .master .container-report .report-header section.report-header-inner .section-img, .container-report .report-header .master section.report-header-inner .section-img, .master .container-report section.body .section-img, .container-report .master section.body .section-img {
+    .master section.container .section-img, .master .container-report .report-header section.report-header-inner .section-img, .container-report .report-header .master section.report-header-inner .section-img {
       position: relative;
       min-height: 1px;
       padding-left: 15px;
       padding-right: 15px; }
       @media (min-width: 992px) {
-        .master section.container .section-img, .master .container-report .report-header section.report-header-inner .section-img, .container-report .report-header .master section.report-header-inner .section-img, .master .container-report section.body .section-img, .container-report .master section.body .section-img {
+        .master section.container .section-img, .master .container-report .report-header section.report-header-inner .section-img, .container-report .report-header .master section.report-header-inner .section-img {
           float: left;
           width: 33.3333333333%; } }
       @media (min-width: 992px) {
-        .master section.container .section-img.on-top, .master .container-report .report-header section.report-header-inner .section-img.on-top, .container-report .report-header .master section.report-header-inner .section-img.on-top, .master .container-report section.body .section-img.on-top, .container-report .master section.body .section-img.on-top {
+        .master section.container .section-img.on-top, .master .container-report .report-header section.report-header-inner .section-img.on-top, .container-report .report-header .master section.report-header-inner .section-img.on-top {
           display: none; } }
-      .master section.container .section-img.on-right, .master .container-report .report-header section.report-header-inner .section-img.on-right, .container-report .report-header .master section.report-header-inner .section-img.on-right, .master .container-report section.body .section-img.on-right, .container-report .master section.body .section-img.on-right {
+      .master section.container .section-img.on-right, .master .container-report .report-header section.report-header-inner .section-img.on-right, .container-report .report-header .master section.report-header-inner .section-img.on-right {
         display: none; }
         @media (min-width: 992px) {
-          .master section.container .section-img.on-right, .master .container-report .report-header section.report-header-inner .section-img.on-right, .container-report .report-header .master section.report-header-inner .section-img.on-right, .master .container-report section.body .section-img.on-right, .container-report .master section.body .section-img.on-right {
+          .master section.container .section-img.on-right, .master .container-report .report-header section.report-header-inner .section-img.on-right, .container-report .report-header .master section.report-header-inner .section-img.on-right {
             display: block; } }
       @media (min-width: 992px) {
-        .master section.container .section-img .money, .master .container-report .report-header section.report-header-inner .section-img .money, .container-report .report-header .master section.report-header-inner .section-img .money, .master .container-report section.body .section-img .money, .container-report .master section.body .section-img .money {
+        .master section.container .section-img .money, .master .container-report .report-header section.report-header-inner .section-img .money, .container-report .report-header .master section.report-header-inner .section-img .money {
           margin-left: -360px; } }
       @media (min-width: 992px) {
-        .master section.container .section-img .timecard, .master .container-report .report-header section.report-header-inner .section-img .timecard, .container-report .report-header .master section.report-header-inner .section-img .timecard, .master .container-report section.body .section-img .timecard, .container-report .master section.body .section-img .timecard {
+        .master section.container .section-img .timecard, .master .container-report .report-header section.report-header-inner .section-img .timecard, .container-report .report-header .master section.report-header-inner .section-img .timecard {
           margin-right: -360px; } }
 
 .themes.themes-hero {
@@ -5948,8 +5948,38 @@ button.close {
           cursor: text;
           font-size: 0.6em; }
 
+.container-report .body {
+  position: absolute;
+  left: 0px;
+  top: 96px;
+  bottom: 0px;
+  width: 100%; }
+  .container-report .body iframe {
+    position: absolute;
+    border: 0px;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto; }
+
 .error footer {
   margin-top: 2em; }
+
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out; }
+
+@keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0); }
+  20%, 60% {
+    transform: rotate(-25deg); }
+  40%, 80% {
+    transform: rotate(10deg); } }
+
+@media (max-width: 500px) {
+  .github-corner:hover .octo-arm {
+    animation: none; }
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out; } }
 
 a {
   color: #00B7FF; }

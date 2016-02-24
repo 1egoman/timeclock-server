@@ -54,7 +54,19 @@ function index(req, res) {
   }
 }
 
-  // get a repo
+function renderReportTemplate(req, res) {
+  let ref = req.params.ref || req.parent_repo.default_branch || "master";
+  res.render("report", {
+    title: `Invoice for ${req.params.username}/${req.params.repo}`,
+    repo: req.parent_repo.error ? {
+      full_name: `${req.params.username}/${req.params.repo}`,
+    } : req.parent_repo,
+    current_ref: ref,
+    user: req.user,
+  });
+}
+
+// get a repo
 function doReport(req, res) {
   let ref = req.params.ref || req.parent_repo.default_branch || "master";
   repo.getFileFromRepo(
@@ -68,17 +80,13 @@ function doReport(req, res) {
 
       // make the report
       card.getReportTemplate(timecard.reportFormat || "default").then((template) => {
-        let ejs_data = card.getTimecardRenderDetails(timecard);
-        let report = ejs.render(template, ejs_data);
-        res.render("report", {
-          title: `Invoice for ${req.params.username}/${req.params.repo}`,
-          repo: req.parent_repo.error ? {
-            full_name: `${req.params.username}/${req.params.repo}`,
-          } : req.parent_repo,
-          current_ref: ref,
-          user: req.user,
-          report: report.replace("<script>", "&lt;script&gt;").replace("</script>", "&lt;/script&gt;"), 
-        });
+        let ejs_data = card.getTimecardRenderDetails(timecard),
+            report = ejs.render(template, ejs_data),
+            rendered_report = report
+              .replace("<script>", "&lt;script&gt;")
+              .replace("</script>", "&lt;/script&gt;")
+              + "<div style='margin-bottom: 100px;'></div>" // put some space at the bottom
+        res.send(rendered_report);
       }).catch(doError(res, 400));
 
     } else {
@@ -94,4 +102,5 @@ module.exports = {
   doError: doError,
   index: index,
   doReport: doReport,
+  renderReportTemplate: renderReportTemplate,
 }
