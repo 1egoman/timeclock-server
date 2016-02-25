@@ -54,16 +54,31 @@ function index(req, res) {
   }
 }
 
+// render the page that will load the report in a frame.
 function renderReportTemplate(req, res) {
   let ref = req.params.ref || req.parent_repo.default_branch || "master";
-  res.render("report", {
-    title: `Invoice for ${req.params.username}/${req.params.repo}`,
-    repo: req.parent_repo.error ? {
-      full_name: `${req.params.username}/${req.params.repo}`,
-    } : req.parent_repo,
-    current_ref: ref,
-    user: req.user,
-  });
+  repo.getFileFromRepo(
+    req.params.username,
+    req.params.repo,
+    null,
+    ref,
+    req.user
+  ).then((timecard) => {
+    if (card.assertIsCard(timecard)) {
+      res.render("report", {
+        title: `Invoice for ${req.params.username}/${req.params.repo}`,
+        repo: req.parent_repo.error ? {
+          full_name: `${req.params.username}/${req.params.repo}`,
+        } : req.parent_repo,
+        current_ref: ref,
+        user: req.user,
+      });
+    } else {
+      res.status(400).send({
+        error: "Timecard is malformed.",
+      });
+    }
+  }).catch(doError(res, 404));
 }
 
 // get a repo
@@ -77,7 +92,6 @@ function doReport(req, res) {
     req.user
   ).then((timecard) => {
     if (card.assertIsCard(timecard)) {
-
       // make the report
       card.getReportTemplate(timecard.reportFormat || "default").then((template) => {
         let ejs_data = card.getTimecardRenderDetails(timecard),
@@ -86,7 +100,6 @@ function doReport(req, res) {
               + "<div style='margin-bottom: 100px;'></div>" // put some space at the bottom
         res.send(rendered_report);
       }).catch(doError(res, 400));
-
     } else {
       res.status(400).send({
         error: "Timecard is malformed.",

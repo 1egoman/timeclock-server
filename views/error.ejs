@@ -2,7 +2,15 @@
 
   <div class="error container">
     <h1>A slight problem...</h1>
-    <%- msg %>
+    <% if (msg === "Not found") { %>
+      <h3>404</h3>
+      <p>
+        We cannot find this repo. If you think there should be a repo here, try
+        logging in <a href="/auth/github">here</a> first.
+      </p>
+    <% } else { %>
+      <%- msg %>
+    <% } %>
   </div>
   
 <% include footer %>
