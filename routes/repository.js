@@ -24,7 +24,7 @@ function doError(res, code) {
     if (err.code === 404) {
       res.render("error", {
         title: "Error",
-        msg: "Either the repository isn't on GitHub, the theme you've specified doesn't exist, or there isn't a <code>.timecard.json</code> file in this repo (on the master branch)."
+        msg: "Either the repository isn't on GitHub, the theme you've specified doesn't exist, or there isn't a <code>.timecard.json</code> file in this repo (on the master branch).<br/>Private repos require a logged-in user, which you can do on our home page."
       });
     } else {
       console.error(err);
@@ -83,8 +83,6 @@ function doReport(req, res) {
         let ejs_data = card.getTimecardRenderDetails(timecard),
             report = ejs.render(template, ejs_data),
             rendered_report = report
-              .replace("<script>", "&lt;script&gt;")
-              .replace("</script>", "&lt;/script&gt;")
               + "<div style='margin-bottom: 100px;'></div>" // put some space at the bottom
         res.send(rendered_report);
       }).catch(doError(res, 400));
