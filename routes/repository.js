@@ -39,13 +39,14 @@ function doError(res, code) {
     /* GET home page. */
 function index(req, res) {
   if (req.user) {
-    repo.getUserRepos(req).then((repos) => {
-      res.render('index', {
-        title: 'Waltz',
-        user: req.user,
-        repos: repos,
-      });
-    }).catch(doError);
+    res.redirect("/app");
+    // repo.getUserRepos(req).then((repos) => {
+    //   res.render('index_auth', {
+    //     title: 'Waltz',
+    //     user: req.user,
+    //     repos: repos,
+    //   });
+    // }).catch(doError);
   } else {
     res.render('index', {
       title: 'Waltz',

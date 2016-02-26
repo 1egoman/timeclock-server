@@ -7,6 +7,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require("express-session");
+const babelify = require("express-babelify-middleware");
 
 const badges = require('./routes/badge');
 const repo = require('./routes/repository');
@@ -46,6 +47,11 @@ app.use(passport.session());
 
 authSerializer(passport); // attaches passport.serializeUser and passport.deserializeUser
 passport.use(authStrategy);
+
+app.use('/bundle', babelify('public/js/react', {}, {
+  sourceMap: true,
+  presets: ['react', 'es2015']
+}))
 
 // ----------------------------------------------------------------------------
 // passport auth routes
