@@ -50,7 +50,7 @@ passport.use(authStrategy);
 
 app.use('/bundle', babelify('public/js/react', {}, {
   sourceMap: true,
-  presets: ['react', 'es2015']
+  presets: ['react', 'es2015'],
 }))
 
 // ----------------------------------------------------------------------------
