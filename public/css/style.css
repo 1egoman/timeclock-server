@@ -4268,13 +4268,13 @@ a.label:hover, a.label:focus {
   .btn-group-xs > .btn .badge {
     top: 0;
     padding: 1px 5px; }
-  .list-group-item.active > .badge,
+  .list-group-item.active > .badge, .active.repo > .badge,
   .nav-pills > .active > a > .badge {
     color: #51c4c4;
     background-color: #fff; }
-  .list-group-item > .badge {
+  .list-group-item > .badge, .repo > .badge {
     float: right; }
-  .list-group-item > .badge + .badge {
+  .list-group-item > .badge + .badge, .repo > .badge + .badge {
     margin-right: 5px; }
   .nav-pills > li > a > .badge {
     margin-left: 3px; }
@@ -4532,65 +4532,68 @@ a.thumbnail.active {
   padding-left: 0;
   list-style: none; }
 
-.list-group {
+.list-group, .repos {
   margin-bottom: 20px;
   padding-left: 0; }
 
-.list-group-item {
+.list-group-item, .repo {
   position: relative;
   display: block;
   padding: 10px 15px;
   margin-bottom: -1px;
   background-color: #fff;
   border: 1px solid #ddd; }
-  .list-group-item:first-child {
+  .list-group-item:first-child, .repo:first-child {
     border-top-right-radius: 0px;
     border-top-left-radius: 0px; }
-  .list-group-item:last-child {
+  .list-group-item:last-child, .repo:last-child {
     margin-bottom: 0;
     border-bottom-right-radius: 0px;
     border-bottom-left-radius: 0px; }
 
-a.list-group-item,
-button.list-group-item {
+a.list-group-item, a.repo,
+button.list-group-item,
+button.repo {
   color: #555; }
-  a.list-group-item .list-group-item-heading,
-  button.list-group-item .list-group-item-heading {
+  a.list-group-item .list-group-item-heading, a.repo .list-group-item-heading,
+  button.list-group-item .list-group-item-heading, button.repo .list-group-item-heading {
     color: #333; }
-  a.list-group-item:hover, a.list-group-item:focus,
+  a.list-group-item:hover, a.repo:hover, a.list-group-item:focus, a.repo:focus,
   button.list-group-item:hover,
-  button.list-group-item:focus {
+  button.repo:hover,
+  button.list-group-item:focus,
+  button.repo:focus {
     text-decoration: none;
     color: #555;
     background-color: #f5f5f5; }
 
-button.list-group-item {
+button.list-group-item, button.repo {
   width: 100%;
   text-align: left; }
 
-.list-group-item.disabled, .list-group-item.disabled:hover, .list-group-item.disabled:focus {
+.list-group-item.disabled, .disabled.repo, .list-group-item.disabled:hover, .disabled.repo:hover, .list-group-item.disabled:focus, .disabled.repo:focus {
   background-color: #eeeeee;
   color: #777777;
   cursor: not-allowed; }
-  .list-group-item.disabled .list-group-item-heading, .list-group-item.disabled:hover .list-group-item-heading, .list-group-item.disabled:focus .list-group-item-heading {
+  .list-group-item.disabled .list-group-item-heading, .disabled.repo .list-group-item-heading, .list-group-item.disabled:hover .list-group-item-heading, .disabled.repo:hover .list-group-item-heading, .list-group-item.disabled:focus .list-group-item-heading, .disabled.repo:focus .list-group-item-heading {
     color: inherit; }
-  .list-group-item.disabled .list-group-item-text, .list-group-item.disabled:hover .list-group-item-text, .list-group-item.disabled:focus .list-group-item-text {
+  .list-group-item.disabled .list-group-item-text, .disabled.repo .list-group-item-text, .list-group-item.disabled:hover .list-group-item-text, .disabled.repo:hover .list-group-item-text, .list-group-item.disabled:focus .list-group-item-text, .disabled.repo:focus .list-group-item-text {
     color: #777777; }
 
-.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
+.list-group-item.active, .active.repo, .list-group-item.active:hover, .active.repo:hover, .list-group-item.active:focus, .active.repo:focus {
   z-index: 2;
   color: #fff;
   background-color: #51c4c4;
   border-color: #51c4c4; }
-  .list-group-item.active .list-group-item-heading,
-  .list-group-item.active .list-group-item-heading > small,
-  .list-group-item.active .list-group-item-heading > .small, .list-group-item.active:hover .list-group-item-heading,
-  .list-group-item.active:hover .list-group-item-heading > small,
-  .list-group-item.active:hover .list-group-item-heading > .small, .list-group-item.active:focus .list-group-item-heading,
-  .list-group-item.active:focus .list-group-item-heading > small,
-  .list-group-item.active:focus .list-group-item-heading > .small {
+  .list-group-item.active .list-group-item-heading, .active.repo .list-group-item-heading,
+  .list-group-item.active .list-group-item-heading > small, .active.repo .list-group-item-heading > small,
+  .list-group-item.active .list-group-item-heading > .small, .active.repo .list-group-item-heading > .small, .list-group-item.active:hover .list-group-item-heading, .active.repo:hover .list-group-item-heading,
+  .list-group-item.active:hover .list-group-item-heading > small, .active.repo:hover .list-group-item-heading > small,
+  .list-group-item.active:hover .list-group-item-heading > .small, .active.repo:hover .list-group-item-heading > .small, .list-group-item.active:focus .list-group-item-heading, .active.repo:focus .list-group-item-heading,
+  .list-group-item.active:focus .list-group-item-heading > small, .active.repo:focus .list-group-item-heading > small,
+  .list-group-item.active:focus .list-group-item-heading > .small, .active.repo:focus .list-group-item-heading > .small {
     color: inherit; }
-  .list-group-item.active .list-group-item-text, .list-group-item.active:hover .list-group-item-text, .list-group-item.active:focus .list-group-item-text {
+  .list-group-item.active .list-group-item-text, .active.repo .list-group-item-text, .list-group-item.active:hover .list-group-item-text, .active.repo:hover .list-group-item-text, .list-group-item.active:focus .list-group-item-text, .active.repo:focus .list-group-item-text {
     color: #e9f8f8; }
 
 .list-group-item-success {
@@ -4736,32 +4739,42 @@ button.list-group-item-danger {
   border-bottom-right-radius: -1px;
   border-bottom-left-radius: -1px; }
 
-.panel > .list-group,
-.panel > .panel-collapse > .list-group {
+.panel > .list-group, .panel > .repos,
+.panel > .panel-collapse > .list-group,
+.panel > .panel-collapse > .repos {
   margin-bottom: 0; }
-  .panel > .list-group .list-group-item,
-  .panel > .panel-collapse > .list-group .list-group-item {
+  .panel > .list-group .list-group-item, .panel > .repos .list-group-item, .panel > .list-group .repo, .panel > .repos .repo,
+  .panel > .panel-collapse > .list-group .list-group-item,
+  .panel > .panel-collapse > .repos .list-group-item,
+  .panel > .panel-collapse > .list-group .repo,
+  .panel > .panel-collapse > .repos .repo {
     border-width: 1px 0;
     border-radius: 0; }
-  .panel > .list-group:first-child .list-group-item:first-child,
-  .panel > .panel-collapse > .list-group:first-child .list-group-item:first-child {
+  .panel > .list-group:first-child .list-group-item:first-child, .panel > .repos:first-child .list-group-item:first-child, .panel > .list-group:first-child .repo:first-child, .panel > .repos:first-child .repo:first-child,
+  .panel > .panel-collapse > .list-group:first-child .list-group-item:first-child,
+  .panel > .panel-collapse > .repos:first-child .list-group-item:first-child,
+  .panel > .panel-collapse > .list-group:first-child .repo:first-child,
+  .panel > .panel-collapse > .repos:first-child .repo:first-child {
     border-top: 0;
     border-top-right-radius: -1px;
     border-top-left-radius: -1px; }
-  .panel > .list-group:last-child .list-group-item:last-child,
-  .panel > .panel-collapse > .list-group:last-child .list-group-item:last-child {
+  .panel > .list-group:last-child .list-group-item:last-child, .panel > .repos:last-child .list-group-item:last-child, .panel > .list-group:last-child .repo:last-child, .panel > .repos:last-child .repo:last-child,
+  .panel > .panel-collapse > .list-group:last-child .list-group-item:last-child,
+  .panel > .panel-collapse > .repos:last-child .list-group-item:last-child,
+  .panel > .panel-collapse > .list-group:last-child .repo:last-child,
+  .panel > .panel-collapse > .repos:last-child .repo:last-child {
     border-bottom: 0;
     border-bottom-right-radius: -1px;
     border-bottom-left-radius: -1px; }
 
-.panel > .panel-heading + .panel-collapse > .list-group .list-group-item:first-child {
+.panel > .panel-heading + .panel-collapse > .list-group .list-group-item:first-child, .panel > .panel-heading + .panel-collapse > .repos .list-group-item:first-child, .panel > .panel-heading + .panel-collapse > .list-group .repo:first-child, .panel > .panel-heading + .panel-collapse > .repos .repo:first-child {
   border-top-right-radius: 0;
   border-top-left-radius: 0; }
 
-.panel-heading + .list-group .list-group-item:first-child {
+.panel-heading + .list-group .list-group-item:first-child, .panel-heading + .repos .list-group-item:first-child, .panel-heading + .list-group .repo:first-child, .panel-heading + .repos .repo:first-child {
   border-top-width: 0; }
 
-.list-group + .panel-footer {
+.list-group + .panel-footer, .repos + .panel-footer {
   border-top-width: 0; }
 
 .panel > .table,
@@ -4904,7 +4917,8 @@ button.list-group-item-danger {
   .panel-group .panel-heading {
     border-bottom: 0; }
     .panel-group .panel-heading + .panel-collapse > .panel-body,
-    .panel-group .panel-heading + .panel-collapse > .list-group {
+    .panel-group .panel-heading + .panel-collapse > .list-group,
+    .panel-group .panel-heading + .panel-collapse > .repos {
       border-top: 1px solid #ddd; }
   .panel-group .panel-footer {
     border-top: 0; }
@@ -5980,6 +5994,11 @@ button.close {
     animation: none; }
   .github-corner .octo-arm {
     animation: octocat-wave 560ms ease-in-out; } }
+
+.repo h1 {
+  font-size: 2em; }
+  .repo h1 .repo-name {
+    font-weight: bold; }
 
 a {
   color: #00B7FF; }

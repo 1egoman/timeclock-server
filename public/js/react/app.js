@@ -34,6 +34,7 @@ let store = createStore(waltzApp, {
     {
       user: 'username',
       repo: 'reponame',
+      desc: 'I am a repo descritpion',
       is_pending: false,
       is_private: false,
       has_timecard: false,
@@ -42,6 +43,7 @@ let store = createStore(waltzApp, {
     {
       user: 'iamagroup',
       repo: 'reporedux',
+      desc: 'I am a repo descritpion',
       is_pending: false,
       is_private: false,
       has_timecard: false,
@@ -50,6 +52,7 @@ let store = createStore(waltzApp, {
     {
       user: 'iamagroup',
       repo: 'reporedux',
+      desc: 'I am a repo descritpion',
       is_pending: false,
       is_private: true,
       has_timecard: false,
@@ -78,8 +81,8 @@ const Repo = ({repo}) => {
     repo-owner-${repo.owner_type}
     ${repo.has_timecard ? "repo-timecard" : "repo-notimecard"}
   `}>
-    <h1>{repo.user}/{repo.repo}</h1>
-    <p></p>
+    <h1>{repo.user}/<span className="repo-name">{repo.repo}</span></h1>
+    <p>{repo.desc}</p>
   </li>;
 };
 
