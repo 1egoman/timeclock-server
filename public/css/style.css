@@ -6,6 +6,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+@import url(font-awesome/font-awesome.min.css);
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -5995,10 +5996,16 @@ button.close {
   .github-corner .octo-arm {
     animation: octocat-wave 560ms ease-in-out; } }
 
-.repo h1 {
-  font-size: 2em; }
-  .repo h1 .repo-name {
-    font-weight: bold; }
+.repo {
+  cursor: pointer; }
+  .repo .repo-lock {
+    display: none; }
+  .repo.repo-private .repo-lock {
+    color: #edd66a; }
+  .repo h1 {
+    font-size: 1.6em; }
+    .repo h1 .repo-name {
+      font-weight: bold; }
 
 a {
   color: #00B7FF; }

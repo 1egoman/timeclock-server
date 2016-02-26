@@ -1,0 +1,21 @@
+.repos {
+  @extend .list-group;
+}
+.repo {
+  @extend .list-group-item;
+  cursor: pointer;
+
+  .repo-lock { display: none; }
+  &.repo-private {
+    .repo-lock {
+      color: $private-color-dark;
+    }
+  }
+
+  h1 {
+    font-size: 1.6em;
+    .repo-name {
+      font-weight: bold;
+    }
+  }
+}

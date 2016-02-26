@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,700);
 @import "bootstrap";
+@import "font-awesome/font-awesome.min.css";
 
 .form-control {
   &:focus {
@@ -7,6 +8,8 @@
     -webkit-box-shadow: none;
   }
 }
+$private-color: #F8EFC5;
+$private-color-dark: darken(#F8EFC5, 20%);
 
 @import "button";
 @import "home";

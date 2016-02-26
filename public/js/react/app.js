@@ -1,7 +1,7 @@
 "use strict";
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
+import { Provider, connect } from 'react-redux';
 import {
   createStore,
   combineReducers,
@@ -63,27 +63,59 @@ let store = createStore(waltzApp, {
 let unsubscribe = store.subscribe(() =>
   console.log(store.getState())
 )
-store.dispatch(selectRepo(1))
 
 // React stuff
-const Repos = ({repos}) => {
+const Repos = ({repos, active_repo}) => {
   return <ul className="repos repos-list">
     {repos.map((repo, ct) => {
-      return <Repo repo={repo} key={ct} />;
+      return <Repo
+        repo={repo}
+        key={ct}
+        index={ct}
+        selected={active_repo === ct}
+      />;
     })}
   </ul>;
 }
-
-const Repo = ({repo}) => {
+const RepoComponent = ({repo, index, selected}) => {
+  // the component render
   return <li className={`
     repo
     ${repo.is_private ? "repo-private" : "repo-public"}
     repo-owner-${repo.owner_type}
     ${repo.has_timecard ? "repo-timecard" : "repo-notimecard"}
-  `}>
-    <h1>{repo.user}/<span className="repo-name">{repo.repo}</span></h1>
+    ${selected ? "repo-selected" : "repo-inactive"}
+  `}
+  onClick={store.dispatch.bind(store, selectRepo(index))}
+  >
+    <h1>
+      <span className="repo-lock fa fa-lock"></span>
+      {repo.user}/<span className="repo-name">{repo.repo}</span>
+    </h1>
     <p>{repo.desc}</p>
   </li>;
 };
 
-render(<Repos repos={store.getState().repos}/>, document.getElementById("root"));
+const Repo = connect((store, ownProps) => {
+  // given the store and the props passed to the component, return a new set of
+  // props
+  return {
+    repo: store.repos[ownProps.index],
+    index: ownProps.index,
+    selected: ownProps.index === store.active_repo,
+  };
+}, (dispatch, ownProps) => {
+  // props that are defined as functions
+  return {
+    onClick() {
+      dispatch(selectRepo(ownProps.index));
+    },
+  }
+})(RepoComponent);
+
+render(<Provider store={store}>
+  <Repos
+    repos={store.getState().repos}
+    active_repo={store.getState().active_repo}
+  />
+</Provider>, document.getElementById("root"));
