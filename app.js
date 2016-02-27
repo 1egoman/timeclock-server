@@ -156,11 +156,19 @@ io.on('connection', function (socket) {
       socket.emit("action", {
         type: "server/REPOS_DISCOVERED",
         repos: [{
+          user: "djviau",
+          repo: "sproutlines",
+          desc: "Better version of outline depot",
+          is_pending: false,
+          is_private: true,
+          has_timecard: true,
+          owner_type: "user",
+        }, {
           user: "iambeing",
           repo: "discovered",
           is_pending: false,
           is_private: false,
-          has_timecard: true,
+          has_timecard: false,
           owner_type: "user",
         }]
       });

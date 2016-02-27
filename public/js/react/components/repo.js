@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {selectRepo} from '../actions/repo';
 
-export const RepoComponent = ({repo, index, selected, onRepoClick}) => {
+export const RepoComponent = ({repo, index, selected, onRepoClick, children}) => {
   // the component render
   return <li className={`
     repo
@@ -22,6 +22,8 @@ export const RepoComponent = ({repo, index, selected, onRepoClick}) => {
       ></span>
     </h1>
     <p>{repo.desc}</p>
+
+    {children}
   </li>;
 };
 
@@ -30,6 +32,7 @@ const Repo = connect((store, ownProps) => {
     repo: store.repos[ownProps.index],
     index: ownProps.index,
     selected: ownProps.index === store.active_repo,
+    children: ownProps.children,
   };
 }, (dispatch, ownProps) => {
   // props that are defined as functions

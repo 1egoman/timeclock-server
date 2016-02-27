@@ -6,6 +6,7 @@ import {
   importFromGithubRepo,
 } from '../actions/repo';
 import RepoImport from './repoImport';
+import _ from "underscore";
 
 export const RepoDetailsComponent = ({
   repo,
@@ -18,9 +19,31 @@ export const RepoDetailsComponent = ({
   if (repo_import_dialog_open) {
     return <div className="repo-details repo-details-import">
       <h2>Import new repos</h2>
-      {discovered_repos.map((repo, ct) => {
-        return <RepoComponent key={ct} repo={repo} selected={false} onRepoClick={importNewRepo(repo)} />;
-      })}
+      <ul className="repos">
+        {Object.keys(discovered_repos).map((key, ct) => {
+          return <div key={ct}>
+            <h4>{key}</h4>
+            {discovered_repos[key].map((repo, ct) => {
+              return <RepoComponent
+                key={ct}
+                repo={repo}
+                selected={false}
+              >
+                {
+                  repo.has_timecard ? 
+                  <button className="btn btn-success btn-pick-me" onClick={importNewRepo(repo)}>Import</button> :
+                  <button
+                    className="btn btn-warning disabled btn-pick-me"
+                    data-toggle="tooltip"
+                    data-placement="left"
+                    title="No timecard was found. Please run `waltz init` in the repo to create a new timecard."
+                  >No Timecard</button>
+                }
+              </RepoComponent>
+            })}
+          </div>;
+        })}
+      </ul>
     </div>;
 
   // a repo was selected
@@ -49,7 +72,9 @@ const RepoDetails = connect((store, ownProps) => {
   return {
     repo: store.repos[store.active_repo],
     repo_import_dialog_open: store.repo_import_dialog_open,
-    discovered_repos: store.discovered_repos,
+
+    // group the discovered repos by their respective user
+    discovered_repos: _.groupBy(store.discovered_repos, (repo) => repo.user),
   };
 }, (dispatch, ownProps) => {
   return {

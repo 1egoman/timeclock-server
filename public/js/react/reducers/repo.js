@@ -7,7 +7,7 @@ export function repoImportDialogOpen(state = false, action) {
   } else if (action.type === "SELECT_REPO") {
     return false;
   } else if (action.type === "server/REPO_IMPORT") {
-    return true;
+    return false;
   } else {
     return state;
   }

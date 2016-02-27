@@ -1425,7 +1425,8 @@ blockquote {
       content: '\2014 \00A0'; }
 
 .blockquote-reverse,
-blockquote.pull-right {
+blockquote.pull-right,
+.repo-details.repo-details-import .repos blockquote.btn-pick-me {
   padding-right: 15px;
   padding-left: 0;
   border-right: 5px solid #eeeeee;
@@ -1434,16 +1435,16 @@ blockquote.pull-right {
   .blockquote-reverse footer:before,
   .blockquote-reverse small:before,
   .blockquote-reverse .small:before,
-  blockquote.pull-right footer:before,
-  blockquote.pull-right small:before,
-  blockquote.pull-right .small:before {
+  blockquote.pull-right footer:before, .repo-details.repo-details-import .repos blockquote.btn-pick-me footer:before,
+  blockquote.pull-right small:before, .repo-details.repo-details-import .repos blockquote.btn-pick-me small:before,
+  blockquote.pull-right .small:before, .repo-details.repo-details-import .repos blockquote.btn-pick-me .small:before {
     content: ''; }
   .blockquote-reverse footer:after,
   .blockquote-reverse small:after,
   .blockquote-reverse .small:after,
-  blockquote.pull-right footer:after,
-  blockquote.pull-right small:after,
-  blockquote.pull-right .small:after {
+  blockquote.pull-right footer:after, .repo-details.repo-details-import .repos blockquote.btn-pick-me footer:after,
+  blockquote.pull-right small:after, .repo-details.repo-details-import .repos blockquote.btn-pick-me small:after,
+  blockquote.pull-right .small:after, .repo-details.repo-details-import .repos blockquote.btn-pick-me .small:after {
     content: '\00A0 \2014'; }
 
 address {
@@ -3172,7 +3173,7 @@ tbody.collapse.in {
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box; }
-  .dropdown-menu.pull-right {
+  .dropdown-menu.pull-right, .repo-details.repo-details-import .repos .dropdown-menu.btn-pick-me {
     right: 0;
     left: auto; }
   .dropdown-menu .divider {
@@ -3240,7 +3241,7 @@ tbody.collapse.in {
   top: 0;
   z-index: 990; }
 
-.pull-right > .dropdown-menu {
+.pull-right > .dropdown-menu, .repo-details.repo-details-import .repos .btn-pick-me > .dropdown-menu {
   right: 0;
   left: auto; }
 
@@ -4506,7 +4507,8 @@ a.thumbnail.active {
     max-width: none; }
 
 .media-right,
-.media > .pull-right {
+.media > .pull-right, .repo-details.repo-details-import .repos
+.media > .btn-pick-me {
   padding-left: 10px; }
 
 .media-left,
@@ -5635,7 +5637,7 @@ button.close {
   margin-left: auto;
   margin-right: auto; }
 
-.pull-right {
+.pull-right, .repo-details.repo-details-import .repos .btn-pick-me {
   float: right !important; }
 
 .pull-left, .repos .repos-controls .repos-label {
@@ -5997,6 +5999,13 @@ button.close {
   .github-corner .octo-arm {
     animation: octocat-wave 560ms ease-in-out; } }
 
+.repos:before, .repos:after {
+  content: " ";
+  display: table; }
+
+.repos:after {
+  clear: both; }
+
 .repos .repos-controls {
   margin: 1em 0em;
   height: 1.8em; }
@@ -6045,6 +6054,11 @@ button.close {
     width: 100%;
     height: 100%;
     overflow-y: auto; }
+
+.repo-details.repo-details-import .repos {
+  cursor: default; }
+  .repo-details.repo-details-import .repos .btn-pick-me {
+    margin-top: -38px; }
 
 a {
   color: #00B7FF; }

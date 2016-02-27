@@ -4,6 +4,12 @@ import { render } from 'react-dom';
 import { Provider, connect } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
+// enable bootstrap popovers and tooltips
+$(document).ready(function() {
+  $('body').tooltip({ selector: '[data-toggle="tooltip"]' });
+  $('body').popover({ selector: '[data-toggle="popover"]' });
+});
+
 // socket.io middleware to proxy redux events prefixed with 'server/' back to
 // the serverside
 import io from 'socket.io-client';

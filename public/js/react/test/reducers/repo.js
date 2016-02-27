@@ -27,7 +27,7 @@ describe('reducers/repo.js', function() {
       let new_state = repoImportDialogOpen(old_state.repo_import_dialog_open, {
         type: "server/REPO_IMPORT",
       });
-      assert.deepEqual(new_state, true);
+      assert.deepEqual(new_state, false);
     });
     it('should not be effected by another event', function() {
       let new_state = activeRepo(old_state.repo_import_dialog_open, {

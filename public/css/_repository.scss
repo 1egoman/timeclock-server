@@ -9,6 +9,7 @@
 
 .repos {
   @extend .list-group;
+  @include clearfix;
 
   .repos-controls {
     @extend .clearfix;
@@ -78,4 +79,12 @@
 }
 
 .repo-details.repo-details-import {
+  .repos {
+    cursor: default;
+
+    .btn-pick-me {
+      @extend .pull-right;
+      margin-top: -38px;
+    }
+  }
 }
