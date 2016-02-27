@@ -5,6 +5,7 @@ import {
   repos,
   activeRepo,
   repoImportDialogOpen,
+  discoveredRepos,
 } from '../../reducers/repo';
 const old_state = helpers.initialState;
 
@@ -48,6 +49,13 @@ describe('reducers/repo.js', function() {
         foo: "bar"
       }, ...old_state.repos.slice(1)]);
     });
+    it('should work with server/INIT', function() {
+      let new_state = repos(old_state.repos, {
+        type: "server/INIT",
+        repos: [{foo: "bar"}],
+      });
+      assert.deepEqual(new_state, [{foo: "bar"}]);
+    });
     it('should not be effected by another event', function() {
       let new_state = repos(old_state.repos, {
         type: "SOME_OTHER_EVENT",
@@ -68,6 +76,21 @@ describe('reducers/repo.js', function() {
         type: "SOME_OTHER_EVENT",
       });
       assert.deepEqual(new_state, old_state.active_repo);
+    });
+  });
+  describe('discoveredRepos', function() {
+    it('should create the event', function() {
+      let new_state = discoveredRepos(old_state.discovered_repos, {
+        type: "server/REPOS_DISCOVERED",
+        repos: [{foo: "bar"}]
+      });
+      assert.deepEqual(new_state, [{foo: "bar"}]);
+    });
+    it('should not be effected by another event', function() {
+      let new_state = discoveredRepos(old_state.discovered_repos, {
+        type: "SOME_OTHER_EVENT",
+      });
+      assert.deepEqual(new_state, old_state.discovered_repos);
     });
   });
 });

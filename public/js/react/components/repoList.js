@@ -9,7 +9,6 @@ export const RepoListComponent = ({
   is_importing_repo,
   importNewRepo,
 }) => {
-
   // import a new repo
   let import_button;
   if (!is_importing_repo) {

@@ -2,10 +2,14 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider, connect } from 'react-redux';
-import {
-  createStore,
-  combineReducers,
-} from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+
+// socket.io middleware to proxy redux events prefixed with 'server/' back to
+// the serverside
+import io from 'socket.io-client';
+import createSocketIoMiddleware from 'redux-socket.io';
+const socket = io();
+let socketIoMiddleware = createSocketIoMiddleware(socket, "server/");
 
 // "Action constructors"
 // Given data, construct an action to be fed into the store
@@ -34,45 +38,16 @@ const waltzApp = combineReducers({
   discovered_repos: discoveredRepos,
 });
 
-
 // "Store"
 // What holds the state
 let store = createStore(waltzApp, {
-  active_repo: 0,
+  active_repo: null,
   repo_import_dialog_open: false,
-  repos: [
-    {
-      user: '1egoman',
-      repo: 'clockmaker',
-      desc: 'I am a repo descritpion',
-      is_pending: false,
-      is_private: false,
-      has_timecard: true,
-      owner_type: 'user',
-    },
-    {
-      user: 'iamagroup',
-      repo: 'reporedux',
-      desc: 'I am a repo descritpion',
-      is_pending: false,
-      is_private: false,
-      has_timecard: false,
-      owner_type: 'group',
-    },
-    {
-      user: 'iamagroup',
-      repo: 'reporedux',
-      desc: 'I am a repo descritpion',
-      is_pending: false,
-      is_private: true,
-      has_timecard: false,
-      owner_type: 'group',
-    }
-  ],
+  repos: [],
   discovered_repos: [
     {user: "username", repo: "iamaddable", desc: "A repo description"}
   ],
-});
+}, applyMiddleware(socketIoMiddleware));
 let unsubscribe = store.subscribe(() =>
   console.log("STORE UPDATE", store.getState())
 )

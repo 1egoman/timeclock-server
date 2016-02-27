@@ -1,5 +1,6 @@
 exports.initialState = {
   repo_import_dialog_open: false,
+  discovered_repos: [],
   active_repo: null,
   repos: [
     {

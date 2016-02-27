@@ -27,6 +27,10 @@ export function repos(state = [], action) {
         },
       ];
 
+    // initialize all repos at start
+    case "server/INIT":
+      return action.repos;
+
     // update the repo
     case "PUT_REPO":
       state[action.index] = action.repo;
@@ -51,8 +55,8 @@ export function activeRepo(state = null, action) {
 }
 
 export function discoveredRepos(state = [], action) {
-  if (action.type === "POST_DISCOVERED") {
-    return action.data;
+  if (action.type === "server/REPOS_DISCOVERED") {
+    return action.repos;
   } else {
     return state;
   }

@@ -8,11 +8,7 @@ export const RepoDetailsComponent = ({
   repo,
   repo_import_dialog_open,
 }) => {
-  if (repo_import_dialog_open) {
-    return <div className="repo-details repo-details-import">
-      import new repo
-    </div>;
-  } else {
+  if (repo) {
     return <div className="repo-details">
       {/* Repo name and readme badge*/}
       <h1>
@@ -24,6 +20,10 @@ export const RepoDetailsComponent = ({
       <div className="repo-details-embed-container">
         <iframe className="repo-details-embed" src={`/embed/${repo.user}/${repo.repo}`} />
       </div>
+    </div>;
+  } else {
+    return <div className="repo-details repo-details-import">
+      <h2>Nothing Selected</h2>
     </div>;
   }
 };

@@ -8,6 +8,10 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require("express-session");
 const babelify = require("express-babelify-middleware");
+const socketIo = require("socket.io");
+const passportSocketIo = require("passport.socketio");
+const http = require("http");
+const session_secret = "keyboard kat";
 
 const badges = require('./routes/badge');
 const repo = require('./routes/repository');
@@ -21,6 +25,10 @@ const passport = require("passport");
 
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://clock:clock@ds011278.mongolab.com:11278/clock-server");
+
+// set up the mongodb session store
+const MongoStore = require('connect-mongo')(session),
+      mongoStore = new MongoStore({mongooseConnection: mongoose.connection});
 
 const env = process.env.NODE_ENV || 'development';
 app.locals.ENV = env;
@@ -41,13 +49,17 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: 'keyboard cat' }));
+app.use(session({
+  secret: session_secret,
+  store: mongoStore,
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
 authSerializer(passport); // attaches passport.serializeUser and passport.deserializeUser
 passport.use(authStrategy);
 
+// serve react / redux frontend
 app.use('/bundle', babelify('public/js/react', {}, {
   sourceMap: true,
   presets: ['react', 'es2015'],
@@ -112,5 +124,34 @@ app.use(function(req, res, next) {
 //   });
 // });
 
+// ----------------------------------------------------------------------------
+// socket.io stuff
+// ------------------------------------------------------------------------------
+const boundApp = http.createServer(app),
+      io = socketIo.listen(boundApp);
 
-module.exports = app;
+let socketMiddleware = passportSocketIo.authorize({
+  cookieParser: cookieParser,
+  key:         'connect.sid',
+  secret:      session_secret,
+  store:       mongoStore,
+});
+io.use(socketMiddleware);
+
+io.on('connection', function (socket) {
+  console.log("Connected to new client.", socket.request.user);
+
+  // first, initialize the state so we're all on the same page
+  socket.emit("action", {
+    type: "server/INIT",
+    repos: socket.request.user.repos,
+    active_repo: null,
+  });
+
+  socket.on('action', (action) => {
+    if(action.type === 'server/hello'){
+      console.log('Got hello data!', action.data);
+    }
+  });
+});
+module.exports = boundApp;
