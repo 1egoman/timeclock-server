@@ -4510,7 +4510,8 @@ a.thumbnail.active {
   padding-left: 10px; }
 
 .media-left,
-.media > .pull-left {
+.media > .pull-left, .repos .repos-controls
+.media > .repos-label {
   padding-right: 10px; }
 
 .media-left,
@@ -5637,7 +5638,7 @@ button.close {
 .pull-right {
   float: right !important; }
 
-.pull-left {
+.pull-left, .repos .repos-controls .repos-label {
   float: left !important; }
 
 .hide {
@@ -5997,7 +5998,11 @@ button.close {
     animation: octocat-wave 560ms ease-in-out; } }
 
 .repos .repos-controls {
-  margin: 1em 0em; }
+  margin: 1em 0em;
+  height: 1.8em; }
+  .repos .repos-controls .repos-label {
+    color: #777777;
+    margin-top: 0.35em; }
 
 .repo {
   cursor: pointer; }

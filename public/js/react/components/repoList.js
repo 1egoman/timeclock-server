@@ -6,14 +6,23 @@ import {openRepoImportDialog} from '../actions/repo';
 export const RepoListComponent = ({
   repos,
   active_repo,
+  is_importing_repo,
   importNewRepo,
 }) => {
+
+  // import a new repo
+  let import_button;
+  if (!is_importing_repo) {
+    import_button = <button
+      className="btn btn-sm btn-primary pull-right"
+      onClick={importNewRepo(true)}
+    >Import a new repository</button>
+  }
+
   return <ul className="repos repos-list">
     <div className="repos-controls">
-      <button
-        className="btn btn-sm btn-primary pull-right"
-        onClick={importNewRepo}
-      >Import a new repository</button>
+      <h4 className="repos-label">Repositories</h4>
+      {import_button}
     </div>
     {repos.map((repo, ct) => {
       return <Repo
@@ -30,11 +39,14 @@ const RepoList = connect((store, ownProps) => {
   return {
     repos: store.repos,
     active_repo: store.active_repo,
+    is_importing_repo: store.repo_import_dialog_open,
   };
 }, (dispatch, ownProps) => {
   return {
-    importNewRepo() {
-      dispatch(openRepoImportDialog(true));
+    importNewRepo(state) {
+      return () => {
+        dispatch(openRepoImportDialog(state));
+      };
     },
   };
 })(RepoListComponent);

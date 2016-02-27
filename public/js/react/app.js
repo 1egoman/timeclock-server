@@ -25,7 +25,6 @@ import {
 
 // "Components"
 import RepoList from './components/repoList';
-import RepoImport from './components/repoImport';
 import RepoDetails from './components/repoDetails';
 
 const waltzApp = combineReducers({
