@@ -1,7 +1,7 @@
 import React from 'react';
 import Repo from './repo';
 import {connect} from 'react-redux';
-import {openRepoImportDialog} from '../actions/repo';
+import {requestAllUserRepos} from '../actions/repo';
 
 export const RepoListComponent = ({
   repos,
@@ -44,7 +44,7 @@ const RepoList = connect((store, ownProps) => {
   return {
     importNewRepo(state) {
       return () => {
-        dispatch(openRepoImportDialog(state));
+        dispatch(requestAllUserRepos());
       };
     },
   };

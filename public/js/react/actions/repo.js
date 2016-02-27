@@ -1,4 +1,3 @@
-"use strict";
 
 // initialize github repo import
 export function openRepoImportDialog(state) {
@@ -9,11 +8,11 @@ export function openRepoImportDialog(state) {
 };
 
 // import a new repo from github
-export function importFromGithubRepo(user, repo) {
+export function importFromGithubRepo(repo) {
   return {
-    type: "IMPORT_REPO_GITHUB",
-    user,
-    repo,
+    type: "server/IMPORT_REPO",
+    repo: repo,
+    provider: "github",
   }
 };
 
@@ -24,3 +23,9 @@ export function selectRepo(index) {
     index,
   }
 };
+
+export function requestAllUserRepos() {
+  return {
+    type: "server/DISCOVER_REPOS",
+  }
+}

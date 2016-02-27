@@ -149,8 +149,31 @@ io.on('connection', function (socket) {
   });
 
   socket.on('action', (action) => {
-    if(action.type === 'server/hello'){
-      console.log('Got hello data!', action.data);
+
+    // discover all repos
+    if (action.type === 'server/DISCOVER_REPOS') {
+      console.log("Discover repos!");
+      socket.emit("action", {
+        type: "server/REPOS_DISCOVERED",
+        repos: [{
+          user: "iambeing",
+          repo: "discovered",
+          is_pending: false,
+          is_private: false,
+          has_timecard: true,
+          owner_type: "user",
+        }]
+      });
+    } else if (action.type === 'server/IMPORT_REPO') {
+      console.log("Import a repo!");
+      socket.emit("action", {
+        type: "server/PUT_REPO",
+        repo: action.repo,
+      });
+      socket.emit("action", {
+        type: "server/REPO_IMPORT",
+        repo: action.repo,
+      });
     }
   });
 });

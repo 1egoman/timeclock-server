@@ -2,7 +2,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider, connect } from 'react-redux';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
 // socket.io middleware to proxy redux events prefixed with 'server/' back to
 // the serverside
@@ -40,17 +40,16 @@ const waltzApp = combineReducers({
 
 // "Store"
 // What holds the state
-let store = createStore(waltzApp, {
+let waltzCreateStore = compose(
+  applyMiddleware(socketIoMiddleware),
+  window.devToolsExtension ? window.devToolsExtension() : f => f
+)(createStore);
+let store = waltzCreateStore(waltzApp, {
   active_repo: null,
   repo_import_dialog_open: false,
   repos: [],
-  discovered_repos: [
-    {user: "username", repo: "iamaddable", desc: "A repo description"}
-  ],
-}, applyMiddleware(socketIoMiddleware));
-let unsubscribe = store.subscribe(() =>
-  console.log("STORE UPDATE", store.getState())
-)
+  discovered_repos: [],
+});
 
 render(<Provider store={store}>
   <div>

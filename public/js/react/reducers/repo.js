@@ -2,10 +2,12 @@
 
 // open the repo import dialog
 export function repoImportDialogOpen(state = false, action) {
-  if (action.type === "REPO_IMPORT_DIALOG") {
-    return action.state || false;
+  if (action.type === "server/DISCOVER_REPOS") {
+    return true;
   } else if (action.type === "SELECT_REPO") {
     return false;
+  } else if (action.type === "server/REPO_IMPORT") {
+    return true;
   } else {
     return state;
   }
@@ -15,26 +17,19 @@ export function repoImportDialogOpen(state = false, action) {
 export function repos(state = [], action) {
   switch(action.type) {
 
-    // originally, add the template repo
-    case "IMPORT_REPO_GITHUB":
-      return [
-        ...state,
-        {
-          user: action.user,
-          repo: action.repo,
-          is_pending: true,
-          provider: "github",
-        },
-      ];
-
     // initialize all repos at start
     case "server/INIT":
       return action.repos;
 
     // update the repo
     case "PUT_REPO":
-      state[action.index] = action.repo;
-      return state;
+    case "server/PUT_REPO":
+      if (typeof action.index === "undefined") {
+        return state.concat([action.repo]);
+      } else {
+        state[action.index] = action.repo;
+        return state;
+      }
 
     default:
       return state;
@@ -47,7 +42,7 @@ export function activeRepo(state = null, action) {
     return action.index;
 
   // when importing a new repo, deselect the current entry
-  } else if (action.type === "REPO_IMPORT_DIALOG") {
+  } else if (action.type === "server/DISCOVER_REPOS") {
     return null;
   } else {
     return state;
