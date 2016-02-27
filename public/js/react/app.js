@@ -20,25 +20,31 @@ import {
   repos,
   activeRepo,
   repoImportDialogOpen,
+  discoveredRepos,
 } from './reducers/repo';
 
+// "Components"
 import RepoList from './components/repoList';
+import RepoImport from './components/repoImport';
+import RepoDetails from './components/repoDetails';
 
 const waltzApp = combineReducers({
+  repo_import_dialog_open: repoImportDialogOpen,
   active_repo: activeRepo,
   repos,
-  repo_import_dialog_open: repoImportDialogOpen,
+  discovered_repos: discoveredRepos,
 });
+
 
 // "Store"
 // What holds the state
 let store = createStore(waltzApp, {
-  active_repo: null,
+  active_repo: 0,
   repo_import_dialog_open: false,
   repos: [
     {
-      user: 'username',
-      repo: 'reponame',
+      user: '1egoman',
+      repo: 'clockmaker',
       desc: 'I am a repo descritpion',
       is_pending: false,
       is_private: false,
@@ -64,11 +70,21 @@ let store = createStore(waltzApp, {
       owner_type: 'group',
     }
   ],
+  discovered_repos: [
+    {user: "username", repo: "iamaddable", desc: "A repo description"}
+  ],
 });
 let unsubscribe = store.subscribe(() =>
   console.log("STORE UPDATE", store.getState())
 )
 
 render(<Provider store={store}>
-  <RepoList />
+  <div>
+    <div className="col-md-4">
+      <RepoList />
+    </div>
+    <div className="col-md-8">
+      <RepoDetails />
+    </div>
+  </div>
 </Provider>, document.getElementById("root"));

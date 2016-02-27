@@ -12,15 +12,24 @@ export function repoImportDialogOpen(state = false, action) {
 // only handles the repos part of the state
 export function repos(state = [], action) {
   switch(action.type) {
+
+    // originally, add the template repo
     case "IMPORT_REPO_GITHUB":
       return [
         ...state,
         {
           user: action.user,
           repo: action.repo,
-          is_pending: true
+          is_pending: true,
+          provider: "github",
         },
       ];
+
+    // update the repo
+    case "PUT_REPO":
+      state[action.index] = action.repo;
+      return state;
+
     default:
       return state;
   }
@@ -35,3 +44,10 @@ export function activeRepo(state = null, action) {
   }
 }
 
+export function discoveredRepos(state = [], action) {
+  if (action.type === "POST_DISCOVERED") {
+    return action.data;
+  } else {
+    return state;
+  }
+}

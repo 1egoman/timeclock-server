@@ -1,11 +1,21 @@
+
+// the title for a repo
+@mixin repo-title($size: 1.6em) {
+  font-size: $size;
+  .repo-name {
+    font-weight: bold;
+  }
+}
+
 .repos {
   @extend .list-group;
 
   .repos-controls {
     @extend .clearfix;
-    margin: 1em;
+    margin: 1em 0em;
   }
 }
+
 .repo {
   @extend .list-group-item;
   cursor: pointer;
@@ -25,9 +35,36 @@
   }
 
   h1 {
-    font-size: 1.6em;
-    .repo-name {
-      font-weight: bold;
-    }
+    @include repo-title;
+  }
+}
+
+.repo-details {
+  position: absolute;
+  top: 0px; bottom: 0px; left: 0px; right: 0px;
+  height: 100vh;
+
+  h1 {
+    @include repo-title(2em);
+    z-index: 1000;
+  }
+  .repo-details-badge {
+    margin-left: 0.5em;
+  }
+
+  // the repo details container
+  .repo-details-embed-container {
+    position: absolute;
+    top: 5em;
+    bottom: 0em;
+    left: 0em;
+    right: 0em;
+  }
+  .repo-details-embed {
+    position: absolute;
+    border: 0px;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
   }
 }

@@ -25,7 +25,7 @@ describe('reducers/repo.js', function() {
     });
   });
   describe('repos', function() {
-    it('should create the event', function() {
+    it('should work with IMPORT_REPO_GITHUB', function() {
       let new_state = repos(old_state.repos, {
         type: "IMPORT_REPO_GITHUB",
         user: "username",
@@ -35,7 +35,18 @@ describe('reducers/repo.js', function() {
         is_pending: true,
         user: "username",
         repo: "reponame",
+        provider: "github",
       }]);
+    });
+    it('should work with PUT_REPO', function() {
+      let new_state = repos(old_state.repos, {
+        type: "PUT_REPO",
+        index: 0,
+        repo: {foo: "bar"},
+      });
+      assert.deepEqual(new_state, [{
+        foo: "bar"
+      }, ...old_state.repos.slice(1)]);
     });
     it('should not be effected by another event', function() {
       let new_state = repos(old_state.repos, {

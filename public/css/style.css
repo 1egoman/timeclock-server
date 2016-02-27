@@ -5997,7 +5997,7 @@ button.close {
     animation: octocat-wave 560ms ease-in-out; } }
 
 .repos .repos-controls {
-  margin: 1em; }
+  margin: 1em 0em; }
 
 .repo {
   cursor: pointer; }
@@ -6013,6 +6013,33 @@ button.close {
     font-size: 1.6em; }
     .repo h1 .repo-name {
       font-weight: bold; }
+
+.repo-details {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 100vh; }
+  .repo-details h1 {
+    font-size: 2em;
+    z-index: 1000; }
+    .repo-details h1 .repo-name {
+      font-weight: bold; }
+  .repo-details .repo-details-badge {
+    margin-left: 0.5em; }
+  .repo-details .repo-details-embed-container {
+    position: absolute;
+    top: 5em;
+    bottom: 0em;
+    left: 0em;
+    right: 0em; }
+  .repo-details .repo-details-embed {
+    position: absolute;
+    border: 0px;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto; }
 
 a {
   color: #00B7FF; }
