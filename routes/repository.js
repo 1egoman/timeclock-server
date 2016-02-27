@@ -98,7 +98,6 @@ function doReport(req, res) {
         let ejs_data = card.getTimecardRenderDetails(timecard),
             report = ejs.render(template, ejs_data),
             rendered_report = report
-              + "<div style='margin-bottom: 100px;'></div>" // put some space at the bottom
         res.send(rendered_report);
       }).catch(doError(res, 400));
     } else {

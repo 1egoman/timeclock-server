@@ -7,6 +7,7 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 @import url(font-awesome/font-awesome.min.css);
+@import url(/css/react-select.min.css);
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -1061,7 +1062,7 @@ body {
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
-  background-color: #fff; }
+  background-color: #eeeeee; }
 
 input,
 button,
@@ -1099,7 +1100,7 @@ img {
 .img-thumbnail {
   padding: 4px;
   line-height: 1.428571429;
-  background-color: #fff;
+  background-color: #eeeeee;
   border: 1px solid #ddd;
   border-radius: 0px;
   -webkit-transition: all 0.2s ease-in-out;
@@ -2061,7 +2062,7 @@ th {
   .table > tbody + tbody {
     border-top: 2px solid #ddd; }
   .table .table {
-    background-color: #fff; }
+    background-color: #eeeeee; }
 
 .table-condensed > thead > tr > th,
 .table-condensed > thead > tr > td,
@@ -3590,7 +3591,7 @@ tbody.collapse.in {
         border-color: #eeeeee #eeeeee #ddd; }
     .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
       color: #555555;
-      background-color: #fff;
+      background-color: #eeeeee;
       border: 1px solid #ddd;
       border-bottom-color: transparent;
       cursor: default; }
@@ -3644,7 +3645,7 @@ tbody.collapse.in {
     .nav-tabs-justified > .active > a, .nav-tabs.nav-justified > .active > a,
     .nav-tabs-justified > .active > a:hover, .nav-tabs.nav-justified > .active > a:hover,
     .nav-tabs-justified > .active > a:focus, .nav-tabs.nav-justified > .active > a:focus {
-      border-bottom-color: #fff; } }
+      border-bottom-color: #eeeeee; } }
 
 .tab-content > .tab-pane {
   display: none; }
@@ -4327,7 +4328,7 @@ a.badge:hover, a.badge:focus {
   padding: 4px;
   margin-bottom: 20px;
   line-height: 1.428571429;
-  background-color: #fff;
+  background-color: #eeeeee;
   border: 1px solid #ddd;
   border-radius: 0px;
   -webkit-transition: border 0.2s ease-in-out;
@@ -6006,12 +6007,22 @@ button.close {
 .repos:after {
   clear: both; }
 
+.repos.repos-disabled {
+  opacity: 0.5; }
+
 .repos .repos-controls {
   margin: 1em 0em;
   height: 1.8em; }
   .repos .repos-controls .repos-label {
     color: #777777;
     margin-top: 0.35em; }
+
+.repos .repos-empty {
+  color: #777777;
+  padding-top: 2em;
+  text-align: center; }
+  .repos .repos-empty p .click {
+    cursor: pointer; }
 
 .repo {
   cursor: pointer; }
@@ -6034,17 +6045,34 @@ button.close {
   bottom: 0px;
   left: 0px;
   right: 0px;
-  height: 100vh; }
-  .repo-details h1 {
-    font-size: 2em;
+  height: 100vh;
+  background: #fff;
+  padding-left: 20px; }
+  .repo-details .repo-details-header {
+    position: absolute;
+    top: 0px;
+    left: 20px;
+    right: 0px;
+    height: 96px;
+    background: #fff;
     z-index: 1000; }
-    .repo-details h1 .repo-name {
-      font-weight: bold; }
+    .repo-details .repo-details-header h1 {
+      font-size: 2em; }
+      .repo-details .repo-details-header h1 .repo-name {
+        font-weight: bold; }
+    .repo-details .repo-details-header .repo-details-branch-select {
+      width: 200px;
+      margin-left: 2px;
+      margin-bottom: 8px; }
   .repo-details .repo-details-badge {
     margin-left: 0.5em; }
+  .repo-details.repo-details-empty {
+    color: #777777;
+    padding-top: 2em;
+    text-align: center; }
   .repo-details .repo-details-embed-container {
     position: absolute;
-    top: 5em;
+    top: 104px;
     bottom: 0em;
     left: 0em;
     right: 0em; }
@@ -6054,6 +6082,9 @@ button.close {
     width: 100%;
     height: 100%;
     overflow-y: auto; }
+
+.repo-details.repo-details-import > h2 {
+  text-align: center; }
 
 .repo-details.repo-details-import .repos {
   cursor: default; }

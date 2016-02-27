@@ -150,7 +150,7 @@ io.on('connection', function (socket) {
 
   socket.on('action', (action) => {
 
-    // discover all repos
+    // discover all repos to import
     if (action.type === 'server/DISCOVER_REPOS') {
       console.log("Discover repos!");
       socket.emit("action", {
@@ -163,6 +163,8 @@ io.on('connection', function (socket) {
           is_private: true,
           has_timecard: true,
           owner_type: "user",
+          default_branch: "master",
+          branches: ["master"],
         }, {
           user: "iambeing",
           repo: "discovered",
@@ -172,6 +174,8 @@ io.on('connection', function (socket) {
           owner_type: "user",
         }]
       });
+
+    // import a repo
     } else if (action.type === 'server/IMPORT_REPO') {
       console.log("Import a repo!");
       socket.emit("action", {

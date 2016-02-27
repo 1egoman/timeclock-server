@@ -6,6 +6,7 @@ import {
   activeRepo,
   repoImportDialogOpen,
   discoveredRepos,
+  repoDetails,
 } from '../../reducers/repo';
 const old_state = helpers.initialState;
 
@@ -105,6 +106,28 @@ describe('reducers/repo.js', function() {
         type: "SOME_OTHER_EVENT",
       });
       assert.deepEqual(new_state, old_state.discovered_repos);
+    });
+  });
+  describe('repoDetails', function() {
+    it('should change branch on CHANGE_BRANCH', function() {
+      let new_state = repoDetails(old_state.repo_details, {
+        type: "CHANGE_BRANCH",
+        branch: "another-branch"
+      });
+      assert.deepEqual(new_state, {branch: "another-branch"});
+    });
+    it('should reset branch on SELECT_REPO', function() {
+      let new_state = repoDetails(old_state.repo_details, {
+        type: "SELECT_REPO",
+        index: 0,
+      });
+      assert.deepEqual(new_state, {branch: null});
+    });
+    it('should not be effected by another event', function() {
+      let new_state = repoDetails(old_state.repo_details, {
+        type: "SOME_OTHER_EVENT",
+      });
+      assert.deepEqual(new_state, old_state.repo_details);
     });
   });
 });

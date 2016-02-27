@@ -56,3 +56,16 @@ export function discoveredRepos(state = [], action) {
     return state;
   }
 }
+
+export function repoDetails(state = {branch: null}, action) {
+  if (action.type === "CHANGE_BRANCH") {
+    return Object.assign({}, state, {
+      branch: action.branch,
+    });
+  // on repo change, set the branch to the default
+  } else if (action.type === "SELECT_REPO") {
+    return Object.assign(state, { branch: null });
+  } else {
+    return state;
+  }
+}

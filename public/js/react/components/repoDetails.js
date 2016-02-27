@@ -1,24 +1,33 @@
 import React from 'react';
 import {RepoComponent} from './repo';
+import BranchPicker from './branchPicker';
 import {connect} from 'react-redux';
 import {
   openRepoImportDialog,
   importFromGithubRepo,
+  changeBranch,
 } from '../actions/repo';
 import RepoImport from './repoImport';
+import {getCurrentBranch} from '../helpers/branch';
 import _ from "underscore";
+import Select from 'react-select';
 
 export const RepoDetailsComponent = ({
   repo,
   discovered_repos,
   repo_import_dialog_open,
+  repo_details,
+
+  current_branch,
+  branches,
 
   importNewRepo,
+  chooseBranch,
 }) => {
   // import new repos
   if (repo_import_dialog_open) {
     return <div className="repo-details repo-details-import">
-      <h2>Import new repos</h2>
+      <h2>Import a new Repository</h2>
       <ul className="repos">
         {Object.keys(discovered_repos).map((key, ct) => {
           return <div key={ct}>
@@ -48,22 +57,36 @@ export const RepoDetailsComponent = ({
 
   // a repo was selected
   } else if (repo) {
+    let select_branches = repo.branches.map((i) => {
+      return {value: i, label: i}
+    });
     return <div className="repo-details">
-      {/* Repo name and readme badge*/}
-      <h1>
-        {repo.user}/<span className="repo-name">{repo.repo}</span>
-        <img className="repo-details-badge" src={`/${repo.user}/${repo.repo}.svg`} />
-      </h1>
+      {/* the header on top */}
+      <div className="repo-details-header">
+        {/* Repo name and readme badge*/}
+        <h1>
+          {repo.user}/<span className="repo-name">{repo.repo}</span>
+          <img className="repo-details-badge" src={`/${repo.user}/${repo.repo}.svg`} />
+        </h1>
+
+        {/* choose a branch to start on */}
+        <div className="repo-details-branch-select">
+          <BranchPicker />
+        </div>
+      </div>
 
       {/* embedded invoice */}
       <div className="repo-details-embed-container">
-        <iframe className="repo-details-embed" src={`/embed/${repo.user}/${repo.repo}`} />
+        <iframe
+          className="repo-details-embed"
+          src={`/embed/${repo.user}/${repo.repo}/${current_branch}`}
+        />
       </div>
     </div>;
 
   } else {
-    return <div className="repo-details repo-details-import">
-      <h2>Nothing Selected</h2>
+    return <div className="repo-details repo-details-empty">
+      <h2>Nothing selected.</h2>
     </div>;
   }
 };
@@ -72,6 +95,8 @@ const RepoDetails = connect((store, ownProps) => {
   return {
     repo: store.repos[store.active_repo],
     repo_import_dialog_open: store.repo_import_dialog_open,
+    current_branch: getCurrentBranch(store),
+    repo_details: store.repo_details,
 
     // group the discovered repos by their respective user
     discovered_repos: _.groupBy(store.discovered_repos, (repo) => repo.user),
@@ -80,6 +105,9 @@ const RepoDetails = connect((store, ownProps) => {
   return {
     importNewRepo(repo) {
       return () => dispatch(importFromGithubRepo(repo));
+    },
+    chooseBranch(branch) {
+      dispatch(changeBranch(branch));
     }
   };
 })(RepoDetailsComponent);

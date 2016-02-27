@@ -6,6 +6,7 @@ import {
   selectRepo,
   requestAllUserRepos,
   openRepoImportDialog,
+  changeBranch,
 } from '../../actions/repo';
 
 describe('actions/repo.js', function() {
@@ -38,6 +39,14 @@ describe('actions/repo.js', function() {
       assert.deepEqual(selectRepo(12), {
         type: "SELECT_REPO",
         index: 12,
+      });
+    });
+  });
+  describe('changeBranch', function() {
+    it('should create the event', function() {
+      assert.deepEqual(changeBranch("master"), {
+        type: "CHANGE_BRANCH",
+        branch: "master",
       });
     });
   });

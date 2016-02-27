@@ -1,3 +1,4 @@
+@import "/css/react-select.min.css";
 
 // the title for a repo
 @mixin repo-title($size: 1.6em) {
@@ -7,9 +8,20 @@
   }
 }
 
+// for the "empty labels" that show up on panes
+@mixin empty-pane {
+  color: $gray-light;
+  padding-top: 2em;
+  text-align: center;
+}
+
 .repos {
   @extend .list-group;
   @include clearfix;
+
+  &.repos-disabled {
+    opacity: 0.5;
+  }
 
   .repos-controls {
     @extend .clearfix;
@@ -21,6 +33,13 @@
       color: $gray-light;
       margin-top: 0.35em;
     }
+  }
+
+  // the "No Repositorys, import a new one" message when the repositorys pane is
+  // empty
+  .repos-empty {
+    @include empty-pane;
+    p .click { cursor: pointer; }
   }
 }
 
@@ -47,23 +66,47 @@
   }
 }
 
+$top-pane-height: 96px;
+$details-left-margin: 20px;
 .repo-details {
   position: absolute;
   top: 0px; bottom: 0px; left: 0px; right: 0px;
   height: 100vh;
+  background: #fff;
+  padding-left: $details-left-margin;
 
-  h1 {
-    @include repo-title(2em);
+  .repo-details-header {
+    position: absolute;
+    top: 0px;
+    left: $details-left-margin;
+    right: 0px;
+    height: $top-pane-height;
+    background: #fff;
     z-index: 1000;
+
+    h1 {
+      @include repo-title(2em);
+    }
+
+    .repo-details-branch-select {
+      width: 200px;
+      margin-left: 2px;
+      margin-bottom: 8px;
+    }
   }
+
   .repo-details-badge {
     margin-left: 0.5em;
+  }
+
+  &.repo-details-empty {
+    @include empty-pane;
   }
 
   // the repo details container
   .repo-details-embed-container {
     position: absolute;
-    top: 5em;
+    top: $top-pane-height + 8px; // margin betwen the top pane and the invoice
     bottom: 0em;
     left: 0em;
     right: 0em;
@@ -75,12 +118,16 @@
     height: 100%;
     overflow-y: auto;
   }
-
 }
 
 .repo-details.repo-details-import {
+  & > h2 {
+    text-align: center;
+  }
+
   .repos {
     cursor: default;
+
 
     .btn-pick-me {
       @extend .pull-right;

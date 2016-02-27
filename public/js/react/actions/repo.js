@@ -28,4 +28,11 @@ export function requestAllUserRepos() {
   return {
     type: "server/DISCOVER_REPOS",
   }
-}
+};
+
+export function changeBranch(branch) {
+  return {
+    type: "CHANGE_BRANCH",
+    branch,
+  }
+};

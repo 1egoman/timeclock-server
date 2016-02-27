@@ -18,19 +18,30 @@ export const RepoListComponent = ({
     >Import a new repository</button>
   }
 
-  return <ul className="repos repos-list">
+  // the items themselves
+  let items;
+  if (repos.length) {
+    items = repos.map((repo, ct) => {
+      return <Repo
+      repo={repo}
+      key={ct}
+      index={ct}
+      selected={active_repo === ct}
+      />;
+    });
+  } else {
+    items = <div className="repos-empty">
+      <h2>No Repositories</h2>
+      <p>Why not <span className="click" onClick={importNewRepo(true)}>import a new one?</span></p>
+    </div>;
+  }
+
+  return <ul className={`repos repos-list ${is_importing_repo ? "repos-disabled" : "repos-enabled"}`}>
     <div className="repos-controls">
       <h4 className="repos-label">Repositories</h4>
       {import_button}
     </div>
-    {repos.map((repo, ct) => {
-      return <Repo
-        repo={repo}
-        key={ct}
-        index={ct}
-        selected={active_repo === ct}
-      />;
-    })}
+    {items}
   </ul>;
 };
 
