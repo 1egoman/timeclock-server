@@ -1,5 +1,14 @@
 "use strict";
 
+// open the repo import dialog
+export function repoImportDialogOpen(state = false, action) {
+  if (action.type === "REPO_IMPORT_DIALOG") {
+    return action.state || false;
+  } else {
+    return state;
+  }
+}
+
 // only handles the repos part of the state
 export function repos(state = [], action) {
   switch(action.type) {
@@ -7,8 +16,8 @@ export function repos(state = [], action) {
       return [
         ...state,
         {
-          user: state.user,
-          repo: sate.repo,
+          user: action.user,
+          repo: action.repo,
           is_pending: true
         },
       ];

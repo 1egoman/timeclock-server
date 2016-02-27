@@ -1,5 +1,13 @@
 "use strict";
 
+// initialize github repo import
+export function openRepoImportDialog(state) {
+  return {
+    type: "REPO_IMPORT_DIALOG",
+    state,
+  }
+};
+
 // import a new repo from github
 export function importFromGithubRepo(user, repo) {
   return {

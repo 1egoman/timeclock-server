@@ -8,8 +8,11 @@
     -webkit-box-shadow: none;
   }
 }
+
+// some colors
 $private-color: #F8EFC5;
 $private-color-dark: darken(#F8EFC5, 20%);
+$select-color: #E4FFFF;
 
 @import "button";
 @import "home";

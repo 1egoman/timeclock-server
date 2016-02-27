@@ -1,14 +1,26 @@
 .repos {
   @extend .list-group;
+
+  .repos-controls {
+    @extend .clearfix;
+    margin: 1em;
+  }
 }
 .repo {
   @extend .list-group-item;
   cursor: pointer;
 
+  &.repo-selected {
+    background: $select-color;
+  }
+
+  // private repo badge
   .repo-lock { display: none; }
   &.repo-private {
     .repo-lock {
+      display: inline-block;
       color: $private-color-dark;
+      margin-left: 0.4em;
     }
   }
 

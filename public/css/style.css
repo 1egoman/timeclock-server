@@ -5622,11 +5622,11 @@ button.close {
   .carousel-indicators {
     bottom: 20px; } }
 
-.clearfix:before, .clearfix:after {
+.clearfix:before, .repos .repos-controls:before, .clearfix:after, .repos .repos-controls:after {
   content: " ";
   display: table; }
 
-.clearfix:after {
+.clearfix:after, .repos .repos-controls:after {
   clear: both; }
 
 .center-block {
@@ -5996,12 +5996,19 @@ button.close {
   .github-corner .octo-arm {
     animation: octocat-wave 560ms ease-in-out; } }
 
+.repos .repos-controls {
+  margin: 1em; }
+
 .repo {
   cursor: pointer; }
+  .repo.repo-selected {
+    background: #E4FFFF; }
   .repo .repo-lock {
     display: none; }
   .repo.repo-private .repo-lock {
-    color: #edd66a; }
+    display: inline-block;
+    color: #edd66a;
+    margin-left: 0.4em; }
   .repo h1 {
     font-size: 1.6em; }
     .repo h1 .repo-name {
