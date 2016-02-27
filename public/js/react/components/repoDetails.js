@@ -25,7 +25,7 @@ export const RepoDetailsComponent = ({
   chooseBranch,
 }) => {
   // import new repos
-  if (repo_import_dialog_open) {
+  if (repo_import_dialog_open && Object.keys(discovered_repos).length !== 0) {
     return <div className="repo-details repo-details-import">
       <h2>Import a new Repository</h2>
       <ul className="repos">
@@ -53,6 +53,13 @@ export const RepoDetailsComponent = ({
           </div>;
         })}
       </ul>
+    </div>;
+
+  // loading message for the above reop import dialog
+  } else if (repo_import_dialog_open) {
+    return <div className="repo-details repo-details-empty">
+      <h2>Fetching Repositories</h2>
+      <p>We'll be back in a sec</p>
     </div>;
 
   // a repo was selected
@@ -99,7 +106,15 @@ const RepoDetails = connect((store, ownProps) => {
     repo_details: store.repo_details,
 
     // group the discovered repos by their respective user
-    discovered_repos: _.groupBy(store.discovered_repos, (repo) => repo.user),
+    discovered_repos: _.groupBy(
+      // first, filter out all ther repos that already are added
+      store.discovered_repos.filter((repo) => {
+        return !store.repos.some((i) => {
+          return i.user === repo.user && i.repo === repo.repo;
+        });
+      })
+    // then, sort by owner
+    , (repo) => repo.user),
   };
 }, (dispatch, ownProps) => {
   return {

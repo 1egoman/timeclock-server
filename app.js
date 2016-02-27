@@ -15,6 +15,7 @@ const session_secret = "keyboard kat";
 
 const badges = require('./routes/badge');
 const repo = require('./routes/repository');
+const onSocketAction = require('./routes/socket');
 
 const authStrategy = require("./lib/auth/strategy");
 const authSerializer = require("./lib/auth/serialization");
@@ -148,45 +149,6 @@ io.on('connection', function (socket) {
     active_repo: null,
   });
 
-  socket.on('action', (action) => {
-
-    // discover all repos to import
-    if (action.type === 'server/DISCOVER_REPOS') {
-      console.log("Discover repos!");
-      socket.emit("action", {
-        type: "server/REPOS_DISCOVERED",
-        repos: [{
-          user: "djviau",
-          repo: "sproutlines",
-          desc: "Better version of outline depot",
-          is_pending: false,
-          is_private: true,
-          has_timecard: true,
-          owner_type: "user",
-          default_branch: "master",
-          branches: ["master"],
-        }, {
-          user: "iambeing",
-          repo: "discovered",
-          is_pending: false,
-          is_private: false,
-          has_timecard: false,
-          owner_type: "user",
-        }]
-      });
-
-    // import a repo
-    } else if (action.type === 'server/IMPORT_REPO') {
-      console.log("Import a repo!");
-      socket.emit("action", {
-        type: "server/PUT_REPO",
-        repo: action.repo,
-      });
-      socket.emit("action", {
-        type: "server/REPO_IMPORT",
-        repo: action.repo,
-      });
-    }
-  });
+  socket.on('action', onSocketAction(socket));
 });
 module.exports = boundApp;
