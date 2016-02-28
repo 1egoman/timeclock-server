@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import { changeBranch } from '../actions/repo';
-import {getCurrentBranch} from '../helpers/branch';
+import {getCurrentBranch, getAllBranches} from '../helpers/branch';
 import _ from "underscore";
 import Select from 'react-select';
 
@@ -22,10 +22,9 @@ export const BranchPickerComponent = ({
 };
 
 const BranchPicker = connect((store, ownProps) => {
-  let repo = store.repos[store.active_repo];
   return {
     current_branch: getCurrentBranch(store),
-    branches: repo ? repo.branches : [],
+    branches: getAllBranches(store),
   };
 }, (dispatch, ownProps) => {
   return {

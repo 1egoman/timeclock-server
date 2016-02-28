@@ -36,3 +36,12 @@ export function changeBranch(branch) {
     branch,
   }
 };
+
+// query the backend for the branches of the current repo
+export function getBranches(repo) {
+  return {
+    type: "server/GET_BRANCHES",
+    user: repo.user,
+    repo: repo.repo,
+  };
+}

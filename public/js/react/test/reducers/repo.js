@@ -121,7 +121,14 @@ describe('reducers/repo.js', function() {
         type: "SELECT_REPO",
         index: 0,
       });
-      assert.deepEqual(new_state, {branch: null});
+      assert.deepEqual(new_state, {branch: null, branches: null});
+    });
+    it('should reset branch on server/BRANCHES_FOR', function() {
+      let new_state = repoDetails(old_state.repo_details, {
+        type: "server/BRANCHES_FOR",
+        branches: ["master", "dev", "a-branch"],
+      });
+      assert.deepEqual(new_state, {branch: null, branches: ["master", "dev", "a-branch"]});
     });
     it('should not be effected by another event', function() {
       let new_state = repoDetails(old_state.repo_details, {

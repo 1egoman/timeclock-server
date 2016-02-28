@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {selectRepo} from '../actions/repo';
+import {selectRepo, getBranches} from '../actions/repo';
 
 export const RepoComponent = ({repo, index, selected, onRepoClick, children}) => {
   // the component render
@@ -10,7 +10,7 @@ export const RepoComponent = ({repo, index, selected, onRepoClick, children}) =>
     repo-owner-${repo.owner_type}
     ${repo.has_timecard ? "repo-timecard" : "repo-notimecard"}
     ${selected ? "repo-selected" : "repo-inactive"}
-  `} onClick={onRepoClick}>
+  `} onClick={onRepoClick ? onRepoClick(repo) : f => f}>
     <h1>
       {/* Repo name */}
       {repo.user}/<span className="repo-name">{repo.repo}</span>
@@ -37,9 +37,12 @@ const Repo = connect((store, ownProps) => {
 }, (dispatch, ownProps) => {
   // props that are defined as functions
   return {
-    onRepoClick() {
-      // select a new repo
-      dispatch(selectRepo(ownProps.index));
+    onRepoClick(repo) {
+      return () => {
+        // select a new repo
+        dispatch(selectRepo(ownProps.index));
+        dispatch(getBranches(repo)); // also, pull in the branch data for this new repo 
+      }
     },
   }
 })(RepoComponent);

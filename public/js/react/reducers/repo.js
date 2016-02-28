@@ -62,9 +62,19 @@ export function repoDetails(state = {branch: null}, action) {
     return Object.assign({}, state, {
       branch: action.branch,
     });
+
   // on repo change, set the branch to the default
+  // and copy the branches into the repo details
   } else if (action.type === "SELECT_REPO") {
-    return Object.assign(state, { branch: null });
+    return Object.assign({}, state, {
+      branch: null,
+      branches: null,
+    });
+
+  // the current repo's branches
+  } else if (action.type === "server/BRANCHES_FOR") {
+    return Object.assign({}, state, {branches: action.branches});
+
   } else {
     return state;
   }
