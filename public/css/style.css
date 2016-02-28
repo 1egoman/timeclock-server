@@ -6000,6 +6000,11 @@ button.close {
   .github-corner .octo-arm {
     animation: octocat-wave 560ms ease-in-out; } }
 
+.navbar {
+  background: #eeeeee; }
+  .navbar a {
+    color: #51c4c4; }
+
 .repos:before, .repos:after {
   content: " ";
   display: table; }

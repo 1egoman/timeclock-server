@@ -38,6 +38,7 @@ const Repo = connect((store, ownProps) => {
   // props that are defined as functions
   return {
     onRepoClick() {
+      // select a new repo
       dispatch(selectRepo(ownProps.index));
     },
   }

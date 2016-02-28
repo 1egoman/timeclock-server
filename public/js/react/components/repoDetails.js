@@ -59,7 +59,7 @@ export const RepoDetailsComponent = ({
   } else if (repo_import_dialog_open) {
     return <div className="repo-details repo-details-empty">
       <h2>Fetching Repositories</h2>
-      <p>We'll be back in a sec</p>
+      <p>We'll be back in a sec.</p>
     </div>;
 
   // a repo was selected

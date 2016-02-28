@@ -37,6 +37,7 @@ import {
 // "Components"
 import RepoList from './components/repoList';
 import RepoDetails from './components/repoDetails';
+import Nav from './components/nav';
 
 const waltzApp = combineReducers({
   repo_import_dialog_open: repoImportDialogOpen,
@@ -61,6 +62,7 @@ let store = waltzCreateStore(waltzApp, {
 
 render(<Provider store={store}>
   <div>
+    <Nav />
     <div className="col-md-4 col-lg-3">
       <RepoList />
     </div>
