@@ -6084,7 +6084,8 @@ button.close {
   .repo-details .repo-details-report {
     width: 100%;
     min-height: 800px;
-    border: 0px; }
+    border: 0px;
+    background: url('data:image/svg+xml;charset=utf-8,<svg\a     xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0\a     100% 100%"><text fill="#777777" x="50%" y="50%"\a     font-family="Roboto, Helvetica, Arial, sans-serif" font-size="24"\a     text-anchor="middle">Loading invoice...</text></svg>'); }
   .repo-details.repo-details-empty {
     color: #777777;
     padding-top: 2em;
