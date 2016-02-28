@@ -12,10 +12,10 @@ export const NavComponent = ({title}) => {
           data-target="#bs-example-navbar-collapse-1"
           aria-expanded="false"
         >
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
+          <span className="sr-only">Toggle navigation</span>
+          <span className="icon-bar"></span>
+          <span className="icon-bar"></span>
+          <span className="icon-bar"></span>
         </button>
         <a className="navbar-brand" href="/">{title}</a>
       </div>

@@ -9,6 +9,7 @@ import {
 } from '../actions/repo';
 import RepoImport from './repoImport';
 import {getCurrentBranch} from '../helpers/branch';
+import {getProviderBadgeForRepo} from '../helpers/provider_badge';
 import _ from "underscore";
 import Select from 'react-select';
 
@@ -74,6 +75,7 @@ export const RepoDetailsComponent = ({
         {/* Repo name and readme badge*/}
         <h1>
           {repo.user}/<span className="repo-name">{repo.repo}</span>
+          <span className="repo-details-provider-badge">{getProviderBadgeForRepo(repo)}</span>
           <img className="repo-details-badge" src={`/${repo.user}/${repo.repo}.svg`} />
         </h1>
 

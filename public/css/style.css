@@ -1427,6 +1427,7 @@ blockquote {
 
 .blockquote-reverse,
 blockquote.pull-right,
+.repo-details .repo-details-header blockquote.repo-details-provider-badge,
 .repo-details.repo-details-import .repos blockquote.btn-pick-me {
   padding-right: 15px;
   padding-left: 0;
@@ -1436,16 +1437,16 @@ blockquote.pull-right,
   .blockquote-reverse footer:before,
   .blockquote-reverse small:before,
   .blockquote-reverse .small:before,
-  blockquote.pull-right footer:before, .repo-details.repo-details-import .repos blockquote.btn-pick-me footer:before,
-  blockquote.pull-right small:before, .repo-details.repo-details-import .repos blockquote.btn-pick-me small:before,
-  blockquote.pull-right .small:before, .repo-details.repo-details-import .repos blockquote.btn-pick-me .small:before {
+  blockquote.pull-right footer:before, .repo-details .repo-details-header blockquote.repo-details-provider-badge footer:before, .repo-details.repo-details-import .repos blockquote.btn-pick-me footer:before,
+  blockquote.pull-right small:before, .repo-details .repo-details-header blockquote.repo-details-provider-badge small:before, .repo-details.repo-details-import .repos blockquote.btn-pick-me small:before,
+  blockquote.pull-right .small:before, .repo-details .repo-details-header blockquote.repo-details-provider-badge .small:before, .repo-details.repo-details-import .repos blockquote.btn-pick-me .small:before {
     content: ''; }
   .blockquote-reverse footer:after,
   .blockquote-reverse small:after,
   .blockquote-reverse .small:after,
-  blockquote.pull-right footer:after, .repo-details.repo-details-import .repos blockquote.btn-pick-me footer:after,
-  blockquote.pull-right small:after, .repo-details.repo-details-import .repos blockquote.btn-pick-me small:after,
-  blockquote.pull-right .small:after, .repo-details.repo-details-import .repos blockquote.btn-pick-me .small:after {
+  blockquote.pull-right footer:after, .repo-details .repo-details-header blockquote.repo-details-provider-badge footer:after, .repo-details.repo-details-import .repos blockquote.btn-pick-me footer:after,
+  blockquote.pull-right small:after, .repo-details .repo-details-header blockquote.repo-details-provider-badge small:after, .repo-details.repo-details-import .repos blockquote.btn-pick-me small:after,
+  blockquote.pull-right .small:after, .repo-details .repo-details-header blockquote.repo-details-provider-badge .small:after, .repo-details.repo-details-import .repos blockquote.btn-pick-me .small:after {
     content: '\00A0 \2014'; }
 
 address {
@@ -3174,7 +3175,7 @@ tbody.collapse.in {
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box; }
-  .dropdown-menu.pull-right, .repo-details.repo-details-import .repos .dropdown-menu.btn-pick-me {
+  .dropdown-menu.pull-right, .repo-details .repo-details-header .dropdown-menu.repo-details-provider-badge, .repo-details.repo-details-import .repos .dropdown-menu.btn-pick-me {
     right: 0;
     left: auto; }
   .dropdown-menu .divider {
@@ -3242,7 +3243,7 @@ tbody.collapse.in {
   top: 0;
   z-index: 990; }
 
-.pull-right > .dropdown-menu, .repo-details.repo-details-import .repos .btn-pick-me > .dropdown-menu {
+.pull-right > .dropdown-menu, .repo-details .repo-details-header .repo-details-provider-badge > .dropdown-menu, .repo-details.repo-details-import .repos .btn-pick-me > .dropdown-menu {
   right: 0;
   left: auto; }
 
@@ -4508,7 +4509,8 @@ a.thumbnail.active {
     max-width: none; }
 
 .media-right,
-.media > .pull-right, .repo-details.repo-details-import .repos
+.media > .pull-right, .repo-details .repo-details-header
+.media > .repo-details-provider-badge, .repo-details.repo-details-import .repos
 .media > .btn-pick-me {
   padding-left: 10px; }
 
@@ -5638,7 +5640,7 @@ button.close {
   margin-left: auto;
   margin-right: auto; }
 
-.pull-right, .repo-details.repo-details-import .repos .btn-pick-me {
+.pull-right, .repo-details .repo-details-header .repo-details-provider-badge, .repo-details.repo-details-import .repos .btn-pick-me {
   float: right !important; }
 
 .pull-left, .repos .repos-controls .repos-label {
@@ -6098,6 +6100,11 @@ button.close {
   cursor: default; }
   .repo-details.repo-details-import .repos .btn-pick-me {
     margin-top: -38px; }
+
+.repo-provider-badge {
+  margin: 0.75rem; }
+  .repo-provider-badge span {
+    color: #333333; }
 
 a {
   color: #00B7FF; }
