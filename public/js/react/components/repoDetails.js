@@ -104,6 +104,7 @@ export const RepoDetailsComponent = ({
         </div>
       </div>
 
+      {/* list of all times in the timecard */}
       {timecard ? <div className="repo-details-report-table">
         <table className="table">
           <thead>
@@ -131,11 +132,6 @@ export const RepoDetailsComponent = ({
       </div> : <div className="repo-details repo-details-empty">
         <h2>Loading timecard...</h2>
       </div>}
-
-      <iframe
-        className="repo-details-report"
-        src={`/embed/${repo.user}/${repo.repo}/${current_branch}`}
-      />
 
     </div>;
 
