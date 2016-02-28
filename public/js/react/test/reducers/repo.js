@@ -114,21 +114,46 @@ describe('reducers/repo.js', function() {
         type: "CHANGE_BRANCH",
         branch: "another-branch"
       });
-      assert.deepEqual(new_state, {branch: "another-branch"});
+      assert.deepEqual(new_state, {
+        branch: "another-branch",
+        branches: null,
+        timecard: null,
+      });
     });
     it('should reset branch on SELECT_REPO', function() {
       let new_state = repoDetails(old_state.repo_details, {
         type: "SELECT_REPO",
         index: 0,
       });
-      assert.deepEqual(new_state, {branch: null, branches: null});
+      assert.deepEqual(new_state, {
+        branch: null,
+        branches: null,
+        timecard: null,
+      });
     });
     it('should reset branch on server/BRANCHES_FOR', function() {
       let new_state = repoDetails(old_state.repo_details, {
         type: "server/BRANCHES_FOR",
         branches: ["master", "dev", "a-branch"],
       });
-      assert.deepEqual(new_state, {branch: null, branches: ["master", "dev", "a-branch"]});
+      assert.deepEqual(new_state, {
+        branch: null,
+        branches: ["master", "dev", "a-branch"],
+        timecard: null,
+      });
+    });
+    it('should reset branch on server/TIMECARD', function() {
+      let new_state = repoDetails(old_state.repo_details, {
+        type: "server/TIMECARD",
+        user: "username",
+        repo: "a-repository",
+        timecard: {foo: "bar"},
+      });
+      assert.deepEqual(new_state, {
+        branch: null,
+        branches: null,
+        timecard: {foo: "bar"},
+      });
     });
     it('should not be effected by another event', function() {
       let new_state = repoDetails(old_state.repo_details, {

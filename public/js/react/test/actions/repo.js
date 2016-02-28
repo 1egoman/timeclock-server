@@ -8,6 +8,7 @@ import {
   openRepoImportDialog,
   changeBranch,
   getBranches,
+  getTimecard,
 } from '../../actions/repo';
 
 describe('actions/repo.js', function() {
@@ -55,6 +56,15 @@ describe('actions/repo.js', function() {
     it('should create the event', function() {
       assert.deepEqual(getBranches({user: "username", repo: "repository"}), {
         type: "server/GET_BRANCHES",
+        user: "username",
+        repo: "repository",
+      });
+    });
+  });
+  describe('getTimecard', function() {
+    it('should create the event', function() {
+      assert.deepEqual(getTimecard({user: "username", repo: "repository"}), {
+        type: "server/GET_TIMECARD",
         user: "username",
         repo: "repository",
       });

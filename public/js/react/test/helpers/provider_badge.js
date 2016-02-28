@@ -60,4 +60,4 @@ describe('helpers/provider_badge', function() {
       <span className="fa fa-github"></span>
     </a>);
   });
-})
+});

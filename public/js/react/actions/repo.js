@@ -45,3 +45,12 @@ export function getBranches(repo) {
     repo: repo.repo,
   };
 }
+
+// get the contents of a timecard
+export function getTimecard(repo) {
+  return {
+    type: "server/GET_TIMECARD",
+    user: repo.user,
+    repo: repo.repo,
+  }
+};

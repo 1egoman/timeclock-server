@@ -18,6 +18,7 @@ export const RepoDetailsComponent = ({
   discovered_repos,
   repo_import_dialog_open,
   repo_details,
+  timecard,
 
   current_branch,
   branches,
@@ -69,6 +70,7 @@ export const RepoDetailsComponent = ({
     let select_branches = repo.branches.map((i) => {
       return {value: i, label: i}
     });
+
     return <div className="repo-details">
       {/* the header on top */}
       <div className="repo-details-header">
@@ -101,6 +103,31 @@ export const RepoDetailsComponent = ({
         </div>
       </div>
 
+      {timecard ? <div className="repo-details-report-table">
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>From</th>
+              <th>To</th>
+            </tr>
+          </thead>
+          <tbody>
+            {timecard.card.map((day, dct) => {
+              return day.times.map((time, tct) => {
+                return <tr key={`${dct}-${tct}`}>
+                  <td>{day.date}</td>
+                  <td>{time.start}</td>
+                  <td>{time.end}</td>
+                </tr>;
+              })
+            })}
+          </tbody>
+          </table>
+      </div> : <div className="repo-details repo-details-empty">
+        <h2>Loading timecard...</h2>
+      </div>}
+
       <iframe
         className="repo-details-report"
         src={`/embed/${repo.user}/${repo.repo}/${current_branch}`}
@@ -121,6 +148,7 @@ const RepoDetails = connect((store, ownProps) => {
     repo_import_dialog_open: store.repo_import_dialog_open,
     current_branch: getCurrentBranch(store),
     repo_details: store.repo_details,
+    timecard: store.repo_details.timecard,
 
     // group the discovered repos by their respective user
     discovered_repos: _.groupBy(

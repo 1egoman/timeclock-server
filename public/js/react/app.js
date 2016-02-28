@@ -62,6 +62,11 @@ let store = waltzCreateStore(waltzApp, {
   repo_import_dialog_open: false,
   repos: [],
   discovered_repos: [],
+  repo_details: {
+    branch: null,
+    branches: null,
+    timecard: null,
+  }
 });
 
 render(<Provider store={store}>

@@ -4,6 +4,8 @@ exports.initialState = {
   active_repo: null,
   repo_details: {
     branch: null,
+    branches: null,
+    timecard: null,
   },
   repos: [
     {

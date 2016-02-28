@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {selectRepo, getBranches} from '../actions/repo';
+import {selectRepo, getBranches, getTimecard} from '../actions/repo';
 
 export const RepoComponent = ({repo, index, selected, onRepoClick, children}) => {
   // the component render
@@ -42,6 +42,7 @@ const Repo = connect((store, ownProps) => {
         // select a new repo
         dispatch(selectRepo(ownProps.index));
         dispatch(getBranches(repo)); // also, pull in the branch data for this new repo 
+        dispatch(getTimecard(repo)); // lastly, pull in the timecard data too
       }
     },
   }

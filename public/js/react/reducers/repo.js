@@ -69,11 +69,16 @@ export function repoDetails(state = {branch: null}, action) {
     return Object.assign({}, state, {
       branch: null,
       branches: null,
+      timecard: null,
     });
 
   // the current repo's branches
   } else if (action.type === "server/BRANCHES_FOR") {
     return Object.assign({}, state, {branches: action.branches});
+
+  // the timecard assosiated with a repository
+  } else if (action.type === "server/TIMECARD") {
+    return Object.assign({}, state, {timecard: action.timecard});
 
   } else {
     return state;
