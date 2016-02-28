@@ -23,6 +23,7 @@ export const RepoDetailsComponent = ({
 
   importNewRepo,
   chooseBranch,
+  printReport,
 }) => {
   // import new repos
   if (repo_import_dialog_open && Object.keys(discovered_repos).length !== 0) {
@@ -80,15 +81,29 @@ export const RepoDetailsComponent = ({
         <div className="repo-details-branch-select">
           <BranchPicker />
         </div>
+
+        <div className="repo-details-report-link">
+          {/* a url to the repo */}
+          <input
+            type="text"
+            className="form-control repo-details-report-link-box"
+            value={`http://waltzapp.co/embed/${repo.user}/${repo.repo}/${current_branch}`}
+            readOnly={true}
+          />
+
+          {/* print a copy of the report */}
+          <button
+            className="btn btn-info repo-details-print-report"
+            onClick={printReport(repo, current_branch)}
+          >Print Report</button>
+        </div>
       </div>
 
-      {/* embedded invoice */}
-      <div className="repo-details-embed-container">
-        <iframe
-          className="repo-details-embed"
-          src={`/embed/${repo.user}/${repo.repo}/${current_branch}`}
-        />
-      </div>
+      <iframe
+        className="repo-details-report"
+        src={`/embed/${repo.user}/${repo.repo}/${current_branch}`}
+      />
+
     </div>;
 
   } else {
@@ -123,7 +138,12 @@ const RepoDetails = connect((store, ownProps) => {
     },
     chooseBranch(branch) {
       dispatch(changeBranch(branch));
-    }
+    },
+
+    // print a copy of the report
+    printReport(repo, current_branch) {
+      return () => window.open(`/embed/${repo.user}/${repo.repo}/${current_branch}`).print();
+    },
   };
 })(RepoDetailsComponent);
 

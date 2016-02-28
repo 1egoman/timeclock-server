@@ -1062,7 +1062,7 @@ body {
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
-  background-color: #eeeeee; }
+  background-color: #fff; }
 
 input,
 button,
@@ -1100,7 +1100,7 @@ img {
 .img-thumbnail {
   padding: 4px;
   line-height: 1.428571429;
-  background-color: #eeeeee;
+  background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 0px;
   -webkit-transition: all 0.2s ease-in-out;
@@ -2062,7 +2062,7 @@ th {
   .table > tbody + tbody {
     border-top: 2px solid #ddd; }
   .table .table {
-    background-color: #eeeeee; }
+    background-color: #fff; }
 
 .table-condensed > thead > tr > th,
 .table-condensed > thead > tr > td,
@@ -3591,7 +3591,7 @@ tbody.collapse.in {
         border-color: #eeeeee #eeeeee #ddd; }
     .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
       color: #555555;
-      background-color: #eeeeee;
+      background-color: #fff;
       border: 1px solid #ddd;
       border-bottom-color: transparent;
       cursor: default; }
@@ -3645,7 +3645,7 @@ tbody.collapse.in {
     .nav-tabs-justified > .active > a, .nav-tabs.nav-justified > .active > a,
     .nav-tabs-justified > .active > a:hover, .nav-tabs.nav-justified > .active > a:hover,
     .nav-tabs-justified > .active > a:focus, .nav-tabs.nav-justified > .active > a:focus {
-      border-bottom-color: #eeeeee; } }
+      border-bottom-color: #fff; } }
 
 .tab-content > .tab-pane {
   display: none; }
@@ -4328,7 +4328,7 @@ a.badge:hover, a.badge:focus {
   padding: 4px;
   margin-bottom: 20px;
   line-height: 1.428571429;
-  background-color: #eeeeee;
+  background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 0px;
   -webkit-transition: border 0.2s ease-in-out;
@@ -6045,22 +6045,16 @@ button.close {
       font-weight: bold; }
 
 .repo-details {
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  height: 100vh;
-  background: #fff;
   padding-left: 20px; }
   .repo-details .repo-details-header {
-    position: absolute;
-    top: 0px;
-    left: 20px;
-    right: 0px;
     height: 96px;
     background: #fff;
     z-index: 1000; }
+    .repo-details .repo-details-header:before, .repo-details .repo-details-header:after {
+      content: " ";
+      display: table; }
+    .repo-details .repo-details-header:after {
+      clear: both; }
     .repo-details .repo-details-header h1 {
       font-size: 2em; }
       .repo-details .repo-details-header h1 .repo-name {
@@ -6068,25 +6062,33 @@ button.close {
     .repo-details .repo-details-header .repo-details-branch-select {
       width: 200px;
       margin-left: 2px;
-      margin-bottom: 8px; }
+      margin-bottom: 8px;
+      float: left; }
+    .repo-details .repo-details-header .repo-details-report-link {
+      width: 300px;
+      float: left;
+      margin: 0em 0.5em; }
+      .repo-details .repo-details-header .repo-details-report-link:before, .repo-details .repo-details-header .repo-details-report-link:after {
+        content: " ";
+        display: table; }
+      .repo-details .repo-details-header .repo-details-report-link:after {
+        clear: both; }
+      .repo-details .repo-details-header .repo-details-report-link input[type=text] {
+        width: 200px;
+        float: left; }
+      .repo-details .repo-details-header .repo-details-report-link .repo-details-print-report {
+        float: right;
+        width: 100px; }
   .repo-details .repo-details-badge {
     margin-left: 0.5em; }
+  .repo-details .repo-details-report {
+    width: 100%;
+    min-height: 800px;
+    border: 0px; }
   .repo-details.repo-details-empty {
     color: #777777;
     padding-top: 2em;
     text-align: center; }
-  .repo-details .repo-details-embed-container {
-    position: absolute;
-    top: 104px;
-    bottom: 0em;
-    left: 0em;
-    right: 0em; }
-  .repo-details .repo-details-embed {
-    position: absolute;
-    border: 0px;
-    width: 100%;
-    height: 100%;
-    overflow-y: auto; }
 
 .repo-details.repo-details-import > h2 {
   text-align: center; }

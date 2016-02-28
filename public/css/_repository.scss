@@ -69,20 +69,13 @@
 $top-pane-height: 96px;
 $details-left-margin: 20px;
 .repo-details {
-  position: absolute;
-  top: 0px; bottom: 0px; left: 0px; right: 0px;
-  height: 100vh;
-  background: #fff;
   padding-left: $details-left-margin;
 
   .repo-details-header {
-    position: absolute;
-    top: 0px;
-    left: $details-left-margin;
-    right: 0px;
     height: $top-pane-height;
     background: #fff;
     z-index: 1000;
+    @include clearfix;
 
     h1 {
       @include repo-title(2em);
@@ -92,6 +85,26 @@ $details-left-margin: 20px;
       width: 200px;
       margin-left: 2px;
       margin-bottom: 8px;
+      float: left;
+    }
+
+    // the box to get a link to the report
+    // and print it
+    .repo-details-report-link {
+      width: 300px;
+      float: left;
+      margin: 0em 0.5em;
+      @include clearfix;
+
+      input[type=text] {
+        width: 200px;
+        float: left;
+      }
+
+      .repo-details-print-report {
+        float: right;
+        width: 100px;
+      }
     }
   }
 
@@ -99,25 +112,16 @@ $details-left-margin: 20px;
     margin-left: 0.5em;
   }
 
+  .repo-details-report {
+    width: 100%;
+    min-height: 800px;
+    border: 0px;
+  }
+
   &.repo-details-empty {
     @include empty-pane;
   }
 
-  // the repo details container
-  .repo-details-embed-container {
-    position: absolute;
-    top: $top-pane-height + 8px; // margin betwen the top pane and the invoice
-    bottom: 0em;
-    left: 0em;
-    right: 0em;
-  }
-  .repo-details-embed {
-    position: absolute;
-    border: 0px;
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-  }
 }
 
 .repo-details.repo-details-import {

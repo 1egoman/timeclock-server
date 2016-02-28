@@ -8,6 +8,10 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 $(document).ready(function() {
   $('body').tooltip({ selector: '[data-toggle="tooltip"]' });
   $('body').popover({ selector: '[data-toggle="popover"]' });
+
+  $("body").on("click", ".repo-details-report-link-box", function() {
+    $(this).select();
+  });
 });
 
 // socket.io middleware to proxy redux events prefixed with 'server/' back to
