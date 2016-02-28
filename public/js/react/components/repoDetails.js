@@ -9,6 +9,7 @@ import {
 } from '../actions/repo';
 import RepoImport from './repoImport';
 import {getCurrentBranch} from '../helpers/branch';
+import {getTimeDelta} from '../helpers/timecard';
 import {getProviderBadgeForRepo} from '../helpers/provider_badge';
 import _ from "underscore";
 import Select from 'react-select';
@@ -110,15 +111,18 @@ export const RepoDetailsComponent = ({
               <th>Date</th>
               <th>From</th>
               <th>To</th>
+              <th>Duration</th>
             </tr>
           </thead>
           <tbody>
             {timecard.card.map((day, dct) => {
               return day.times.map((time, tct) => {
+                let delta = getTimeDelta(time.start, time.end);
                 return <tr key={`${dct}-${tct}`}>
                   <td>{day.date}</td>
                   <td>{time.start}</td>
                   <td>{time.end}</td>
+                  <td>{delta.markup}</td>
                 </tr>;
               })
             })}

@@ -1427,7 +1427,8 @@ blockquote {
 
 .blockquote-reverse,
 blockquote.pull-right,
-.repo-details.repo-details-import .repos blockquote.btn-pick-me {
+.repo-details.repo-details-import .repos blockquote.btn-pick-me,
+.time-delta blockquote.warning {
   padding-right: 15px;
   padding-left: 0;
   border-right: 5px solid #eeeeee;
@@ -1436,16 +1437,16 @@ blockquote.pull-right,
   .blockquote-reverse footer:before,
   .blockquote-reverse small:before,
   .blockquote-reverse .small:before,
-  blockquote.pull-right footer:before, .repo-details.repo-details-import .repos blockquote.btn-pick-me footer:before,
-  blockquote.pull-right small:before, .repo-details.repo-details-import .repos blockquote.btn-pick-me small:before,
-  blockquote.pull-right .small:before, .repo-details.repo-details-import .repos blockquote.btn-pick-me .small:before {
+  blockquote.pull-right footer:before, .repo-details.repo-details-import .repos blockquote.btn-pick-me footer:before, .time-delta blockquote.warning footer:before,
+  blockquote.pull-right small:before, .repo-details.repo-details-import .repos blockquote.btn-pick-me small:before, .time-delta blockquote.warning small:before,
+  blockquote.pull-right .small:before, .repo-details.repo-details-import .repos blockquote.btn-pick-me .small:before, .time-delta blockquote.warning .small:before {
     content: ''; }
   .blockquote-reverse footer:after,
   .blockquote-reverse small:after,
   .blockquote-reverse .small:after,
-  blockquote.pull-right footer:after, .repo-details.repo-details-import .repos blockquote.btn-pick-me footer:after,
-  blockquote.pull-right small:after, .repo-details.repo-details-import .repos blockquote.btn-pick-me small:after,
-  blockquote.pull-right .small:after, .repo-details.repo-details-import .repos blockquote.btn-pick-me .small:after {
+  blockquote.pull-right footer:after, .repo-details.repo-details-import .repos blockquote.btn-pick-me footer:after, .time-delta blockquote.warning footer:after,
+  blockquote.pull-right small:after, .repo-details.repo-details-import .repos blockquote.btn-pick-me small:after, .time-delta blockquote.warning small:after,
+  blockquote.pull-right .small:after, .repo-details.repo-details-import .repos blockquote.btn-pick-me .small:after, .time-delta blockquote.warning .small:after {
     content: '\00A0 \2014'; }
 
 address {
@@ -2983,28 +2984,28 @@ fieldset[disabled] a.btn {
 
 .btn-warning {
   color: #fff;
-  background-color: #f0ad4e;
-  border-color: #eea236; }
+  background-color: #E2D54A;
+  border-color: #ded034; }
   .btn-warning:focus, .btn-warning.focus {
     color: #fff;
-    background-color: #ec971f;
-    border-color: #985f0d; }
+    background-color: #d7c722;
+    border-color: #7f7614; }
   .btn-warning:hover {
     color: #fff;
-    background-color: #ec971f;
-    border-color: #d58512; }
+    background-color: #d7c722;
+    border-color: #b8ab1d; }
   .btn-warning:active, .btn-warning.active,
   .open > .btn-warning.dropdown-toggle {
     color: #fff;
-    background-color: #ec971f;
-    border-color: #d58512; }
+    background-color: #d7c722;
+    border-color: #b8ab1d; }
     .btn-warning:active:hover, .btn-warning:active:focus, .btn-warning:active.focus, .btn-warning.active:hover, .btn-warning.active:focus, .btn-warning.active.focus,
     .open > .btn-warning.dropdown-toggle:hover,
     .open > .btn-warning.dropdown-toggle:focus,
     .open > .btn-warning.dropdown-toggle.focus {
       color: #fff;
-      background-color: #d58512;
-      border-color: #985f0d; }
+      background-color: #b8ab1d;
+      border-color: #7f7614; }
   .btn-warning:active, .btn-warning.active,
   .open > .btn-warning.dropdown-toggle {
     background-image: none; }
@@ -3012,10 +3013,10 @@ fieldset[disabled] a.btn {
   fieldset[disabled] .btn-warning:hover,
   fieldset[disabled] .btn-warning:focus,
   fieldset[disabled] .btn-warning.focus {
-    background-color: #f0ad4e;
-    border-color: #eea236; }
+    background-color: #E2D54A;
+    border-color: #ded034; }
   .btn-warning .badge {
-    color: #f0ad4e;
+    color: #E2D54A;
     background-color: #fff; }
 
 .btn-danger {
@@ -3174,7 +3175,7 @@ tbody.collapse.in {
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box; }
-  .dropdown-menu.pull-right, .repo-details.repo-details-import .repos .dropdown-menu.btn-pick-me {
+  .dropdown-menu.pull-right, .repo-details.repo-details-import .repos .dropdown-menu.btn-pick-me, .time-delta .dropdown-menu.warning {
     right: 0;
     left: auto; }
   .dropdown-menu .divider {
@@ -3242,7 +3243,7 @@ tbody.collapse.in {
   top: 0;
   z-index: 990; }
 
-.pull-right > .dropdown-menu, .repo-details.repo-details-import .repos .btn-pick-me > .dropdown-menu {
+.pull-right > .dropdown-menu, .repo-details.repo-details-import .repos .btn-pick-me > .dropdown-menu, .time-delta .warning > .dropdown-menu {
   right: 0;
   left: auto; }
 
@@ -4240,9 +4241,9 @@ a.label:hover, a.label:focus {
     background-color: #7139a9; }
 
 .label-warning {
-  background-color: #f0ad4e; }
+  background-color: #E2D54A; }
   .label-warning[href]:hover, .label-warning[href]:focus {
-    background-color: #ec971f; }
+    background-color: #d7c722; }
 
 .label-danger {
   background-color: #c45151; }
@@ -4476,7 +4477,7 @@ a.thumbnail.active {
     background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent); }
 
 .progress-bar-warning {
-  background-color: #f0ad4e; }
+  background-color: #E2D54A; }
   .progress-striped .progress-bar-warning {
     background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
     background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
@@ -4509,7 +4510,8 @@ a.thumbnail.active {
 
 .media-right,
 .media > .pull-right, .repo-details.repo-details-import .repos
-.media > .btn-pick-me {
+.media > .btn-pick-me, .time-delta
+.media > .warning {
   padding-left: 10px; }
 
 .media-left,
@@ -5638,7 +5640,7 @@ button.close {
   margin-left: auto;
   margin-right: auto; }
 
-.pull-right, .repo-details.repo-details-import .repos .btn-pick-me {
+.pull-right, .repo-details.repo-details-import .repos .btn-pick-me, .time-delta .warning {
   float: right !important; }
 
 .pull-left, .repos .repos-controls .repos-label {
@@ -6109,6 +6111,10 @@ button.close {
   font-size: 2.25rem; }
   .repo-provider-badge span {
     color: #333333; }
+
+.time-delta .warning {
+  color: #E2D54A;
+  cursor: pointer; }
 
 a {
   color: #00B7FF; }
