@@ -6096,6 +6096,8 @@ button.close {
     width: 100%;
     min-height: 800px;
     border: 0px; }
+    .repo-details .repo-details-report-table .avatar-col, .repo-details .repo-details-report-table .avatar-img {
+      width: 20px; }
   .repo-details.repo-details-empty {
     color: #777777;
     padding-top: 2em;

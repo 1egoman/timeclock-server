@@ -131,6 +131,10 @@ $details-left-margin: 20px;
     width: 100%;
     min-height: 800px;
     border: 0px;
+
+    .avatar-col, .avatar-img {
+      width: 20px;
+    }
   }
 
   &.repo-details-empty {

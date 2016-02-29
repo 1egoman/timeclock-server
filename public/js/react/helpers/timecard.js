@@ -43,3 +43,21 @@ export function getTimeDelta(start, end, parse_format="%H:%M:%S", tooLongDuratio
     </span>,
   };
 }
+
+// ------------------
+// FIXME WRITE TESTS FOR ME
+// ------------------
+export function getAvatarFor(user_pool, username) {
+  let user = user_pool.find((potential) => potential.username === username);
+  if (user) {
+    return {
+      user: user,
+      avatar_img: <img className="avatar-img" src={user.avatar} />
+    }
+  } else {
+    return {
+      avatar_img: null,
+      username: null,
+    };
+  }
+}

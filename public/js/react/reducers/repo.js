@@ -78,7 +78,10 @@ export function repoDetails(state = {branch: null}, action) {
 
   // the timecard assosiated with a repository
   } else if (action.type === "server/TIMECARD") {
-    return Object.assign({}, state, {timecard: action.timecard});
+    return Object.assign({}, state, {
+      timecard: action.timecard,
+      users: action.users,
+    });
 
   } else {
     return state;

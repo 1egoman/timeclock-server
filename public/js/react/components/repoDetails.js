@@ -9,7 +9,7 @@ import {
 } from '../actions/repo';
 import RepoImport from './repoImport';
 import {getCurrentBranch} from '../helpers/branch';
-import {getTimeDelta} from '../helpers/timecard';
+import {getTimeDelta, getAvatarFor} from '../helpers/timecard';
 import {getProviderBadgeForRepo} from '../helpers/provider_badge';
 import _ from "underscore";
 import Select from 'react-select';
@@ -20,6 +20,7 @@ export const RepoDetailsComponent = ({
   repo_import_dialog_open,
   repo_details,
   timecard,
+  timecard_users,
 
   current_branch,
   branches,
@@ -109,6 +110,7 @@ export const RepoDetailsComponent = ({
         <table className="table">
           <thead>
             <tr>
+              <th></th>
               <th>Date</th>
               <th>From</th>
               <th>To</th>
@@ -120,6 +122,15 @@ export const RepoDetailsComponent = ({
               return day.times.map((time, tct) => {
                 let delta = getTimeDelta(time.start, time.end);
                 return <tr key={`${dct}-${tct}`}>
+                  <td className="avatar-col">
+                    <span
+                      data-toggle="tooltip"
+                      data-placement="left"
+                      title={time.by}
+                    >
+                      {getAvatarFor(timecard_users, time.by).avatar_img}
+                    </span>
+                  </td>
                   <td>{day.date}</td>
                   <td>{time.start}</td>
                   <td>{time.end}</td>
@@ -132,7 +143,6 @@ export const RepoDetailsComponent = ({
       </div> : <div className="repo-details repo-details-empty">
         <h2>Loading timecard...</h2>
       </div>}
-
     </div>;
 
   } else {
@@ -148,7 +158,9 @@ const RepoDetails = connect((store, ownProps) => {
     repo_import_dialog_open: store.repo_import_dialog_open,
     current_branch: getCurrentBranch(store),
     repo_details: store.repo_details,
+
     timecard: store.repo_details.timecard,
+    timecard_users: store.repo_details.users,
 
     // group the discovered repos by their respective user
     discovered_repos: _.groupBy(
