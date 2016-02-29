@@ -148,11 +148,13 @@ describe('reducers/repo.js', function() {
         user: "username",
         repo: "a-repository",
         timecard: {foo: "bar"},
+        users: [{foo: "baz"}]
       });
       assert.deepEqual(new_state, {
         branch: null,
         branches: null,
         timecard: {foo: "bar"},
+        users: [{foo: "baz"}],
       });
     });
     it('should not be effected by another event', function() {

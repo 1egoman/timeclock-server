@@ -45,4 +45,8 @@ describe('helpers/timecard.js', function() {
       });
     });
   });
+
+  describe('getAvatarFor', function() {
+    it('should have tests');
+  });
 });
