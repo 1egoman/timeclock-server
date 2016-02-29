@@ -1,4 +1,9 @@
 .navbar {
   background: $gray-lighter;
   a { color: $brand-primary; }
+
+  .navbar-brand img {
+    height: 36px;
+    margin-top: -8px;
+  }
 }

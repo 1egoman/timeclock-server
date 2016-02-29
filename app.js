@@ -76,7 +76,7 @@ app.get('/auth/github', passport.authenticate('github', {
 
 app.get('/auth/github/callback', passport.authenticate(
   'github', { failureRedirect: '/login' }
-), (req, res) => res.redirect('/'));
+), (req, res) => res.redirect('/app'));
 
 app.get('/auth/logout', (req, res) => {
   req.logout();
@@ -139,7 +139,7 @@ let socketMiddleware = passportSocketIo.authorize({
 });
 io.use(socketMiddleware);
 
-io.on('connection', function (socket) {
+io.on('connection', function(socket) {
   console.log("Connected to new client.", socket.request.user);
 
   // first, initialize the state so we're all on the same page

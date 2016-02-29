@@ -6006,6 +6006,9 @@ button.close {
   background: #eeeeee; }
   .navbar a {
     color: #51c4c4; }
+  .navbar .navbar-brand img {
+    height: 36px;
+    margin-top: -8px; }
 
 .repos:before, .repos:after {
   content: " ";

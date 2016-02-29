@@ -36,23 +36,12 @@ function doError(res, code) {
   };
 }
 
-    /* GET home page. */
+/* GET home page. */
 function index(req, res) {
-  if (req.user) {
-    res.redirect("/app");
-    // repo.getUserRepos(req).then((repos) => {
-    //   res.render('index_auth', {
-    //     title: 'Waltz',
-    //     user: req.user,
-    //     repos: repos,
-    //   });
-    // }).catch(doError);
-  } else {
-    res.render('index', {
-      title: 'Waltz',
-      user: req.user,
-    });
-  }
+  res.render('index', {
+    title: 'Waltz',
+    user: req.user,
+  });
 }
 
 // render the page that will load the report in a frame.

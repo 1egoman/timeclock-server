@@ -17,7 +17,9 @@ export const NavComponent = ({title}) => {
           <span className="icon-bar"></span>
           <span className="icon-bar"></span>
         </button>
-        <a className="navbar-brand" href="/">{title}</a>
+        <a className="navbar-brand" href="/">
+          <img src="/img/logo.svg" />
+        </a>
       </div>
 
       <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -26,7 +28,6 @@ export const NavComponent = ({title}) => {
           <li><a href="/pricing">Pricing</a></li>
         </ul>
       </div>
-
     </div>
   </nav>;
 }

@@ -4,7 +4,6 @@
   <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
 </a>
 
-<!-- Not authorized -->
 <section class="hero container-fluid themes themes-hero">
   <h1>Waltz makes invoices easy.</h1>
   <object class="left" type="image/svg+xml" data="/img/reports/bold.svg">
@@ -42,76 +41,73 @@
   $ git add .timecard.json && git push origin master
       </code></pre>
       </p>
-      <a class="btn btn-success btn-xl btn-50" href="/1egoman/clockmaker">See an example</a>
       <% if (!user) { %>
+        <a class="btn btn-success btn-xl btn-50" href="/1egoman/clockmaker">See an example</a>
         <a class="btn btn-primary btn-xl btn-50" href="/auth/github">Sign in with Github</a>
       <% } else { %>
+        <a class="btn btn-success btn-xl btn-50" href="/app">Let's get started</a>
         <a class="btn btn-primary btn-xl btn-50" href="/auth/logout">Logout <%= user.username %></a>
       <% } %>
     </div>
   </div>
 </div>
 
-<% if (user) { %>
-  <div class="container">
-    <h1>Choose a Repo:</h1>
-    <br/>
-    <ul class="list-group">
-      <%- repos.map((repo) => include("repository", {repo: repo})).join("") %>
-      </ul>
-  </div>
-<% } else { %>
-  <div class="master">
-    <section class="container">
-      <h1>The Problem</h1>
+<div class="master">
+  <section class="container">
+    <h1>The Problem</h1>
+    <p>
+      Invoices are a pain, especially for freelance developers. From calculating
+      the amount of hours that you've put into a project, to creating the actual
+      invoice and doing design work, most developers would rather do
+      something else. Wouldn't you love to get rid of the process?
+    </p>
+  </section>
+  <section class="container">
+    <div class="section-img on-top">
+      <img src="/img/clock.svg" class="timecard" />
+    </div>
+    <div class="section-text">
+      <h1>The Solution</h1>
       <p>
-        Invoices are a pain, especially for freelance developers. From calculating
-        the amount of hours that you've put into a project, to creating the actual
-        invoice and doing design work, most developers would rather do
-        something else. Wouldn't you love to get rid of the process?
+        Easily track the time you work on a project with <code>waltz</code>. Before
+        you start your work for the day, be sure to <code>waltz in</code>. Need to
+        run a few errands or get out of the house? Run <code>waltz out</code>. Too
+        lazy for that dance? Instead, run <code>waltz watch</code> to listen
+        for changes and auto-clock you in or out. In addition to an invoice for
+        the client, you also get work-time metrics for yourself.
       </p>
-    </section>
-    <section class="container">
-      <div class="section-img on-top">
-        <img src="/img/clock.svg" class="timecard" />
-      </div>
-      <div class="section-text">
-        <h1>The Solution</h1>
-        <p>
-          Easily track the time you work on a project with <code>waltz</code>. Before
-          you start your work for the day, be sure to <code>waltz in</code>. Need to
-          run a few errands or get out of the house? Run <code>waltz out</code>. Too
-          lazy for that dance? Instead, run <code>waltz watch</code> to listen
-          for changes and auto-clock you in or out. In addition to an invoice for
-          the client, you also get work-time metrics for yourself.
-        </p>
-      </div>
-      <div class="section-img on-right">
-        <img src="/img/clock.svg" class="timecard" />
-      </div>
-    </section>
-    <section class="container">
-      <div class="section-img">
-        <img src="/img/money.svg" class="money" />
-      </div>
-      <div class="section-text">
-        <h1>Paycheck time</h1>
-        <p>
-          Time to get paid? Push up your latest changes, and visit
-          <code>http://waltzapp.co/username/repo</code>. Don't like
-          what you see? Open up <code>.timecard.json</code> within the project, and change
-          <code>reportFormat</code> to any of the themes below, or make <a
-          href="/docs/make-a-theme">your own</a>. After pushing up your changes, take a look at your
-          new invoice. Was that hard?
-        </p>
-      </div>
-    </section>
-  </div>
-<% } %>
-
-<h3 class="byline">
-  An app by <a href="//rgaus.net">Ryan Gaus</a>.
-</h3>
-
+    </div>
+    <div class="section-img on-right">
+      <img src="/img/clock.svg" class="timecard" />
+    </div>
+  </section>
+  <section class="container">
+    <div class="section-img">
+      <img src="/img/money.svg" class="money" />
+    </div>
+    <div class="section-text">
+      <h1>Paycheck time</h1>
+      <p>
+        Time to get paid? Push up your latest changes, and visit
+        <code>http://waltzapp.co/username/repo</code>. Don't like
+        what you see? Open up <code>.timecard.json</code> within the project, and change
+        <code>reportFormat</code> to any of the themes below, or make <a
+        href="/docs/make-a-theme">your own</a>. After pushing up your changes, take a look at your
+        new invoice. Was that hard?
+      </p>
+    </div>
+  </section>
+  <section class="container">
+    <h1>What's the value prop?</h1>
+    <ul>
+      <li>Great looking and informative invoice for the client</li>
+      <li>Metrics from work data</li>
+      <li>Warning when you don't get up from your desk enough</li>
+      <li>Personal branding</li>
+      <li>Little effort for the coder</li>
+      <li>Collaborative</li>
+    </ul>
+  </section>
+</div>
 
 <% include footer %>
