@@ -44,6 +44,10 @@ export function activeRepo(state = null, action) {
   // when importing a new repo, deselect the current entry
   } else if (action.type === "server/DISCOVER_REPOS") {
     return null;
+
+  // when an external route change happens
+  // } else if (action.type === "@@router/LOCATION_CHANGE") {
+  //   return 0;
   } else {
     return state;
   }

@@ -7,6 +7,7 @@ const repo = require("../lib/repo"),
 
 module.exports = function(socket) {
   return (action) => {
+
     // discover all repos to import
     if (action.type === 'server/DISCOVER_REPOS') {
       console.log(`Discovering all repos for ${socket.request.user.username}`);
@@ -114,6 +115,24 @@ module.exports = function(socket) {
           error: err,
         });
       });
+
+    // when the page loads for the first time, update the state to reflect the
+    // initial url
+    } else if (action.type === '@@router/LOCATION_CHANGE' && action.payload && action.payload.action === "POP") {
+      let match;
+      if (match = action.payload.pathname.match(/\/app\/([\w]+)\/([\w]+)/)) {
+        module.exports(socket)({
+          type: "server/GET_BRANCHES",
+          user: match[1],
+          repo: match[2],
+        });
+        module.exports(socket)({
+          type: "server/GET_TIMECARD",
+          user: match[1],
+          repo: match[2],
+        });
+        socket.emit("action", {type: "SELECT_REPO", index: [match[1], match[2]]});
+      }
     }
   };
 }

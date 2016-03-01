@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {selectRepo, getBranches, getTimecard} from '../actions/repo';
+import { browserHistory } from 'react-router';
+import { getRepoByIndex } from '../helpers/get_repo';
 
 export const RepoComponent = ({repo, index, selected, onRepoClick, children}) => {
   // the component render
@@ -31,7 +33,7 @@ const Repo = connect((store, ownProps) => {
   return {
     repo: store.repos[ownProps.index],
     index: ownProps.index,
-    selected: ownProps.index === store.active_repo,
+    selected: ownProps.selected,
     children: ownProps.children,
   };
 }, (dispatch, ownProps) => {
@@ -39,10 +41,10 @@ const Repo = connect((store, ownProps) => {
   return {
     onRepoClick(repo) {
       return () => {
-        // select a new repo
-        dispatch(selectRepo(ownProps.index));
+        dispatch(selectRepo(repo)); // select a new repo
         dispatch(getBranches(repo)); // also, pull in the branch data for this new repo 
         dispatch(getTimecard(repo)); // lastly, pull in the timecard data too
+        browserHistory.push(`/app/${repo.user}/${repo.repo}`); // change the router to reflect the change
       }
     },
   }

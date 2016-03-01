@@ -4,6 +4,7 @@ import { changeBranch, getTimecard } from '../actions/repo';
 import {getCurrentBranch, getAllBranches} from '../helpers/branch';
 import _ from "underscore";
 import Select from 'react-select';
+import { getRepoByIndex } from '../helpers/get_repo';
 
 export const BranchPickerComponent = ({
   current_branch,
@@ -26,7 +27,7 @@ const BranchPicker = connect((store, ownProps) => {
   return {
     current_branch: getCurrentBranch(store),
     branches: getAllBranches(store),
-    repo: store.repos[store.active_repo],
+    repo: getRepoByIndex(store, store.active_repo),
   };
 }, (dispatch, ownProps) => {
   return {

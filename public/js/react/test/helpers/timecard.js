@@ -4,6 +4,7 @@ import helpers from "../helpers";
 import {
   formatTime,
   getTimeDelta,
+  getAvatarFor,
 } from '../../helpers/timecard';
 import React from 'react';
 
@@ -45,8 +46,24 @@ describe('helpers/timecard.js', function() {
       });
     });
   });
-
   describe('getAvatarFor', function() {
-    it('should have tests');
+    let user_pool = [
+      {username: "a-user-one", avatar: "sauce"},
+      {username: "a-user-two", avatar: "pig"},
+      {username: "a-user-three", avatar: "monster"},
+    ];
+    it('should find a user that is in the pool', function() {
+      assert.deepEqual(getAvatarFor(user_pool, "a-user-one"), {
+        user: {username: "a-user-one", avatar: "sauce"},
+        avatar_img: <img className="avatar-img" src="sauce" />
+      })
+    });
+    it('should not find a user not in the pool', function() {
+      assert.deepEqual(getAvatarFor(user_pool, "i-am-bogus"), {
+        user: null,
+        avatar_img: null,
+        error: "No user found.",
+      })
+    });
   });
 });

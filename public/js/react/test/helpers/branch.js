@@ -20,8 +20,8 @@ describe('helpers/branch.js', function() {
       repo_details: {
         branch: null,
       },
-      repos: [{default_branch: "master"}],
-      active_repo: 0,
+      repos: [{user: "user", repo: "repo", branches: ["master"], default_branch: "master"}],
+      active_repo: ["user", "repo"],
     }), "master");
 
     // else, master
@@ -43,8 +43,8 @@ describe('helpers/branch.js', function() {
         branch: null,
         branches: ["master", "dev"]
       },
-      repos: [{branches: ["master"]}],
-      active_repo: 0,
+      repos: [{user: "user", repo: "repo", branches: ["master"]}],
+      active_repo: ["user", "repo"],
     }).length, 2); // ["master", "dev"]
 
     // otherwise, pick from the repo model itself
@@ -53,8 +53,8 @@ describe('helpers/branch.js', function() {
         branch: null,
         branches: null,
       },
-      repos: [{branches: ["master", "dev"]}],
-      active_repo: 0,
+      repos: [{user: "user", repo: "repo", branches: ["master", "dev"]}],
+      active_repo: ["user", "repo"],
     }).length, 2); // ["master", "dev"]
   });
 });

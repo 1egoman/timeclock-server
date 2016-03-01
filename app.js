@@ -64,7 +64,13 @@ passport.use(authStrategy);
 app.use('/bundle', babelify('public/js/react', {}, {
   sourceMap: true,
   presets: ['react', 'es2015'],
-}))
+}));
+
+// serve anything that is a url for the app to the root of the app
+app.get(/\/app\/.+/, (req, res) => {
+  req.url = "/"; // reset to the app route
+  return express.static(path.join(__dirname, 'public', 'app'))(req, res);
+});
 
 // ----------------------------------------------------------------------------
 // passport auth routes

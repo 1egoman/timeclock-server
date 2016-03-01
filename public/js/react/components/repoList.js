@@ -2,6 +2,7 @@ import React from 'react';
 import Repo from './repo';
 import {connect} from 'react-redux';
 import {requestAllUserRepos} from '../actions/repo';
+import { getRepoByIndex, getActiveRepoIndex } from '../helpers/get_repo';
 
 export const RepoListComponent = ({
   repos,
@@ -26,7 +27,7 @@ export const RepoListComponent = ({
       repo={repo}
       key={ct}
       index={ct}
-      selected={active_repo === ct}
+      selected={active_repo && active_repo[0] === repo.user && active_repo[1] === repo.repo}
       />;
     });
   } else {

@@ -3,6 +3,9 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider, connect } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { Router, Route, browserHistory } from 'react-router';
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import {repoView, importView} from './router';
 
 // enable bootstrap popovers and tooltips
 $(document).ready(function() {
@@ -19,7 +22,12 @@ $(document).ready(function() {
 import io from 'socket.io-client';
 import createSocketIoMiddleware from 'redux-socket.io';
 const socket = io();
-let socketIoMiddleware = createSocketIoMiddleware(socket, "server/");
+let socketIoMiddleware = createSocketIoMiddleware(socket, (type) => {
+  return (
+    type.indexOf("server/") === 0 || // events prefixed with "server/"
+    type === "@@router/LOCATION_CHANGE" // let the backend know on route changes
+  );
+});
 
 // "Action constructors"
 // Given data, construct an action to be fed into the store
@@ -38,10 +46,6 @@ import {
   repoDetails,
 } from './reducers/repo';
 
-// "Components"
-import RepoList from './components/repoList';
-import RepoDetails from './components/repoDetails';
-import Nav from './components/nav';
 
 const waltzApp = combineReducers({
   repo_import_dialog_open: repoImportDialogOpen,
@@ -49,6 +53,7 @@ const waltzApp = combineReducers({
   repos,
   discovered_repos: discoveredRepos,
   repo_details: repoDetails,
+  routing: routerReducer,
 });
 
 // "Store"
@@ -69,14 +74,14 @@ let store = waltzCreateStore(waltzApp, {
   }
 });
 
+
+// router redux history syncer
+const history = syncHistoryWithStore(browserHistory, store);
 render(<Provider store={store}>
   <div>
-    <Nav />
-    <div className="col-md-4 col-lg-3">
-      <RepoList />
-    </div>
-    <div className="col-md-8 col-lg-9">
-      <RepoDetails />
-    </div>
+    <Router history={history}>
+      <Route path="/app/" component={repoView} />
+      <Route path="/app/:user/:repo" component={repoView} />
+    </Router>
   </div>
 </Provider>, document.getElementById("root"));

@@ -3,6 +3,7 @@
 export function openRepoImportDialog(state) {
   return {
     type: "REPO_IMPORT_DIALOG",
+    provider: "github",
     state,
   }
 };
@@ -17,10 +18,10 @@ export function importFromGithubRepo(repo) {
 };
 
 // Select a new repo to be the active one.
-export function selectRepo(index) {
+export function selectRepo(repo) {
   return {
     type: "SELECT_REPO",
-    index,
+    index: [repo.user, repo.repo],
   }
 };
 

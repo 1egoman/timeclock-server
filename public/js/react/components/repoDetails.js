@@ -13,6 +13,7 @@ import {getTimeDelta, getAvatarFor} from '../helpers/timecard';
 import {getProviderBadgeForRepo} from '../helpers/provider_badge';
 import _ from "underscore";
 import Select from 'react-select';
+import { getRepoByIndex } from '../helpers/get_repo';
 
 export const RepoDetailsComponent = ({
   repo,
@@ -154,7 +155,7 @@ export const RepoDetailsComponent = ({
 
 const RepoDetails = connect((store, ownProps) => {
   return {
-    repo: store.repos[store.active_repo],
+    repo: getRepoByIndex(store, store.active_repo),
     repo_import_dialog_open: store.repo_import_dialog_open,
     current_branch: getCurrentBranch(store),
     repo_details: store.repo_details,

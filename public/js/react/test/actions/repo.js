@@ -17,6 +17,7 @@ describe('actions/repo.js', function() {
       assert.deepEqual(openRepoImportDialog(true), {
         type: "REPO_IMPORT_DIALOG",
         state: true,
+        provider: "github",
       });
     });
   });
@@ -38,9 +39,9 @@ describe('actions/repo.js', function() {
   });
   describe('selectRepo', function() {
     it('should create the event', function() {
-      assert.deepEqual(selectRepo(12), {
+      assert.deepEqual(selectRepo({user: "username", repo: "repository"}), {
         type: "SELECT_REPO",
-        index: 12,
+        index: ["username", "repository"],
       });
     });
   });

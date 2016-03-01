@@ -44,9 +44,7 @@ export function getTimeDelta(start, end, parse_format="%H:%M:%S", tooLongDuratio
   };
 }
 
-// ------------------
-// FIXME WRITE TESTS FOR ME
-// ------------------
+// get the avatar, given a pool or users and the user's username within that pool
 export function getAvatarFor(user_pool, username) {
   let user = user_pool.find((potential) => potential.username === username);
   if (user) {
@@ -57,7 +55,8 @@ export function getAvatarFor(user_pool, username) {
   } else {
     return {
       avatar_img: null,
-      username: null,
+      user: null,
+      error: "No user found."
     };
   }
 }
