@@ -110,7 +110,9 @@ describe('reducers/repo.js', function() {
   });
   describe('repoDetails', function() {
     it('should change branch on CHANGE_BRANCH', function() {
-      let new_state = repoDetails(old_state.repo_details, {
+      let new_state = repoDetails(Object.assign({}, old_state.repo_details, {
+        timecard: {foo: "bar"}, // to test the clearing of the timecard
+      }), {
         type: "CHANGE_BRANCH",
         branch: "another-branch"
       });

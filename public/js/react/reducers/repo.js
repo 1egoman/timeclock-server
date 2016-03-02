@@ -65,6 +65,7 @@ export function repoDetails(state = {branch: null}, action) {
   if (action.type === "CHANGE_BRANCH") {
     return Object.assign({}, state, {
       branch: action.branch,
+      timecard: null, // reset the timecard so the view reloads
     });
 
   // on repo change, set the branch to the default
