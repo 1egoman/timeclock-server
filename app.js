@@ -13,17 +13,21 @@ const passportSocketIo = require("passport.socketio");
 const http = require("http");
 const session_secret = "keyboard kat";
 
+// routes
 const badges = require('./routes/badge');
 const repo = require('./routes/repository');
 const onSocketAction = require('./routes/socket');
 
+// auth serializer and stratigies
 const authStrategy = require("./lib/auth/strategy");
 const authSerializer = require("./lib/auth/serialization");
 
+// models
+const User = require("./lib/models/user");
+
+// monsooe, passport, and the app
 const app = express();
-
 const passport = require("passport");
-
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://clock:clock@ds011278.mongolab.com:11278/clock-server");
 
@@ -75,6 +79,8 @@ app.get(/\/app\/.+/, (req, res) => {
 // ----------------------------------------------------------------------------
 // passport auth routes
 // ------------------------------------------------------------------------------
+
+app.get('/login', (req, res) => res.redirect('/auth/github'));
 
 app.get('/auth/github', passport.authenticate('github', {
   scope: [ 'user', 'repo']
@@ -142,6 +148,15 @@ let socketMiddleware = passportSocketIo.authorize({
   key:         'connect.sid',
   secret:      session_secret,
   store:       mongoStore,
+  fail: (data, message, error, accept) => {
+    if (data.user && data.user.logged_in === false) {
+      // user needs to login
+      accept(new Error("User not authorized."));
+    } else {
+      console.error("Passport connection failed:", message);
+      accept(new Error("Unexpected error."));
+    }
+  }
 });
 io.use(socketMiddleware);
 
@@ -153,6 +168,7 @@ io.on('connection', function(socket) {
     type: "server/INIT",
     repos: socket.request.user.repos,
     active_repo: null,
+    user: User.sanitize(socket.request.user),
   });
 
   socket.on('action', onSocketAction(socket));

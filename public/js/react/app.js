@@ -29,6 +29,13 @@ let socketIoMiddleware = createSocketIoMiddleware(socket, (type) => {
   );
 });
 
+socket.on("error", (message) => {
+  // console.error("socket error", message)
+  if (message === "User not authorized.") {
+    location.href = "/login"; // login if not authorized
+  };
+});
+
 // "Action constructors"
 // Given data, construct an action to be fed into the store
 import {
@@ -45,12 +52,14 @@ import {
   discoveredRepos,
   repoDetails,
 } from './reducers/repo';
+import { user } from './reducers/user';
 
 
 const waltzApp = combineReducers({
   repo_import_dialog_open: repoImportDialogOpen,
   active_repo: activeRepo,
   repos,
+  user,
   discovered_repos: discoveredRepos,
   repo_details: repoDetails,
   routing: routerReducer,

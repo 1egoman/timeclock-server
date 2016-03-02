@@ -1,7 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-export const NavComponent = ({title}) => {
+export const NavComponent = ({title, logged_in_user}) => {
+  let login_controls = logged_in_user ?  <ul className="nav navbar-nav pull-right">
+    <li><a href="/auth/logout">Logout {logged_in_user.username}</a></li>
+  </ul> : null;
   return <nav className="navbar">
     <div className="container-fluid">
       <div className="navbar-header">
@@ -27,6 +30,7 @@ export const NavComponent = ({title}) => {
           <li><a href="/features">Features</a></li>
           <li><a href="/pricing">Pricing</a></li>
         </ul>
+        {login_controls}
       </div>
     </div>
   </nav>;
@@ -34,7 +38,8 @@ export const NavComponent = ({title}) => {
 
 const Nav = connect((store, props) => {
   return {
-    title: "Waltz"
+    title: "Waltz",
+    logged_in_user: store.user,
   };
 }, (dispatch, props) => {
   return {};
