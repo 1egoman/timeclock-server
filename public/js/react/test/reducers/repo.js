@@ -118,6 +118,9 @@ describe('reducers/repo.js', function() {
         branch: "another-branch",
         branches: null,
         timecard: null,
+        _comesfrom: [null, null],
+        _page: 0,
+        _canpaginateforward: false,
       });
     });
     it('should reset branch on SELECT_REPO', function() {
@@ -129,6 +132,9 @@ describe('reducers/repo.js', function() {
         branch: null,
         branches: null,
         timecard: null,
+        _comesfrom: [null, null],
+        _page: 0,
+        _canpaginateforward: false,
       });
     });
     it('should reset branch on server/BRANCHES_FOR', function() {
@@ -140,6 +146,9 @@ describe('reducers/repo.js', function() {
         branch: null,
         branches: ["master", "dev", "a-branch"],
         timecard: null,
+        _comesfrom: [null, null],
+        _page: 0,
+        _canpaginateforward: false,
       });
     });
     it('should reset branch on server/TIMECARD', function() {
@@ -148,13 +157,59 @@ describe('reducers/repo.js', function() {
         user: "username",
         repo: "a-repository",
         timecard: {foo: "bar"},
-        users: [{foo: "baz"}]
+        users: [{foo: "baz"}],
+        page: 0,
+        canpaginateforward: false,
       });
       assert.deepEqual(new_state, {
         branch: null,
         branches: null,
         timecard: {foo: "bar"},
         users: [{foo: "baz"}],
+        _comesfrom: ["username", "a-repository"],
+        _page: 0,
+        _canpaginateforward: false,
+      });
+    });
+    it('should amend to timecard on server/TIMECARD', function() {
+      // fetch an iterim page in the group (any page but last)
+      let new_state = repoDetails(old_state.repo_details, {
+        type: "server/TIMECARD",
+        user: "username",
+        repo: "a-repository",
+        timecard: {card: [{foo: "bar"}]},
+        users: [{foo: "baz"}],
+        page: 0,
+        canpaginateforward: true,
+      });
+      assert.deepEqual(new_state, {
+        branch: null,
+        branches: null,
+        timecard: {card: [{foo: "bar"}]},
+        users: [{foo: "baz"}],
+        _comesfrom: ["username", "a-repository"],
+        _page: 0,
+        _canpaginateforward: true,
+      });
+
+      // now, "fetch" the last page in the group
+      let second_new_state = repoDetails(new_state, {
+        type: "server/TIMECARD",
+        user: "username",
+        repo: "a-repository",
+        timecard: {card: [{hello: "world"}]},
+        users: [{second: "user"}],
+        page: 1,
+        canpaginateforward: false,
+      });
+      assert.deepEqual(second_new_state, {
+        branch: null,
+        branches: null,
+        timecard: {card: [{foo: "bar"}, {hello: "world"}]},
+        users: [{foo: "baz"}, {second: "user"}],
+        _comesfrom: ["username", "a-repository"],
+        _page: 1,
+        _canpaginateforward: false,
       });
     });
     it('should not be effected by another event', function() {

@@ -69,12 +69,21 @@ describe('actions/repo.js', function() {
         user: "username",
         repo: "repository",
         branch: null,
+        page: 0,
       });
       assert.deepEqual(getTimecard({user: "username", repo: "repository"}, "a-branch"), {
         type: "server/GET_TIMECARD",
         user: "username",
         repo: "repository",
         branch: "a-branch",
+        page: 0,
+      });
+      assert.deepEqual(getTimecard({user: "username", repo: "repository"}, "a-branch", 1), {
+        type: "server/GET_TIMECARD",
+        user: "username",
+        repo: "repository",
+        branch: "a-branch",
+        page: 1,
       });
     });
   });
