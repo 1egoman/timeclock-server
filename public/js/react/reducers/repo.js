@@ -82,10 +82,29 @@ export function repoDetails(state = {branch: null}, action) {
 
   // the timecard assosiated with a repository
   } else if (action.type === "server/TIMECARD") {
-    return Object.assign({}, state, {
-      timecard: action.timecard,
-      users: action.users,
-    });
+    if (action.user === state._comesfrom[0] && action.repo === state._comesfrom[1]) {
+      // merge the new repo query and the old, since they belong to the same repo
+      return Object.assign({}, state, {
+        timecard: Object.assign({}, action.timecard, {
+          card: state.timecard.card.concat(action.timecard.card),
+        }),
+        users: state.users.concat(action.users),
+
+        // the page we are on, and whether we can advance to the next page
+        _page: action.page,
+        _canpaginateforward: action.canpaginateforward,
+      });
+    } else {
+      // the repo that we are referencing changed, so update atomically
+      return Object.assign({}, state, {
+        timecard: action.timecard,
+        users: action.users,
+
+        _comesfrom: [action.user, action.repo], // mark what timecard this comes from for later
+        _page: action.page || 0,
+        _canpaginateforward: action.canpaginateforward,
+      });
+    }
 
   } else {
     return state;

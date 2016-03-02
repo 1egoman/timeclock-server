@@ -6,6 +6,7 @@ import {
   openRepoImportDialog,
   importFromGithubRepo,
   changeBranch,
+  getTimecard,
 } from '../actions/repo';
 import RepoImport from './repoImport';
 import {getCurrentBranch} from '../helpers/branch';
@@ -13,6 +14,7 @@ import {getTimeDelta, getAvatarFor} from '../helpers/timecard';
 import {getProviderBadgeForRepo} from '../helpers/provider_badge';
 import _ from "underscore";
 import Select from 'react-select';
+import Infinite from 'react-infinite';
 import { getRepoByIndex } from '../helpers/get_repo';
 
 export const RepoDetailsComponent = ({
@@ -26,9 +28,13 @@ export const RepoDetailsComponent = ({
   current_branch,
   branches,
 
+  current_page,
+  can_paginate_forward,
+
   importNewRepo,
   chooseBranch,
   printReport,
+  getMoreTimes,
 }) => {
   // import new repos
   if (repo_import_dialog_open && Object.keys(discovered_repos).length !== 0) {
@@ -129,7 +135,10 @@ export const RepoDetailsComponent = ({
                       data-placement="left"
                       title={time.by}
                     >
-                      {getAvatarFor(timecard_users, time.by).avatar_img}
+                      {
+                        getAvatarFor(timecard_users, time.by).avatar_img ||
+                        <span className="fa fa-user avatar-col" ></span>
+                      }
                     </span>
                   </td>
                   <td>{day.date}</td>
@@ -140,7 +149,14 @@ export const RepoDetailsComponent = ({
               })
             })}
           </tbody>
-          </table>
+        </table>
+
+        {/* Go to the next page of times */}
+        <button
+          onClick={getMoreTimes(repo, current_branch, ++current_page)}
+          className={`btn btn-default ${can_paginate_forward ? 'shown' : 'hidden'}`}
+        >More...</button>
+
       </div> : <div className="repo-details repo-details-empty">
         <h2>Loading timecard...</h2>
       </div>}
@@ -159,6 +175,9 @@ const RepoDetails = connect((store, ownProps) => {
     repo_import_dialog_open: store.repo_import_dialog_open,
     current_branch: getCurrentBranch(store),
     repo_details: store.repo_details,
+
+    current_page: store.repo_details._page || 0,
+    can_paginate_forward: store.repo_details._canpaginateforward || false,
 
     timecard: store.repo_details.timecard,
     timecard_users: store.repo_details.users,
@@ -181,6 +200,11 @@ const RepoDetails = connect((store, ownProps) => {
     },
     chooseBranch(branch) {
       dispatch(changeBranch(branch));
+    },
+
+    // fetch some more times from the server
+    getMoreTimes(repo, branch, page=1) {
+      return () => dispatch(getTimecard(repo, branch, page));
     },
 
     // print a copy of the report

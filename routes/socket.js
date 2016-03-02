@@ -3,7 +3,8 @@ const repo = require("../lib/repo"),
       card = require("../lib/card"),
       async = require("async"),
       _ = require("underscore"),
-      User = require("../lib/models/user");
+      User = require("../lib/models/user"),
+      TIMECARD_PAGE_LENGTH = 20; // the amount of times that are returned per request,
 
 module.exports = function(socket) {
   return (action) => {
@@ -80,6 +81,15 @@ module.exports = function(socket) {
     } else if (action.type === 'server/GET_TIMECARD') {
       repo.getFileFromRepo(action.user, action.repo, null, action.branch, socket.request.user).then((timecard) => {
         if (card.assertIsCard(timecard)) {
+
+          // paginate according to the passed info
+          if (typeof action.page !== "undefined") {
+            let start = action.page * TIMECARD_PAGE_LENGTH;
+            // return them in reverse so they are sorted in
+            // reverse-chronological order
+            timecard.card = timecard.card.reverse().slice(start, start + TIMECARD_PAGE_LENGTH);
+          }
+
           // get all users in the timecard
           let all_users = timecard.card.map((day) => {
             return day.times.map((t) => t.by);
@@ -100,6 +110,9 @@ module.exports = function(socket) {
               repo: action.repo,
               timecard: timecard,
               users: user_models,
+
+              page: action.page,
+              canpaginateforward: timecard.card.length >= TIMECARD_PAGE_LENGTH,
             });
           });
         } else {
@@ -130,6 +143,7 @@ module.exports = function(socket) {
           type: "server/GET_TIMECARD",
           user: match[1],
           repo: match[2],
+          page: 0,
         });
         socket.emit("action", {type: "SELECT_REPO", index: [match[1], match[2]]});
       }

@@ -71,6 +71,7 @@ let store = waltzCreateStore(waltzApp, {
     branch: null,
     branches: null,
     timecard: null,
+    _comesfrom: [null, null], // the source of the timecard by default is nowhere.
   }
 });
 
