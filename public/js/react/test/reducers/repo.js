@@ -166,7 +166,7 @@ describe('reducers/repo.js', function() {
         branches: null,
         timecard: {foo: "bar"},
         users: [{foo: "baz"}],
-        _comesfrom: ["username", "a-repository"],
+        _comesfrom: ["username", "a-repository", null],
         _page: 0,
         _canpaginateforward: false,
       });
@@ -177,6 +177,7 @@ describe('reducers/repo.js', function() {
         type: "server/TIMECARD",
         user: "username",
         repo: "a-repository",
+        branch: "ref",
         timecard: {card: [{foo: "bar"}]},
         users: [{foo: "baz"}],
         page: 0,
@@ -187,7 +188,7 @@ describe('reducers/repo.js', function() {
         branches: null,
         timecard: {card: [{foo: "bar"}]},
         users: [{foo: "baz"}],
-        _comesfrom: ["username", "a-repository"],
+        _comesfrom: ["username", "a-repository", "ref"],
         _page: 0,
         _canpaginateforward: true,
       });
@@ -197,6 +198,7 @@ describe('reducers/repo.js', function() {
         type: "server/TIMECARD",
         user: "username",
         repo: "a-repository",
+        branch: "ref",
         timecard: {card: [{hello: "world"}]},
         users: [{second: "user"}],
         page: 1,
@@ -207,7 +209,7 @@ describe('reducers/repo.js', function() {
         branches: null,
         timecard: {card: [{foo: "bar"}, {hello: "world"}]},
         users: [{foo: "baz"}, {second: "user"}],
-        _comesfrom: ["username", "a-repository"],
+        _comesfrom: ["username", "a-repository", "ref"],
         _page: 1,
         _canpaginateforward: false,
       });

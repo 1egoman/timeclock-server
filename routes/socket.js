@@ -108,6 +108,7 @@ module.exports = function(socket) {
               type: "server/TIMECARD",
               user: action.user,
               repo: action.repo,
+              branch: action.branch,
               timecard: timecard,
               users: user_models,
 
