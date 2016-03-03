@@ -2,9 +2,13 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 export const NavComponent = ({title, logged_in_user}) => {
-  let login_controls = logged_in_user ?  <ul className="nav navbar-nav pull-right">
-    <li><a href="/auth/logout">Logout {logged_in_user.username}</a></li>
-  </ul> : null;
+  let login_controls = logged_in_user ? <ul className="nav navbar-nav pull-right">
+  <li><a href="/auth/logout">Logout {logged_in_user.username}</a></li>
+  <li><a href="/app/settings"><i className="fa fa-cog"></i></a></li>
+  </ul> : <ul className="nav navbar-nav pull-right">
+    <li><a href="/login">Login</a></li>
+  </ul>;
+
   return <nav className="navbar">
     <div className="container-fluid">
       <div className="navbar-header">
