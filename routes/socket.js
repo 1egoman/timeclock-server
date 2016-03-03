@@ -47,17 +47,13 @@ module.exports = function(socket) {
             error: err,
           });
         } else {
-          let repo = Object.assign({}, action.repo, {
-            branches: ["master"],
-          });
-
           socket.emit("action", {
             type: "server/PUT_REPO",
-            repo: repo,
+            repo: action.repo,
           });
           socket.emit("action", {
             type: "server/REPO_IMPORT",
-            repo: repo,
+            repo: action.repo,
           });
         }
       });

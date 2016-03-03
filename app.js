@@ -156,7 +156,7 @@ let socketMiddleware = passportSocketIo.authorize({
       console.error("Passport connection failed:", message);
       accept(new Error("Unexpected error."));
     }
-  }
+  },
 });
 io.use(socketMiddleware);
 

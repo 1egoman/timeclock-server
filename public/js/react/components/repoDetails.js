@@ -9,7 +9,7 @@ import {
   getTimecard,
 } from '../actions/repo';
 import RepoImport from './repoImport';
-import {getCurrentBranch} from '../helpers/branch';
+import {getCurrentBranch, getAllBranches} from '../helpers/branch';
 import {getTimeDelta, getAvatarFor} from '../helpers/timecard';
 import {getProviderBadgeForRepo} from '../helpers/provider_badge';
 import _ from "underscore";
@@ -76,7 +76,8 @@ export const RepoDetailsComponent = ({
 
   // a repo was selected
   } else if (repo) {
-    let select_branches = repo.branches.map((i) => {
+    // get the branches that were fetched from the serverside
+    let select_branches = getAllBranches({repo_details, repo}).map((i) => {
       return {value: i, label: i}
     });
 
@@ -156,7 +157,6 @@ export const RepoDetailsComponent = ({
           onClick={getMoreTimes(repo, current_branch, ++current_page)}
           className={`btn btn-default ${can_paginate_forward ? 'shown' : 'hidden'}`}
         >More...</button>
-
       </div> : <div className="repo-details repo-details-empty">
         <h2>Loading timecard...</h2>
       </div>}
