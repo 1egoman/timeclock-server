@@ -28,6 +28,8 @@ export const RepoDetailsComponent = ({
   current_branch,
   branches,
 
+  user,
+
   current_page,
   can_paginate_forward,
 
@@ -88,7 +90,14 @@ export const RepoDetailsComponent = ({
         <h1>
           {repo.user}/<span className="repo-name">{repo.repo}</span>
           <span className="repo-details-provider-badge">{getProviderBadgeForRepo(repo)}</span>
-          <img className="repo-details-badge" src={`/${repo.user}/${repo.repo}.svg`} />
+          <img
+            className="repo-details-badge"
+            src={`/${repo.user}/${repo.repo}.svg`}
+            data-toggle="popover"
+            data-placement="bottom"
+            title="Embeddable Badge"
+            data-content={`[![Waltz unpaid time](http://waltzapp.co/${repo.user}/${repo.repo}.svg${repo.is_private ? '?token='+user.badge_token : '' })](http://waltzapp.co/${repo.user}/${repo.repo})`}
+          />
         </h1>
 
         {/* choose a branch to start on */}
@@ -181,6 +190,8 @@ const RepoDetails = connect((store, ownProps) => {
 
     timecard: store.repo_details.timecard,
     timecard_users: store.repo_details.users,
+
+    user: store.user,
 
     // group the discovered repos by their respective user
     discovered_repos: _.groupBy(

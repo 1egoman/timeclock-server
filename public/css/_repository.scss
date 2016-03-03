@@ -111,6 +111,13 @@ $details-left-margin: 20px;
 
   .repo-details-badge {
     margin-left: 0.5em;
+    cursor: pointer;
+  }
+
+  // repo-details-badge popover
+  .repo-details-badge + .popover .popover-content {
+    cursor: text;
+    font-size: 0.8em; 
   }
 
   .repo-details-report {

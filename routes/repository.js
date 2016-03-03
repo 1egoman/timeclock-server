@@ -44,33 +44,6 @@ function index(req, res) {
   });
 }
 
-// render the page that will load the report in a frame.
-function renderReportTemplate(req, res) {
-  let ref = req.params.ref || req.parent_repo.default_branch || "master";
-  repo.getFileFromRepo(
-    req.params.username,
-    req.params.repo,
-    null,
-    ref,
-    req.user
-  ).then((timecard) => {
-    if (card.assertIsCard(timecard)) {
-      res.render("report", {
-        title: `Invoice for ${req.params.username}/${req.params.repo}`,
-        repo: req.parent_repo.error ? {
-          full_name: `${req.params.username}/${req.params.repo}`,
-        } : req.parent_repo,
-        current_ref: ref,
-        user: req.user,
-      });
-    } else {
-      res.status(400).send({
-        error: "Timecard is malformed.",
-      });
-    }
-  }).catch(doError(res, 404));
-}
-
 // get a repo
 function doReport(req, res) {
   let ref = req.params.ref || req.parent_repo.default_branch || "master";
@@ -102,5 +75,4 @@ module.exports = {
   doError: doError,
   index: index,
   doReport: doReport,
-  renderReportTemplate: renderReportTemplate,
 }

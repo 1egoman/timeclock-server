@@ -6085,7 +6085,11 @@ button.close {
         float: right;
         width: 100px; }
   .repo-details .repo-details-badge {
-    margin-left: 0.5em; }
+    margin-left: 0.5em;
+    cursor: pointer; }
+  .repo-details .repo-details-badge + .popover .popover-content {
+    cursor: text;
+    font-size: 0.8em; }
   .repo-details .repo-details-report {
     width: 100%;
     min-height: 800px;
