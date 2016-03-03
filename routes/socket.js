@@ -1,17 +1,19 @@
 "use strict";
-const repo = require("../lib/repo"),
+const required_repo = require("../lib/repo"),
       card = require("../lib/card"),
       async = require("async"),
       _ = require("underscore"),
-      User = require("../lib/models/user"),
+      user_model = require("../lib/models/user"),
       TIMECARD_PAGE_LENGTH = 20; // the amount of times that are returned per request,
 
-module.exports = function(socket) {
+module.exports = function(socket, use_repo, user_model) {
+  let repo = use_repo || required_repo;
+  let User = user_model || user_model;
   return (action) => {
 
     // discover all repos to import
     if (action.type === 'server/DISCOVER_REPOS') {
-      console.log(`Discovering all repos for ${socket.request.user.username}`);
+      process.env.NODE_ENV !== "test" && console.log(`Discovering all repos for ${socket.request.user.username}`);
       repo.getUserRepos({user: socket.request.user}).then((repos) => {
         socket.emit("action", {
           type: "server/REPOS_DISCOVERED",
@@ -63,7 +65,6 @@ module.exports = function(socket) {
       repo.getBranchesForRepo({user: socket.request.user}, action.user, action.repo).then((branches) => {
         socket.emit("action", {
           type: "server/BRANCHES_FOR",
-          repo: repo,
           branches: branches.map((b) => b.name),
         });
       }, (err) => {
