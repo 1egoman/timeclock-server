@@ -101,7 +101,9 @@ app.get('/auth/logout', (req, res) => {
 app.get('/', repo.index);
 app.get('/:username/:repo.svg', badges.fetchBadge);
 app.get('/embed/:username/:repo/:ref?', repo.getRepo, repo.doReport);
-app.get('/:username/:repo/:ref?', repo.getRepo, repo.renderReportTemplate);
+app.get('/:username/:repo', repo.getRepo, (req, res) => {
+  res.redirect(`/app/${req.params.username}/${req.params.repo}`);
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
