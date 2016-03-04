@@ -89,9 +89,16 @@ export function repoDetails(state = {branch: null}, action) {
       action.branch === state._comesfrom[2]
     ) {
       // merge the new repo query and the old, since they belong to the same repo
+      // or, if there wasn't a timecard to start with, just return the new card.
       return Object.assign({}, state, {
         timecard: Object.assign({}, action.timecard, {
-          card: state.timecard.card.concat(action.timecard.card),
+          card: (function(state) {
+            if (state.timecard && Array.isArray(state.timecard.card)) {
+              return state.timecard.card.concat(action.timecard.card);
+            } else {
+              return action.timecard.card;
+            }
+          })(state),
         }),
         users: state.users.concat(action.users),
 
