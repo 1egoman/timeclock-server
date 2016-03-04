@@ -1,0 +1,40 @@
+.settings-list {
+  @extend .row;
+
+  // the avatar image to the right or above the username
+  .avatar-img {
+    width: 128px;
+    height: 128px;
+    margin: 1em auto;
+    display: block;
+    @media (min-width: $screen-sm-min) {
+      float: left;
+      margin-right: 2em;
+    }
+  }
+
+  // provider badge
+  .setting-list-provider-badge .user-provider-badge {
+    color: $text-color;
+    margin-left: 0.3em;
+  }
+
+  // half height panels have a minimum height to make them look professional
+  .panel-half-height {
+    min-height: 200px;
+  }
+
+  // the badge token box that can let a user reset their badge token
+  .badge-token-box {
+    @extend .input-group;
+    max-width: 0em;
+    margin: 0.5em auto;
+
+    p {
+      margin-bottom: 0.5em;
+    }
+
+    .token-box { @extend .input-group-addon; }
+    .token-btn { @extend .input-group-btn; }
+  }
+}

@@ -5,6 +5,7 @@ import { Router, Route, hashHistory } from 'react-router';
 import RepoList from './components/repoList';
 import RepoDetails from './components/repoDetails';
 import RepoImport from './components/repoImport';
+import SettingsList from './components/settingsList';
 import Nav from './components/nav';
 
 // the "main view" that the user encounters
@@ -16,6 +17,14 @@ export function repoView({params}) {
     </div>
     <div className="col-md-8 col-lg-9">
       <RepoDetails user={params.user} repo={params.repo} />
+    </div>
+  </div>;
+}
+export function settingsView({params}) {
+  return <div>
+    <Nav />
+    <div className="container">
+      <SettingsList />
     </div>
   </div>;
 }

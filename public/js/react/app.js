@@ -5,7 +5,7 @@ import { Provider, connect } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
-import {repoView, importView} from './router';
+import {repoView, settingsView} from './router';
 
 // enable bootstrap popovers and tooltips
 $(document).ready(function() {
@@ -92,6 +92,8 @@ render(<Provider store={store}>
     <Router history={history}>
       <Route path="/app/" component={repoView} />
       <Route path="/app/:user/:repo" component={repoView} />
+
+      <Route path="/app/settings" component={settingsView} />
     </Router>
   </div>
 </Provider>, document.getElementById("root"));

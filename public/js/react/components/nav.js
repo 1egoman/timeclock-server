@@ -1,10 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
 
 export const NavComponent = ({title, logged_in_user}) => {
   let login_controls = logged_in_user ? <ul className="nav navbar-nav pull-right">
   <li><a href="/auth/logout">Logout {logged_in_user.username}</a></li>
-  <li><a href="/app/settings"><i className="fa fa-cog"></i></a></li>
+  <li>
+    <Link to="/app/settings"><i className="fa fa-cog"></i></Link>
+  </li>
   </ul> : <ul className="nav navbar-nav pull-right">
     <li><a href="/login">Login</a></li>
   </ul>;
@@ -24,9 +27,11 @@ export const NavComponent = ({title, logged_in_user}) => {
           <span className="icon-bar"></span>
           <span className="icon-bar"></span>
         </button>
-        <a className="navbar-brand" href="/">
-          <img src="/img/logo.svg" />
-        </a>
+        <span className="navbar-brand">
+          <Link to="/app/">
+            <img src="/img/logo.svg" />
+          </Link>
+        </span>
       </div>
 
       <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

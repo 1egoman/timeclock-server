@@ -22,3 +22,33 @@ export function getProviderBadgeForRepo(repo, newWindow=true) {
       ><span className="fa fa-question-circle"></span></a>;
   }
 }
+
+// return the a badge that links to a user
+export function getUserBadge(user, newWindow=true) {
+  let target = newWindow ? "_blank": "";
+  switch (user.provider.toLowerCase()) {
+    case "github":
+      return <a
+        className="user-provider-badge user-provider-badge-github"
+        target={target}
+        href={`//github.com/${user.username}`}
+      >
+        <span className="fa fa-github"></span>
+      </a>;
+    case "bitbucket":
+      return <a
+        className="user-provider-badge user-provider-badge-bitbucket"
+        target={target}
+        href={`//bitbucket.com/${user.username}`}
+      >
+        <span className="fa fa-bitbucket"></span>
+      </a>;
+    default:
+      return <a
+        className="user-provider-badge user-provider-badge-unknown"
+        data-toggle="tooltip"
+        data-placement="bottom"
+        title="We are unsure of this user's origin."
+      ><span className="fa fa-question-circle"></span></a>;
+  }
+}
