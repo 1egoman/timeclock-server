@@ -17,7 +17,8 @@ export function formatTime(raw, parse_format="%H:%M:%S", to_format) {
 }
 
 // get the difference in time from the start to the end
-export function getTimeDelta(start, end, parse_format="%H:%M:%S", tooLongDuration=DEFAULT_LONG_DURATION) {
+export function getTimeDelta(start, end, parse_format, tooLongDuration=DEFAULT_LONG_DURATION) {
+  parse_format = parse_format || "%H:%M:%S";
   let result = formatTime(end, parse_format).getTime() - formatTime(start, parse_format).getTime();
   let duration = (new Date(result).getTime()) % MS_PER_DAY / MS_PER_MINUTE;
 

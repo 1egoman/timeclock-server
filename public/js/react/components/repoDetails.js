@@ -137,7 +137,7 @@ export const RepoDetailsComponent = ({
           <tbody>
             {timecard.card.map((day, dct) => {
               return day.times.map((time, tct) => {
-                let delta = getTimeDelta(time.start, time.end);
+                let delta = getTimeDelta(time.start, time.end, null, user.settings.long_work_period);
                 return <tr key={`${dct}-${tct}`}>
                   <td className="avatar-col">
                     <span
