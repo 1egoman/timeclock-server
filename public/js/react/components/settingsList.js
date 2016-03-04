@@ -1,14 +1,21 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {getUserBadge} from '../helpers/provider_badge';
+import {
+  resetBadgeTokenForUser,
+  changeSetting,
+  preemptiveSettingUpdate,
+} from '../actions/settings';
 
 export function settingsListComponent({
   user,
   settings,
+
+  resetToken,
+  changeLongWorkPeriodDuration,
 }) {
   if (user) {
     return <div className="settings-list">
-
       {/* general user info */}
       <div className="col-md-12">
         <div className="panel panel-default">
@@ -22,7 +29,7 @@ export function settingsListComponent({
               </span>
             </h1>
             <button
-              className="btn btn-primary"
+              className="btn btn-primary disabled"
               data-toggle="tooltip"
               data-placement="right"
               title="This will refetch user information from the provider (Github, Bitbucket, etc) and reload the user within our database."
@@ -43,9 +50,13 @@ export function settingsListComponent({
               invoices.</strong>
             </p>
             <div className="badge-token-box">
-              <div className="token-box">{user.badge_token}</div>
+              <div className="token-box">
+                {user.badge_token || <i className="fa fa-spinner fa-spin"></i>}
+              </div>
               <div className="token-btn">
-                <button className="btn btn-info">Reset token</button>
+                <button className="btn btn-info" onClick={resetToken(user)}>
+                  Reset token
+                </button>
               </div>
             </div>
           </div>
@@ -68,13 +79,13 @@ export function settingsListComponent({
                 type="number"
                 className="form-control"
                 value={settings.long_work_period}
+                onChange={changeLongWorkPeriodDuration}
               />
               <div className="input-group-addon">minutes long or more.</div>
             </div>
           </div>
         </div>
       </div>
-
     </div>;
   } else {
     return <div className="settings-list settings-list-loading">
@@ -86,12 +97,23 @@ export function settingsListComponent({
 const settingsList = connect((store, props) => {
   return {
     user: store.user,
-    settings: {
-      long_work_period: 90,
-    },
+    settings: store.user ? store.user.settings : null,
   };
 }, (dispatch, props) => {
-  return {};
+  return {
+    resetToken(user) {
+      return () => dispatch(resetBadgeTokenForUser(user));
+    },
+
+    changeLongWorkPeriodDuration(event) {
+      let setting = {
+        long_work_period: event.target.value,
+      };
+      // update the setting locally, and push the change remotely.
+      dispatch(changeSetting(setting));
+      dispatch(preemptiveSettingUpdate(setting));
+    },
+  };
 })(settingsListComponent);
 
 export default settingsList;

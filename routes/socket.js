@@ -4,11 +4,12 @@ const required_repo = require("../lib/repo"),
       async = require("async"),
       _ = require("underscore"),
       user_model = require("../lib/models/user"),
+      uuid = require("uuid"),
       TIMECARD_PAGE_LENGTH = 20; // the amount of times that are returned per request,
 
-module.exports = function(socket, use_repo, user_model) {
+module.exports = function(socket, use_repo, inject_user_model) {
   let repo = use_repo || required_repo;
-  let User = user_model || user_model;
+  let User = user_model || inject_user_model;
   return (action) => {
 
     // discover all repos to import
@@ -29,7 +30,8 @@ module.exports = function(socket, use_repo, user_model) {
               default_branch: r.default_branch,
               provider: "github",
             }
-          })
+          }),
+          settings: socket.request.user.settings,
         });
       }, (err) => {
         socket.emit("action", {
@@ -125,6 +127,55 @@ module.exports = function(socket, use_repo, user_model) {
           type: "server/ERROR",
           error: err,
         });
+      });
+
+    // reset a badge token that is associated with a user
+    } else if (action.type === 'server/RESET_TOKEN') {
+      User.findOne({username: action.username, badge_token: action.old_token}).exec((err, user) => {
+        if (err) {
+          socket.emit("action", {
+            type: "server/ERROR",
+            err: err,
+          });
+        } else if (user) {
+          user.badge_token = uuid.v4(); // generate new badge token
+          user.save((err) => {
+            if (err) {
+              socket.emit("action", {
+                type: "server/ERROR",
+                err: err,
+              });
+            } else {
+              socket.emit("action", {
+                type: "server/TOKEN_RESET",
+                user: User.sanitize(user),
+                badge_token: user.badge_token,
+              });
+            }
+          })
+        } else {
+          socket.emit("action", {
+            type: "server/ERROR",
+            err: "No user was found with that badge token.",
+          });
+        }
+      });
+
+    // change the value of a sumset of settings within the user model
+    } else if (action.type === 'server/CHANGE_SETTING') {
+      let new_settings = Object.assign(socket.request.user.settings, action.changes);
+      User.update({_id: socket.request.user._id}, {settings: new_settings}).exec((err) => {
+        if (err) {
+          socket.emit("action", {
+            type: "server/ERROR",
+            err: err,
+          });
+        } else {
+          socket.emit("action", {
+            type: "server/SETTING_CHANGED",
+            settings: new_settings,
+          });
+        }
       });
 
     // when the page loads for the first time, update the state to reflect the
