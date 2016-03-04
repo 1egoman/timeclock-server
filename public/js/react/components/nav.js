@@ -4,10 +4,24 @@ import {Link} from 'react-router';
 
 export const NavComponent = ({title, logged_in_user}) => {
   let login_controls = logged_in_user ? <ul className="nav navbar-nav pull-right">
-  <li><a href="/auth/logout">Logout {logged_in_user.username}</a></li>
-  <li>
-    <Link to="/app/settings"><i className="fa fa-cog"></i></Link>
-  </li>
+    <li className="dropdown">
+      <a
+        href="#"
+        className="dropdown-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+      {logged_in_user.username} <span className="caret"></span>
+      </a>
+      <ul className="dropdown-menu">
+        <li>
+          <Link to="/app/settings">Settings</Link>
+        </li>
+        <li><a href="/auth/logout">Logout</a></li>
+      </ul>
+    </li>
   </ul> : <ul className="nav navbar-nav pull-right">
     <li><a href="/login">Login</a></li>
   </ul>;
