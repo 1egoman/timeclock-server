@@ -6203,6 +6203,11 @@ button.close {
   .repo-details.repo-details-import .repos .btn-pick-me {
     margin-top: -38px; }
 
+.repo-details.repo-details-import .btn-load-more {
+  width: 16em;
+  margin: 0.5em auto;
+  display: block; }
+
 .repo-provider-badge {
   margin: 0.75rem;
   font-size: 2.25rem; }

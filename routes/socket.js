@@ -29,7 +29,7 @@ module.exports = function(socket, use_repo, inject_user_model) {
     // discover all repos to import
     if (action.type === 'server/DISCOVER_REPOS') {
       process.env.NODE_ENV !== "test" && console.log(`Discovering all repos for ${socket.request.user.username}`);
-      repo.getUserRepos({user: socket.request.user}).then((repos) => {
+      repo.getUserRepos({user: socket.request.user}, action.page || 0).then((repos) => {
         socket.emit("action", {
           type: "server/REPOS_DISCOVERED",
           repos: repos.map((r) => {
@@ -45,7 +45,7 @@ module.exports = function(socket, use_repo, inject_user_model) {
               provider: "github",
             }
           }),
-          settings: socket.request.user.settings,
+          page: action.page || 0,
         });
       }, (err) => {
         socket.emit("action", {

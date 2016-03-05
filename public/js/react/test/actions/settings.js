@@ -7,7 +7,7 @@ import {
   preemptiveSettingUpdate,
 } from '../../actions/settings';
 
-describe('actions/repo.js', function() {
+describe('actions/settings.js', function() {
   describe('resetBadgeTokenForUser', function() {
     it('should create the event', function() {
       assert.deepEqual(resetBadgeTokenForUser({

@@ -25,10 +25,11 @@ export function selectRepo(repo) {
   }
 };
 
-export function requestAllUserRepos() {
+export function requestAllUserRepos(page) {
   return {
     type: "server/DISCOVER_REPOS",
-  }
+    page: page || 0,
+  };
 };
 
 export function changeBranch(branch) {

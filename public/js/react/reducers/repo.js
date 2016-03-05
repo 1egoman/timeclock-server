@@ -55,7 +55,7 @@ export function activeRepo(state = null, action) {
 
 export function discoveredRepos(state = [], action) {
   if (action.type === "server/REPOS_DISCOVERED") {
-    return action.repos;
+    return state.concat(action.repos);
   } else {
     return state;
   }
@@ -118,6 +118,14 @@ export function repoDetails(state = {branch: null}, action) {
       });
     }
 
+  } else {
+    return state;
+  }
+}
+
+export function discoveredReposPage(state = 0, action) {
+  if (action.type === "server/REPOS_DISCOVERED") {
+    return action.page || 0;
   } else {
     return state;
   }

@@ -50,6 +50,7 @@ import {
   activeRepo,
   repoImportDialogOpen,
   discoveredRepos,
+  discoveredReposPage,
   repoDetails,
 } from './reducers/repo';
 import { user } from './reducers/user';
@@ -61,6 +62,7 @@ const waltzApp = combineReducers({
   repos,
   user,
   discovered_repos: discoveredRepos,
+  discovered_repos_page: discoveredReposPage,
   repo_details: repoDetails,
   routing: routerReducer,
 });

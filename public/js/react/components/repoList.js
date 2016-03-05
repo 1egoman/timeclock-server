@@ -56,7 +56,7 @@ const RepoList = connect((store, ownProps) => {
   return {
     importNewRepo(state) {
       return () => {
-        dispatch(requestAllUserRepos());
+        dispatch(requestAllUserRepos(0));
       };
     },
   };

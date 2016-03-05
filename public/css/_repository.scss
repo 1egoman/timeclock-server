@@ -106,7 +106,6 @@ $details-left-margin: 20px;
         width: 100px;
       }
     }
-
   }
 
   .repo-details-badge {
@@ -160,11 +159,16 @@ $details-left-margin: 20px;
   .repos {
     cursor: default;
 
-
     .btn-pick-me {
       @extend .pull-right;
       margin-top: -38px;
     }
+  }
+
+  .btn-load-more {
+    width: 16em;
+    margin: 0.5em auto;
+    display: block;
   }
 }
 

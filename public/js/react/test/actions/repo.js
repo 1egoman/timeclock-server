@@ -34,6 +34,13 @@ describe('actions/repo.js', function() {
     it('should create the event', function() {
       assert.deepEqual(requestAllUserRepos(), {
         type: "server/DISCOVER_REPOS",
+        page: 0,
+      });
+    });
+    it('should create the event with a page', function() {
+      assert.deepEqual(requestAllUserRepos(1), {
+        type: "server/DISCOVER_REPOS",
+        page: 1,
       });
     });
   });

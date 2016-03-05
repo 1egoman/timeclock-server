@@ -7,6 +7,7 @@ import {
   importFromGithubRepo,
   changeBranch,
   getTimecard,
+  requestAllUserRepos,
 } from '../actions/repo';
 import RepoImport from './repoImport';
 import {getCurrentBranch, getAllBranches} from '../helpers/branch';
@@ -21,6 +22,7 @@ export const RepoDetailsComponent = ({
   repo,
   discovered_repos,
   repo_import_dialog_open,
+  repo_import_page,
   repo_details,
   timecard,
   timecard_users,
@@ -37,6 +39,7 @@ export const RepoDetailsComponent = ({
   chooseBranch,
   printReport,
   getMoreTimes,
+  toImportRepoPage,
 }) => {
   // import new repos
   if (repo_import_dialog_open && Object.keys(discovered_repos).length !== 0) {
@@ -67,6 +70,11 @@ export const RepoDetailsComponent = ({
           </div>;
         })}
       </ul>
+
+      <button
+        className="btn btn-primary btn-load-more"
+        onClick={toImportRepoPage(++repo_import_page)}
+      >Load More Repositories</button>
     </div>;
 
   // loading message for the above reop import dialog
@@ -203,6 +211,7 @@ const RepoDetails = connect((store, ownProps) => {
       })
     // then, sort by owner
     , (repo) => repo.user),
+    repo_import_page: store.discovered_repos_page,
   };
 }, (dispatch, ownProps) => {
   return {
@@ -221,6 +230,10 @@ const RepoDetails = connect((store, ownProps) => {
     // print a copy of the report
     printReport(repo, current_branch) {
       return () => window.open(`/embed/${repo.user}/${repo.repo}/${current_branch}`).print();
+    },
+
+    toImportRepoPage(page) {
+      return () => dispatch(requestAllUserRepos(page));
     },
   };
 })(RepoDetailsComponent);
