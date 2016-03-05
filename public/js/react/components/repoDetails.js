@@ -118,7 +118,7 @@ export const RepoDetailsComponent = ({
           <input
             type="text"
             className="form-control repo-details-report-link-box"
-            value={`http://waltzapp.co/embed/${repo.user}/${repo.repo}/${current_branch}`}
+            value={`http://waltzapp.co/embed/${repo.user}/${repo.repo}/${current_branch}${repo.is_private ? '?token='+user.badge_token : ''}`}
             readOnly={true}
           />
 
