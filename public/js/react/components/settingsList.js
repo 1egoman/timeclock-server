@@ -28,12 +28,6 @@ export function settingsListComponent({
                 {getUserBadge(user)}
               </span>
             </h1>
-            <button
-              className="btn btn-primary disabled"
-              data-toggle="tooltip"
-              data-placement="right"
-              title="This will refetch user information from the provider (Github, Bitbucket, etc) and reload the user within our database."
-            >Reload user from provider</button>
           </div>
         </div>
       </div>
