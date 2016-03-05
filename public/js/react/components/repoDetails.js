@@ -62,7 +62,7 @@ export const RepoDetailsComponent = ({
                     className="btn btn-warning disabled btn-pick-me"
                     data-toggle="tooltip"
                     data-placement="left"
-                    title="No timecard was found. Please run `waltz init` in the repo to create a new timecard."
+                    title="No timecard was found in the default branch. Please run `waltz init` in the repo to create a new timecard."
                   >No Timecard</button>
                 }
               </RepoComponent>
