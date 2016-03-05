@@ -50,4 +50,5 @@ function fetchBadge(req, res) {
 
 module.exports = {
   fetchBadge: fetchBadge,
+  getAuthenticatedUser: getAuthenticatedUser,
 };

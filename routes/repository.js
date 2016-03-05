@@ -2,6 +2,7 @@
 const repo = require("../lib/repo"),
       ejs = require("ejs"),
       isAuthenticated = require("../lib/is_authenticated"),
+      getAuthenticatedUser = require("./badge").getAuthenticatedUser,
       card = require("../lib/card");
 
 // get the repo that is being specified.
@@ -47,20 +48,21 @@ function index(req, res) {
 // get a repo
 function doReport(req, res) {
   let ref = req.params.ref || req.parent_repo.default_branch || "master";
-  repo.getFileFromRepo(
-    req.params.username,
-    req.params.repo,
-    null,
-    ref,
-    req.user
-  ).then((timecard) => {
+  getAuthenticatedUser(req).then((user) => {
+    return repo.getFileFromRepo(
+      req.params.username,
+      req.params.repo,
+      null,
+      ref,
+      user
+    );
+  }).then((timecard) => {
     if (card.assertIsCard(timecard)) {
       // make the report
       card.getReportTemplate(timecard.reportFormat || "default").then((template) => {
         let ejs_data = card.getTimecardRenderDetails(timecard),
-            report = ejs.render(template, ejs_data),
-            rendered_report = report
-        res.send(rendered_report);
+            report = ejs.render(template, ejs_data);
+        res.send(report);
       }).catch(doError(res, 400));
     } else {
       res.status(400).send({
