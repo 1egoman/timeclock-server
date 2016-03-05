@@ -161,7 +161,7 @@ export const RepoDetailsComponent = ({
                   </td>
                   <td>{day.date}</td>
                   <td>{time.start}</td>
-                  <td>{time.end}</td>
+                  <td>{typeof time.end !== "undefined" ? time.end : "(no end)"}</td>
                   <td>{delta.markup}</td>
                 </tr>;
               })

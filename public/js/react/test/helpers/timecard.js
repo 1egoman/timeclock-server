@@ -28,6 +28,15 @@ describe('helpers/timecard.js', function() {
         </span>,
       });
     });
+    it('should get the time from the start to end, in an incomplete zone', function() {
+      assert.deepEqual(getTimeDelta("1:00:00", undefined), {
+        duration: null,
+        tooLong: false,
+        markup: <span className="time-delta time-delta-incomplete">
+          No Duration
+        </span>,
+      });
+    });
     it('should get the time from the start to end, and trigger `tooLong`', function() {
       assert.deepEqual(getTimeDelta("1:00:00", "4:00:00"), {
         duration: 180,
