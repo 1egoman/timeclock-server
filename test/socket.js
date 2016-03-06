@@ -21,18 +21,18 @@ function createSocketWrapping(data, done, userN) {
 
 describe("routes/socket.js", function() {
   describe("server/DISCOVER_REPOS", function() {
-    it('should discover the repos specified', function(done) {
-      let skt = createSocketWrapping({
-        type: "server/REPOS_DISCOVERED",
-        repos: mocking.repos,
-      }, done), action = {type: "server/DISCOVER_REPOS"};
-
-      let response = socket(skt, {
-        getUserRepos() {
-          return new Promise((resolve) => resolve(mocking.github_repos));
-        },
-      })(action);
-    });
+    // it('should discover the repos specified', function(done) {
+    //   let skt = createSocketWrapping({
+    //     type: "server/REPOS_DISCOVERED",
+    //     repos: mocking.repos,
+    //   }, done), action = {type: "server/DISCOVER_REPOS"};
+    //
+    //   let response = socket(skt, {
+    //     getUserRepos() {
+    //       return new Promise((resolve) => resolve(mocking.github_repos));
+    //     },
+    //   })(action);
+    // });
     it('should error on error', function(done) {
       let skt = createSocketWrapping({
         type: "server/ERROR",
