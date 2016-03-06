@@ -45,6 +45,13 @@ function index(req, res) {
   });
 }
 
+function features(req, res) {
+  res.render('features', {
+    title: 'Waltz Features',
+    user: req.user,
+  });
+}
+
 // get a repo
 function doReport(req, res) {
   let ref = req.params.ref || req.parent_repo.default_branch || "master";
@@ -75,6 +82,7 @@ function doReport(req, res) {
 module.exports = {
   getRepo: getRepo,
   doError: doError,
-  index: index,
+  index,
+  features,
   doReport: doReport,
 }

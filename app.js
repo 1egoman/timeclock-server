@@ -99,6 +99,7 @@ app.get('/auth/logout', (req, res) => {
 // Routes
 // ------------------------------------------------------------------------------
 app.get('/', repo.index);
+app.get('/features', repo.features);
 app.get('/:username/:repo.svg', badges.fetchBadge);
 app.get('/embed/:username/:repo/:ref?', repo.getRepo, repo.doReport);
 app.get('/:username/:repo', repo.getRepo, (req, res) => {
