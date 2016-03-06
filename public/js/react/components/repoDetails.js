@@ -15,7 +15,6 @@ import {getTimeDelta, getAvatarFor} from '../helpers/timecard';
 import {getProviderBadgeForRepo} from '../helpers/provider_badge';
 import _ from "underscore";
 import Select from 'react-select';
-import Infinite from 'react-infinite';
 import { getRepoByIndex } from '../helpers/get_repo';
 
 export const RepoDetailsComponent = ({
