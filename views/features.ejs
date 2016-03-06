@@ -1,0 +1,77 @@
+<% include header %>
+
+<div class="hero clearfix">
+  <div class="container">
+    <div class="text-body">
+      <p>
+        As simple as:
+        <pre><code>
+  $ npm install -g waltz
+  $ waltz in
+  $ # go do some work
+  $ waltz out
+  $ git add .timecard.json && git push origin master
+      </code></pre>
+      </p>
+      <% if (!user) { %>
+        <a class="btn btn-success btn-xl btn-50" href="/features">Features</a>
+        <a class="btn btn-primary btn-xl btn-50" href="/login">Sign in with Github</a>
+      <% } else { %>
+        <a class="btn btn-success btn-xl btn-50" href="/auth/logout">Logout <%= user.username %></a>
+        <a class="btn btn-primary btn-xl btn-50" href="/app">Let's get started</a>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<div class="master">
+  <section class="container">
+    <h1>The Problem</h1>
+    <p>
+      Invoices are a pain, especially for freelance developers. From calculating
+      the amount of hours that you've put into a project, to creating the actual
+      invoice and doing design work, most developers would rather do
+      something else. Wouldn't you love to get rid of the process?
+    </p>
+  </section>
+  <section class="container">
+    <div class="section-img on-top">
+      <img src="/img/clock.svg" class="timecard" />
+    </div>
+    <div class="section-text">
+      <h1>Waltz gives clients great invoices.</h1>
+      <p>
+        Easily track the time you work on a project with <code>waltz</code>. Before
+        you start your work for the day, be sure to <code>waltz in</code>. Need to
+        run a few errands or get out of the house? Run <code>waltz out</code>. Too
+        lazy for that dance? Instead, run <code>waltz watch</code> to listen
+        for changes and auto-clock you in or out. In addition to an invoice for
+        the client, you also get work-time metrics for yourself.
+      </p>
+    </div>
+    <div class="section-img on-right">
+      <img src="/img/clock.svg" class="timecard" />
+    </div>
+  </section>
+  <section class="container">
+    <div class="section-img">
+      <img src="/img/money.svg" class="money" />
+    </div>
+    <div class="section-text">
+      <h1>We also give you metrics on how you get work done.</h1>
+    </div>
+  </section>
+  <section class="container">
+    <h1>What's the value prop?</h1>
+    <ul>
+      <li>Great looking and informative invoice for the client</li>
+      <li>Metrics from work data</li>
+      <li>Warning when you don't get up from your desk enough</li>
+      <li>Personal branding</li>
+      <li>Little effort for the coder</li>
+      <li>Collaborative</li>
+    </ul>
+  </section>
+</div>
+
+<% include footer %>

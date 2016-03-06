@@ -1,0 +1,179 @@
+@import "/css/react-select.min.css";
+
+// the title for a repo
+@mixin repo-title($size: 1.6em) {
+  font-size: $size;
+  .repo-name {
+    font-weight: bold;
+  }
+}
+
+// for the "empty labels" that show up on panes
+@mixin empty-pane {
+  color: $gray-light;
+  padding-top: 2em;
+  text-align: center;
+}
+
+.repos {
+  @extend .list-group;
+  @include clearfix;
+
+  &.repos-disabled {
+    opacity: 0.5;
+  }
+
+  .repos-controls {
+    @extend .clearfix;
+    margin: 1em 0em;
+    height: 1.8em;
+
+    .repos-label {
+      @extend .pull-left;
+      color: $gray-light;
+      margin-top: 0.35em;
+    }
+  }
+
+  // the "No Repositorys, import a new one" message when the repositorys pane is
+  // empty
+  .repos-empty {
+    @include empty-pane;
+    p .click { cursor: pointer; }
+  }
+}
+
+.repo {
+  @extend .list-group-item;
+  cursor: pointer;
+
+  &.repo-selected {
+    background: $select-color;
+  }
+
+  // private repo badge
+  .repo-lock { display: none; }
+  &.repo-private {
+    .repo-lock {
+      display: inline-block;
+      color: $private-color-dark;
+      margin-left: 0.4em;
+    }
+  }
+
+  h1 {
+    @include repo-title;
+  }
+}
+
+$top-pane-height: 96px;
+$details-left-margin: 20px;
+.repo-details {
+  padding-left: $details-left-margin;
+
+  .repo-details-header {
+    height: $top-pane-height;
+    background: #fff;
+    z-index: 1000;
+    @include clearfix;
+
+    h1 {
+      @include repo-title(2em);
+    }
+
+    .repo-details-branch-select {
+      width: 200px;
+      margin-left: 2px;
+      margin-bottom: 8px;
+      float: left;
+    }
+
+    // the box to get a link to the report
+    // and print it
+    .repo-details-report-link {
+      width: 300px;
+      float: left;
+      margin: 0em 0.5em;
+      @include clearfix;
+
+      input[type=text] {
+        width: 200px;
+        float: left;
+      }
+
+      .repo-details-print-report {
+        float: right;
+        width: 100px;
+      }
+    }
+  }
+
+  .repo-details-badge {
+    margin-left: 0.5em;
+    cursor: pointer;
+  }
+
+  // repo-details-badge popover
+  .repo-details-badge + .popover .popover-content {
+    cursor: text;
+    font-size: 0.8em; 
+  }
+
+  .repo-details-report {
+    width: 100%;
+    min-height: 800px;
+    border: 0px;
+    // loading info is overriden on iframe load
+    background: url('data:image/svg+xml;charset=utf-8,<svg
+    xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0
+    100% 100%"><text fill="#{$gray-light}" x="50%" y="50%"
+    font-family="#{$font-family-sans-serif}" font-size="24"
+    text-anchor="middle">Loading invoice...</text></svg>');
+  }
+
+  // the table of all the times
+  .repo-details-report-table {
+    margin-top: 20px;
+    width: 100%;
+    min-height: 800px;
+    border: 0px;
+
+    .avatar-col, .avatar-img {
+      width: 20px;
+      font-size: 20px;
+      text-align: center;
+    }
+  }
+
+  &.repo-details-empty {
+    @include empty-pane;
+  }
+
+}
+
+.repo-details.repo-details-import {
+  & > h2 {
+    text-align: center;
+  }
+
+  .repos {
+    cursor: default;
+
+    .btn-pick-me {
+      @extend .pull-right;
+      margin-top: -38px;
+    }
+  }
+
+  .btn-load-more {
+    width: 16em;
+    margin: 0.5em auto;
+    display: block;
+  }
+}
+
+.repo-provider-badge {
+  margin: 0.75rem;
+  font-size: 2.25rem;
+  span { color: $text-color;  }
+}

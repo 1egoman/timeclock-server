@@ -8,19 +8,32 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require("express-session");
 const babelify = require("express-babelify-middleware");
+const socketIo = require("socket.io");
+const passportSocketIo = require("passport.socketio");
+const http = require("http");
+const session_secret = "keyboard kat";
 
+// routes
 const badges = require('./routes/badge');
 const repo = require('./routes/repository');
+const onSocketAction = require('./routes/socket');
 
+// auth serializer and stratigies
 const authStrategy = require("./lib/auth/strategy");
 const authSerializer = require("./lib/auth/serialization");
 
+// models
+const User = require("./lib/models/user");
+
+// monsooe, passport, and the app
 const app = express();
-
 const passport = require("passport");
-
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://clock:clock@ds011278.mongolab.com:11278/clock-server");
+
+// set up the mongodb session store
+const MongoStore = require('connect-mongo')(session),
+      mongoStore = new MongoStore({mongooseConnection: mongoose.connection});
 
 const env = process.env.NODE_ENV || 'development';
 app.locals.ENV = env;
@@ -41,21 +54,33 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: 'keyboard cat' }));
+app.use(session({
+  secret: session_secret,
+  store: mongoStore,
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
 authSerializer(passport); // attaches passport.serializeUser and passport.deserializeUser
 passport.use(authStrategy);
 
+// serve react / redux frontend
 app.use('/bundle', babelify('public/js/react', {}, {
   sourceMap: true,
   presets: ['react', 'es2015'],
-}))
+}));
+
+// serve anything that is a url for the app to the root of the app
+app.get(/\/app\/.+/, (req, res) => {
+  req.url = "/"; // reset to the app route
+  return express.static(path.join(__dirname, 'public', 'app'))(req, res);
+});
 
 // ----------------------------------------------------------------------------
 // passport auth routes
 // ------------------------------------------------------------------------------
+
+app.get('/login', (req, res) => res.redirect('/auth/github'));
 
 app.get('/auth/github', passport.authenticate('github', {
   scope: [ 'user', 'repo']
@@ -63,7 +88,7 @@ app.get('/auth/github', passport.authenticate('github', {
 
 app.get('/auth/github/callback', passport.authenticate(
   'github', { failureRedirect: '/login' }
-), (req, res) => res.redirect('/'));
+), (req, res) => res.redirect('/app'));
 
 app.get('/auth/logout', (req, res) => {
   req.logout();
@@ -74,9 +99,12 @@ app.get('/auth/logout', (req, res) => {
 // Routes
 // ------------------------------------------------------------------------------
 app.get('/', repo.index);
+app.get('/features', repo.features);
 app.get('/:username/:repo.svg', badges.fetchBadge);
 app.get('/embed/:username/:repo/:ref?', repo.getRepo, repo.doReport);
-app.get('/:username/:repo/:ref?', repo.getRepo, repo.renderReportTemplate);
+app.get('/:username/:repo', repo.getRepo, (req, res) => {
+  res.redirect(`/app/${req.params.username}/${req.params.repo}`);
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -112,5 +140,40 @@ app.use(function(req, res, next) {
 //   });
 // });
 
+// ----------------------------------------------------------------------------
+// socket.io stuff
+// ------------------------------------------------------------------------------
+const boundApp = http.createServer(app),
+      io = socketIo.listen(boundApp);
 
-module.exports = app;
+let socketMiddleware = passportSocketIo.authorize({
+  cookieParser: cookieParser,
+  key:         'connect.sid',
+  secret:      session_secret,
+  store:       mongoStore,
+  fail: (data, message, error, accept) => {
+    if (data.user && data.user.logged_in === false) {
+      // user needs to login
+      accept(new Error("User not authorized."));
+    } else {
+      console.error("Passport connection failed:", message);
+      accept(new Error("Unexpected error."));
+    }
+  },
+});
+io.use(socketMiddleware);
+
+io.on('connection', function(socket) {
+  console.log("Connected to new client.", socket.request.user);
+
+  // first, initialize the state so we're all on the same page
+  socket.emit("action", {
+    type: "server/INIT",
+    repos: socket.request.user.repos,
+    active_repo: null,
+    user: User.sanitize(socket.request.user),
+  });
+
+  socket.on('action', onSocketAction(socket));
+});
+module.exports = boundApp;

@@ -28,7 +28,6 @@ function getAuthenticatedUser(req) {
 function fetchBadge(req, res) {
   getAuthenticatedUser(req)
   .then((user) => {
-    console.log(user)
     return repo.getFileFromRepo(
       req.params.username,
       req.params.repo,
@@ -51,4 +50,5 @@ function fetchBadge(req, res) {
 
 module.exports = {
   fetchBadge: fetchBadge,
+  getAuthenticatedUser: getAuthenticatedUser,
 };
