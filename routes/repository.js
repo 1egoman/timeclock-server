@@ -20,18 +20,20 @@ function getRepo(req, res, next) {
   }
 }
 
-function doError(res, code) {
+function doError(req, res, code) {
   return (err) => {
-    if (err.code === 404) {
-      res.render("error", {
+    if (code === 404) {
+      res.render("404", {
         title: "Error",
-        msg: "Either the repository isn't on GitHub, the theme you've specified doesn't exist, or there isn't a <code>.timecard.json</code> file in this repo (on the master branch).<br/>Private repos require a logged-in user, which you can do on our home page."
+        user: req.params.username,
+        repo: req.params.repo,
       });
     } else {
       console.error(err);
       res.status(code).render("error", {
         title: "Error",
         msg: err,
+        user: req.user,
       });
     }
   };
@@ -70,13 +72,13 @@ function doReport(req, res) {
         let ejs_data = card.getTimecardRenderDetails(timecard),
             report = ejs.render(template, ejs_data);
         res.send(report);
-      }).catch(doError(res, 400));
+      }).catch(doError(req, res, 400));
     } else {
       res.status(400).send({
         error: "Timecard is malformed.",
       });
     }
-  }).catch(doError(res, 404));
+  }).catch(doError(req, res, 404));
 }
 
 module.exports = {
