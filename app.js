@@ -53,7 +53,6 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: session_secret,
   store: mongoStore,
@@ -64,17 +63,32 @@ app.use(passport.session());
 authSerializer(passport); // attaches passport.serializeUser and passport.deserializeUser
 passport.use(authStrategy);
 
-// serve react / redux frontend
-app.use('/bundle', babelify('public/js/react', {}, {
-  sourceMap: true,
-  presets: ['react', 'es2015'],
-}));
+// ----------------------------------------------------------------------------
+// the "content routes"
+// ------------------------------------------------------------------------------
+if (process.env.NODE_ENV === "production") {
+  console.log("We're in production!");
 
-// serve anything that is a url for the app to the root of the app
-app.get(/\/app\/.+/, (req, res) => {
-  req.url = "/"; // reset to the app route
-  return express.static(path.join(__dirname, 'public', 'app'))(req, res);
-});
+  // and app requests resolve to the home page
+  app.get(/^\/app\/.*$/, (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'app', 'index.bundle.html'));
+  });
+} else {
+  // serve react / redux frontend compiled on the fly in dev
+  app.use('/bundle', babelify('public/js/react', {}, {
+    sourceMap: true,
+    presets: ['react', 'es2015'],
+  }));
+
+  // serve anything that is a url for the app to the root of the app
+  app.get(/^\/app\/.+/, (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'app', 'index.html'));
+  });
+}
+
+// other than the above, serve static assets.
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // ----------------------------------------------------------------------------
 // passport auth routes

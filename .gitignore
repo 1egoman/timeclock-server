@@ -4,5 +4,5 @@ public/components
 .creds
 .env
 
-public/js/bundle.js
-build/*.js
+public/bundle.js
+scripts/*.js
