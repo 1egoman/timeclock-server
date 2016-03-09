@@ -3,3 +3,5 @@ public/components
 .sass-cache
 .creds
 .env
+
+public/bundle.js
