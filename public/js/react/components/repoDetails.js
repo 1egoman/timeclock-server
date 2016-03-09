@@ -1,25 +1,20 @@
 import React from 'react';
-import {RepoComponent} from './repo';
 import BranchPicker from './branchPicker';
 import {connect} from 'react-redux';
 import {
   openRepoImportDialog,
-  importFromGithubRepo,
   changeBranch,
   getTimecard,
-  requestAllUserRepos,
 } from '../actions/repo';
-import RepoImport from './repoImport';
+import ImportRepo from './importRepo';
 import {getCurrentBranch, getAllBranches} from '../helpers/branch';
 import {getTimeDelta, getAvatarFor} from '../helpers/timecard';
 import {getProviderBadgeForRepo} from '../helpers/provider_badge';
-import _ from "underscore";
-import Select from 'react-select';
-import { getRepoByIndex } from '../helpers/get_repo';
+import {getRepoByIndex} from '../helpers/get_repo';
 
 export const RepoDetailsComponent = ({
   repo,
-  discovered_repos,
+  has_discovered_repos,
   repo_import_dialog_open,
   repo_import_page,
   repo_details,
@@ -41,40 +36,8 @@ export const RepoDetailsComponent = ({
   toImportRepoPage,
 }) => {
   // import new repos
-  if (repo_import_dialog_open && Object.keys(discovered_repos).length !== 0) {
-    return <div className="repo-details repo-details-import">
-      <h2>Import a new Repository</h2>
-      <ul className="repos">
-        {Object.keys(discovered_repos).map((key, ct) => {
-          return <div key={ct}>
-            <h4>{key}</h4>
-            {discovered_repos[key].map((repo, ct) => {
-              return <RepoComponent
-                key={ct}
-                repo={repo}
-                selected={false}
-              >
-                {
-                  repo.has_timecard ? 
-                  <button className="btn btn-success btn-pick-me" onClick={importNewRepo(repo)}>Import</button> :
-                  <button
-                    className="btn btn-warning disabled btn-pick-me"
-                    data-toggle="tooltip"
-                    data-placement="left"
-                    title="No timecard was found in the default branch. Please run `waltz init` in the repo to create a new timecard."
-                  >No Timecard</button>
-                }
-              </RepoComponent>
-            })}
-          </div>;
-        })}
-      </ul>
-
-      <button
-        className="btn btn-primary btn-load-more"
-        onClick={toImportRepoPage(++repo_import_page)}
-      >Load More Repositories</button>
-    </div>;
+  if (repo_import_dialog_open && has_discovered_repos) {
+    return <ImportRepo />;
 
   // loading message for the above reop import dialog
   } else if (repo_import_dialog_open) {
@@ -200,23 +163,11 @@ const RepoDetails = connect((store, ownProps) => {
 
     user: store.user,
 
-    // group the discovered repos by their respective user
-    discovered_repos: _.groupBy(
-      // first, filter out all ther repos that already are added
-      store.discovered_repos.filter((repo) => {
-        return !store.repos.some((i) => {
-          return i.user === repo.user && i.repo === repo.repo;
-        });
-      })
-    // then, sort by owner
-    , (repo) => repo.user),
+    has_discovered_repos: store.discovered_repos && store.discovered_repos.length ? true : false,
     repo_import_page: store.discovered_repos_page,
   };
 }, (dispatch, ownProps) => {
   return {
-    importNewRepo(repo) {
-      return () => dispatch(importFromGithubRepo(repo));
-    },
     chooseBranch(branch) {
       dispatch(changeBranch(branch));
     },
@@ -229,10 +180,6 @@ const RepoDetails = connect((store, ownProps) => {
     // print a copy of the report
     printReport(repo, current_branch) {
       return () => window.open(`/embed/${repo.user}/${repo.repo}/${current_branch}`).print();
-    },
-
-    toImportRepoPage(page) {
-      return () => dispatch(requestAllUserRepos(page));
     },
   };
 })(RepoDetailsComponent);

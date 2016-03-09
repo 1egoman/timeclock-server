@@ -4,7 +4,6 @@ import { Router, Route, hashHistory } from 'react-router';
 // "Components"
 import RepoList from './components/repoList';
 import RepoDetails from './components/repoDetails';
-import RepoImport from './components/repoImport';
 import SettingsList from './components/settingsList';
 import Nav from './components/nav';
 
