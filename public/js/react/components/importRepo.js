@@ -7,7 +7,7 @@ import {
   requestAllUserRepos,
   askUserToCreateNewTimecard,
 } from '../actions/repo';
-import {Modal, Button} from 'react-bootstrap';
+import {Modal, Button, Input} from 'react-bootstrap';
 
 const ImportRepoComponent = ({
   discovered_repos,
@@ -22,23 +22,46 @@ const ImportRepoComponent = ({
   let createNewTimecardModal;
   if (confirm_timecard_for) {
     createNewTimecardModal = <Modal
-      show={confirm_timecard_for !== null}
-      onHide={confirmNewTimecard(false)}
-    >
-      <Modal.Header closeButton>
-        <Modal.Title>
-          Create a new timecard in&nbsp;
-          {confirm_timecard_for.user}/
-          <strong>{confirm_timecard_for.repo}</strong>
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        {/* Create a timecard on the default branch */}
-        <Button onClick={importNewRepo(confirm_timecard_for, true)}>
-          Create a new timecard on branch <strong>{confirm_timecard_for.default_branch}</strong>
-        </Button>
+        show={confirm_timecard_for !== null}
+        onHide={confirmNewTimecard(false)}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>
+            Create a new timecard in&nbsp;
+            {confirm_timecard_for.user}/
+            <strong>{confirm_timecard_for.repo}</strong>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="modal-new-timecard">
+            <img src="/img/add_timecard_web.svg" className="center-block" />
+            <p>
+              We'll make a commit to this repository's <strong>
+                {confirm_timecard_for.default_branch}
+              </strong> branch with a base timecard that you can customize locally.
+            </p>
+
+            {/* edit the timecard name and description before adding */}
+            <Input
+              type="text"
+              placeholder={confirm_timecard_for.repo}
+              label="Project Name"
+              onChange={console.log.bind(console, "name")}
+            />
+            <Input
+              type="text"
+              placeholder={confirm_timecard_for.desc}
+              label="Project Description"
+              onChange={console.log.bind(console, "desc")}
+            />
+
+            {/* Create a timecard on the default branch */}
+            <Button bsStyle="primary" onClick={importNewRepo(confirm_timecard_for, true)}>
+              Create new timecard
+            </Button>
+        </div>
       </Modal.Body>
-    </Modal>
+    </Modal>;
   }
 
   return <div className="repo-details repo-details-import">
@@ -59,12 +82,9 @@ const ImportRepoComponent = ({
                 repo.has_timecard ? 
                 <button className="btn btn-success btn-pick-me" onClick={importNewRepo(repo)}>Import</button> :
                 <button
-                  className="btn btn-warning disabled btn-pick-me"
-                  data-toggle="tooltip"
-                  data-placement="left"
-                  title="No timecard was found in the default branch. Please run `waltz init` in the repo to create a new timecard."
+                  className="btn btn-info btn-pick-me"
                   onClick={confirmNewTimecard(ct)}
-                >No Timecard</button>
+                >Create new Timecard</button>
               }
             </RepoComponent>
           })}

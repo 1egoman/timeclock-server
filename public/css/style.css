@@ -6241,5 +6241,8 @@ button.close {
   .settings-list .badge-token-box p {
     margin-bottom: 0.5em; }
 
+.modal-new-timecard p {
+  margin-top: 1em; }
+
 a {
   color: #00B7FF; }
