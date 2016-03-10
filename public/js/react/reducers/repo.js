@@ -130,3 +130,11 @@ export function discoveredReposPage(state = 0, action) {
     return state;
   }
 }
+
+export function discoveredRepoNewTimecard(state = false, action) {
+  if (action.type === "NEW_TIMECARD_IN_DISCOVERED_REPO") {
+    return action.index;
+  } else {
+    return state;
+  }
+}

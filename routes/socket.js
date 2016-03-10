@@ -15,6 +15,7 @@ const required_repo = require("../lib/repo"),
       TIMECARD_PAGE_LENGTH = 20; // the amount of times that are returned per request,
 
 function sendError(err) {
+  console.error("CAUGHT ERROR", err.stack);
   socket.emit("action", {
     type: "server/ERROR",
     error: typeof err.message === "string" ? err.message : err,

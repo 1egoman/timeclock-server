@@ -7,6 +7,7 @@ import {
   repoImportDialogOpen,
   discoveredRepos,
   discoveredReposPage,
+  discoveredRepoNewTimecard,
   repoDetails,
 } from '../../reducers/repo';
 const old_state = helpers.initialState;
@@ -236,6 +237,21 @@ describe('reducers/repo.js', function() {
     });
     it('should not be effected by another event', function() {
       let new_state = discoveredRepos(old_state.discovered_repos_page, {
+        type: "SOME_OTHER_EVENT",
+      });
+      assert.deepEqual(new_state, old_state.discovered_repos_page);
+    });
+  });
+  describe('discoveredRepoNewTimecard', function() {
+    it('should create the event', function() {
+      let new_state = discoveredRepoNewTimecard(old_state.discovered_repo_new_timecard, {
+        type: "NEW_TIMECARD_IN_DISCOVERED_REPO",
+        index: 12,
+      });
+      assert.deepEqual(new_state, 12);
+    });
+    it('should not be effected by another event', function() {
+      let new_state = discoveredRepoNewTimecard(old_state.discovered_repos_page, {
         type: "SOME_OTHER_EVENT",
       });
       assert.deepEqual(new_state, old_state.discovered_repos_page);

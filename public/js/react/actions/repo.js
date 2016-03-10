@@ -9,11 +9,12 @@ export function openRepoImportDialog(state) {
 };
 
 // import a new repo from github
-export function importFromGithubRepo(repo) {
+export function importFromGithubRepo(repo, createTimecard = false) {
   return {
     type: "server/IMPORT_REPO",
     repo: repo,
     provider: "github",
+    createtimecard: createTimecard,
   }
 };
 
@@ -58,3 +59,10 @@ export function getTimecard(repo, branch, page=0) {
     page: page,
   }
 };
+
+export function askUserToCreateNewTimecard(ct) {
+  return {
+    type: "NEW_TIMECARD_IN_DISCOVERED_REPO",
+    index: ct,
+  };
+}

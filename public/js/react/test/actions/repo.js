@@ -9,6 +9,7 @@ import {
   changeBranch,
   getBranches,
   getTimecard,
+  askUserToCreateNewTimecard,
 } from '../../actions/repo';
 
 describe('actions/repo.js', function() {
@@ -27,6 +28,15 @@ describe('actions/repo.js', function() {
         type: "server/IMPORT_REPO",
         repo: {foo: "bar"},
         provider: "github",
+        createtimecard: false,
+      });
+    });
+    it('should create the event, and create timecard', function() {
+      assert.deepEqual(importFromGithubRepo({foo: "bar"}, true), {
+        type: "server/IMPORT_REPO",
+        repo: {foo: "bar"},
+        provider: "github",
+        createtimecard: true,
       });
     });
   });
@@ -91,6 +101,20 @@ describe('actions/repo.js', function() {
         repo: "repository",
         branch: "a-branch",
         page: 1,
+      });
+    });
+  });
+  describe('askUserToCreateNewTimecard', function() {
+    it('should create the event', function() {
+      assert.deepEqual(askUserToCreateNewTimecard(12), {
+        type: "NEW_TIMECARD_IN_DISCOVERED_REPO",
+        index: 12,
+      });
+    });
+    it('should create the event with a boolean', function() {
+      assert.deepEqual(askUserToCreateNewTimecard(false), {
+        type: "NEW_TIMECARD_IN_DISCOVERED_REPO",
+        index: false,
       });
     });
   });
