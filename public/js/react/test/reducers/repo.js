@@ -7,7 +7,9 @@ import {
   repoImportDialogOpen,
   discoveredRepos,
   discoveredReposPage,
+  discoveredRepoNewTimecard,
   repoDetails,
+  newTimecardData,
 } from '../../reducers/repo';
 const old_state = helpers.initialState;
 
@@ -218,6 +220,22 @@ describe('reducers/repo.js', function() {
         _canpaginateforward: false,
       });
     });
+    it('should add error on server/ERROR', function() {
+      let new_state = repoDetails(old_state.repo_details, {
+        type: "server/ERROR",
+        error: "NO_TIMECARD_IN_REPO",
+      });
+      console.log(new_state, old_state.repo_details)
+      assert.deepEqual(new_state, {
+        branch: null,
+        branches: null,
+        timecard: null,
+        _comesfrom: [null, null], // the repo behind the current timecard
+        _page: 0,
+        _canpaginateforward: false,
+        error: "There isn't a timecard in this repo. Please add one by running waltz init locally,\n              or if you have, push up your changes\n              .",
+      });
+    });
     it('should not be effected by another event', function() {
       let new_state = repoDetails(old_state.repo_details, {
         type: "SOME_OTHER_EVENT",
@@ -239,6 +257,43 @@ describe('reducers/repo.js', function() {
         type: "SOME_OTHER_EVENT",
       });
       assert.deepEqual(new_state, old_state.discovered_repos_page);
+    });
+  });
+  describe('discoveredRepoNewTimecard', function() {
+    it('should create the event', function() {
+      let new_state = discoveredRepoNewTimecard(old_state.discovered_repo_new_timecard, {
+        type: "NEW_TIMECARD_IN_DISCOVERED_REPO",
+        user: 'a-user',
+        repo: 'a-repo',
+      });
+      assert.deepEqual(new_state, ['a-user', 'a-repo']);
+    });
+    it('should clear the state when a repo is created', function() {
+      let new_state = discoveredRepoNewTimecard(old_state.discovered_repo_new_timecard, {
+        type: "server/REPO_IMPORT",
+      });
+      assert.deepEqual(new_state, false);
+    });
+    it('should not be effected by another event', function() {
+      let new_state = discoveredRepoNewTimecard(old_state.discovered_repos_page, {
+        type: "SOME_OTHER_EVENT",
+      });
+      assert.deepEqual(new_state, old_state.discovered_repos_page);
+    });
+  });
+  describe('newTimecardData', function() {
+    it('should create the event', function() {
+      let new_state = newTimecardData(old_state.new_timecard_data, {
+        type: "CHANGE_NEW_TIMECARD_DATA",
+        data: {foo: "bar"}
+      });
+      assert.deepEqual(new_state, {foo: "bar"});
+    });
+    it('should not be effected by another event', function() {
+      let new_state = newTimecardData(old_state.new_timecard_data, {
+        type: "SOME_OTHER_EVENT",
+      });
+      assert.deepEqual(new_state, old_state.new_timecard_data);
     });
   });
 });

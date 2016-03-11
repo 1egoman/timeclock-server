@@ -9,12 +9,14 @@ export function openRepoImportDialog(state) {
 };
 
 // import a new repo from github
-export function importFromGithubRepo(repo) {
+export function importFromGithubRepo(repo, createTimecard = false, timecardTempl) {
   return {
     type: "server/IMPORT_REPO",
     repo: repo,
     provider: "github",
-  }
+    createtimecard: createTimecard,
+    timecard: timecardTempl || null,
+  };
 };
 
 // Select a new repo to be the active one.
@@ -57,4 +59,21 @@ export function getTimecard(repo, branch, page=0) {
     branch: branch || null,
     page: page,
   }
+};
+
+export function askUserToCreateNewTimecard(user, repo) {
+  return {
+    type: "NEW_TIMECARD_IN_DISCOVERED_REPO",
+    user,
+    repo,
+  };
+}
+
+// update the staging timecard that is to be created in an existing repository
+export function changeStagingTimecardData(name, value) {
+  let data = {}; data[name] = value;
+  return {
+    type: "CHANGE_NEW_TIMECARD_DATA",
+    data,
+  };
 };

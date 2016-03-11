@@ -56,6 +56,9 @@ export function activeRepo(state = null, action) {
 export function discoveredRepos(state = [], action) {
   if (action.type === "server/REPOS_DISCOVERED") {
     return state.concat(action.repos);
+  // } else if (action.type === "server/REPO_IMPORT") {
+  //   // when a new repo is imported, remove it from `discovered_repos`
+  //   return state.filter((i) => !(i.user === action.repo.user && i.repo === action.repo.repo))
   } else {
     return state;
   }
@@ -66,6 +69,7 @@ export function repoDetails(state = {branch: null}, action) {
     return Object.assign({}, state, {
       branch: action.branch,
       timecard: null, // reset the timecard so the view reloads
+      error: null,
     });
 
   // on repo change, set the branch to the default
@@ -75,11 +79,12 @@ export function repoDetails(state = {branch: null}, action) {
       branch: null,
       branches: null,
       timecard: null,
+      error: null,
     });
 
   // the current repo's branches
   } else if (action.type === "server/BRANCHES_FOR") {
-    return Object.assign({}, state, {branches: action.branches});
+    return Object.assign({}, state, {branches: action.branches, error: null});
 
   // the timecard assosiated with a repository
   } else if (action.type === "server/TIMECARD") {
@@ -105,6 +110,7 @@ export function repoDetails(state = {branch: null}, action) {
         // the page we are on, and whether we can advance to the next page
         _page: action.page,
         _canpaginateforward: action.canpaginateforward,
+        error: null,
       });
     } else {
       // the repo that we are referencing changed, so update atomically
@@ -115,17 +121,50 @@ export function repoDetails(state = {branch: null}, action) {
         _comesfrom: [action.user, action.repo, action.branch], // mark what timecard this comes from for later
         _page: action.page || 0,
         _canpaginateforward: action.canpaginateforward,
+        error: null,
       });
     }
+
+  // No timecard in the repo?
+  } else if (action.type === "server/ERROR" && action.error === "NO_TIMECARD_IN_REPO") {
+    return Object.assign({}, state, {
+      error: `There isn't a timecard in this repo. Please add one by running waltz init locally,
+              or if you have, push up your changes
+              ${state.default_branch ? " to "+state.default_branch : ''}.`,
+    });
 
   } else {
     return state;
   }
 }
 
+// the page of discovered repos we have loaded up to
 export function discoveredReposPage(state = 0, action) {
   if (action.type === "server/REPOS_DISCOVERED") {
     return action.page || 0;
+  } else {
+    return state;
+  }
+}
+
+// the index of `state.discovered_repos` that we currently have an active repo
+// that has a timecard being created for it.
+export function discoveredRepoNewTimecard(state = false, action) {
+  if (action.type === "NEW_TIMECARD_IN_DISCOVERED_REPO") {
+    return [action.user, action.repo];
+  } else if (action.type === "server/REPO_IMPORT") {
+    return false; // clear staging timecard on repo import
+  } else {
+    return state;
+  }
+}
+
+// the metadata associated with the timecard to be (ie, a staging area)
+export function newTimecardData(state = {}, action) {
+  if (action.type === "CHANGE_NEW_TIMECARD_DATA") {
+    return Object.assign({}, state, action.data);
+  } else if (action.type === "server/REPO_IMPORT") {
+    return {}; // clear staging timecard on repo import
   } else {
     return state;
   }

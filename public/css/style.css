@@ -6184,7 +6184,6 @@ button.close {
   .repo-details .repo-details-report-table {
     margin-top: 20px;
     width: 100%;
-    min-height: 800px;
     border: 0px; }
     .repo-details .repo-details-report-table .avatar-col, .repo-details .repo-details-report-table .avatar-img {
       width: 20px;
@@ -6194,6 +6193,13 @@ button.close {
     color: #777777;
     padding-top: 2em;
     text-align: center; }
+  .repo-details .timecard.timecard-is-empty {
+    color: #777777;
+    padding-top: 2em;
+    text-align: center;
+    padding-top: 0.2em; }
+    .repo-details .timecard.timecard-is-empty h1 {
+      font-size: 2em; }
 
 .repo-details.repo-details-import > h2 {
   text-align: center; }
@@ -6240,6 +6246,9 @@ button.close {
   margin: 0.5em auto; }
   .settings-list .badge-token-box p {
     margin-bottom: 0.5em; }
+
+.modal-new-timecard p {
+  margin-top: 1em; }
 
 a {
   color: #00B7FF; }

@@ -51,7 +51,9 @@ import {
   repoImportDialogOpen,
   discoveredRepos,
   discoveredReposPage,
+  discoveredRepoNewTimecard,
   repoDetails,
+  newTimecardData,
 } from './reducers/repo';
 import { user } from './reducers/user';
 
@@ -61,10 +63,14 @@ const waltzApp = combineReducers({
   active_repo: activeRepo,
   repos,
   user,
+
   discovered_repos: discoveredRepos,
   discovered_repos_page: discoveredReposPage,
+  discovered_repo_new_timecard: discoveredRepoNewTimecard,
+
   repo_details: repoDetails,
   routing: routerReducer,
+  new_timecard_staging: newTimecardData,
 });
 
 // "Store"
@@ -78,6 +84,7 @@ let store = waltzCreateStore(waltzApp, {
   repo_import_dialog_open: false,
   repos: [],
   discovered_repos: [],
+  discovered_repo_new_timecard: false,
   repo_details: {
     branch: null,
     branches: null,
