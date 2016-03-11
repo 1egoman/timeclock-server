@@ -56,6 +56,9 @@ export function activeRepo(state = null, action) {
 export function discoveredRepos(state = [], action) {
   if (action.type === "server/REPOS_DISCOVERED") {
     return state.concat(action.repos);
+  // } else if (action.type === "server/REPO_IMPORT") {
+  //   // when a new repo is imported, remove it from `discovered_repos`
+  //   return state.filter((i) => !(i.user === action.repo.user && i.repo === action.repo.repo))
   } else {
     return state;
   }
@@ -136,7 +139,7 @@ export function discoveredReposPage(state = 0, action) {
 // that has a timecard being created for it.
 export function discoveredRepoNewTimecard(state = false, action) {
   if (action.type === "NEW_TIMECARD_IN_DISCOVERED_REPO") {
-    return action.index;
+    return [action.user, action.repo];
   } else if (action.type === "server/REPO_IMPORT") {
     return false; // clear staging timecard on repo import
   } else {

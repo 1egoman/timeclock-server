@@ -61,10 +61,11 @@ export function getTimecard(repo, branch, page=0) {
   }
 };
 
-export function askUserToCreateNewTimecard(ct) {
+export function askUserToCreateNewTimecard(user, repo) {
   return {
     type: "NEW_TIMECARD_IN_DISCOVERED_REPO",
-    index: ct,
+    user,
+    repo,
   };
 }
 

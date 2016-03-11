@@ -31,7 +31,7 @@ const ImportRepoComponent = ({
     */}
     let timecardTemplate = {
       name: new_timecard_staging.name || confirm_timecard_for.repo,
-      tagline: new_timecard_staging.tagline || confirm_timecard_for.tagline,
+      tagline: new_timecard_staging.tagline || confirm_timecard_for.desc,
     };
 
     createNewTimecardModal = <Modal
@@ -96,7 +96,7 @@ const ImportRepoComponent = ({
                 <button className="btn btn-success btn-pick-me" onClick={importNewRepo(repo)}>Import</button> :
                 <button
                   className="btn btn-info btn-pick-me"
-                  onClick={confirmNewTimecard(ct)}
+                  onClick={confirmNewTimecard(repo.user, repo.repo)}
                 >Create new Timecard</button>
               }
             </RepoComponent>
@@ -113,25 +113,27 @@ const ImportRepoComponent = ({
 }
 
 const ImportRepo  = connect((store, ownProps) => {
+  // first, filter out all ther repos that already are added
+  let filtered_discovered_repos = store.discovered_repos.filter((repo) => {
+    return !store.repos.some((i) => {
+      return i.user === repo.user && i.repo === repo.repo;
+    });
+  });
+
   return {
     // group the discovered repos by their respective user
-    discovered_repos: _.groupBy(
-      // first, filter out all ther repos that already are added
-      store.discovered_repos.filter((repo) => {
-        return !store.repos.some((i) => {
-          return i.user === repo.user && i.repo === repo.repo;
-        });
-      })
-    // then, sort by owner
-    , (repo) => repo.user),
+    discovered_repos: _.groupBy(filtered_discovered_repos, (repo) => repo.user),
     repo_import_page: store.discovered_repos_page,
 
     // for repos that don't already have a timecard, give the user an option to
     // add one.
-    confirm_timecard_for: (Number.isFinite(store.discovered_repo_new_timecard) ?
-      store.discovered_repos[store.discovered_repo_new_timecard] :
-      null
-    ),
+    confirm_timecard_for: filtered_discovered_repos.find((i) => {
+      return (
+        store.discovered_repo_new_timecard &&
+        i.user === store.discovered_repo_new_timecard[0] &&
+        i.repo === store.discovered_repo_new_timecard[1]
+      );
+    }),
     new_timecard_staging: store.new_timecard_staging,
   };
 }, (dispatch, ownProps) => {
@@ -142,8 +144,8 @@ const ImportRepo  = connect((store, ownProps) => {
     toImportRepoPage(page) {
       return () => dispatch(requestAllUserRepos(page));
     },
-    confirmNewTimecard(ct) {
-      return () => dispatch(askUserToCreateNewTimecard(ct));
+    confirmNewTimecard(user, repo) {
+      return () => dispatch(askUserToCreateNewTimecard(user, repo));
     },
     changeStagingTimecardData(name) {
       return (event) => dispatch(changeStagingTimecardData(name, event.target.value));
