@@ -69,6 +69,7 @@ export function repoDetails(state = {branch: null}, action) {
     return Object.assign({}, state, {
       branch: action.branch,
       timecard: null, // reset the timecard so the view reloads
+      error: null,
     });
 
   // on repo change, set the branch to the default
@@ -78,11 +79,12 @@ export function repoDetails(state = {branch: null}, action) {
       branch: null,
       branches: null,
       timecard: null,
+      error: null,
     });
 
   // the current repo's branches
   } else if (action.type === "server/BRANCHES_FOR") {
-    return Object.assign({}, state, {branches: action.branches});
+    return Object.assign({}, state, {branches: action.branches, error: null});
 
   // the timecard assosiated with a repository
   } else if (action.type === "server/TIMECARD") {
@@ -108,6 +110,7 @@ export function repoDetails(state = {branch: null}, action) {
         // the page we are on, and whether we can advance to the next page
         _page: action.page,
         _canpaginateforward: action.canpaginateforward,
+        error: null,
       });
     } else {
       // the repo that we are referencing changed, so update atomically
@@ -118,6 +121,7 @@ export function repoDetails(state = {branch: null}, action) {
         _comesfrom: [action.user, action.repo, action.branch], // mark what timecard this comes from for later
         _page: action.page || 0,
         _canpaginateforward: action.canpaginateforward,
+        error: null,
       });
     }
 
