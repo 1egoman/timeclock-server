@@ -109,15 +109,17 @@ describe('actions/repo.js', function() {
   });
   describe('askUserToCreateNewTimecard', function() {
     it('should create the event', function() {
-      assert.deepEqual(askUserToCreateNewTimecard(12), {
+      assert.deepEqual(askUserToCreateNewTimecard('a-user', 'a-repo'), {
         type: "NEW_TIMECARD_IN_DISCOVERED_REPO",
-        index: 12,
+        user: 'a-user',
+        repo: 'a-repo',
       });
     });
     it('should create the event with a boolean', function() {
-      assert.deepEqual(askUserToCreateNewTimecard(false), {
+      assert.deepEqual(askUserToCreateNewTimecard(false, false), {
         type: "NEW_TIMECARD_IN_DISCOVERED_REPO",
-        index: false,
+        user: false,
+        repo: false,
       });
     });
   });

@@ -220,6 +220,22 @@ describe('reducers/repo.js', function() {
         _canpaginateforward: false,
       });
     });
+    it('should add error on server/ERROR', function() {
+      let new_state = repoDetails(old_state.repo_details, {
+        type: "server/ERROR",
+        error: "NO_TIMECARD_IN_REPO",
+      });
+      console.log(new_state, old_state.repo_details)
+      assert.deepEqual(new_state, {
+        branch: null,
+        branches: null,
+        timecard: null,
+        _comesfrom: [null, null], // the repo behind the current timecard
+        _page: 0,
+        _canpaginateforward: false,
+        error: "There isn't a timecard in this repo. Please add one by running waltz init locally,\n              or if you have, push up your changes\n              .",
+      });
+    });
     it('should not be effected by another event', function() {
       let new_state = repoDetails(old_state.repo_details, {
         type: "SOME_OTHER_EVENT",
@@ -247,9 +263,10 @@ describe('reducers/repo.js', function() {
     it('should create the event', function() {
       let new_state = discoveredRepoNewTimecard(old_state.discovered_repo_new_timecard, {
         type: "NEW_TIMECARD_IN_DISCOVERED_REPO",
-        index: 12,
+        user: 'a-user',
+        repo: 'a-repo',
       });
-      assert.deepEqual(new_state, 12);
+      assert.deepEqual(new_state, ['a-user', 'a-repo']);
     });
     it('should clear the state when a repo is created', function() {
       let new_state = discoveredRepoNewTimecard(old_state.discovered_repo_new_timecard, {

@@ -14,12 +14,14 @@ const required_repo = require("../lib/repo"),
 
       TIMECARD_PAGE_LENGTH = 20; // the amount of times that are returned per request,
 
-function sendError(err) {
-  console.error("CAUGHT ERROR", err.stack);
-  socket.emit("action", {
-    type: "server/ERROR",
-    error: typeof err.message === "string" ? err.message : err,
-  });
+function sendError(socket) {
+  return (err) => {
+    console.error("CAUGHT ERROR", err.stack);
+    socket.emit("action", {
+      type: "server/ERROR",
+      error: typeof err.message === "string" ? err.message : err,
+    });
+  };
 }
 
 module.exports = function(socket, use_repo, inject_user_model) {
@@ -83,7 +85,7 @@ module.exports = function(socket, use_repo, inject_user_model) {
         socket.emit("action", Object.assign({
           type: "server/TIMECARD",
         }, timecard));
-      }, sendError);
+      }).catch(sendError(socket));
 
     // reset a badge token that is associated with a user
     } else if (action.type === 'server/RESET_TOKEN') {

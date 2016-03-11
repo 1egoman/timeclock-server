@@ -81,6 +81,13 @@ export const RepoDetailsComponent = ({
     </div>;
 
   // a repo was selected
+  } else if (repo_details.error) {
+    return <div>
+      <h1>Uh, oh!</h1>
+      <p>{repo_details.error}</p>
+    </div>;
+
+  // a repo was selected
   } else if (repo) {
     // get the branches that were fetched from the serverside
     let select_branches = getAllBranches({repo_details, repo}).map((i) => {

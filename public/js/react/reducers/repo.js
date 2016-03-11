@@ -121,6 +121,14 @@ export function repoDetails(state = {branch: null}, action) {
       });
     }
 
+  // No timecard in the repo?
+  } else if (action.type === "server/ERROR" && action.error === "NO_TIMECARD_IN_REPO") {
+    return Object.assign({}, state, {
+      error: `There isn't a timecard in this repo. Please add one by running waltz init locally,
+              or if you have, push up your changes
+              ${state.default_branch ? " to "+state.default_branch : ''}.`,
+    });
+
   } else {
     return state;
   }
