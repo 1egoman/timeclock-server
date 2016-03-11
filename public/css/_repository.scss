@@ -135,7 +135,6 @@ $details-left-margin: 20px;
   .repo-details-report-table {
     margin-top: 20px;
     width: 100%;
-    min-height: 800px;
     border: 0px;
 
     .avatar-col, .avatar-img {
@@ -147,6 +146,15 @@ $details-left-margin: 20px;
 
   &.repo-details-empty {
     @include empty-pane;
+  }
+
+  // shown when the specified timecard is empty
+  .timecard.timecard-is-empty {
+    @include empty-pane;
+    padding-top: 0.2em;
+    h1 {
+      font-size: 2em;
+    }
   }
 
 }

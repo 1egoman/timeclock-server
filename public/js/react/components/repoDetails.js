@@ -12,6 +12,40 @@ import {getTimeDelta, getAvatarFor} from '../helpers/timecard';
 import {getProviderBadgeForRepo} from '../helpers/provider_badge';
 import {getRepoByIndex} from '../helpers/get_repo';
 
+function emptyTimecard() {
+  return <div className="timecard timecard-is-empty">
+    <h1>This timecard is empty.</h1>
+    <p>To start adding times, run <code>waltz in</code> in a local copy of the repository.</p>
+  </div>;
+}
+
+// render all of the time regions within the timecard as a table
+function renderTimecardTable(timecard, timecard_users, user) {
+  return timecard.card.map((day, dct) => {
+    return day.times.map((time, tct) => {
+      let delta = getTimeDelta(time.start, time.end, null, user.settings.long_work_period);
+      return <tr key={`${dct}-${tct}`}>
+      <td className="avatar-col">
+      <span
+      data-toggle="tooltip"
+      data-placement="left"
+      title={time.by}
+      >
+      {
+        getAvatarFor(timecard_users, time.by).avatar_img ||
+          <span className="fa fa-user avatar-col" ></span>
+      }
+      </span>
+      </td>
+      <td>{day.date}</td>
+      <td>{time.start}</td>
+      <td>{typeof time.end !== "undefined" ? time.end : "(no end)"}</td>
+      <td>{delta.markup}</td>
+      </tr>;
+    })
+  });
+}
+
 export const RepoDetailsComponent = ({
   repo,
   has_discovered_repos,
@@ -105,31 +139,12 @@ export const RepoDetailsComponent = ({
             </tr>
           </thead>
           <tbody>
-            {timecard.card.map((day, dct) => {
-              return day.times.map((time, tct) => {
-                let delta = getTimeDelta(time.start, time.end, null, user.settings.long_work_period);
-                return <tr key={`${dct}-${tct}`}>
-                  <td className="avatar-col">
-                    <span
-                      data-toggle="tooltip"
-                      data-placement="left"
-                      title={time.by}
-                    >
-                      {
-                        getAvatarFor(timecard_users, time.by).avatar_img ||
-                        <span className="fa fa-user avatar-col" ></span>
-                      }
-                    </span>
-                  </td>
-                  <td>{day.date}</td>
-                  <td>{time.start}</td>
-                  <td>{typeof time.end !== "undefined" ? time.end : "(no end)"}</td>
-                  <td>{delta.markup}</td>
-                </tr>;
-              })
-            })}
+            {renderTimecardTable(timecard, timecard_users, user)}
           </tbody>
         </table>
+
+        {/* if timecard is empty, let the user know */}
+        {timecard.card.length === 0 && emptyTimecard()}
 
         {/* Go to the next page of times */}
         <button

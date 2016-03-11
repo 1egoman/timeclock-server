@@ -24,7 +24,6 @@ const ImportRepoComponent = ({
   {/* confirm adding a new timecard to a repository */}
   let createNewTimecardModal;
   if (confirm_timecard_for) {
-
     {/*
       The data that will be used to formulate the new timecard.
       By default, start with info that is within the current repo and extend
