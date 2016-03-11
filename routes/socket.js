@@ -16,7 +16,7 @@ const required_repo = require("../lib/repo"),
 
 function sendError(socket) {
   return (err) => {
-    console.error("CAUGHT ERROR", err.stack);
+    console.error("CAUGHT ERROR", err.stack ? err.stack : err);
     socket.emit("action", {
       type: "server/ERROR",
       error: typeof err.message === "string" ? err.message : err,
