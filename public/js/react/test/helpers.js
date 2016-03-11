@@ -52,4 +52,5 @@ exports.testRepo = {
   is_private: false,
   has_timecard: false,
   owner_type: 'user',
+  default_branch: "master",
 };
