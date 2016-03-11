@@ -31,7 +31,7 @@ const ImportRepoComponent = ({
     */}
     let timecardTemplate = {
       name: new_timecard_staging.name || confirm_timecard_for.repo,
-      desc: new_timecard_staging.desc || confirm_timecard_for.desc,
+      tagline: new_timecard_staging.tagline || confirm_timecard_for.tagline,
     };
 
     createNewTimecardModal = <Modal
@@ -64,8 +64,8 @@ const ImportRepoComponent = ({
             <Input
               type="text"
               placeholder={confirm_timecard_for.desc}
-              label="Project Description"
-              onChange={changeStagingTimecardData("desc")}
+              label="Project Tagline"
+              onChange={changeStagingTimecardData("tagline")}
             />
 
             {/* Create a timecard on the default branch */}
