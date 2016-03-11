@@ -4,6 +4,7 @@ exports.initialState = {
   discovered_repos_page: 0,
   active_repo: null,
   user: null,
+  new_timecard_data: {},
   repo_details: {
     branch: null,
     branches: null,

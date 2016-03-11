@@ -53,6 +53,7 @@ import {
   discoveredReposPage,
   discoveredRepoNewTimecard,
   repoDetails,
+  newTimecardData,
 } from './reducers/repo';
 import { user } from './reducers/user';
 
@@ -62,11 +63,14 @@ const waltzApp = combineReducers({
   active_repo: activeRepo,
   repos,
   user,
+
   discovered_repos: discoveredRepos,
   discovered_repos_page: discoveredReposPage,
   discovered_repo_new_timecard: discoveredRepoNewTimecard,
+
   repo_details: repoDetails,
   routing: routerReducer,
+  new_timecard_staging: newTimecardData,
 });
 
 // "Store"

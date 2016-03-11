@@ -123,6 +123,7 @@ export function repoDetails(state = {branch: null}, action) {
   }
 }
 
+// the page of discovered repos we have loaded up to
 export function discoveredReposPage(state = 0, action) {
   if (action.type === "server/REPOS_DISCOVERED") {
     return action.page || 0;
@@ -131,9 +132,24 @@ export function discoveredReposPage(state = 0, action) {
   }
 }
 
+// the index of `state.discovered_repos` that we currently have an active repo
+// that has a timecard being created for it.
 export function discoveredRepoNewTimecard(state = false, action) {
   if (action.type === "NEW_TIMECARD_IN_DISCOVERED_REPO") {
     return action.index;
+  } else if (action.type === "server/REPO_IMPORT") {
+    return false; // clear staging timecard on repo import
+  } else {
+    return state;
+  }
+}
+
+// the metadata associated with the timecard to be (ie, a staging area)
+export function newTimecardData(state = {}, action) {
+  if (action.type === "CHANGE_NEW_TIMECARD_DATA") {
+    return Object.assign({}, state, action.data);
+  } else if (action.type === "server/REPO_IMPORT") {
+    return {}; // clear staging timecard on repo import
   } else {
     return state;
   }

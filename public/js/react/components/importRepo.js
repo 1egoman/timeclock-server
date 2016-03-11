@@ -6,6 +6,7 @@ import {
   importFromGithubRepo,
   requestAllUserRepos,
   askUserToCreateNewTimecard,
+  changeStagingTimecardData,
 } from '../actions/repo';
 import {Modal, Button, Input} from 'react-bootstrap';
 
@@ -13,14 +14,27 @@ const ImportRepoComponent = ({
   discovered_repos,
   confirm_timecard_for,
   repo_import_page,
+  new_timecard_staging,
 
   importNewRepo,
   toImportRepoPage,
   confirmNewTimecard,
+  changeStagingTimecardData,
 }) => {
   {/* confirm adding a new timecard to a repository */}
   let createNewTimecardModal;
   if (confirm_timecard_for) {
+
+    {/*
+      The data that will be used to formulate the new timecard.
+      By default, start with info that is within the current repo and extend
+      it as needed to include user-included data.
+    */}
+    let timecardTemplate = {
+      name: new_timecard_staging.name || confirm_timecard_for.repo,
+      desc: new_timecard_staging.desc || confirm_timecard_for.desc,
+    };
+
     createNewTimecardModal = <Modal
         show={confirm_timecard_for !== null}
         onHide={confirmNewTimecard(false)}
@@ -38,7 +52,7 @@ const ImportRepoComponent = ({
             <p>
               We'll make a commit to this repository's <strong>
                 {confirm_timecard_for.default_branch}
-              </strong> branch with a base timecard that you can customize locally.
+              </strong> branch with a base timecard that you can customize below.
             </p>
 
             {/* edit the timecard name and description before adding */}
@@ -46,17 +60,17 @@ const ImportRepoComponent = ({
               type="text"
               placeholder={confirm_timecard_for.repo}
               label="Project Name"
-              onChange={console.log.bind(console, "name")}
+              onChange={changeStagingTimecardData("name")}
             />
             <Input
               type="text"
               placeholder={confirm_timecard_for.desc}
               label="Project Description"
-              onChange={console.log.bind(console, "desc")}
+              onChange={changeStagingTimecardData("desc")}
             />
 
             {/* Create a timecard on the default branch */}
-            <Button bsStyle="primary" onClick={importNewRepo(confirm_timecard_for, true)}>
+            <Button bsStyle="primary" onClick={importNewRepo(confirm_timecard_for, true, timecardTemplate)}>
               Create new timecard
             </Button>
         </div>
@@ -118,18 +132,22 @@ const ImportRepo  = connect((store, ownProps) => {
     confirm_timecard_for: (Number.isFinite(store.discovered_repo_new_timecard) ?
       store.discovered_repos[store.discovered_repo_new_timecard] :
       null
-    )
+    ),
+    new_timecard_staging: store.new_timecard_staging,
   };
 }, (dispatch, ownProps) => {
   return {
-    importNewRepo(repo, createTimecard) {
-      return () => dispatch(importFromGithubRepo(repo, createTimecard));
+    importNewRepo(repo, createTimecard, timecardTempl) {
+      return () => dispatch(importFromGithubRepo(repo, createTimecard, timecardTempl));
     },
     toImportRepoPage(page) {
       return () => dispatch(requestAllUserRepos(page));
     },
     confirmNewTimecard(ct) {
       return () => dispatch(askUserToCreateNewTimecard(ct));
+    },
+    changeStagingTimecardData(name) {
+      return (event) => dispatch(changeStagingTimecardData(name, event.target.value));
     },
   };
 })(ImportRepoComponent);

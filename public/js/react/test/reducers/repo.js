@@ -9,6 +9,7 @@ import {
   discoveredReposPage,
   discoveredRepoNewTimecard,
   repoDetails,
+  newTimecardData,
 } from '../../reducers/repo';
 const old_state = helpers.initialState;
 
@@ -250,11 +251,32 @@ describe('reducers/repo.js', function() {
       });
       assert.deepEqual(new_state, 12);
     });
+    it('should clear the state when a repo is created', function() {
+      let new_state = discoveredRepoNewTimecard(old_state.discovered_repo_new_timecard, {
+        type: "server/REPO_IMPORT",
+      });
+      assert.deepEqual(new_state, false);
+    });
     it('should not be effected by another event', function() {
       let new_state = discoveredRepoNewTimecard(old_state.discovered_repos_page, {
         type: "SOME_OTHER_EVENT",
       });
       assert.deepEqual(new_state, old_state.discovered_repos_page);
+    });
+  });
+  describe('newTimecardData', function() {
+    it('should create the event', function() {
+      let new_state = newTimecardData(old_state.new_timecard_data, {
+        type: "CHANGE_NEW_TIMECARD_DATA",
+        data: {foo: "bar"}
+      });
+      assert.deepEqual(new_state, {foo: "bar"});
+    });
+    it('should not be effected by another event', function() {
+      let new_state = newTimecardData(old_state.new_timecard_data, {
+        type: "SOME_OTHER_EVENT",
+      });
+      assert.deepEqual(new_state, old_state.new_timecard_data);
     });
   });
 });
