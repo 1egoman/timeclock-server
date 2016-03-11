@@ -53,7 +53,6 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: session_secret,
   store: mongoStore,
@@ -64,17 +63,32 @@ app.use(passport.session());
 authSerializer(passport); // attaches passport.serializeUser and passport.deserializeUser
 passport.use(authStrategy);
 
-// serve react / redux frontend
-app.use('/bundle', babelify('public/js/react', {}, {
-  sourceMap: true,
-  presets: ['react', 'es2015'],
-}));
+// ----------------------------------------------------------------------------
+// the "content routes"
+// ------------------------------------------------------------------------------
+if (process.env.NODE_ENV === "production") {
+  console.log("We're in production!");
 
-// serve anything that is a url for the app to the root of the app
-app.get(/\/app\/.+/, (req, res) => {
-  req.url = "/"; // reset to the app route
-  return express.static(path.join(__dirname, 'public', 'app'))(req, res);
-});
+  // and app requests resolve to the home page
+  app.get(/^\/app\/.*$/, (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'app', 'index.bundle.html'));
+  });
+} else {
+  // serve react / redux frontend compiled on the fly in dev
+  app.use('/bundle', babelify('public/js/react', {}, {
+    sourceMap: true,
+    presets: ['react', 'es2015'],
+  }));
+
+  // serve anything that is a url for the app to the root of the app
+  app.get(/^\/app\/.+/, (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'app', 'index.html'));
+  });
+}
+
+// other than the above, serve static assets.
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // ----------------------------------------------------------------------------
 // passport auth routes
@@ -106,39 +120,32 @@ app.get('/:username/:repo', repo.getRepo, (req, res) => {
   res.redirect(`/app/${req.params.username}/${req.params.repo}`);
 });
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  let err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
 /// error handlers
 
 // development error handler
 // will print stacktrace
 
-// if (app.get('env') === 'development') {
-//   app.use(function(err, req, res, next) {
-//     res.status(err.status || 500);
-//     res.render('error', {
-//       message: err.message,
-//       error: err,
-//       title: 'error'
-//     });
-//   });
-// }
-
 // production error handler
 // no stacktraces leaked to user
-// app.use(function(err, req, res, next) {
-//   res.status(err.status || 500);
-//   res.render('error', {
-//     message: err.message,
-//     error: {},
-//     title: 'error'
-//   });
-// });
+if (process.env.NODE_ENV === "production") {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: {},
+      title: 'error'
+    });
+  });
+} else {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err,
+      title: 'error'
+    });
+  });
+}
 
 // ----------------------------------------------------------------------------
 // socket.io stuff

@@ -5,3 +5,4 @@ public/components
 .env
 
 public/bundle.js
+scripts/*.js
