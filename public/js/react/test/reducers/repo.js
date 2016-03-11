@@ -127,6 +127,7 @@ describe('reducers/repo.js', function() {
         _comesfrom: [null, null],
         _page: 0,
         _canpaginateforward: false,
+        error: null,
       });
     });
     it('should reset branch on SELECT_REPO', function() {
@@ -141,6 +142,7 @@ describe('reducers/repo.js', function() {
         _comesfrom: [null, null],
         _page: 0,
         _canpaginateforward: false,
+        error: null,
       });
     });
     it('should reset branch on server/BRANCHES_FOR', function() {
@@ -155,6 +157,7 @@ describe('reducers/repo.js', function() {
         _comesfrom: [null, null],
         _page: 0,
         _canpaginateforward: false,
+        error: null,
       });
     });
     it('should reset branch on server/TIMECARD', function() {
@@ -175,6 +178,7 @@ describe('reducers/repo.js', function() {
         _comesfrom: ["username", "a-repository", null],
         _page: 0,
         _canpaginateforward: false,
+        error: null,
       });
     });
     it('should amend to timecard on server/TIMECARD', function() {
@@ -197,6 +201,7 @@ describe('reducers/repo.js', function() {
         _comesfrom: ["username", "a-repository", "ref"],
         _page: 0,
         _canpaginateforward: true,
+        error: null,
       });
 
       // now, "fetch" the last page in the group
@@ -218,6 +223,7 @@ describe('reducers/repo.js', function() {
         _comesfrom: ["username", "a-repository", "ref"],
         _page: 1,
         _canpaginateforward: false,
+        error: null,
       });
     });
     it('should add error on server/ERROR', function() {
