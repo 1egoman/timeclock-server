@@ -51,4 +51,16 @@ describe('components/loading.js', function() {
       <p>I'm a cool message</p>
     </div>);
   });
+  it('should render a loading message, without spinner', function() {
+    assert.deepEqual(Loading({
+      size: "md",
+      title: "I'm a title",
+      message: "I'm a cool message",
+      spinner: false,
+    }), <div className="loading loading-md">
+      {null}
+      <h1>I'm a title</h1>
+      <p>I'm a cool message</p>
+    </div>);
+  });
 });
