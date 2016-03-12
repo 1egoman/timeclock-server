@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {requestAllUserRepos, deleteRepo} from '../actions/repo';
 import { getRepoByIndex, getActiveRepoIndex } from '../helpers/get_repo';
 import {Button, Popover, OverlayTrigger} from 'react-bootstrap';
+import Loading from './loading';
 
 // import a new repo
 export function importRepoButton({
@@ -27,7 +28,6 @@ export const RepoListComponent = ({
   importNewRepo,
   deleteRepo,
 }) => {
-
   // the items themselves
   let items;
   if (repos.length) {
@@ -55,10 +55,10 @@ export const RepoListComponent = ({
       </Repo>;
     });
   } else {
-    items = <div className="repos-empty">
-      <h2>No Repositories</h2>
-      <p>Why not <span className="click" onClick={importNewRepo(true)}>import a new one?</span></p>
-    </div>;
+    items = <Loading
+      title="No Repositories"
+      message={<span>Why not <span className="click" onClick={importNewRepo(true)}>import a new one?</span></span>}
+    />;
   }
 
   return <ul className={`repos repos-list ${is_importing_repo ? "repos-disabled" : "repos-enabled"}`}>

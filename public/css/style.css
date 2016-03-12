@@ -6256,5 +6256,27 @@ button.close {
 .modal-new-timecard p {
   margin-top: 1em; }
 
+.loading {
+  color: #777777;
+  padding-top: 2em;
+  text-align: center; }
+  .loading .click {
+    cursor: pointer; }
+  .loading.loading-sm h1, .loading.loading-sm i {
+    font-size: 1.6em;
+    margin-top: 0.5em; }
+  .loading.loading-sm p {
+    font-size: 0.85em; }
+  .loading.loading-md h1, .loading.loading-md i {
+    font-size: 2em;
+    margin-top: 0.5em; }
+  .loading.loading-md p {
+    font-size: 1em; }
+  .loading.loading-lg h1, .loading.loading-lg i {
+    font-size: 2.4em;
+    margin-top: 0.5em; }
+  .loading.loading-lg p {
+    font-size: 1.2em; }
+
 a {
   color: #00B7FF; }

@@ -11,6 +11,7 @@ import {
   mapStateToProps,
 } from '../../components/repoList';
 import Repo from '../../components/repo';
+import Loading from '../../components/loading';
 
 describe('components/repoList.js', function() {
   describe('import repo button', function() {
@@ -115,10 +116,10 @@ describe('components/repoList.js', function() {
           <h4 className="repos-label">Repositories</h4>
           {null}
         </div>
-        <div className="repos-empty">
-          <h2>No Repositories</h2>
-          <p>Why not <span className="click" onClick={undefined}>import a new one?</span></p>
-        </div>
+        <Loading
+          title="No Repositories"
+          message={<span>Why not <span className="click" onClick={undefined}>import a new one?</span></span>}
+        />
       </ul>);
 
       assert(importNewRepoSpy.calledOnce);
