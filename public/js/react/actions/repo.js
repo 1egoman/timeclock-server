@@ -77,3 +77,11 @@ export function changeStagingTimecardData(name, value) {
     data,
   };
 };
+
+export function deleteRepo(user, repo) {
+  return {
+    type: "server/DELETE_REPO",
+    user,
+    repo,
+  };
+};

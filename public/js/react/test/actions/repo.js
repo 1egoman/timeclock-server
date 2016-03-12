@@ -11,6 +11,7 @@ import {
   getTimecard,
   askUserToCreateNewTimecard,
   changeStagingTimecardData,
+  deleteRepo,
 } from '../../actions/repo';
 
 describe('actions/repo.js', function() {
@@ -130,6 +131,15 @@ describe('actions/repo.js', function() {
         data: {
           name: "a-repo-name",
         },
+      });
+    });
+  });
+  describe('deleteRepo', function() {
+    it('should create the event', function() {
+      assert.deepEqual(deleteRepo("user-name", "a-repo-name"), {
+        type: "server/DELETE_REPO",
+        user: "user-name",
+        repo: "a-repo-name",
       });
     });
   });
