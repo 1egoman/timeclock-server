@@ -61,6 +61,16 @@ describe('reducers/repo.js', function() {
         foo: "bar"
       }, ...old_state.repos.slice(1)]);
     });
+    it('should work with server/DELETE_REPO', function() {
+      let new_state = repos(old_state.repos, {
+        type: "server/DELETE_REPO",
+        user: "username",
+        repo: "reponame",
+      });
+      assert.deepEqual(new_state, old_state.repos.filter(({user, repo}) => {
+        return !(user === "username" && repo === "reponame");
+      }));
+    });
     it('should work with server/INIT', function() {
       let new_state = repos(old_state.repos, {
         type: "server/INIT",

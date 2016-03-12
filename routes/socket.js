@@ -8,6 +8,7 @@ const required_repo = require("../lib/repo"),
 
       getTimecard = require("../lib/events/getTimecard"),
       importRepo = require("../lib/events/importRepo"),
+      deleteRepo = require("../lib/events/deleteRepo"),
       getBranches = require("../lib/events/getBranches"),
       resetToken = require("../lib/events/resetToken"),
       changeSetting = require("../lib/events/changeSetting"),
@@ -67,6 +68,16 @@ module.exports = function(socket, use_repo, inject_user_model) {
         socket.emit("action", {
           type: "server/REPO_IMPORT",
           repo: action.repo,
+        });
+      }, sendError);
+
+    // delete a repo from a user's account
+    } else if (action.type === 'server/DELETE_REPO') {
+      deleteRepo(action, socket).then(() => {
+        socket.emit("action", {
+          type: "server/REPO_DELETED",
+          repo: action.repo,
+          user: action.user,
         });
       }, sendError);
 

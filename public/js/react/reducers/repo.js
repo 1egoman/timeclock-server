@@ -31,6 +31,15 @@ export function repos(state = [], action) {
         return state;
       }
 
+    // delete a repo
+    case "server/REPO_DELETED":
+      return state.filter((i) => {
+        return !(
+          i.user === action.user &&
+          i.repo === action.repo
+        );
+      });
+
     default:
       return state;
   }
