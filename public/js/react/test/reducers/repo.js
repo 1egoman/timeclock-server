@@ -231,7 +231,6 @@ describe('reducers/repo.js', function() {
         type: "server/ERROR",
         error: "NO_TIMECARD_IN_REPO",
       });
-      console.log(new_state, old_state.repo_details)
       assert.deepEqual(new_state, {
         branch: null,
         branches: null,

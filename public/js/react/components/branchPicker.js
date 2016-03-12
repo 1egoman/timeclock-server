@@ -32,7 +32,7 @@ export function mapPropsToStore(store, props) {
   };
 }
 
-const BranchPicker = connect(mapPropsToStore, (dispatch, ownProps) => {
+const BranchPicker = connect(mapPropsToStore, (dispatch, props) => {
   return {
 
     // go to a new branch, and pull in the new timecard for that branch
