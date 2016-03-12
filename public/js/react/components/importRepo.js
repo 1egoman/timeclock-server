@@ -82,7 +82,7 @@ const ImportRepoComponent = ({
          By default, start with info that is within the current repo and extend
          it as needed to include user-included data.
          */
-      timecard_templ: {
+      timecard_template: {
         name: new_timecard_staging.name || confirm_timecard_for.repo,
         tagline: new_timecard_staging.tagline || confirm_timecard_for.desc,
       },
