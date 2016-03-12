@@ -5,6 +5,21 @@ import {requestAllUserRepos, deleteRepo} from '../actions/repo';
 import { getRepoByIndex, getActiveRepoIndex } from '../helpers/get_repo';
 import {Button, Popover, OverlayTrigger} from 'react-bootstrap';
 
+// import a new repo
+export function importRepoButton({
+  is_importing_repo,
+  importNewRepo,
+}) {
+  if (!is_importing_repo) {
+    return <button
+      className="btn btn-sm btn-primary pull-right"
+      onClick={importNewRepo(true)}
+    >Import a new repository</button>
+  } else {
+    return null;
+  }
+}
+
 export const RepoListComponent = ({
   repos,
   active_repo,
@@ -12,14 +27,6 @@ export const RepoListComponent = ({
   importNewRepo,
   deleteRepo,
 }) => {
-  // import a new repo
-  let import_button;
-  if (!is_importing_repo) {
-    import_button = <button
-      className="btn btn-sm btn-primary pull-right"
-      onClick={importNewRepo(true)}
-    >Import a new repository</button>
-  }
 
   // the items themselves
   let items;
@@ -57,19 +64,21 @@ export const RepoListComponent = ({
   return <ul className={`repos repos-list ${is_importing_repo ? "repos-disabled" : "repos-enabled"}`}>
     <div className="repos-controls">
       <h4 className="repos-label">Repositories</h4>
-      {import_button}
+      {importRepoButton({is_importing_repo, importNewRepo})}
     </div>
     {items}
   </ul>;
 };
 
-const RepoList = connect((store, ownProps) => {
+export function mapStateToProps(store, props) {
   return {
     repos: store.repos,
     active_repo: store.active_repo,
     is_importing_repo: store.repo_import_dialog_open,
   };
-}, (dispatch, ownProps) => {
+}
+
+const RepoList = connect(mapStateToProps, (dispatch, ownProps) => {
   return {
     importNewRepo(state) {
       return () => {
