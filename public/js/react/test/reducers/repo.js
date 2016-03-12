@@ -155,6 +155,22 @@ describe('reducers/repo.js', function() {
         error: null,
       });
     });
+    it('should reset branch on server/REPO_DELETED', function() {
+      let new_state = repoDetails(old_state.repo_details, {
+        type: "server/REPO_DELETED",
+        user: "username",
+        repo: "reponame",
+      });
+      assert.deepEqual(new_state, {
+        branch: null,
+        branches: null,
+        timecard: null,
+        _comesfrom: [null, null],
+        _page: 0,
+        _canpaginateforward: false,
+        error: null,
+      });
+    });
     it('should reset branch on server/BRANCHES_FOR', function() {
       let new_state = repoDetails(old_state.repo_details, {
         type: "server/BRANCHES_FOR",
