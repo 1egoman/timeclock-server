@@ -46,6 +46,7 @@
 .repo {
   @extend .list-group-item;
   cursor: pointer;
+  position: relative;
 
   &.repo-selected {
     background: $select-color;
@@ -59,6 +60,13 @@
       color: $private-color-dark;
       margin-left: 0.4em;
     }
+  }
+
+  .repo-delete {
+    position: absolute;
+    bottom: 0.75em;
+    right: 0.75em;
+    @extend .text-danger;
   }
 
   h1 {

@@ -10,6 +10,57 @@ import {
 } from '../actions/repo';
 import {Modal, Button, Input} from 'react-bootstrap';
 
+export function createNewTimecardModal({
+  confirm_timecard_for,
+  timecard_template,
+
+  confirmNewTimecard,
+  changeStagingTimecardData,
+  importNewRepo,
+}) {
+  return <Modal
+      show={confirm_timecard_for !== null}
+      onHide={confirmNewTimecard(false)}
+    >
+      <Modal.Header closeButton>
+        <Modal.Title>
+          Create a new timecard in&nbsp;
+          {confirm_timecard_for.user}/
+          <strong>{confirm_timecard_for.repo}</strong>
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <div className="modal-new-timecard">
+          <img src="/img/add_timecard_web.svg" className="center-block" />
+          <p>
+            We'll make a commit to this repository's <strong>
+              {confirm_timecard_for.default_branch}
+            </strong> branch with a base timecard that you can customize below.
+          </p>
+
+          {/* edit the timecard name and description before adding */}
+          <Input
+            type="text"
+            placeholder={confirm_timecard_for.repo}
+            label="Project Name"
+            onChange={changeStagingTimecardData("name")}
+          />
+          <Input
+            type="text"
+            placeholder={confirm_timecard_for.desc}
+            label="Project Tagline"
+            onChange={changeStagingTimecardData("tagline")}
+          />
+
+          {/* Create a timecard on the default branch */}
+          <Button bsStyle="primary" onClick={importNewRepo(confirm_timecard_for, true, timecard_template)}>
+            Create new timecard
+          </Button>
+      </div>
+    </Modal.Body>
+  </Modal>;
+}
+
 const ImportRepoComponent = ({
   discovered_repos,
   confirm_timecard_for,
@@ -22,64 +73,29 @@ const ImportRepoComponent = ({
   changeStagingTimecardData,
 }) => {
   {/* confirm adding a new timecard to a repository */}
-  let createNewTimecardModal;
+  let newTimecardModal;
   if (confirm_timecard_for) {
-    {/*
-      The data that will be used to formulate the new timecard.
-      By default, start with info that is within the current repo and extend
-      it as needed to include user-included data.
-    */}
-    let timecardTemplate = {
-      name: new_timecard_staging.name || confirm_timecard_for.repo,
-      tagline: new_timecard_staging.tagline || confirm_timecard_for.desc,
-    };
+    newTimecardModal = createNewTimecardModal({
+      confirm_timecard_for,
+      /*
+         The data that will be used to formulate the new timecard.
+         By default, start with info that is within the current repo and extend
+         it as needed to include user-included data.
+         */
+      timecard_template: {
+        name: new_timecard_staging.name || confirm_timecard_for.repo,
+        tagline: new_timecard_staging.tagline || confirm_timecard_for.desc,
+      },
 
-    createNewTimecardModal = <Modal
-        show={confirm_timecard_for !== null}
-        onHide={confirmNewTimecard(false)}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>
-            Create a new timecard in&nbsp;
-            {confirm_timecard_for.user}/
-            <strong>{confirm_timecard_for.repo}</strong>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="modal-new-timecard">
-            <img src="/img/add_timecard_web.svg" className="center-block" />
-            <p>
-              We'll make a commit to this repository's <strong>
-                {confirm_timecard_for.default_branch}
-              </strong> branch with a base timecard that you can customize below.
-            </p>
-
-            {/* edit the timecard name and description before adding */}
-            <Input
-              type="text"
-              placeholder={confirm_timecard_for.repo}
-              label="Project Name"
-              onChange={changeStagingTimecardData("name")}
-            />
-            <Input
-              type="text"
-              placeholder={confirm_timecard_for.desc}
-              label="Project Tagline"
-              onChange={changeStagingTimecardData("tagline")}
-            />
-
-            {/* Create a timecard on the default branch */}
-            <Button bsStyle="primary" onClick={importNewRepo(confirm_timecard_for, true, timecardTemplate)}>
-              Create new timecard
-            </Button>
-        </div>
-      </Modal.Body>
-    </Modal>;
+      changeStagingTimecardData,
+      importNewRepo,
+      confirmNewTimecard,
+    })
   }
 
   return <div className="repo-details repo-details-import">
     <h2>Import a new Repository</h2>
-    {createNewTimecardModal}
+    {newTimecardModal}
 
     <ul className="repos">
       {Object.keys(discovered_repos).map((key, ct) => {

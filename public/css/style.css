@@ -1290,11 +1290,12 @@ a.text-warning:hover,
 a.text-warning:focus {
   color: #66512c; }
 
-.text-danger {
+.text-danger, .repo .repo-delete {
   color: #a94442; }
 
-a.text-danger:hover,
-a.text-danger:focus {
+a.text-danger:hover, .repo a.repo-delete:hover,
+a.text-danger:focus,
+.repo a.repo-delete:focus {
   color: #843534; }
 
 .bg-primary {
@@ -6121,7 +6122,8 @@ button.close {
     cursor: pointer; }
 
 .repo {
-  cursor: pointer; }
+  cursor: pointer;
+  position: relative; }
   .repo.repo-selected {
     background: #E4FFFF; }
   .repo .repo-lock {
@@ -6130,6 +6132,10 @@ button.close {
     display: inline-block;
     color: #edd66a;
     margin-left: 0.4em; }
+  .repo .repo-delete {
+    position: absolute;
+    bottom: 0.75em;
+    right: 0.75em; }
   .repo h1 {
     font-size: 1.6em; }
     .repo h1 .repo-name {
@@ -6249,6 +6255,28 @@ button.close {
 
 .modal-new-timecard p {
   margin-top: 1em; }
+
+.loading {
+  color: #777777;
+  padding-top: 2em;
+  text-align: center; }
+  .loading .click {
+    cursor: pointer; }
+  .loading.loading-sm h1, .loading.loading-sm i {
+    font-size: 1.6em;
+    margin-top: 0.5em; }
+  .loading.loading-sm p {
+    font-size: 0.85em; }
+  .loading.loading-md h1, .loading.loading-md i {
+    font-size: 2em;
+    margin-top: 0.5em; }
+  .loading.loading-md p {
+    font-size: 1em; }
+  .loading.loading-lg h1, .loading.loading-lg i {
+    font-size: 2.4em;
+    margin-top: 0.5em; }
+  .loading.loading-lg p {
+    font-size: 1.2em; }
 
 a {
   color: #00B7FF; }

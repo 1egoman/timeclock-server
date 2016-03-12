@@ -11,6 +11,7 @@ import {getCurrentBranch, getAllBranches} from '../helpers/branch';
 import {getTimeDelta, getAvatarFor} from '../helpers/timecard';
 import {getProviderBadgeForRepo} from '../helpers/provider_badge';
 import {getRepoByIndex} from '../helpers/get_repo';
+import Loading from './loading';
 
 function emptyTimecard() {
   return <div className="timecard timecard-is-empty">
@@ -75,10 +76,10 @@ export const RepoDetailsComponent = ({
 
   // loading message for the above reop import dialog
   } else if (repo_import_dialog_open) {
-    return <div className="repo-details repo-details-empty">
-      <h2>Fetching Repositories</h2>
-      <p>We'll be back in a sec.</p>
-    </div>;
+    return <Loading
+      title="Fetching Repositories"
+      spinner
+    />;
 
   // a repo was selected
   } else if (repo_details.error) {
@@ -170,7 +171,7 @@ export const RepoDetailsComponent = ({
   }
 };
 
-const RepoDetails = connect((store, ownProps) => {
+export function mapStateToProps(store, props) {
   return {
     repo: getRepoByIndex(store, store.active_repo),
     repo_import_dialog_open: store.repo_import_dialog_open,
@@ -188,7 +189,9 @@ const RepoDetails = connect((store, ownProps) => {
     has_discovered_repos: store.discovered_repos && store.discovered_repos.length ? true : false,
     repo_import_page: store.discovered_repos_page,
   };
-}, (dispatch, ownProps) => {
+}
+
+const RepoDetails = connect(mapStateToProps, (dispatch, props) => {
   return {
     chooseBranch(branch) {
       dispatch(changeBranch(branch));

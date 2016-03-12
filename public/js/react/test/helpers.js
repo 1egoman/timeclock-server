@@ -43,3 +43,14 @@ exports.initialState = {
     }
   ],
 };
+
+exports.testRepo = {
+  user: 'username',
+  repo: 'reponame',
+  desc: 'I am a repo descritpion',
+  is_pending: false,
+  is_private: false,
+  has_timecard: false,
+  owner_type: 'user',
+  default_branch: "master",
+};

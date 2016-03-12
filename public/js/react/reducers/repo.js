@@ -31,6 +31,15 @@ export function repos(state = [], action) {
         return state;
       }
 
+    // delete a repo
+    case "server/REPO_DELETED":
+      return state.filter((i) => {
+        return !(
+          i.user === action.user &&
+          i.repo === action.repo
+        );
+      });
+
     default:
       return state;
   }
@@ -74,7 +83,7 @@ export function repoDetails(state = {branch: null}, action) {
 
   // on repo change, set the branch to the default
   // and copy the branches into the repo details
-  } else if (action.type === "SELECT_REPO") {
+  } else if (action.type === "SELECT_REPO" || action.type === "server/REPO_DELETED") {
     return Object.assign({}, state, {
       branch: null,
       branches: null,

@@ -61,6 +61,16 @@ describe('reducers/repo.js', function() {
         foo: "bar"
       }, ...old_state.repos.slice(1)]);
     });
+    it('should work with server/DELETE_REPO', function() {
+      let new_state = repos(old_state.repos, {
+        type: "server/DELETE_REPO",
+        user: "username",
+        repo: "reponame",
+      });
+      assert.deepEqual(new_state, old_state.repos.filter(({user, repo}) => {
+        return !(user === "username" && repo === "reponame");
+      }));
+    });
     it('should work with server/INIT', function() {
       let new_state = repos(old_state.repos, {
         type: "server/INIT",
@@ -127,6 +137,7 @@ describe('reducers/repo.js', function() {
         _comesfrom: [null, null],
         _page: 0,
         _canpaginateforward: false,
+        error: null,
       });
     });
     it('should reset branch on SELECT_REPO', function() {
@@ -141,6 +152,23 @@ describe('reducers/repo.js', function() {
         _comesfrom: [null, null],
         _page: 0,
         _canpaginateforward: false,
+        error: null,
+      });
+    });
+    it('should reset branch on server/REPO_DELETED', function() {
+      let new_state = repoDetails(old_state.repo_details, {
+        type: "server/REPO_DELETED",
+        user: "username",
+        repo: "reponame",
+      });
+      assert.deepEqual(new_state, {
+        branch: null,
+        branches: null,
+        timecard: null,
+        _comesfrom: [null, null],
+        _page: 0,
+        _canpaginateforward: false,
+        error: null,
       });
     });
     it('should reset branch on server/BRANCHES_FOR', function() {
@@ -155,6 +183,7 @@ describe('reducers/repo.js', function() {
         _comesfrom: [null, null],
         _page: 0,
         _canpaginateforward: false,
+        error: null,
       });
     });
     it('should reset branch on server/TIMECARD', function() {
@@ -175,6 +204,7 @@ describe('reducers/repo.js', function() {
         _comesfrom: ["username", "a-repository", null],
         _page: 0,
         _canpaginateforward: false,
+        error: null,
       });
     });
     it('should amend to timecard on server/TIMECARD', function() {
@@ -197,6 +227,7 @@ describe('reducers/repo.js', function() {
         _comesfrom: ["username", "a-repository", "ref"],
         _page: 0,
         _canpaginateforward: true,
+        error: null,
       });
 
       // now, "fetch" the last page in the group
@@ -218,6 +249,7 @@ describe('reducers/repo.js', function() {
         _comesfrom: ["username", "a-repository", "ref"],
         _page: 1,
         _canpaginateforward: false,
+        error: null,
       });
     });
     it('should add error on server/ERROR', function() {
@@ -225,7 +257,6 @@ describe('reducers/repo.js', function() {
         type: "server/ERROR",
         error: "NO_TIMECARD_IN_REPO",
       });
-      console.log(new_state, old_state.repo_details)
       assert.deepEqual(new_state, {
         branch: null,
         branches: null,

@@ -9,27 +9,30 @@ import { getRepoByIndex } from '../helpers/get_repo';
 export const BranchPickerComponent = ({
   current_branch,
   branches,
-  chooseBranch,
   repo,
+
+  chooseBranch,
 }) => {
   let select_branches = branches.map((i) => {
     return {value: i, label: i}
   });
   return <Select
-    value={current_branch}
+    value={current_branch || repo.default_branch}
     options={select_branches}
     clearable={false}
     onChange={chooseBranch(repo)}
   />
 };
 
-const BranchPicker = connect((store, ownProps) => {
+export function mapPropsToStore(store, props) {
   return {
     current_branch: getCurrentBranch(store),
     branches: getAllBranches(store),
     repo: getRepoByIndex(store, store.active_repo),
   };
-}, (dispatch, ownProps) => {
+}
+
+const BranchPicker = connect(mapPropsToStore, (dispatch, props) => {
   return {
 
     // go to a new branch, and pull in the new timecard for that branch
