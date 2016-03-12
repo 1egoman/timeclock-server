@@ -6137,7 +6137,9 @@ button.close {
     bottom: 0.75em;
     right: 0.75em; }
   .repo h1 {
-    font-size: 1.6em; }
+    font-size: 1.6em;
+    overflow: hidden;
+    text-overflow: ellipsis; }
     .repo h1 .repo-name {
       font-weight: bold; }
 
@@ -6153,7 +6155,9 @@ button.close {
     .repo-details .repo-details-header:after {
       clear: both; }
     .repo-details .repo-details-header h1 {
-      font-size: 2em; }
+      font-size: 2em;
+      overflow: hidden;
+      text-overflow: ellipsis; }
       .repo-details .repo-details-header h1 .repo-name {
         font-weight: bold; }
     .repo-details .repo-details-header .repo-details-branch-select {

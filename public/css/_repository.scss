@@ -3,6 +3,8 @@
 // the title for a repo
 @mixin repo-title($size: 1.6em) {
   font-size: $size;
+  overflow: hidden;
+  text-overflow: ellipsis;
   .repo-name {
     font-weight: bold;
   }
