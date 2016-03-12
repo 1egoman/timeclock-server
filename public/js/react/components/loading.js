@@ -1,10 +1,10 @@
 import React from 'react';
 export default function Loading({size, title, message, spinner}) {
-  function choose_funny_message() {
+  function chooseFunnyMessage() {
     let funnys = [
+      "We'll be back in a sec.",
       "funny #1",
       "funny #2",
-      "We'll be back in a sec.",
     ];
     return funnys[Math.floor(Math.random() * funnys.length)];
   }
@@ -12,6 +12,6 @@ export default function Loading({size, title, message, spinner}) {
   return <div className={`loading loading-${size || "md"}`}>
     {spinner ? <i className="fa fa-spinner fa-spin" /> : null}
     <h1>{title || "Loading..."}</h1>
-    <p>{message ? message : choose_funny_message()}</p>
+    <p>{message ? message : chooseFunnyMessage()}</p>
   </div>;
 }
