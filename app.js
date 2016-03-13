@@ -11,8 +11,9 @@ const babelify = require("express-babelify-middleware");
 const socketIo = require("socket.io");
 const passportSocketIo = require("passport.socketio");
 const http = require("http");
-const mixpanel = require("mixpanel");
 const session_secret = "keyboard kat";
+
+let mixpanel = require("mixpanel").init(process.env.MIXPANEL_TOKEN);
 
 // routes
 const badges = require('./routes/badge');
@@ -64,6 +65,25 @@ app.use(passport.session());
 authSerializer(passport); // attaches passport.serializeUser and passport.deserializeUser
 passport.use(authStrategy);
 
+function identifyUserBySession(req) {
+  if (req.session && req.session.passport) {
+    return req.session.passport.user;
+  } else {
+    return null;
+  }
+}
+function trackPageView(req, res, next) {
+  mixpanel.track('hit', {
+    distinct_id: identifyUserBySession(req),
+    url: req.url,
+    body: req.body,
+    session: req.session,
+    method: req.method,
+    params: req.params,
+  });
+  next();
+};
+
 // ----------------------------------------------------------------------------
 // the "content routes"
 // ------------------------------------------------------------------------------
@@ -113,7 +133,7 @@ app.get('/auth/logout', (req, res) => {
 // ----------------------------------------------------------------------------
 // Routes
 // ------------------------------------------------------------------------------
-app.get('/', repo.index);
+app.get('/', trackPageView, repo.index);
 app.get('/features', repo.features);
 app.get('/:username/:repo.svg', badges.fetchBadge);
 app.get('/embed/:username/:repo/:ref?', repo.getRepo, repo.doReport);
@@ -130,18 +150,39 @@ app.get('/:username/:repo', repo.getRepo, (req, res) => {
 // no stacktraces leaked to user
 if (process.env.NODE_ENV === "production") {
   app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: {},
-      title: 'error'
+
+    // in production, log errors to mixpanel
+    mixpanel.track('hit_error', {
+      distinct_id: identifyUserBySession(req),
+      status: err.status || 500,
+      error: {
+        stack: err.stack,
+        msg: err.message,
+        raw: err,
+      },
     });
+
+    if (typeof err === "string") {
+      res.status(err.status || 500);
+      res.render('error', {
+        msg: err,
+        error: {},
+        title: 'Unexpected Error'
+      });
+    } else {
+      res.status(err.status || 500);
+      res.render('error', {
+        msg: "Unexpected error. If this error persists, contact us.",
+        error: {},
+        title: 'Unexpected Error'
+      });
+    }
   });
 } else {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
-      message: err.stack ? err.stack : err,
+      msg: err.stack ? err.stack : err,
       error: err,
       title: 'error'
     });
