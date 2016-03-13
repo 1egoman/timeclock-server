@@ -14,6 +14,7 @@ const http = require("http");
 const session_secret = "keyboard kat";
 
 let mixpanel = require("mixpanel").init(process.env.MIXPANEL_TOKEN);
+const mixpanelHelpers = require("./lib/mixpanel")(mixpanel);
 
 // routes
 const badges = require('./routes/badge');
@@ -65,25 +66,6 @@ app.use(passport.session());
 authSerializer(passport); // attaches passport.serializeUser and passport.deserializeUser
 passport.use(authStrategy);
 
-function identifyUserBySession(req) {
-  if (req.session && req.session.passport) {
-    return req.session.passport.user;
-  } else {
-    return null;
-  }
-}
-function trackPageView(req, res, next) {
-  mixpanel.track('hit', {
-    distinct_id: identifyUserBySession(req),
-    url: req.url,
-    body: req.body,
-    session: req.session,
-    method: req.method,
-    params: req.params,
-  });
-  next();
-};
-
 // ----------------------------------------------------------------------------
 // the "content routes"
 // ------------------------------------------------------------------------------
@@ -133,7 +115,7 @@ app.get('/auth/logout', (req, res) => {
 // ----------------------------------------------------------------------------
 // Routes
 // ------------------------------------------------------------------------------
-app.get('/', trackPageView, repo.index);
+app.get('/', mixpanelHelpers.trackPageView, repo.index);
 app.get('/features', repo.features);
 app.get('/:username/:repo.svg', badges.fetchBadge);
 app.get('/embed/:username/:repo/:ref?', repo.getRepo, repo.doReport);
@@ -153,7 +135,7 @@ if (process.env.NODE_ENV === "production") {
 
     // in production, log errors to mixpanel
     mixpanel.track('hit_error', {
-      distinct_id: identifyUserBySession(req),
+      distinct_id: mixpanelHelpers.identifyUserBySession(req),
       status: err.status || 500,
       error: {
         stack: err.stack,
@@ -214,6 +196,7 @@ io.use(socketMiddleware);
 
 io.on('connection', function(socket) {
   console.log("Connected to new client.", socket.request.user);
+  mixpanelHelpers.trackNewConnection(socket);
 
   // first, initialize the state so we're all on the same page
   socket.emit("action", {
