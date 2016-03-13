@@ -11,6 +11,7 @@ const babelify = require("express-babelify-middleware");
 const socketIo = require("socket.io");
 const passportSocketIo = require("passport.socketio");
 const http = require("http");
+const mixpanel = require("mixpanel");
 const session_secret = "keyboard kat";
 
 // routes
