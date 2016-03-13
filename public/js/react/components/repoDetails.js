@@ -160,7 +160,10 @@ export const RepoDetailsComponent = ({
           className={`btn btn-default ${can_paginate_forward ? 'shown' : 'hidden'}`}
         >More...</button>
       </div> : <div className="repo-details repo-details-empty">
-        <h2>Loading timecard...</h2>
+        <Loading
+          title="Loading Timecard..."
+          spinner
+        />;
       </div>}
     </div>;
 
