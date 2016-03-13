@@ -8,7 +8,16 @@ import {
   askUserToCreateNewTimecard,
   changeStagingTimecardData,
 } from '../actions/repo';
-import {Modal, Button, Input} from 'react-bootstrap';
+import {
+  Modal,
+  Button,
+  Input,
+  Thumbnail,
+  Row,
+  Col,
+  OverlayTrigger,
+  Tooltip,
+} from 'react-bootstrap';
 
 export function createNewTimecardModal({
   confirm_timecard_for,
@@ -49,6 +58,26 @@ export function createNewTimecardModal({
             type="text"
             placeholder={confirm_timecard_for.desc}
             label="Project Tagline"
+            onChange={changeStagingTimecardData("tagline")}
+          />
+
+          {/* choose a thumbnail to go along with the name/tagline above */}
+          <label>Project Theme</label>
+          <Row>
+            <Col xs={4}>
+              <OverlayTrigger placement="top" overlay={<Tooltip id="default-theme">Default Theme</Tooltip>}>
+                <Thumbnail alt="'default' Theme" src="/img/themes/default.png" />
+              </OverlayTrigger>
+            </Col>
+            <Col xs={4}>
+              <OverlayTrigger placement="top" overlay={<Tooltip id="clean-theme">Clean Theme</Tooltip>}>
+                <Thumbnail alt="'clean' Theme" src="/img/themes/clean.png" />
+              </OverlayTrigger>
+            </Col>
+          </Row>
+          <Input
+            type="text"
+            placeholder="Or, enter one here."
             onChange={changeStagingTimecardData("tagline")}
           />
 
