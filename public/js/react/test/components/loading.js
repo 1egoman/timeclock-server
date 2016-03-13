@@ -11,7 +11,7 @@ describe('components/loading.js', function() {
       message: "I'm a cool message",
       spinner: true,
     }), <div className="loading loading-md">
-      <i className="fa fa-spinner fa-spin" />
+      <i className="spinner" />
       <h1>I'm a title</h1>
       <p>I'm a cool message</p>
     </div>);
@@ -22,7 +22,7 @@ describe('components/loading.js', function() {
       message: "I'm a cool message",
       spinner: true,
     }), <div className="loading loading-sm">
-      <i className="fa fa-spinner fa-spin" />
+      <i className="spinner" />
       <h1>Loading...</h1>
       <p>I'm a cool message</p>
     </div>);
@@ -34,7 +34,7 @@ describe('components/loading.js', function() {
       title: "I'm a title",
       spinner: true,
     }), <div className="loading loading-lg">
-      <i className="fa fa-spinner fa-spin" />
+      <i className="spinner" />
       <h1>I'm a title</h1>
       <p>We'll be back in a sec.</p>
     </div>);
@@ -46,7 +46,7 @@ describe('components/loading.js', function() {
       message: "I'm a cool message",
       spinner: true,
     }), <div className="loading loading-md">
-      <i className="fa fa-spinner fa-spin" />
+      <i className="spinner" />
       <h1>I'm a title</h1>
       <p>I'm a cool message</p>
     </div>);
