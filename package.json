@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "test": "mocha public/js/react/test/**/*.js --compilers js:babel-register",
-    "postinstall": "bash ./scripts/build.sh"
+    "postinstall": "bash ./scripts/deploy.sh"
   },
   "dependencies": {
     "async": "^1.5.2",
