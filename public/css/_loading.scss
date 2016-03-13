@@ -15,4 +15,13 @@
     h1, i { font-size: 2.4em; margin-top: 0.5em; }
     p { font-size: 1.2em; }
   }
+
+  .spinner {
+    background-image: url(/img/loading.svg);
+    width: 150px;
+    height: 50px;
+    display: block;
+    background-size: 150px 50px;
+    margin: 0px auto;
+  }
 }

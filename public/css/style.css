@@ -6281,6 +6281,13 @@ button.close {
     margin-top: 0.5em; }
   .loading.loading-lg p {
     font-size: 1.2em; }
+  .loading .spinner {
+    background-image: url(/img/loading.svg);
+    width: 150px;
+    height: 50px;
+    display: block;
+    background-size: 150px 50px;
+    margin: 0px auto; }
 
 a {
   color: #00B7FF; }

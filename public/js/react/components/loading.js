@@ -36,7 +36,7 @@ export default function Loading({size, title, message, spinner}) {
   }
 
   return <div className={`loading loading-${size || "md"}`}>
-    {spinner ? <i className="fa fa-spinner fa-spin" /> : null}
+    {spinner ? <i className="spinner" /> : null}
     <h1>{title || "Loading..."}</h1>
     <p>{message ? message : chooseFunnyMessage()}</p>
   </div>;
