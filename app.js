@@ -64,7 +64,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 authSerializer(passport); // attaches passport.serializeUser and passport.deserializeUser
-passport.use(authStrategy);
+passport.use(authStrategy(mixpanel));
 
 // ----------------------------------------------------------------------------
 // the "content routes"
@@ -73,7 +73,7 @@ if (process.env.NODE_ENV === "production") {
   console.log("We're in production!");
 
   // and app requests resolve to the home page
-  app.get(/^\/app\/.*$/, (req, res) => {
+  app.get(/^\/app\/.*$/, mixpanelHelpers.trackPageView, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'app', 'index.bundle.html'));
   });
 } else {
@@ -84,20 +84,20 @@ if (process.env.NODE_ENV === "production") {
   }));
 
   // serve anything that is a url for the app to the root of the app
-  app.get(/^\/app\/.+/, (req, res) => {
+  app.get(/^\/app\/.+/, mixpanelHelpers.trackPageView, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'app', 'index.html'));
   });
 }
 
 // other than the above, serve static assets.
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(mixpanelHelpers.trackPageView, express.static(path.join(__dirname, 'public')));
 
 
 // ----------------------------------------------------------------------------
 // passport auth routes
 // ------------------------------------------------------------------------------
 
-app.get('/login', (req, res) => res.redirect('/auth/github'));
+app.get('/login', mixpanelHelpers.trackUserLogin, (req, res) => res.redirect('/auth/github'));
 
 app.get('/auth/github', passport.authenticate('github', {
   scope: [ 'user', 'repo']
@@ -116,7 +116,7 @@ app.get('/auth/logout', (req, res) => {
 // Routes
 // ------------------------------------------------------------------------------
 app.get('/', mixpanelHelpers.trackPageView, repo.index);
-app.get('/features', repo.features);
+app.get('/features', mixpanelHelpers.trackPageView, repo.features);
 app.get('/:username/:repo.svg', badges.fetchBadge);
 app.get('/embed/:username/:repo/:ref?', repo.getRepo, repo.doReport);
 app.get('/:username/:repo', repo.getRepo, (req, res) => {
