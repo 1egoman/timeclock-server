@@ -5,6 +5,7 @@ import {
   openRepoImportDialog,
   changeBranch,
   getTimecard,
+  showWaltzInstallInstructions,
 } from '../actions/repo';
 import ImportRepo from './importRepo';
 import {getCurrentBranch, getAllBranches} from '../helpers/branch';
@@ -13,10 +14,11 @@ import {getProviderBadgeForRepo} from '../helpers/provider_badge';
 import {getRepoByIndex} from '../helpers/get_repo';
 import Loading from './loading';
 
-function emptyTimecard() {
+function emptyTimecard({helpInstallingWaltz}) {
   return <div className="timecard timecard-is-empty">
     <h1>This timecard is empty.</h1>
     <p>To start adding times, run <code>waltz in</code> in a local copy of the repository.</p>
+    <a onClick={helpInstallingWaltz}>How do I install waltz?</a>
   </div>;
 }
 
@@ -69,6 +71,7 @@ export const RepoDetailsComponent = ({
   printReport,
   getMoreTimes,
   toImportRepoPage,
+  helpInstallingWaltz,
 }) => {
   // import new repos
   if (repo_import_dialog_open && has_discovered_repos) {
@@ -152,7 +155,7 @@ export const RepoDetailsComponent = ({
         </table>
 
         {/* if timecard is empty, let the user know */}
-        {timecard.card.length === 0 && emptyTimecard()}
+        {timecard.card.length === 0 && emptyTimecard({helpInstallingWaltz})}
 
         {/* Go to the next page of times */}
         <button
@@ -208,6 +211,10 @@ const RepoDetails = connect(mapStateToProps, (dispatch, props) => {
     // print a copy of the report
     printReport(repo, current_branch) {
       return () => window.open(`/embed/${repo.user}/${repo.repo}/${current_branch}`).print();
+    },
+
+    helpInstallingWaltz() {
+      dispatch(showWaltzInstallInstructions());
     },
   };
 })(RepoDetailsComponent);
