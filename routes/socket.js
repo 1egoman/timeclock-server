@@ -25,11 +25,10 @@ function sendError(socket) {
   };
 }
 
-module.exports = function(socket, use_repo, inject_user_model) {
+module.exports = function(socket, mixpanel, use_repo, inject_user_model) {
   let repo = use_repo || required_repo;
   let User = user_model || inject_user_model;
   return (action) => {
-
     // discover all repos to import
     if (action.type === 'server/DISCOVER_REPOS') {
       process.env.NODE_ENV !== "test" && console.log(`Discovering all repos for ${socket.request.user.username}`);
@@ -61,6 +60,7 @@ module.exports = function(socket, use_repo, inject_user_model) {
     // import a repo
     } else if (action.type === 'server/IMPORT_REPO') {
       importRepo(action, socket).then((repo) => {
+        mixpanel.track(socket, "repo.import", {repo});
         socket.emit("action", {
           type: "server/PUT_REPO",
           repo: action.repo,
@@ -74,6 +74,7 @@ module.exports = function(socket, use_repo, inject_user_model) {
     // delete a repo from a user's account
     } else if (action.type === 'server/DELETE_REPO') {
       deleteRepo(action, socket).then(() => {
+        mixpanel.track(socket, "repo.delete", {repo: action.repo, user: action.user});
         socket.emit("action", {
           type: "server/REPO_DELETED",
           repo: action.repo,
@@ -84,6 +85,7 @@ module.exports = function(socket, use_repo, inject_user_model) {
     // get the branches for a repo
     } else if (action.type === 'server/GET_BRANCHES') {
       getBranches(action, socket).then((branches) => {
+        mixpanel.track(socket, "branches.get", {branches});
         socket.emit("action", {
           type: "server/BRANCHES_FOR",
           branches,
@@ -93,6 +95,7 @@ module.exports = function(socket, use_repo, inject_user_model) {
     // get the timecard for the specified repo
     } else if (action.type === 'server/GET_TIMECARD') {
       getTimecard(action, socket).then((timecard) => {
+        mixpanel.track(socket, "repo.timecard.get", {timecard});
         socket.emit("action", Object.assign({
           type: "server/TIMECARD",
         }, timecard));
@@ -101,6 +104,7 @@ module.exports = function(socket, use_repo, inject_user_model) {
     // reset a badge token that is associated with a user
     } else if (action.type === 'server/RESET_TOKEN') {
       resetToken(action, socket).then((data) => {
+        mixpanel.track(socket, "user.reset.token");
         socket.emit("action", Object.assign({
           type: "server/TOKEN_RESET",
         }, data));
@@ -109,6 +113,7 @@ module.exports = function(socket, use_repo, inject_user_model) {
     // change the value of a sumset of settings within the user model
     } else if (action.type === 'server/CHANGE_SETTING') {
       changeSetting(action, socket).then((data) => {
+        mixpanel.track(socket, "user.change.setting");
         socket.emit("action", {
           type: "server/SETTING_CHANGED",
           settings: data,

@@ -73,7 +73,7 @@ if (process.env.NODE_ENV === "production") {
   console.log("We're in production!");
 
   // and app requests resolve to the home page
-  app.get(/^\/app\/.*$/, mixpanelHelpers.trackPageView, (req, res) => {
+  app.get(/^(\/app\/?|\/app\/.+)$/, mixpanelHelpers.trackPageView, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'app', 'index.bundle.html'));
   });
 } else {
@@ -84,13 +84,14 @@ if (process.env.NODE_ENV === "production") {
   }));
 
   // serve anything that is a url for the app to the root of the app
-  app.get(/^\/app\/.+/, mixpanelHelpers.trackPageView, (req, res) => {
+  app.get(/^(\/app\/|\/app\/.+)$/, mixpanelHelpers.trackPageView, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'app', 'index.html'));
   });
 }
 
 // other than the above, serve static assets.
 app.use(express.static(path.join(__dirname, 'public')));
+app.get("/app", (req, res) => res.redirect("/app/"));
 
 
 // ----------------------------------------------------------------------------
@@ -100,7 +101,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/login', mixpanelHelpers.trackUserLogin, (req, res) => res.redirect('/auth/github'));
 
 app.get('/auth/github', passport.authenticate('github', {
-  scope: [ 'user', 'repo']
+  scope: [ 'user', 'repo'],
 }));
 
 app.get('/auth/github/callback', passport.authenticate(
@@ -134,7 +135,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(function(err, req, res, next) {
 
     // in production, log errors to mixpanel
-    mixpanel.track('hit_error', {
+    mixpanel.track('hit.error', {
       distinct_id: mixpanelHelpers.identifyUserBySession(req),
       status: err.status || 500,
       error: {
@@ -188,6 +189,10 @@ let socketMiddleware = passportSocketIo.authorize({
       accept(new Error("User not authorized."));
     } else {
       console.error("Passport connection failed:", message);
+      mixpanel.track("error.socket.passport", {
+        err: message,
+        type: "socket.passport",
+      });
       accept(new Error("Unexpected error."));
     }
   },
@@ -206,6 +211,6 @@ io.on('connection', function(socket) {
     user: User.sanitize(socket.request.user),
   });
 
-  socket.on('action', onSocketAction(socket));
+  socket.on('action', onSocketAction(socket, mixpanelHelpers));
 });
 module.exports = boundApp;
