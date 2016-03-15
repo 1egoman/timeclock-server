@@ -90,7 +90,8 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // other than the above, serve static assets.
-app.use(mixpanelHelpers.trackPageView, express.static(path.join(__dirname, 'public')));
+app.use(mixpanelHelpers.trackPageView);
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 // ----------------------------------------------------------------------------
