@@ -211,6 +211,6 @@ io.on('connection', function(socket) {
     user: User.sanitize(socket.request.user),
   });
 
-  socket.on('action', onSocketAction(socket, mixpanelHelpers));
+  socket.on('action', onSocketAction(socket));
 });
 module.exports = boundApp;

@@ -15,6 +15,9 @@ const required_repo = require("../lib/repo"),
 
       TIMECARD_PAGE_LENGTH = 20; // the amount of times that are returned per request,
 
+let mx = require("mixpanel").init(process.env.MIXPANEL_TOKEN);
+const mixpanel = require("../lib/mixpanel")(mx);
+
 function sendError(socket) {
   return (err) => {
     console.error("CAUGHT ERROR", err.stack ? err.stack : err);
@@ -25,10 +28,9 @@ function sendError(socket) {
   };
 }
 
-module.exports = function(socket, mixpanel, use_repo, inject_user_model) {
-  let repo = use_repo || required_repo;
-  let User = user_model || inject_user_model;
-  return (action) => {
+module.exports = function(socket) {
+  let repo = required_repo, User = user_model;
+  return function(action) {
     // discover all repos to import
     if (action.type === 'server/DISCOVER_REPOS') {
       process.env.NODE_ENV !== "test" && console.log(`Discovering all repos for ${socket.request.user.username}`);
