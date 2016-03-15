@@ -9,11 +9,9 @@ describe("lib/mixpanel.js", function() {
     it("should identify a user when given a authed user", function() {
       let mx = sinon.spy();
       assert.deepEqual(mixpanelHelpers(mx).identifyUserBySession({
-        user: {foo: "bar"},
+        user: {_id: "bar"},
         session: {user: {foo: "bar"}},
-      }), {
-        foo: "bar"
-      });
+      }), "bar");
       assert.equal(mx.callCount, 0);
     });
     it("should alias an anon_id when anonymous", function() {
@@ -21,10 +19,7 @@ describe("lib/mixpanel.js", function() {
       assert.deepEqual(mixpanelHelpers(mx).identifyUserBySession({
         user: {foo: "bar", _id: "user-id-here"},
         session: {anon_id: "anon-id-here"},
-      }), {
-        foo: "bar",
-        _id: "user-id-here",
-      });
+      }), "user-id-here");
       assert(mx.alias.calledOnce);
       assert(mx.alias.calledWith("user-id-here", "anon-id-here"));
     });
@@ -33,10 +28,7 @@ describe("lib/mixpanel.js", function() {
       assert.deepEqual(mixpanelHelpers(mx).identifyUserBySession({
         user: {foo: "bar", _id: "user-id-here"},
         session,
-      }), {
-        foo: "bar",
-        _id: "user-id-here",
-      });
+      }), "user-id-here");
       assert(mx.alias.calledOnce);
       assert(mx.alias.calledWith("user-id-here", "anon-id-here"));
       assert.deepEqual(session, {});

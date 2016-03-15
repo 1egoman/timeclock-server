@@ -98,15 +98,15 @@ app.get("/app", (req, res) => res.redirect("/app/"));
 // passport auth routes
 // ------------------------------------------------------------------------------
 
-app.get('/login', mixpanelHelpers.trackUserLogin, (req, res) => res.redirect('/auth/github'));
+app.get('/login', (req, res) => res.redirect('/auth/github'));
 
 app.get('/auth/github', passport.authenticate('github', {
   scope: [ 'user', 'repo'],
-}));
+}))
 
 app.get('/auth/github/callback', passport.authenticate(
   'github', { failureRedirect: '/login' }
-), (req, res) => res.redirect('/app'));
+), mixpanelHelpers.trackUserLogin, (req, res) => res.redirect('/app'));
 
 app.get('/auth/logout', (req, res) => {
   req.logout();
