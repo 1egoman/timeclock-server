@@ -12,6 +12,7 @@ import {
   askUserToCreateNewTimecard,
   changeStagingTimecardData,
   deleteRepo,
+  showWaltzInstallInstructions,
 } from '../../actions/repo';
 
 describe('actions/repo.js', function() {
@@ -140,6 +141,26 @@ describe('actions/repo.js', function() {
         type: "server/DELETE_REPO",
         user: "user-name",
         repo: "a-repo-name",
+      });
+    });
+  });
+  describe('showWaltzInstallInstructions', function() {
+    it('should create the event', function() {
+      assert.deepEqual(showWaltzInstallInstructions(), {
+        type: "HELP_INSTALL_WALTZ",
+        value: true,
+      });
+    });
+    it('should create the event with a defined value', function() {
+      assert.deepEqual(showWaltzInstallInstructions(true), {
+        type: "HELP_INSTALL_WALTZ",
+        value: true,
+      });
+    });
+    it('should create the event to hide modal', function() {
+      assert.deepEqual(showWaltzInstallInstructions(false), {
+        type: "HELP_INSTALL_WALTZ",
+        value: false,
       });
     });
   });

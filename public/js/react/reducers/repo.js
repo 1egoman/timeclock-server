@@ -178,3 +178,12 @@ export function newTimecardData(state = {}, action) {
     return state;
   }
 }
+
+// give the user a dialog on how to install the waltz command line tool
+export function helpInstallingClient(state = false, action) {
+  if (action.type === "HELP_INSTALL_WALTZ") {
+    return action.value || false;
+  } else {
+    return state;
+  }
+}

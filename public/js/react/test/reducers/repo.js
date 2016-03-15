@@ -10,6 +10,7 @@ import {
   discoveredRepoNewTimecard,
   repoDetails,
   newTimecardData,
+  helpInstallingClient,
 } from '../../reducers/repo';
 const old_state = helpers.initialState;
 
@@ -325,6 +326,21 @@ describe('reducers/repo.js', function() {
         type: "SOME_OTHER_EVENT",
       });
       assert.deepEqual(new_state, old_state.new_timecard_data);
+    });
+  });
+  describe('newTimecardData', function() {
+    it('should create the event', function() {
+      let new_state = helpInstallingClient(false, {
+        type: "HELP_INSTALL_WALTZ",
+        value: true,
+      });
+      assert.deepEqual(new_state, true);
+    });
+    it('should not be effected by another event', function() {
+      let new_state = newTimecardData(false, {
+        type: "SOME_OTHER_EVENT",
+      });
+      assert.deepEqual(new_state, false);
     });
   });
 });

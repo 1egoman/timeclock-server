@@ -85,3 +85,10 @@ export function deleteRepo(user, repo) {
     repo,
   };
 };
+
+export function showWaltzInstallInstructions(value = true) {
+  return {
+    type: "HELP_INSTALL_WALTZ",
+    value,
+  };
+};
