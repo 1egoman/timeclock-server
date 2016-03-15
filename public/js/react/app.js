@@ -54,6 +54,7 @@ import {
   discoveredRepoNewTimecard,
   repoDetails,
   newTimecardData,
+  helpInstallingClient,
 } from './reducers/repo';
 import { user } from './reducers/user';
 
@@ -71,6 +72,7 @@ const waltzApp = combineReducers({
   repo_details: repoDetails,
   routing: routerReducer,
   new_timecard_staging: newTimecardData,
+  client_help_dialog: helpInstallingClient,
 });
 
 // "Store"
