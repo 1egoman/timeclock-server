@@ -147,6 +147,11 @@ $details-left-margin: 20px;
     width: 100%;
     border: 0px;
 
+    // already-paid times
+    .disabled {
+      @extend tr.success;
+    }
+
     .avatar-col, .avatar-img {
       width: 20px;
       font-size: 20px;
@@ -166,7 +171,6 @@ $details-left-margin: 20px;
       font-size: 2em;
     }
   }
-
 }
 
 .repo-details.repo-details-import {

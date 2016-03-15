@@ -27,23 +27,23 @@ function renderTimecardTable(timecard, timecard_users, user) {
   return timecard.card.map((day, dct) => {
     return day.times.map((time, tct) => {
       let delta = getTimeDelta(time.start, time.end, null, user.settings.long_work_period);
-      return <tr key={`${dct}-${tct}`}>
-      <td className="avatar-col">
-      <span
-      data-toggle="tooltip"
-      data-placement="left"
-      title={time.by}
-      >
-      {
-        getAvatarFor(timecard_users, time.by).avatar_img ||
-          <span className="fa fa-user avatar-col" ></span>
-      }
-      </span>
-      </td>
-      <td>{day.date}</td>
-      <td>{time.start}</td>
-      <td>{typeof time.end !== "undefined" ? time.end : "(no end)"}</td>
-      <td>{delta.markup}</td>
+      return <tr key={`${dct}-${tct}`} className={day.disabled ? "disabled" : "enabled"}>
+        <td className="avatar-col">
+          <span
+            data-toggle="tooltip"
+            data-placement="left"
+            title={time.by}
+          >
+          {
+            getAvatarFor(timecard_users, time.by).avatar_img ||
+              <span className="fa fa-user avatar-col" ></span>
+          }
+          </span>
+        </td>
+        <td>{day.date}</td>
+        <td>{time.start}</td>
+        <td>{typeof time.end !== "undefined" ? time.end : "(no end)"}</td>
+        <td>{delta.markup}</td>
       </tr>;
     })
   });

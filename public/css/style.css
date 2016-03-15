@@ -2127,23 +2127,31 @@ table th[class*="col-"] {
 
 .table > thead > tr > td.success,
 .table > thead > tr > th.success,
-.table > thead > tr.success > td,
-.table > thead > tr.success > th,
+.table > thead > tr.success > td, .repo-details .repo-details-report-table
+.table > thead > .disabled > td,
+.table > thead > tr.success > th, .repo-details .repo-details-report-table
+.table > thead > .disabled > th,
 .table > tbody > tr > td.success,
 .table > tbody > tr > th.success,
-.table > tbody > tr.success > td,
-.table > tbody > tr.success > th,
+.table > tbody > tr.success > td, .repo-details .repo-details-report-table
+.table > tbody > .disabled > td,
+.table > tbody > tr.success > th, .repo-details .repo-details-report-table
+.table > tbody > .disabled > th,
 .table > tfoot > tr > td.success,
 .table > tfoot > tr > th.success,
-.table > tfoot > tr.success > td,
-.table > tfoot > tr.success > th {
+.table > tfoot > tr.success > td, .repo-details .repo-details-report-table
+.table > tfoot > .disabled > td,
+.table > tfoot > tr.success > th, .repo-details .repo-details-report-table
+.table > tfoot > .disabled > th {
   background-color: #dff0d8; }
 
 .table-hover > tbody > tr > td.success:hover,
 .table-hover > tbody > tr > th.success:hover,
-.table-hover > tbody > tr.success:hover > td,
+.table-hover > tbody > tr.success:hover > td, .repo-details .repo-details-report-table
+.table-hover > tbody > .disabled:hover > td,
 .table-hover > tbody > tr:hover > .success,
-.table-hover > tbody > tr.success:hover > th {
+.table-hover > tbody > tr.success:hover > th, .repo-details .repo-details-report-table
+.table-hover > tbody > .disabled:hover > th {
   background-color: #d0e9c6; }
 
 .table > thead > tr > td.info,
