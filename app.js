@@ -13,6 +13,9 @@ const passportSocketIo = require("passport.socketio");
 const http = require("http");
 const session_secret = "keyboard kat";
 
+let mixpanel = require("mixpanel").init(process.env.MIXPANEL_TOKEN);
+const mixpanelHelpers = require("./lib/mixpanel")(mixpanel);
+
 // routes
 const badges = require('./routes/badge');
 const repo = require('./routes/repository');
@@ -61,7 +64,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 authSerializer(passport); // attaches passport.serializeUser and passport.deserializeUser
-passport.use(authStrategy);
+passport.use(authStrategy(mixpanel));
 
 // ----------------------------------------------------------------------------
 // the "content routes"
@@ -70,7 +73,7 @@ if (process.env.NODE_ENV === "production") {
   console.log("We're in production!");
 
   // and app requests resolve to the home page
-  app.get(/^\/app\/.*$/, (req, res) => {
+  app.get(/^(\/app\/?|\/app\/.+)$/, mixpanelHelpers.trackPageView, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'app', 'index.bundle.html'));
   });
 } else {
@@ -81,23 +84,24 @@ if (process.env.NODE_ENV === "production") {
   }));
 
   // serve anything that is a url for the app to the root of the app
-  app.get(/^\/app\/.+/, (req, res) => {
+  app.get(/^(\/app\/|\/app\/.+)$/, mixpanelHelpers.trackPageView, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'app', 'index.html'));
   });
 }
 
 // other than the above, serve static assets.
 app.use(express.static(path.join(__dirname, 'public')));
+app.get("/app", (req, res) => res.redirect("/app/"));
 
 
 // ----------------------------------------------------------------------------
 // passport auth routes
 // ------------------------------------------------------------------------------
 
-app.get('/login', (req, res) => res.redirect('/auth/github'));
+app.get('/login', mixpanelHelpers.trackUserLogin, (req, res) => res.redirect('/auth/github'));
 
 app.get('/auth/github', passport.authenticate('github', {
-  scope: [ 'user', 'repo']
+  scope: [ 'user', 'repo'],
 }));
 
 app.get('/auth/github/callback', passport.authenticate(
@@ -112,8 +116,8 @@ app.get('/auth/logout', (req, res) => {
 // ----------------------------------------------------------------------------
 // Routes
 // ------------------------------------------------------------------------------
-app.get('/', repo.index);
-app.get('/features', repo.features);
+app.get('/', mixpanelHelpers.trackPageView, repo.index);
+app.get('/features', mixpanelHelpers.trackPageView, repo.features);
 app.get('/:username/:repo.svg', badges.fetchBadge);
 app.get('/embed/:username/:repo/:ref?', repo.getRepo, repo.doReport);
 app.get('/:username/:repo', repo.getRepo, (req, res) => {
@@ -129,18 +133,39 @@ app.get('/:username/:repo', repo.getRepo, (req, res) => {
 // no stacktraces leaked to user
 if (process.env.NODE_ENV === "production") {
   app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: {},
-      title: 'error'
+
+    // in production, log errors to mixpanel
+    mixpanel.track('hit.error', {
+      distinct_id: mixpanelHelpers.identifyUserBySession(req),
+      status: err.status || 500,
+      error: {
+        stack: err.stack,
+        msg: err.message,
+        raw: err,
+      },
     });
+
+    if (typeof err === "string") {
+      res.status(err.status || 500);
+      res.render('error', {
+        msg: err,
+        error: {},
+        title: 'Unexpected Error'
+      });
+    } else {
+      res.status(err.status || 500);
+      res.render('error', {
+        msg: "Unexpected error. If this error persists, contact us.",
+        error: {},
+        title: 'Unexpected Error'
+      });
+    }
   });
 } else {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
-      message: err.stack ? err.stack : err,
+      msg: err.stack ? err.stack : err,
       error: err,
       title: 'error'
     });
@@ -164,6 +189,10 @@ let socketMiddleware = passportSocketIo.authorize({
       accept(new Error("User not authorized."));
     } else {
       console.error("Passport connection failed:", message);
+      mixpanel.track("error.socket.passport", {
+        err: message,
+        type: "socket.passport",
+      });
       accept(new Error("Unexpected error."));
     }
   },
@@ -172,6 +201,7 @@ io.use(socketMiddleware);
 
 io.on('connection', function(socket) {
   console.log("Connected to new client.", socket.request.user);
+  mixpanelHelpers.trackNewConnection(socket);
 
   // first, initialize the state so we're all on the same page
   socket.emit("action", {
@@ -181,6 +211,6 @@ io.on('connection', function(socket) {
     user: User.sanitize(socket.request.user),
   });
 
-  socket.on('action', onSocketAction(socket));
+  socket.on('action', onSocketAction(socket, mixpanelHelpers));
 });
 module.exports = boundApp;
