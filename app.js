@@ -73,7 +73,7 @@ if (process.env.NODE_ENV === "production") {
   console.log("We're in production!");
 
   // and app requests resolve to the home page
-  app.get(/^\/app\/.*$/, (req, res) => {
+  app.get(/^\/app\/.*$/, mixpanelHelpers.trackPageView, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'app', 'index.bundle.html'));
   });
 } else {
@@ -84,13 +84,12 @@ if (process.env.NODE_ENV === "production") {
   }));
 
   // serve anything that is a url for the app to the root of the app
-  app.get(/^\/app\/.+/, (req, res) => {
+  app.get(/^\/app\/.+/, mixpanelHelpers.trackPageView, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'app', 'index.html'));
   });
 }
 
 // other than the above, serve static assets.
-app.use(mixpanelHelpers.trackPageView);
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -116,8 +115,8 @@ app.get('/auth/logout', (req, res) => {
 // ----------------------------------------------------------------------------
 // Routes
 // ------------------------------------------------------------------------------
-app.get('/', repo.index);
-app.get('/features', repo.features);
+app.get('/', mixpanelHelpers.trackPageView, repo.index);
+app.get('/features', mixpanelHelpers.trackPageView, repo.features);
 app.get('/:username/:repo.svg', badges.fetchBadge);
 app.get('/embed/:username/:repo/:ref?', repo.getRepo, repo.doReport);
 app.get('/:username/:repo', repo.getRepo, (req, res) => {
