@@ -73,7 +73,7 @@ if (process.env.NODE_ENV === "production") {
   console.log("We're in production!");
 
   // and app requests resolve to the home page
-  app.get(/^(\/app\/?|\/app\/.+)$/, mixpanelHelpers.trackPageView, (req, res) => {
+  app.get(/^(\/app\/|\/app\/.+)$/, mixpanelHelpers.trackPageView, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'app', 'index.bundle.html'));
   });
 } else {
