@@ -210,7 +210,12 @@ io.on('connection', function(socket) {
     type: "server/INIT",
     repos: socket.request.user.repos,
     active_repo: null,
-    user: User.sanitize(socket.request.user),
+
+    // the normal user, plus their allottments for paid services.
+    user: Object.assign(
+      User.sanitize(socket.request.user),
+      {allotments: User.getAllotments(socket.request.user)}
+    ),
   });
 
   socket.on('action', onSocketAction(socket));
