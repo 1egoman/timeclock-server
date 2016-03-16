@@ -149,7 +149,7 @@ $details-left-margin: 20px;
 
     // already-paid times
     .disabled {
-      @extend tr.success;
+      background-color: $gray-lighter;
     }
 
     .avatar-col, .avatar-img {

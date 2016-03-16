@@ -1,5 +1,6 @@
-.time-delta .warning {
-  @extend .pull-right;
-  color: $brand-warning;
+.time-delta i {
   cursor: pointer;
+  margin: 0px 3.2px;
+  &.warning { color: $brand-warning; }
+  &.success { color: $brand-success; }
 }

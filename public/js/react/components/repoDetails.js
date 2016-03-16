@@ -26,7 +26,7 @@ function emptyTimecard({helpInstallingWaltz}) {
 function renderTimecardTable(timecard, timecard_users, user) {
   return timecard.card.map((day, dct) => {
     return day.times.map((time, tct) => {
-      let delta = getTimeDelta(time.start, time.end, null, user.settings.long_work_period);
+      let delta = getTimeDelta(time.start, time.end, day, null, user.settings.long_work_period);
       return <tr key={`${dct}-${tct}`} className={day.disabled ? "disabled" : "enabled"}>
         <td className="avatar-col">
           <span
