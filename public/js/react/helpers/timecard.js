@@ -1,6 +1,7 @@
 import {strptime} from "micro-strptime";
 import strftime from "strftime";
 import React from 'react';
+import {OverlayTrigger, Tooltip} from 'react-bootstrap';
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000,
       MS_PER_MINUTE = 60 * 1000,
@@ -21,7 +22,7 @@ export function formatTime(raw, parse_format="%H:%M:%S", to_format) {
 }
 
 // get the difference in time from the start to the end
-export function getTimeDelta(start, end, parse_format, tooLongDuration=DEFAULT_LONG_DURATION) {
+export function getTimeDelta(start, end, day, parse_format, tooLongDuration=DEFAULT_LONG_DURATION) {
   parse_format = parse_format || "%H:%M:%S";
 
   // is the time complete?
@@ -32,14 +33,23 @@ export function getTimeDelta(start, end, parse_format, tooLongDuration=DEFAULT_L
     // have we been working for too long?
     let tooLong;
     if (duration > tooLongDuration) {
-      tooLong = <span
-        className="warning"
-        data-toggle="tooltip"
-        data-placement="left"
-        title={`This work period was longer than ${tooLongDuration} minutes.`}
-      >
-        <span className="fa fa-warning"></span>
-      </span>;
+      tooLong = <OverlayTrigger placement="left" overlay={
+        <Tooltip id="long-work">
+          This work period was longer than {tooLongDuration} minutes.
+        </Tooltip>
+      }>
+        <i className="fa fa-warning warning" />
+      </OverlayTrigger>;
+    }
+
+    // has the time been paid for?
+    let isPaid;
+    if (day.disabled) {
+      isPaid = <OverlayTrigger placement="left" overlay={
+        <Tooltip id="already-paid">This time has been paid.</Tooltip>
+      }>
+        <i className="fa fa-money success" />
+      </OverlayTrigger>
     }
 
     return {
@@ -47,7 +57,10 @@ export function getTimeDelta(start, end, parse_format, tooLongDuration=DEFAULT_L
       tooLong: duration > tooLongDuration,
       markup: <span className="time-delta">
         <strong>{Math.floor(duration)} min</strong>, {Math.ceil((duration % 1) * SECONDS_PER_MINUTE)} sec
-        {tooLong}
+        <span className="pull-right">
+          {tooLong}
+          {isPaid}
+        </span>
       </span>,
     };
   } else {

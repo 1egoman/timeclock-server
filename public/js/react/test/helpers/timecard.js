@@ -7,6 +7,7 @@ import {
   getAvatarFor,
 } from '../../helpers/timecard';
 import React from 'react';
+import {OverlayTrigger, Tooltip} from 'react-bootstrap';
 
 describe('helpers/timecard.js', function() {
   describe('formatTime', function() {
@@ -19,17 +20,20 @@ describe('helpers/timecard.js', function() {
   describe('getTimeDelta', function() {
     // assuming the default `tooLongDuration` of 45 minutes
     it('should get the time from the start to end', function() {
-      assert.deepEqual(getTimeDelta("1:00:00", "1:30:12"), {
+      assert.deepEqual(getTimeDelta("1:00:00", "1:30:12", {disabled: false}), {
         duration: 30.2,
         tooLong: false,
         markup: <span className="time-delta">
           <strong>{30} min</strong>, {12} sec
-          {undefined}
+          <span className="pull-right">
+            {undefined}
+            {undefined}
+          </span>
         </span>,
       });
     });
     it('should get the time from the start to end, in an incomplete zone', function() {
-      assert.deepEqual(getTimeDelta("1:00:00", undefined), {
+      assert.deepEqual(getTimeDelta("1:00:00", undefined, {disabled: false}), {
         duration: null,
         tooLong: false,
         markup: <span className="time-delta time-delta-incomplete">
@@ -38,18 +42,37 @@ describe('helpers/timecard.js', function() {
       });
     });
     it('should get the time from the start to end, and trigger `tooLong`', function() {
-      assert.deepEqual(getTimeDelta("1:00:00", "4:00:00"), {
+      assert.deepEqual(getTimeDelta("1:00:00", "4:00:00", {disabled: false}), {
         duration: 180,
         tooLong: true,
         markup: <span className="time-delta">
           <strong>{180} min</strong>, {0} sec
-          <span
-            className="warning"
-            data-toggle="tooltip"
-            data-placement="left"
-            title={`This work period was longer than 90 minutes.`}
-          >
-            <span className="fa fa-warning"></span>
+          <span className="pull-right">
+            <OverlayTrigger placement="left" overlay={
+              <Tooltip id="long-work">
+                This work period was longer than {90} minutes.
+              </Tooltip>
+            }>
+              <i className="fa fa-warning warning" />
+            </OverlayTrigger>
+            {undefined}
+          </span>
+        </span>,
+      });
+    });
+    it('should get the time from the start to end, and trigger `isDisabled`', function() {
+      assert.deepEqual(getTimeDelta("1:00:00", "1:10:00", {disabled: true}), {
+        duration: 10,
+        tooLong: false,
+        markup: <span className="time-delta">
+          <strong>{10} min</strong>, {0} sec
+          <span className="pull-right">
+            {undefined}
+            <OverlayTrigger placement="left" overlay={
+              <Tooltip id="already-paid">This time has been paid.</Tooltip>
+            }>
+              <i className="fa fa-money success" />
+            </OverlayTrigger>
           </span>
         </span>,
       });
