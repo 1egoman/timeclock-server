@@ -53,6 +53,12 @@ function features(req, res) {
     user: req.user,
   });
 }
+function pricing(req, res) {
+  res.render('pricing', {
+    title: 'Waltz Pricing',
+    user: req.user,
+  });
+}
 
 // get a repo
 function doReport(req, res) {
@@ -86,5 +92,6 @@ module.exports = {
   doError: doError,
   index,
   features,
+  pricing,
   doReport: doReport,
 }
