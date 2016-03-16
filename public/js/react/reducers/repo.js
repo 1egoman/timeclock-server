@@ -64,10 +64,13 @@ export function activeRepo(state = null, action) {
 
 export function discoveredRepos(state = [], action) {
   if (action.type === "server/REPOS_DISCOVERED") {
-    return state.concat(action.repos);
-  // } else if (action.type === "server/REPO_IMPORT") {
-  //   // when a new repo is imported, remove it from `discovered_repos`
-  //   return state.filter((i) => !(i.user === action.repo.user && i.repo === action.repo.repo))
+    // only add repos that already haven't been added already
+    let new_repos = action.repos.filter((repo) => {
+      return state.every((existing) => {
+        return !(existing.user === repo.user && existing.repo === repo.repo);
+      });
+    });
+    return state.concat(new_repos);
   } else {
     return state;
   }

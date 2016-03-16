@@ -108,13 +108,21 @@ describe('reducers/repo.js', function() {
     });
   });
   describe('discoveredRepos', function() {
-    it('should create the event', function() {
-      let new_state = discoveredRepos(old_state.discovered_repos, {
+    it('should add repos with no existing repos', function() {
+      let new_state = discoveredRepos([], {
         type: "server/REPOS_DISCOVERED",
         repos: [{foo: "bar"}],
         page: 1,
       });
       assert.deepEqual(new_state, [{foo: "bar"}]);
+    });
+    it('should add unique repos with preexisting repos', function() {
+      let new_state = discoveredRepos([{user: "user-exists", repo: "repo-exists"}], {
+        type: "server/REPOS_DISCOVERED",
+        repos: [{user: "i-am-new", repo: "i-am-too"}, {user: "user-exists", repo: "repo-exists"}],
+        page: 0,
+      });
+      assert.deepEqual(new_state, [{user: "user-exists", repo: "repo-exists"}, {user: "i-am-new", repo: "i-am-too"}]);
     });
     it('should not be effected by another event', function() {
       let new_state = discoveredRepos(old_state.discovered_repos, {
