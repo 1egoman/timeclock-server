@@ -1,0 +1,33 @@
+.pricing-hero {
+  @extend .container;
+
+  & > h1 { text-align: center; }
+}
+
+.price-list {
+}
+
+.price {
+  @include make-xs-column(12);
+  @include make-md-column(4);
+  height: 16rem;
+
+  &:hover {
+    background: $gray-lighter;
+  }
+
+  h1 {
+    text-align: center;
+  }
+}
+
+.price.price-freestyle {
+  @include make-xs-column(12);
+  @include make-md-column(12);
+  @include clearfix;
+  height: 12rem;
+
+  h1 {
+    text-align: left;
+  }
+}
