@@ -6294,7 +6294,17 @@ button.close {
     margin: 0px auto; }
 
 .pricing-hero > h1 {
-  text-align: center; }
+  text-align: center;
+  margin-bottom: 1em; }
+
+.price-list .price-disco section {
+  background: #51c4c4; }
+
+.price-list .price-jive section {
+  background: #8a51c4; }
+
+.price-list .price-polka section {
+  background: #8ac450; }
 
 .price {
   position: relative;
@@ -6307,15 +6317,24 @@ button.close {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  height: 16rem; }
+  height: 21rem;
+  color: #fff; }
   @media (min-width: 992px) {
     .price {
       float: left;
       width: 33.3333333333%; } }
-  .price:hover {
-    background: #eeeeee; }
-  .price h1 {
-    text-align: center; }
+  .price section {
+    height: 100%;
+    padding: 1em 1.8em; }
+  .price ul {
+    list-style-type: none;
+    padding-left: 0px; }
+  .price .price-amount {
+    font-size: 4rem;
+    margin-top: 0.5em;
+    display: inline-block; }
+    .price .price-amount small {
+      font-size: 1.6rem; }
 
 .price.price-freestyle {
   position: relative;
@@ -6328,7 +6347,8 @@ button.close {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  height: 12rem; }
+  height: 12rem;
+  color: #333333; }
   @media (min-width: 992px) {
     .price.price-freestyle {
       float: left;
