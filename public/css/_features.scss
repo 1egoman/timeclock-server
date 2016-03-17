@@ -1,0 +1,15 @@
+.features.features-hero {
+  @extend .container;
+
+  h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 8rem;
+  }
+  h2 {
+    text-align: center;
+    font-weight: normal;
+    font-size: 4rem;
+    margin-top: 0em;
+  }
+}
