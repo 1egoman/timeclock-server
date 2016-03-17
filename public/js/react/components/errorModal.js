@@ -14,11 +14,13 @@ export function ErrorModalComponent({error, hideModal}) {
   </Modal>;
 }
 
-const ErrorModal = connect((store) => {
+export function mapStateToProps(store) {
   return {
     error: store.error,
   };
-}, (dispatch) => {
+};
+
+const ErrorModal = connect(mapStateToProps, (dispatch) => {
   return {
     hideModal() {
       dispatch(hideErrorModal());
