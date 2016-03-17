@@ -92,3 +92,9 @@ export function showWaltzInstallInstructions(value = true) {
     value,
   };
 };
+
+export function hideErrorModal() {
+  return {
+    type: "HIDE_ERROR_MODAL",
+  };
+};
