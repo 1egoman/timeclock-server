@@ -7,6 +7,7 @@ import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import {repoView, settingsView} from './router';
 import InstallClientHelp from './components/installClientHelp';
+import ErrorModal from './components/errorModal';
 
 // enable bootstrap popovers and tooltips
 $(document).ready(function() {
@@ -56,6 +57,7 @@ import {
   repoDetails,
   newTimecardData,
   helpInstallingClient,
+  error
 } from './reducers/repo';
 import { user } from './reducers/user';
 
@@ -74,6 +76,7 @@ const waltzApp = combineReducers({
   routing: routerReducer,
   new_timecard_staging: newTimecardData,
   client_help_dialog: helpInstallingClient,
+  error,
 });
 
 // "Store"
@@ -101,7 +104,11 @@ let store = waltzCreateStore(waltzApp, {
 const history = syncHistoryWithStore(browserHistory, store);
 render(<Provider store={store}>
   <div>
+
+    {/* a few always-persistant modals */}
+    <ErrorModal />
     <InstallClientHelp />
+
     <Router history={history}>
       <Route path="/app/" component={repoView} />
       <Route path="/app/:user/:repo" component={repoView} />
