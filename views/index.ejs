@@ -37,13 +37,7 @@
   $ git add .timecard.json && git push origin master
       </code></pre>
       </p>
-      <% if (!user) { %>
-        <a class="btn btn-success btn-xl btn-50" href="/embed/1egoman/clockmaker">See an example</a>
-        <a class="btn btn-primary btn-xl btn-50" href="/login">Sign in with Github</a>
-      <% } else { %>
-        <a class="btn btn-success btn-xl btn-50" href="/auth/logout">Logout <%= user.username %></a>
-        <a class="btn btn-primary btn-xl btn-50" href="/app">Let's get started</a>
-      <% } %>
+      <% include get_started_buttons %>
     </div>
   </div>
 </div>

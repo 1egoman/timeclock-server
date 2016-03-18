@@ -1505,35 +1505,35 @@ pre {
   max-height: 340px;
   overflow-y: scroll; }
 
-.container, .container-report .report-header .report-header-inner, .pricing-hero, .features.features-hero, .feature-collapse, .feature {
+.container, .container-report .report-header .report-header-inner, .pricing-hero, .features.features-hero, .feature-collapse, .features.features-install, .feature, .features-getting-started-buttons {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px; }
-  .container:before, .container-report .report-header .report-header-inner:before, .pricing-hero:before, .features.features-hero:before, .feature-collapse:before, .feature:before, .container:after, .container-report .report-header .report-header-inner:after, .pricing-hero:after, .features.features-hero:after, .feature-collapse:after, .feature:after {
+  .container:before, .container-report .report-header .report-header-inner:before, .pricing-hero:before, .features.features-hero:before, .feature-collapse:before, .features.features-install:before, .feature:before, .features-getting-started-buttons:before, .container:after, .container-report .report-header .report-header-inner:after, .pricing-hero:after, .features.features-hero:after, .feature-collapse:after, .features.features-install:after, .feature:after, .features-getting-started-buttons:after {
     content: " ";
     display: table; }
-  .container:after, .container-report .report-header .report-header-inner:after, .pricing-hero:after, .features.features-hero:after, .feature-collapse:after, .feature:after {
+  .container:after, .container-report .report-header .report-header-inner:after, .pricing-hero:after, .features.features-hero:after, .feature-collapse:after, .features.features-install:after, .feature:after, .features-getting-started-buttons:after {
     clear: both; }
   @media (min-width: 768px) {
-    .container, .container-report .report-header .report-header-inner, .pricing-hero, .features.features-hero, .feature-collapse, .feature {
+    .container, .container-report .report-header .report-header-inner, .pricing-hero, .features.features-hero, .feature-collapse, .features.features-install, .feature, .features-getting-started-buttons {
       width: 750px; } }
   @media (min-width: 992px) {
-    .container, .container-report .report-header .report-header-inner, .pricing-hero, .features.features-hero, .feature-collapse, .feature {
+    .container, .container-report .report-header .report-header-inner, .pricing-hero, .features.features-hero, .feature-collapse, .features.features-install, .feature, .features-getting-started-buttons {
       width: 970px; } }
   @media (min-width: 1200px) {
-    .container, .container-report .report-header .report-header-inner, .pricing-hero, .features.features-hero, .feature-collapse, .feature {
+    .container, .container-report .report-header .report-header-inner, .pricing-hero, .features.features-hero, .feature-collapse, .features.features-install, .feature, .features-getting-started-buttons {
       width: 1170px; } }
 
-.container-fluid {
+.container-fluid, .features.features-more {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px; }
-  .container-fluid:before, .container-fluid:after {
+  .container-fluid:before, .features.features-more:before, .container-fluid:after, .features.features-more:after {
     content: " ";
     display: table; }
-  .container-fluid:after {
+  .container-fluid:after, .features.features-more:after {
     clear: both; }
 
 .row, .settings-list {
@@ -3804,17 +3804,17 @@ tbody.collapse.in {
     .navbar-fixed-bottom .navbar-collapse {
       max-height: 200px; } }
 
-.container > .navbar-header, .container-report .report-header .report-header-inner > .navbar-header, .pricing-hero > .navbar-header, .features.features-hero > .navbar-header, .feature-collapse > .navbar-header, .feature > .navbar-header,
-.container > .navbar-collapse, .container-report .report-header .report-header-inner > .navbar-collapse, .pricing-hero > .navbar-collapse, .features.features-hero > .navbar-collapse, .feature-collapse > .navbar-collapse, .feature > .navbar-collapse,
-.container-fluid > .navbar-header,
-.container-fluid > .navbar-collapse {
+.container > .navbar-header, .container-report .report-header .report-header-inner > .navbar-header, .pricing-hero > .navbar-header, .features.features-hero > .navbar-header, .feature-collapse > .navbar-header, .features.features-install > .navbar-header, .feature > .navbar-header, .features-getting-started-buttons > .navbar-header,
+.container > .navbar-collapse, .container-report .report-header .report-header-inner > .navbar-collapse, .pricing-hero > .navbar-collapse, .features.features-hero > .navbar-collapse, .feature-collapse > .navbar-collapse, .features.features-install > .navbar-collapse, .feature > .navbar-collapse, .features-getting-started-buttons > .navbar-collapse,
+.container-fluid > .navbar-header, .features.features-more > .navbar-header,
+.container-fluid > .navbar-collapse, .features.features-more > .navbar-collapse {
   margin-right: -15px;
   margin-left: -15px; }
   @media (min-width: 768px) {
-    .container > .navbar-header, .container-report .report-header .report-header-inner > .navbar-header, .pricing-hero > .navbar-header, .features.features-hero > .navbar-header, .feature-collapse > .navbar-header, .feature > .navbar-header,
-    .container > .navbar-collapse, .container-report .report-header .report-header-inner > .navbar-collapse, .pricing-hero > .navbar-collapse, .features.features-hero > .navbar-collapse, .feature-collapse > .navbar-collapse, .feature > .navbar-collapse,
-    .container-fluid > .navbar-header,
-    .container-fluid > .navbar-collapse {
+    .container > .navbar-header, .container-report .report-header .report-header-inner > .navbar-header, .pricing-hero > .navbar-header, .features.features-hero > .navbar-header, .feature-collapse > .navbar-header, .features.features-install > .navbar-header, .feature > .navbar-header, .features-getting-started-buttons > .navbar-header,
+    .container > .navbar-collapse, .container-report .report-header .report-header-inner > .navbar-collapse, .pricing-hero > .navbar-collapse, .features.features-hero > .navbar-collapse, .feature-collapse > .navbar-collapse, .features.features-install > .navbar-collapse, .feature > .navbar-collapse, .features-getting-started-buttons > .navbar-collapse,
+    .container-fluid > .navbar-header, .features.features-more > .navbar-header,
+    .container-fluid > .navbar-collapse, .features.features-more > .navbar-collapse {
       margin-right: 0;
       margin-left: 0; } }
 
@@ -3856,8 +3856,9 @@ tbody.collapse.in {
   .navbar-brand > img {
     display: block; }
   @media (min-width: 768px) {
-    .navbar > .container .navbar-brand, .container-report .report-header .navbar > .report-header-inner .navbar-brand, .navbar > .pricing-hero .navbar-brand, .navbar > .features.features-hero .navbar-brand, .navbar > .feature-collapse .navbar-brand, .navbar > .feature .navbar-brand,
-    .navbar > .container-fluid .navbar-brand {
+    .navbar > .container .navbar-brand, .container-report .report-header .navbar > .report-header-inner .navbar-brand, .navbar > .pricing-hero .navbar-brand, .navbar > .features.features-hero .navbar-brand, .navbar > .feature-collapse .navbar-brand, .navbar > .features.features-install .navbar-brand, .navbar > .feature .navbar-brand, .navbar > .features-getting-started-buttons .navbar-brand,
+    .navbar > .container-fluid .navbar-brand,
+    .navbar > .features.features-more .navbar-brand {
       margin-left: -15px; } }
 
 .navbar-toggle {
@@ -4390,21 +4391,21 @@ a.badge:hover, a.badge:focus {
     font-weight: 200; }
   .jumbotron > hr, .hero > hr {
     border-top-color: #d5d5d5; }
-  .container .jumbotron, .container-report .report-header .report-header-inner .jumbotron, .pricing-hero .jumbotron, .features.features-hero .jumbotron, .feature-collapse .jumbotron, .feature .jumbotron, .container .hero, .container-report .report-header .report-header-inner .hero, .pricing-hero .hero, .features.features-hero .hero, .feature-collapse .hero, .feature .hero,
-  .container-fluid .jumbotron,
-  .container-fluid .hero {
+  .container .jumbotron, .container-report .report-header .report-header-inner .jumbotron, .pricing-hero .jumbotron, .features.features-hero .jumbotron, .feature-collapse .jumbotron, .features.features-install .jumbotron, .feature .jumbotron, .features-getting-started-buttons .jumbotron, .container .hero, .container-report .report-header .report-header-inner .hero, .pricing-hero .hero, .features.features-hero .hero, .feature-collapse .hero, .features.features-install .hero, .feature .hero, .features-getting-started-buttons .hero,
+  .container-fluid .jumbotron, .features.features-more .jumbotron,
+  .container-fluid .hero, .features.features-more .hero {
     border-radius: 0px;
     padding-left: 15px;
     padding-right: 15px; }
-  .jumbotron .container, .hero .container, .jumbotron .container-report .report-header .report-header-inner, .container-report .report-header .jumbotron .report-header-inner, .hero .container-report .report-header .report-header-inner, .container-report .report-header .hero .report-header-inner, .jumbotron .pricing-hero, .hero .pricing-hero, .jumbotron .features.features-hero, .hero .features.features-hero, .jumbotron .feature-collapse, .hero .feature-collapse, .jumbotron .feature, .hero .feature {
+  .jumbotron .container, .hero .container, .jumbotron .container-report .report-header .report-header-inner, .container-report .report-header .jumbotron .report-header-inner, .hero .container-report .report-header .report-header-inner, .container-report .report-header .hero .report-header-inner, .jumbotron .pricing-hero, .hero .pricing-hero, .jumbotron .features.features-hero, .hero .features.features-hero, .jumbotron .feature-collapse, .hero .feature-collapse, .jumbotron .features.features-install, .hero .features.features-install, .jumbotron .feature, .hero .feature, .jumbotron .features-getting-started-buttons, .hero .features-getting-started-buttons {
     max-width: 100%; }
   @media screen and (min-width: 768px) {
     .jumbotron, .hero {
       padding-top: 48px;
       padding-bottom: 48px; }
-      .container .jumbotron, .container-report .report-header .report-header-inner .jumbotron, .pricing-hero .jumbotron, .features.features-hero .jumbotron, .feature-collapse .jumbotron, .feature .jumbotron, .container .hero, .container-report .report-header .report-header-inner .hero, .pricing-hero .hero, .features.features-hero .hero, .feature-collapse .hero, .feature .hero,
-      .container-fluid .jumbotron,
-      .container-fluid .hero {
+      .container .jumbotron, .container-report .report-header .report-header-inner .jumbotron, .pricing-hero .jumbotron, .features.features-hero .jumbotron, .feature-collapse .jumbotron, .features.features-install .jumbotron, .feature .jumbotron, .features-getting-started-buttons .jumbotron, .container .hero, .container-report .report-header .report-header-inner .hero, .pricing-hero .hero, .features.features-hero .hero, .feature-collapse .hero, .features.features-install .hero, .feature .hero, .features-getting-started-buttons .hero,
+      .container-fluid .jumbotron, .features.features-more .jumbotron,
+      .container-fluid .hero, .features.features-more .hero {
         padding-left: 60px;
         padding-right: 60px; }
       .jumbotron h1, .hero h1,
@@ -5961,42 +5962,42 @@ button.close {
 
 .master {
   overflow-x: hidden; }
-  .master section.container, .master .container-report .report-header section.report-header-inner, .container-report .report-header .master section.report-header-inner, .master section.pricing-hero, .master section.features.features-hero, .master section.feature-collapse, .master section.feature {
+  .master section.container, .master .container-report .report-header section.report-header-inner, .container-report .report-header .master section.report-header-inner, .master section.pricing-hero, .master section.features.features-hero, .master section.feature-collapse, .master section.features.features-install, .master section.feature, .master section.features-getting-started-buttons {
     margin-top: 2em;
     margin-bottom: 4em; }
-    .master section.container .section-text, .master .container-report .report-header section.report-header-inner .section-text, .container-report .report-header .master section.report-header-inner .section-text, .master section.pricing-hero .section-text, .master section.features.features-hero .section-text, .master section.feature-collapse .section-text, .master section.feature .section-text {
+    .master section.container .section-text, .master .container-report .report-header section.report-header-inner .section-text, .container-report .report-header .master section.report-header-inner .section-text, .master section.pricing-hero .section-text, .master section.features.features-hero .section-text, .master section.feature-collapse .section-text, .master section.features.features-install .section-text, .master section.feature .section-text, .master section.features-getting-started-buttons .section-text {
       position: relative;
       min-height: 1px;
       padding-left: 15px;
       padding-right: 15px; }
       @media (min-width: 992px) {
-        .master section.container .section-text, .master .container-report .report-header section.report-header-inner .section-text, .container-report .report-header .master section.report-header-inner .section-text, .master section.pricing-hero .section-text, .master section.features.features-hero .section-text, .master section.feature-collapse .section-text, .master section.feature .section-text {
+        .master section.container .section-text, .master .container-report .report-header section.report-header-inner .section-text, .container-report .report-header .master section.report-header-inner .section-text, .master section.pricing-hero .section-text, .master section.features.features-hero .section-text, .master section.feature-collapse .section-text, .master section.features.features-install .section-text, .master section.feature .section-text, .master section.features-getting-started-buttons .section-text {
           float: left;
           width: 66.6666666667%; } }
-    .master section.container p, .master .container-report .report-header section.report-header-inner p, .container-report .report-header .master section.report-header-inner p, .master section.pricing-hero p, .master section.features.features-hero p, .master section.feature-collapse p, .master section.feature p {
+    .master section.container p, .master .container-report .report-header section.report-header-inner p, .container-report .report-header .master section.report-header-inner p, .master section.pricing-hero p, .master section.features.features-hero p, .master section.feature-collapse p, .master section.features.features-install p, .master section.feature p, .master section.features-getting-started-buttons p {
       font-size: 1.4em; }
-    .master section.container .section-img, .master .container-report .report-header section.report-header-inner .section-img, .container-report .report-header .master section.report-header-inner .section-img, .master section.pricing-hero .section-img, .master section.features.features-hero .section-img, .master section.feature-collapse .section-img, .master section.feature .section-img {
+    .master section.container .section-img, .master .container-report .report-header section.report-header-inner .section-img, .container-report .report-header .master section.report-header-inner .section-img, .master section.pricing-hero .section-img, .master section.features.features-hero .section-img, .master section.feature-collapse .section-img, .master section.features.features-install .section-img, .master section.feature .section-img, .master section.features-getting-started-buttons .section-img {
       position: relative;
       min-height: 1px;
       padding-left: 15px;
       padding-right: 15px; }
       @media (min-width: 992px) {
-        .master section.container .section-img, .master .container-report .report-header section.report-header-inner .section-img, .container-report .report-header .master section.report-header-inner .section-img, .master section.pricing-hero .section-img, .master section.features.features-hero .section-img, .master section.feature-collapse .section-img, .master section.feature .section-img {
+        .master section.container .section-img, .master .container-report .report-header section.report-header-inner .section-img, .container-report .report-header .master section.report-header-inner .section-img, .master section.pricing-hero .section-img, .master section.features.features-hero .section-img, .master section.feature-collapse .section-img, .master section.features.features-install .section-img, .master section.feature .section-img, .master section.features-getting-started-buttons .section-img {
           float: left;
           width: 33.3333333333%; } }
       @media (min-width: 992px) {
-        .master section.container .section-img.on-top, .master .container-report .report-header section.report-header-inner .section-img.on-top, .container-report .report-header .master section.report-header-inner .section-img.on-top, .master section.pricing-hero .section-img.on-top, .master section.features.features-hero .section-img.on-top, .master section.feature-collapse .section-img.on-top, .master section.feature .section-img.on-top {
+        .master section.container .section-img.on-top, .master .container-report .report-header section.report-header-inner .section-img.on-top, .container-report .report-header .master section.report-header-inner .section-img.on-top, .master section.pricing-hero .section-img.on-top, .master section.features.features-hero .section-img.on-top, .master section.feature-collapse .section-img.on-top, .master section.features.features-install .section-img.on-top, .master section.feature .section-img.on-top, .master section.features-getting-started-buttons .section-img.on-top {
           display: none; } }
-      .master section.container .section-img.on-right, .master .container-report .report-header section.report-header-inner .section-img.on-right, .container-report .report-header .master section.report-header-inner .section-img.on-right, .master section.pricing-hero .section-img.on-right, .master section.features.features-hero .section-img.on-right, .master section.feature-collapse .section-img.on-right, .master section.feature .section-img.on-right {
+      .master section.container .section-img.on-right, .master .container-report .report-header section.report-header-inner .section-img.on-right, .container-report .report-header .master section.report-header-inner .section-img.on-right, .master section.pricing-hero .section-img.on-right, .master section.features.features-hero .section-img.on-right, .master section.feature-collapse .section-img.on-right, .master section.features.features-install .section-img.on-right, .master section.feature .section-img.on-right, .master section.features-getting-started-buttons .section-img.on-right {
         display: none; }
         @media (min-width: 992px) {
-          .master section.container .section-img.on-right, .master .container-report .report-header section.report-header-inner .section-img.on-right, .container-report .report-header .master section.report-header-inner .section-img.on-right, .master section.pricing-hero .section-img.on-right, .master section.features.features-hero .section-img.on-right, .master section.feature-collapse .section-img.on-right, .master section.feature .section-img.on-right {
+          .master section.container .section-img.on-right, .master .container-report .report-header section.report-header-inner .section-img.on-right, .container-report .report-header .master section.report-header-inner .section-img.on-right, .master section.pricing-hero .section-img.on-right, .master section.features.features-hero .section-img.on-right, .master section.feature-collapse .section-img.on-right, .master section.features.features-install .section-img.on-right, .master section.feature .section-img.on-right, .master section.features-getting-started-buttons .section-img.on-right {
             display: block; } }
       @media (min-width: 992px) {
-        .master section.container .section-img .money, .master .container-report .report-header section.report-header-inner .section-img .money, .container-report .report-header .master section.report-header-inner .section-img .money, .master section.pricing-hero .section-img .money, .master section.features.features-hero .section-img .money, .master section.feature-collapse .section-img .money, .master section.feature .section-img .money {
+        .master section.container .section-img .money, .master .container-report .report-header section.report-header-inner .section-img .money, .container-report .report-header .master section.report-header-inner .section-img .money, .master section.pricing-hero .section-img .money, .master section.features.features-hero .section-img .money, .master section.feature-collapse .section-img .money, .master section.features.features-install .section-img .money, .master section.feature .section-img .money, .master section.features-getting-started-buttons .section-img .money {
           margin-left: -360px; } }
       @media (min-width: 992px) {
-        .master section.container .section-img .timecard, .master .container-report .report-header section.report-header-inner .section-img .timecard, .container-report .report-header .master section.report-header-inner .section-img .timecard, .master section.pricing-hero .section-img .timecard, .master section.features.features-hero .section-img .timecard, .master section.feature-collapse .section-img .timecard, .master section.feature .section-img .timecard {
+        .master section.container .section-img .timecard, .master .container-report .report-header section.report-header-inner .section-img .timecard, .container-report .report-header .master section.report-header-inner .section-img .timecard, .master section.pricing-hero .section-img .timecard, .master section.features.features-hero .section-img .timecard, .master section.feature-collapse .section-img .timecard, .master section.features.features-install .section-img .timecard, .master section.feature .section-img .timecard, .master section.features-getting-started-buttons .section-img .timecard {
           margin-right: -360px; } }
 
 .themes.themes-hero {
@@ -6169,6 +6170,16 @@ button.close {
   font-size: 4rem;
   margin-top: 0em; }
 
+.features.features-more {
+  margin-top: 4rem;
+  background: #8a51c4;
+  color: #fff; }
+  .features.features-more h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 4.8rem;
+    margin-top: 6.4rem; }
+
 .feature-collapse {
   margin-top: 3.2rem; }
   .feature-collapse ul {
@@ -6183,7 +6194,7 @@ button.close {
         width: 41.6666666667%; } }
     .feature-collapse ul li {
       float: none;
-      margin: 0.5rem; }
+      margin: 1.2rem; }
       .feature-collapse ul li.active a, .feature-collapse ul li.active a:hover, .feature-collapse ul li.active a:active, .feature-collapse ul li.active a:focus {
         border: 1px solid transparent;
         background-color: #eeeeee; }
@@ -6205,31 +6216,59 @@ button.close {
     .feature-collapse .tab-content .img-full {
       width: 100%; }
 
-.feature .content {
-  position: relative;
-  float: left;
-  width: 100%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  font-size: 2rem; }
-  @media (min-width: 992px) {
-    .feature .content {
-      float: left;
-      width: 50%; } }
-  .feature .content.content-large {
+.features.features-install h1 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 3.2rem;
+  margin-top: 6.4rem; }
+
+.features.features-install pre {
+  margin-top: 3rem;
+  padding-top: 2rem; }
+
+.feature {
+  padding: 4.8rem; }
+  .feature img {
+    width: 30%;
+    margin: 0px auto;
+    display: block;
     position: relative;
     min-height: 1px;
     padding-left: 15px;
     padding-right: 15px; }
     @media (min-width: 992px) {
-      .feature .content.content-large {
+      .feature img {
         float: left;
-        width: 66.6666666667%; } }
+        width: 33.3333333333%; } }
+  .feature .content {
+    position: relative;
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 2rem; }
+    @media (min-width: 992px) {
+      .feature .content {
+        float: left;
+        width: 50%; } }
+    .feature .content.content-large {
+      position: relative;
+      min-height: 1px;
+      padding-left: 15px;
+      padding-right: 15px; }
+      @media (min-width: 992px) {
+        .feature .content.content-large {
+          float: left;
+          width: 66.6666666667%; } }
+
+.features-getting-started-buttons {
+  margin-top: 4rem;
+  margin-bottom: 4rem; }
 
 .navbar {
   background: #eeeeee; }

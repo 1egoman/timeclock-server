@@ -5,6 +5,8 @@
   <h2>nice-looking invoices easy.</h2>
 </div>
 
+<div class="features-getting-started-buttons"><% include get_started_buttons %></div>
+
 <div class="features feature-collapse">
   <ul role="tablist">
     <li role="presentation" class="active">
@@ -54,92 +56,65 @@
     <div role="tabpanel" class="tab-pane" id="version-controlled">
       <img class="img-full" src="/img/features/version-controlled.svg" />
     </div>
-    <div role="tabpanel" class="tab-pane" id="collaborative">...</div>
-    <div role="tabpanel" class="tab-pane" id="own-your-data">...</div>
-  </div>
-</div>
-
-
-
-
-
-<h1>And, that's not all</h1>
-
-<h4>Limit long work periods</h4>
-<p>
-  Working for a long duration without a break can lead to adverse health effects.
-  Waltz can warn you when you work too long for one sitting, giving you metrics
-  to increase your daily well-being.
-</p>
-
-<h4>We &lt;3 Open Source</h4>
-<p>
-  As a thank you to the many open source projects behind Waltz, open source
-  projects get a free, all access pass. <a href="/pricing">For more information
-  about private repositories, take a look at our pricing details.</a>
-  <small>We promise they are affordable!</small>
-</p>
-
-<div class="feature feature-right">
-  <img src="/img/features/readmebuttons.svg" />
-  <div class="content content-large">
-    <h2>Badges</h2>
-    <p>
-      At a glance, show the amount of unpaid time for any project, on any
-      branch, at any time on a project's <code>README.md</code>.
-    </p>
-  </div>
-</div>
-
-<h2>Sold? Install Waltz and set up a repo with 3 commands:</h2>
-<pre>
-  npm install -g waltz
-  waltz init --commit
-  git push origin master
-</pre>
-<small>Waltz currently only supports Linux and OSX.</small>
-
-
-<div class="master">
-  <section class="container">
-    <h1>The Problem</h1>
-    <p>
-      Invoices are a pain, especially for freelance developers. From calculating
-      the amount of hours that you've put into a project, to creating the actual
-      invoice and doing design work, most developers would rather do
-      something else. Wouldn't you love to get rid of the process?
-    </p>
-  </section>
-  <section class="container">
-    <div class="section-img on-top">
-      <img src="/img/clock.svg" class="timecard" />
+    <div role="tabpanel" class="tab-pane" id="collaborative">
+      coming soon
     </div>
-    <div class="section-text">
-      <h1>Waltz gives clients great invoices.</h1>
+    <div role="tabpanel" class="tab-pane" id="own-your-data">
+      coming soon
+    </div>
+  </div>
+</div>
+
+<div class="features features-more">
+  <h1>And, that's not all...</h1>
+
+  <div class="feature feature-right">
+    <img src="/img/features/bandaid.svg" />
+    <div class="content content-large">
+    <h2>Limit long work periods</h2>
+    <p>
+      Working for a long duration without a break can lead to adverse health effects.
+      Waltz can warn you when you work too long for one sitting, giving you metrics
+      to increase your daily well-being.
+    </p>
+    </div>
+  </div>
+
+  <div class="feature feature-right">
+    <img src="/img/features/readmebuttons.svg" />
+    <div class="content content-large">
+      <h2>Badges</h2>
       <p>
-        Easily track the time you work on a project with <code>waltz</code>. Before
-        you start your work for the day, be sure to <code>waltz in</code>. Need to
-        run a few errands or get out of the house? Run <code>waltz out</code>. Too
-        lazy for that dance? Instead, run <code>waltz watch</code> to listen
-        for changes and auto-clock you in or out. In addition to an invoice for
-        the client, you also get work-time metrics for yourself.
+        At a glance, show the amount of unpaid time for any project, on any
+        branch, at any time on a project's <code>README.md</code>.
       </p>
     </div>
-    <div class="section-img on-right">
-      <img src="/img/clock.svg" class="timecard" />
+  </div>
+
+  <div class="feature feature-right">
+    <img src="/img/features/heart.svg" />
+    <div class="content content-large">
+      <h2>We &lt;3 Open Source</h2>
+      <p>
+        As a thank you to the many open source projects behind Waltz, open source
+        projects get a free, all access pass. Private repos only cost a few
+        dollars a piece - for more information about pricate repositories, 
+        <a href="/pricing">take a look at our pricing details.</a>
+      </p>
     </div>
-  </section>
-  <section class="container">
-    <h1>What's the value prop?</h1>
-    <ul>
-      <li>Great looking and informative invoice for the client</li>
-      <li>Metrics from work data</li>
-      <li>Warning when you don't get up from your desk enough</li>
-      <li>Personal branding</li>
-      <li>Little effort for the coder</li>
-      <li>Collaborative</li>
-    </ul>
-  </section>
+  </div>
 </div>
+
+<div class="features features-install">
+  <h1>Sold? Install Waltz and set up a repo with 3 commands:</h1>
+  <pre>
+    $ npm install -g waltz
+    $ waltz init --commit
+    $ git push origin master
+  </pre>
+  <small>Waltz currently only supports Linux and OSX.</small>
+</div>
+
+<div class="features-getting-started-buttons"><% include get_started_buttons %></div>
 
 <% include footer %>
