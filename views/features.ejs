@@ -112,9 +112,14 @@
     $ waltz init --commit
     $ git push origin master
   </pre>
+
+  <% if (!user) { %>
+    <a class="btn btn-primary btn-lg btn-block" href="/login">Then, sign in.</a>
+  <% } else { %>
+    <a class="btn btn-success btn-lg btn-block" href="/app">Then, open the app.</a>
+  <% } %>
+
   <small>Waltz currently only supports Linux and OSX.</small>
 </div>
-
-<div class="features-getting-started-buttons"><% include get_started_buttons %></div>
 
 <% include footer %>

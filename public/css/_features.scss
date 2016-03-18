@@ -77,10 +77,22 @@
     margin-top: 6.4rem;
   }
 
+  // install instructions
   pre {
     margin-top: 3rem;
     padding-top: 2rem;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
   }
+
+  // "Then, sign in" or "Then, open the app" button
+  &.btn-next-step {
+    @extend .btn-primary;
+    @extend .btn-lg;
+    @extend .btn-block;
+  }
+
+  small { color: $gray-light; }
 }
 
 // a stand-alone feature
