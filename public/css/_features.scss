@@ -1,3 +1,4 @@
+// bold, intro text
 .features.features-hero {
   @extend .container;
 
@@ -11,5 +12,66 @@
     font-weight: normal;
     font-size: 4rem;
     margin-top: 0em;
+  }
+}
+
+// the "collapsable" tab-esc feature organiser
+.feature-collapse {
+  @extend .container;
+  margin-top: 3.2rem;
+
+  // the tab nav container
+  ul {
+    @extend .nav;
+    @extend .nav-tabs;
+    @include make-md-column(5);
+    border-bottom: 0px;
+
+    // each nav item
+    li {
+      float: none;
+      margin: 0.5rem;
+      &.active {
+        a, a:hover, a:active, a:focus {
+          border: 1px solid transparent;
+          background-color: $gray-lighter;
+        }
+      }
+
+      // when in < md, give the element below some space
+      &:last-child { margin-bottom: 1em; }
+
+      h4 { font-weight: bold; }
+      p { color: $text-color; }
+    }
+
+  }
+
+  .tab-content {
+    @include make-md-column(7);
+    .img-full { width: 100%; }
+  }
+}
+
+// a stand-alone feature
+.feature {
+  @extend .container;
+  .content {
+    @include make-xs-column(12);
+    @include make-md-column(6);
+    font-size: 2rem;
+    &.content-large {
+      @include make-md-column(8);
+    }
+  }
+  &.feature-left {
+    .content {
+      @extend .pull-left;
+    }
+  }
+  &.feature-right {
+    .content {
+      @extend .pull-right;
+    }
   }
 }

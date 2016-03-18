@@ -5,29 +5,100 @@
   <h2>nice-looking invoices easy.</h2>
 </div>
 
-<div>
-  <div class="container">
-    <div class="text-body">
-      <p>
-        As simple as:
-        <pre><code>
-  $ npm install -g waltz
-  $ waltz in
-  $ # go do some work
-  $ waltz out
-  $ git add .timecard.json && git push origin master
-      </code></pre>
-      </p>
-      <% if (!user) { %>
-        <a class="btn btn-success btn-xl btn-50" href="/features">Features</a>
-        <a class="btn btn-primary btn-xl btn-50" href="/login">Sign in with Github</a>
-      <% } else { %>
-        <a class="btn btn-success btn-xl btn-50" href="/auth/logout">Logout <%= user.username %></a>
-        <a class="btn btn-primary btn-xl btn-50" href="/app">Let's get started</a>
-      <% } %>
+<div class="features feature-collapse">
+  <ul role="tablist">
+    <li role="presentation" class="active">
+      <a href="#great-by-default" aria-controls="great-by-default" role="tab" data-toggle="tab">
+        <h4>Great by default</h4>
+        <p>
+          Provide a name, a tagline, and a template, and Waltz will do the rest. Don't
+          like our templates? With minimal knowlege, design your own. Beautiful invoices
+          were never so easy!
+        </p>
+      </a>
+    </li>
+    <li role="presentation">
+      <a href="#version-controlled" aria-controls="version-controlled" role="tab" data-toggle="tab">
+        <h4>Version controlled</h4>
+        <p>
+          Because invoices are stored with your code, easily diff invoices across branches to
+          quickly determine the time spent on individual features.
+        </p>
+      </a>
+    </li>
+    <li role="presentation">
+      <a href="#collaborative" aria-controls="collaborative" role="tab" data-toggle="tab">
+        <h4>Collaborative</h4>
+        <p>
+          Because we integrate with pre-existing codebases, the collaborative workflow
+          one uses when working on a project works across invoices in a similar
+          manner.
+        </p>
+      </a>
+    </li>
+    <li role="presentation">
+      <a href="#own-your-data" aria-controls="own-your-data" role="tab" data-toggle="tab">
+        <h4>Own your data</h4>
+        <p>
+          When your data is in your hands, you can ensure what should stay private will.
+          Should you ever want to migrate data to another service, it's easily accessible
+          and versioned along with your code.
+        </p>
+      </a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="great-by-default">
+      <img class="img-full" src="/img/features/great-by-default.svg" />
     </div>
+    <div role="tabpanel" class="tab-pane" id="version-controlled">
+      <img class="img-full" src="/img/features/version-controlled.svg" />
+    </div>
+    <div role="tabpanel" class="tab-pane" id="collaborative">...</div>
+    <div role="tabpanel" class="tab-pane" id="own-your-data">...</div>
   </div>
 </div>
+
+
+
+
+
+<h1>And, that's not all</h1>
+
+<h4>Limit long work periods</h4>
+<p>
+  Working for a long duration without a break can lead to adverse health effects.
+  Waltz can warn you when you work too long for one sitting, giving you metrics
+  to increase your daily well-being.
+</p>
+
+<h4>We &lt;3 Open Source</h4>
+<p>
+  As a thank you to the many open source projects behind Waltz, open source
+  projects get a free, all access pass. <a href="/pricing">For more information
+  about private repositories, take a look at our pricing details.</a>
+  <small>We promise they are affordable!</small>
+</p>
+
+<div class="feature feature-right">
+  <img src="/img/features/readmebuttons.svg" />
+  <div class="content content-large">
+    <h2>Badges</h2>
+    <p>
+      At a glance, show the amount of unpaid time for any project, on any
+      branch, at any time on a project's <code>README.md</code>.
+    </p>
+  </div>
+</div>
+
+<h2>Sold? Install Waltz and set up a repo with 3 commands:</h2>
+<pre>
+  npm install -g waltz
+  waltz init --commit
+  git push origin master
+</pre>
+<small>Waltz currently only supports Linux and OSX.</small>
+
 
 <div class="master">
   <section class="container">
@@ -56,14 +127,6 @@
     </div>
     <div class="section-img on-right">
       <img src="/img/clock.svg" class="timecard" />
-    </div>
-  </section>
-  <section class="container">
-    <div class="section-img">
-      <img src="/img/money.svg" class="money" />
-    </div>
-    <div class="section-text">
-      <h1>We also give you metrics on how you get work done.</h1>
     </div>
   </section>
   <section class="container">
