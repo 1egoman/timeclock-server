@@ -34,12 +34,16 @@
       }
 
       .money {
+        height: 200px;
         @media (min-width: $screen-md-min) {
+          height: 100%;
           margin-left: -360px;
         }
       }
       .timecard {
+        height: 200px;
         @media (min-width: $screen-md-min) {
+          height: 100%;
           margin-right: -360px;
         }
       }
