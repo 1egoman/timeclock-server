@@ -57,10 +57,10 @@
       <img class="img-full" src="/img/features/version-controlled.svg" />
     </div>
     <div role="tabpanel" class="tab-pane" id="collaborative">
-      coming soon
+      <img class="img-full" src="/img/features/collaborative.svg" />
     </div>
     <div role="tabpanel" class="tab-pane" id="own-your-data">
-      coming soon
+      <img class="img-full" src="/img/features/own-your-data.svg" />
     </div>
   </div>
 </div>
@@ -98,7 +98,7 @@
       <p>
         As a thank you to the many open source projects behind Waltz, open source
         projects get a free, all access pass. Private repos only cost a few
-        dollars a piece - for more information about pricate repositories, 
+        dollars a piece - for more information about private repositories, 
         <a href="/pricing">take a look at our pricing details.</a>
       </p>
     </div>
@@ -106,7 +106,7 @@
 </div>
 
 <div class="features features-install">
-  <h1>Sold? Install Waltz and set up a repo with 3 commands:</h1>
+  <h1>Sold? Give Waltz a try:</h1>
   <pre>
     $ npm install -g waltz
     $ waltz init --commit
@@ -116,10 +116,13 @@
   <% if (!user) { %>
     <a class="btn btn-primary btn-lg btn-block" href="/login">Then, sign in.</a>
   <% } else { %>
-    <a class="btn btn-success btn-lg btn-block" href="/app">Then, open the app.</a>
+    <a class="btn btn-next-step" href="/app">Then, open the app.</a>
   <% } %>
 
-  <small>Waltz currently only supports Linux and OSX.</small>
+  <small>
+    Waltz currently only supports Linux and OSX. Before running, insure
+    <a href="//nodejs.org">node</a> is installed.
+  </small>
 </div>
 
 <% include footer %>

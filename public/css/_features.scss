@@ -69,7 +69,7 @@
 
 .features.features-install {
   @extend .container;
-  width: 400px;
+  width: 480px;
 
   h1 {
     text-align: center;
@@ -87,7 +87,7 @@
   }
 
   // "Then, sign in" or "Then, open the app" button
-  &.btn-next-step {
+  .btn-next-step {
     @extend .btn-primary;
     @extend .btn-lg;
     @extend .btn-block;

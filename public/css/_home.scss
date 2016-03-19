@@ -81,7 +81,14 @@
   }
 }
 
-.byline {
+.more-features {
+  display: block;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 2em;
+
+  .btn {
+    border-color: $brand-success;
+    border-width: 2px;
+    color: $brand-success;
+  }
 }

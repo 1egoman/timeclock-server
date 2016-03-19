@@ -2935,48 +2935,51 @@ fieldset[disabled] a.btn {
     color: #fff;
     background-color: #333; }
 
-.btn-primary, .features.features-install.btn-next-step {
+.btn-primary, .features.features-install .btn-next-step {
   color: #fff;
   background-color: #51c4c4;
   border-color: #40bcbc; }
-  .btn-primary:focus, .features.features-install.btn-next-step:focus, .btn-primary.focus, .focus.features.features-install.btn-next-step {
+  .btn-primary:focus, .features.features-install .btn-next-step:focus, .btn-primary.focus, .features.features-install .focus.btn-next-step {
     color: #fff;
     background-color: #39a9a9;
     border-color: #1f5d5d; }
-  .btn-primary:hover, .features.features-install.btn-next-step:hover {
+  .btn-primary:hover, .features.features-install .btn-next-step:hover {
     color: #fff;
     background-color: #39a9a9;
     border-color: #308e8e; }
-  .btn-primary:active, .features.features-install.btn-next-step:active, .btn-primary.active, .active.features.features-install.btn-next-step,
-  .open > .btn-primary.dropdown-toggle,
-  .open > .dropdown-toggle.features.features-install.btn-next-step {
+  .btn-primary:active, .features.features-install .btn-next-step:active, .btn-primary.active, .features.features-install .active.btn-next-step,
+  .open > .btn-primary.dropdown-toggle, .features.features-install
+  .open > .dropdown-toggle.btn-next-step {
     color: #fff;
     background-color: #39a9a9;
     border-color: #308e8e; }
-    .btn-primary:active:hover, .features.features-install.btn-next-step:active:hover, .btn-primary:active:focus, .features.features-install.btn-next-step:active:focus, .btn-primary:active.focus, .features.features-install.btn-next-step:active.focus, .btn-primary.active:hover, .active.features.features-install.btn-next-step:hover, .btn-primary.active:focus, .active.features.features-install.btn-next-step:focus, .btn-primary.active.focus, .active.focus.features.features-install.btn-next-step,
-    .open > .btn-primary.dropdown-toggle:hover,
-    .open > .dropdown-toggle.features.features-install.btn-next-step:hover,
-    .open > .btn-primary.dropdown-toggle:focus,
-    .open > .dropdown-toggle.features.features-install.btn-next-step:focus,
-    .open > .btn-primary.dropdown-toggle.focus,
-    .open > .dropdown-toggle.focus.features.features-install.btn-next-step {
+    .btn-primary:active:hover, .features.features-install .btn-next-step:active:hover, .btn-primary:active:focus, .features.features-install .btn-next-step:active:focus, .btn-primary:active.focus, .features.features-install .btn-next-step:active.focus, .btn-primary.active:hover, .features.features-install .active.btn-next-step:hover, .btn-primary.active:focus, .features.features-install .active.btn-next-step:focus, .btn-primary.active.focus, .features.features-install .active.focus.btn-next-step,
+    .open > .btn-primary.dropdown-toggle:hover, .features.features-install
+    .open > .dropdown-toggle.btn-next-step:hover,
+    .open > .btn-primary.dropdown-toggle:focus, .features.features-install
+    .open > .dropdown-toggle.btn-next-step:focus,
+    .open > .btn-primary.dropdown-toggle.focus, .features.features-install
+    .open > .dropdown-toggle.focus.btn-next-step {
       color: #fff;
       background-color: #308e8e;
       border-color: #1f5d5d; }
-  .btn-primary:active, .features.features-install.btn-next-step:active, .btn-primary.active, .active.features.features-install.btn-next-step,
-  .open > .btn-primary.dropdown-toggle,
-  .open > .dropdown-toggle.features.features-install.btn-next-step {
+  .btn-primary:active, .features.features-install .btn-next-step:active, .btn-primary.active, .features.features-install .active.btn-next-step,
+  .open > .btn-primary.dropdown-toggle, .features.features-install
+  .open > .dropdown-toggle.btn-next-step {
     background-image: none; }
-  .btn-primary.disabled:hover, .disabled.features.features-install.btn-next-step:hover, .btn-primary.disabled:focus, .disabled.features.features-install.btn-next-step:focus, .btn-primary.disabled.focus, .disabled.focus.features.features-install.btn-next-step, .btn-primary[disabled]:hover, [disabled].features.features-install.btn-next-step:hover, .btn-primary[disabled]:focus, [disabled].features.features-install.btn-next-step:focus, .btn-primary[disabled].focus, [disabled].focus.features.features-install.btn-next-step,
+  .btn-primary.disabled:hover, .features.features-install .disabled.btn-next-step:hover, .btn-primary.disabled:focus, .features.features-install .disabled.btn-next-step:focus, .btn-primary.disabled.focus, .features.features-install .disabled.focus.btn-next-step, .btn-primary[disabled]:hover, .features.features-install [disabled].btn-next-step:hover, .btn-primary[disabled]:focus, .features.features-install [disabled].btn-next-step:focus, .btn-primary[disabled].focus, .features.features-install [disabled].focus.btn-next-step,
   fieldset[disabled] .btn-primary:hover,
-  fieldset[disabled] .features.features-install.btn-next-step:hover,
+  fieldset[disabled] .features.features-install .btn-next-step:hover, .features.features-install
+  fieldset[disabled] .btn-next-step:hover,
   fieldset[disabled] .btn-primary:focus,
-  fieldset[disabled] .features.features-install.btn-next-step:focus,
+  fieldset[disabled] .features.features-install .btn-next-step:focus, .features.features-install
+  fieldset[disabled] .btn-next-step:focus,
   fieldset[disabled] .btn-primary.focus,
-  fieldset[disabled] .focus.features.features-install.btn-next-step {
+  fieldset[disabled] .features.features-install .focus.btn-next-step, .features.features-install
+  fieldset[disabled] .focus.btn-next-step {
     background-color: #51c4c4;
     border-color: #40bcbc; }
-  .btn-primary .badge, .features.features-install.btn-next-step .badge {
+  .btn-primary .badge, .features.features-install .btn-next-step .badge {
     color: #51c4c4;
     background-color: #fff; }
 
@@ -3149,7 +3152,7 @@ fieldset[disabled] a.btn {
     color: #777777;
     text-decoration: none; }
 
-.btn-lg, .btn-group-lg > .btn, .btn.btn-xl, .features.features-install.btn-next-step {
+.btn-lg, .btn-group-lg > .btn, .btn.btn-xl, .features.features-install .btn-next-step {
   padding: 10px 16px;
   font-size: 18px;
   line-height: 1.3333333;
@@ -3167,18 +3170,18 @@ fieldset[disabled] a.btn {
   line-height: 1.5;
   border-radius: 0px; }
 
-.btn-block, .features.features-install.btn-next-step {
+.btn-block, .features.features-install .btn-next-step {
   display: block;
   width: 100%; }
 
-.btn-block + .btn-block, .features.features-install.btn-next-step + .btn-block, .btn-block + .features.features-install.btn-next-step, .features.features-install.btn-next-step + .features.features-install.btn-next-step {
+.btn-block + .btn-block, .features.features-install .btn-next-step + .btn-block, .features.features-install .btn-block + .btn-next-step, .features.features-install .btn-next-step + .btn-next-step {
   margin-top: 5px; }
 
-input[type="submit"].btn-block, input[type="submit"].features.features-install.btn-next-step,
+input[type="submit"].btn-block, .features.features-install input[type="submit"].btn-next-step,
 input[type="reset"].btn-block,
-input[type="reset"].features.features-install.btn-next-step,
+.features.features-install input[type="reset"].btn-next-step,
 input[type="button"].btn-block,
-input[type="button"].features.features-install.btn-next-step {
+.features.features-install input[type="button"].btn-next-step {
   width: 100%; }
 
 .fade {
@@ -3420,7 +3423,7 @@ tbody.collapse.in {
   padding-left: 8px;
   padding-right: 8px; }
 
-.btn-group > .btn-lg + .dropdown-toggle, .btn-group-lg.btn-group > .btn + .dropdown-toggle, .btn-group > .btn.btn-xl + .dropdown-toggle, .btn-group > .features.features-install.btn-next-step + .dropdown-toggle {
+.btn-group > .btn-lg + .dropdown-toggle, .btn-group-lg.btn-group > .btn + .dropdown-toggle, .btn-group > .btn.btn-xl + .dropdown-toggle, .features.features-install .btn-group > .btn-next-step + .dropdown-toggle {
   padding-left: 12px;
   padding-right: 12px; }
 
@@ -3434,11 +3437,11 @@ tbody.collapse.in {
 .btn .caret {
   margin-left: 0; }
 
-.btn-lg .caret, .btn-group-lg > .btn .caret, .btn.btn-xl .caret, .features.features-install.btn-next-step .caret {
+.btn-lg .caret, .btn-group-lg > .btn .caret, .btn.btn-xl .caret, .features.features-install .btn-next-step .caret {
   border-width: 5px 5px 0;
   border-bottom-width: 0; }
 
-.dropup .btn-lg .caret, .dropup .btn-group-lg > .btn .caret, .dropup .btn.btn-xl .caret, .dropup .features.features-install.btn-next-step .caret {
+.dropup .btn-lg .caret, .dropup .btn-group-lg > .btn .caret, .dropup .btn.btn-xl .caret, .dropup .features.features-install .btn-next-step .caret, .features.features-install .dropup .btn-next-step .caret {
   border-width: 0 5px 5px; }
 
 .btn-group-vertical > .btn,
@@ -5283,7 +5286,7 @@ button.close {
     margin-bottom: 0; }
   .modal-footer .btn-group .btn + .btn {
     margin-left: -1px; }
-  .modal-footer .btn-block + .btn-block, .modal-footer .features.features-install.btn-next-step + .btn-block, .modal-footer .btn-block + .features.features-install.btn-next-step, .modal-footer .features.features-install.btn-next-step + .features.features-install.btn-next-step {
+  .modal-footer .btn-block + .btn-block, .modal-footer .features.features-install .btn-next-step + .btn-block, .features.features-install .modal-footer .btn-next-step + .btn-block, .modal-footer .features.features-install .btn-block + .btn-next-step, .features.features-install .modal-footer .btn-block + .btn-next-step, .modal-footer .features.features-install .btn-next-step + .btn-next-step, .features.features-install .modal-footer .btn-next-step + .btn-next-step {
     margin-left: 0; }
 
 .modal-scrollbar-measure {
@@ -5950,7 +5953,7 @@ button.close {
   padding: 1em;
   font-size: 30px;
   font-weight: lighter; }
-  .btn.btn-xl.btn-block, .btn.btn-xl.features.features-install.btn-next-step {
+  .btn.btn-xl.btn-block, .features.features-install .btn.btn-xl.btn-next-step {
     width: 100%;
     margin: 0px auto;
     display: block; }
@@ -6037,9 +6040,14 @@ button.close {
       margin-left: -20%;
       margin-top: -20px; }
 
-.byline {
+.more-features {
+  display: block;
   text-align: center;
-  margin-bottom: 20px; }
+  margin-bottom: 2em; }
+  .more-features .btn {
+    border-color: #8ac450;
+    border-width: 2px;
+    color: #8ac450; }
 
 .container-report .report-header {
   background: #EEE;
@@ -6230,7 +6238,7 @@ button.close {
       width: 100%; }
 
 .features.features-install {
-  width: 400px; }
+  width: 480px; }
   .features.features-install h1 {
     text-align: center;
     font-weight: bold;
