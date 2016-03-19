@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, hashHistory } from 'react-router';
+import { Router, Route, Link } from 'react-router';
 
 // "Components"
 import RepoList from './components/repoList';
@@ -24,6 +24,20 @@ export function settingsView({params}) {
     <Nav />
     <div className="container">
       <SettingsList />
+    </div>
+  </div>;
+}
+
+// a "catchall" at the end of all the routes
+export function notFoundRoute({params}) {
+  return <div>
+    <Nav />
+    <div className="col-md-4 col-lg-3">
+      <RepoList />
+    </div>
+    <div className="col-md-8 col-lg-9 repo-details repo-details-empty">
+      <h2>That route doesn't exist.</h2>
+      <Link to="/app/">Back to civilization</Link>
     </div>
   </div>;
 }

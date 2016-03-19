@@ -5,7 +5,7 @@ import { Provider, connect } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
-import {repoView, settingsView} from './router';
+import {repoView, settingsView, notFoundRoute} from './router';
 import InstallClientHelp from './components/installClientHelp';
 import ErrorModal from './components/errorModal';
 
@@ -114,6 +114,7 @@ render(<Provider store={store}>
       <Route path="/app/:user/:repo" component={repoView} />
 
       <Route path="/app/settings" component={settingsView} />
+      <Route path="*" component={notFoundRoute} />
     </Router>
   </div>
 </Provider>, document.getElementById("root"));
