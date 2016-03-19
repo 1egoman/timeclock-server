@@ -175,8 +175,12 @@ $details-left-margin: 20px;
 }
 
 .repo-details.repo-details-import {
+  padding-left: 20px;
+  padding-right: 20px;
+
   & > h2 {
     text-align: center;
+    padding-top: 0.75em;
   }
 
   .repos {

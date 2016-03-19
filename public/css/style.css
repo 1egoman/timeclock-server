@@ -6229,20 +6229,20 @@ button.close {
     .feature-collapse .tab-content .img-full {
       width: 100%; }
 
-.features.features-install h1 {
-  text-align: center;
-  font-weight: bold;
-  font-size: 3.2rem;
-  margin-top: 6.4rem; }
-
-.features.features-install pre {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  margin-bottom: 0px;
-  padding-bottom: 0px; }
-
-.features.features-install small {
-  color: #777777; }
+.features.features-install {
+  width: 400px; }
+  .features.features-install h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 3.2rem;
+    margin-top: 6.4rem; }
+  .features.features-install pre {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    margin-bottom: 0px;
+    padding-bottom: 0px; }
+  .features.features-install small {
+    color: #777777; }
 
 .feature {
   padding: 4.8rem; }
@@ -6455,18 +6455,20 @@ footer {
     .repo-details .timecard.timecard-is-empty h1 {
       font-size: 2em; }
 
-.repo-details.repo-details-import > h2 {
-  text-align: center; }
-
-.repo-details.repo-details-import .repos {
-  cursor: default; }
-  .repo-details.repo-details-import .repos .btn-pick-me {
-    margin-top: -38px; }
-
-.repo-details.repo-details-import .btn-load-more {
-  width: 16em;
-  margin: 0.5em auto;
-  display: block; }
+.repo-details.repo-details-import {
+  padding-left: 20px;
+  padding-right: 20px; }
+  .repo-details.repo-details-import > h2 {
+    text-align: center;
+    padding-top: 0.75em; }
+  .repo-details.repo-details-import .repos {
+    cursor: default; }
+    .repo-details.repo-details-import .repos .btn-pick-me {
+      margin-top: -38px; }
+  .repo-details.repo-details-import .btn-load-more {
+    width: 16em;
+    margin: 0.5em auto;
+    display: block; }
 
 .repo-provider-badge {
   margin: 0.75rem;
