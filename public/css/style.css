@@ -6358,7 +6358,8 @@ footer {
 .repos .repos-empty {
   color: #777777;
   padding-top: 2em;
-  text-align: center; }
+  text-align: center;
+  background-color: transparent; }
   .repos .repos-empty p .click {
     cursor: pointer; }
 
@@ -6386,7 +6387,8 @@ footer {
 
 .repo-details {
   padding-left: 20px;
-  background: #fff; }
+  background: #fff;
+  padding-bottom: 2em; }
   .repo-details .repo-details-header {
     height: 96px;
     background: #fff;
@@ -6446,11 +6448,13 @@ footer {
   .repo-details.repo-details-empty {
     color: #777777;
     padding-top: 2em;
-    text-align: center; }
+    text-align: center;
+    background-color: transparent; }
   .repo-details .timecard.timecard-is-empty {
     color: #777777;
     padding-top: 2em;
     text-align: center;
+    background-color: transparent;
     padding-top: 0.2em; }
     .repo-details .timecard.timecard-is-empty h1 {
       font-size: 2em; }
@@ -6513,7 +6517,8 @@ footer {
 .loading {
   color: #777777;
   padding-top: 2em;
-  text-align: center; }
+  text-align: center;
+  background-color: transparent; }
   .loading .click {
     cursor: pointer; }
   .loading.loading-sm h1, .loading.loading-sm i {
