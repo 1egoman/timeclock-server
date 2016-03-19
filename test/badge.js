@@ -8,7 +8,7 @@ describe("badge routes", function() {
   it("should fetch a valid badge for a repo with a .timecard.json", function(done) {
     let request = httpMocks.createRequest({
       method: 'GET',
-      url: '/1egoman/clockmaster.svg',
+      url: '/waltz-app/sample.svg',
       params: {
         username: "1egoman",
         repo: "clockmaker",
@@ -18,7 +18,7 @@ describe("badge routes", function() {
     let writestream = new stream.Stream()
     writestream.writable = true
     writestream.on('pipe', (data) => {
-      assert.equal("https://img.shields.io/badge/unpaid-10h%2055m-blue.svg", data.uri.href)
+      assert.equal("https://img.shields.io/badge/unpaid-10h%2055m-yellow.svg", data.uri.href)
       done();
     });
 
