@@ -80,6 +80,7 @@ $top-pane-height: 96px;
 $details-left-margin: 20px;
 .repo-details {
   padding-left: $details-left-margin;
+  background: #fff;
 
   .repo-details-header {
     height: $top-pane-height;

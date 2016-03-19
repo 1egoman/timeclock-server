@@ -23,11 +23,11 @@ footer {
         font-weight: bold;
       }
 
+      ul, li { display: block; }
       ul, li, a {
         color: $gray;
         padding-left: 0em;
         list-style-type: none;
-        display: block;
         margin: 0.5em 0.1em;
       }
     }
