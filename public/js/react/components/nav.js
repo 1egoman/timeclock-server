@@ -37,9 +37,7 @@ export const NavComponent = ({title, logged_in_user}) => {
           aria-expanded="false"
         >
           <span className="sr-only">Toggle navigation</span>
-          <span className="icon-bar"></span>
-          <span className="icon-bar"></span>
-          <span className="icon-bar"></span>
+          <i className="fa fa-bars" />
         </button>
         <span className="navbar-brand">
           <Link to="/app/">

@@ -6238,7 +6238,7 @@ button.close {
       width: 100%; }
 
 .features.features-install {
-  width: 480px; }
+  max-width: 480px; }
   .features.features-install h1 {
     text-align: center;
     font-weight: bold;
@@ -6412,6 +6412,9 @@ footer {
   .navbar .navbar-brand img {
     height: 36px;
     margin-top: -8px; }
+  .navbar .fa.fa-bars {
+    font-size: 120%;
+    color: #333333; }
 
 .repos:before, .repos:after {
   content: " ";
