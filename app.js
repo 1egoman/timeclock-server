@@ -119,7 +119,7 @@ app.get('/auth/logout', (req, res) => {
 app.get('/', mixpanelHelpers.trackPageView, repo.index);
 app.get('/features', mixpanelHelpers.trackPageView, repo.features);
 app.get('/pricing', mixpanelHelpers.trackPageView, repo.pricing);
-app.get('/presskit', mixpanelHelpers.trackPageView, repo.presskit);
+app.get('/press', mixpanelHelpers.trackPageView, repo.presskit);
 
 app.get('/:username/:repo.svg', badges.fetchBadge);
 app.get('/embed/:username/:repo/:ref?', repo.getRepo, repo.doReport);
