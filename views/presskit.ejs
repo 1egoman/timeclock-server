@@ -1,0 +1,69 @@
+<% include header %>
+<div class="presskit">
+  <h1>Press</h1>
+
+  <div class="presskit presskit-story">
+    <img src="/img/press.svg" />
+    <h4>Waltz gives freelancers an easy way to create nice looking invoices.</h4>
+    <p>
+      Waltz came
+      about because I couldn't find an easy way to manage my invoices for all of
+      my clients, and after talking with my peers, I decided to tackle the
+      problem in an afternoon. The experiment worked so well I decided to develop what
+      would soon become Waltz into its own product - what you see today.
+    </p>
+    <a
+      class="btn btn-primary"
+      href="mailto:rsg1egoman+waltzpress@gmail.com?subject=Waltz Press Inquiry"
+    >Press Contact</a>
+  </div>
+
+  <!-- logos -->
+  <div class="presskit presskit-assets">
+    <h2>Logos</h2>
+    <div class="asset">
+      <a href="/img/logo.svg" class="thumbnail">
+        <img src="/img/logo.svg" alt="Our Logo" />
+      </a>
+    </div>
+    <div class="asset">
+      <a href="/img/logo_grey.svg" class="thumbnail">
+        <img src="/img/logo_grey.svg" alt="Grey Logo" />
+      </a>
+    </div>
+    <small>The colored logo is preferred unless the logo is used on a background
+    that clashes with the logo colors. In that case, use the grey logo.</small>
+  </div>
+
+  <div class="presskit presskit-founders">
+    <h2>My Story</h2>
+    <img src="/img/founder/ryan.png" />
+    <p>
+      I have been coding since age 8, involved in the startup world since
+      I was 15, and have been freelancing on the side the whole time. I've won
+      regional hackathons, built countless projects, and am an eagle scout. More
+      about me at <a href="//rgaus.net">rgaus.net</a>.
+    </p>
+  </div>
+</div>
+
+<div class="features features-install">
+  <h1>Sold? Give Waltz a try:</h1>
+  <pre>
+    $ npm install -g waltz
+    $ waltz init --commit
+    $ git push origin master
+  </pre>
+
+  <% if (!user) { %>
+    <a class="btn btn-primary btn-lg btn-block" href="/login">Then, sign in.</a>
+  <% } else { %>
+    <a class="btn btn-next-step" href="/app">Then, open the app.</a>
+  <% } %>
+
+  <small>
+    Waltz currently only supports Linux and OSX. Before running, insure
+    <a href="//nodejs.org">node</a> is installed.
+  </small>
+</div>
+<% include footer %>
