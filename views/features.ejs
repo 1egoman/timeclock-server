@@ -1,77 +1,128 @@
 <% include header %>
 
-<div class="hero clearfix">
-  <div class="container">
-    <div class="text-body">
-      <p>
-        As simple as:
-        <pre><code>
-  $ npm install -g waltz
-  $ waltz in
-  $ # go do some work
-  $ waltz out
-  $ git add .timecard.json && git push origin master
-      </code></pre>
-      </p>
-      <% if (!user) { %>
-        <a class="btn btn-success btn-xl btn-50" href="/features">Features</a>
-        <a class="btn btn-primary btn-xl btn-50" href="/login">Sign in with Github</a>
-      <% } else { %>
-        <a class="btn btn-success btn-xl btn-50" href="/auth/logout">Logout <%= user.username %></a>
-        <a class="btn btn-primary btn-xl btn-50" href="/app">Let's get started</a>
-      <% } %>
+<div class="features features-hero">
+  <h1>Waltz makes</h1>
+  <h2>nice-looking invoices easy.</h2>
+</div>
+
+<div class="features-getting-started-buttons"><% include get_started_buttons %></div>
+
+<div class="features feature-collapse">
+  <ul role="tablist">
+    <li role="presentation" class="active">
+      <a href="#great-by-default" aria-controls="great-by-default" role="tab" data-toggle="tab">
+        <h4>Great by default</h4>
+        <p>
+          Provide a name, a tagline, and a template, and Waltz will do the rest. Don't
+          like our templates? With minimal knowlege, design your own. Beautiful invoices
+          were never so easy!
+        </p>
+      </a>
+    </li>
+    <li role="presentation">
+      <a href="#version-controlled" aria-controls="version-controlled" role="tab" data-toggle="tab">
+        <h4>Version controlled</h4>
+        <p>
+          Because invoices are stored with your code, easily diff invoices across branches to
+          quickly determine the time spent on individual features.
+        </p>
+      </a>
+    </li>
+    <li role="presentation">
+      <a href="#collaborative" aria-controls="collaborative" role="tab" data-toggle="tab">
+        <h4>Collaborative</h4>
+        <p>
+          Because we integrate with pre-existing codebases, the collaborative workflow
+          one uses when working on a project works across invoices in a similar
+          manner.
+        </p>
+      </a>
+    </li>
+    <li role="presentation">
+      <a href="#own-your-data" aria-controls="own-your-data" role="tab" data-toggle="tab">
+        <h4>Own your data</h4>
+        <p>
+          When your data is in your hands, you can ensure what should stay private will.
+          Should you ever want to migrate data to another service, it's easily accessible
+          and versioned along with your code.
+        </p>
+      </a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="great-by-default">
+      <img class="img-full" src="/img/features/great-by-default.svg" />
+    </div>
+    <div role="tabpanel" class="tab-pane" id="version-controlled">
+      <img class="img-full" src="/img/features/version-controlled.svg" />
+    </div>
+    <div role="tabpanel" class="tab-pane" id="collaborative">
+      <img class="img-full" src="/img/features/collaborative.svg" />
+    </div>
+    <div role="tabpanel" class="tab-pane" id="own-your-data">
+      <img class="img-full" src="/img/features/own-your-data.svg" />
     </div>
   </div>
 </div>
 
-<div class="master">
-  <section class="container">
-    <h1>The Problem</h1>
+<div class="features features-more">
+  <h1>And, that's not all...</h1>
+
+  <div class="feature feature-right">
+    <img src="/img/features/bandaid.svg" />
+    <div class="content content-large">
+    <h2>Limit long work periods</h2>
     <p>
-      Invoices are a pain, especially for freelance developers. From calculating
-      the amount of hours that you've put into a project, to creating the actual
-      invoice and doing design work, most developers would rather do
-      something else. Wouldn't you love to get rid of the process?
+      Working for a long duration without a break can lead to adverse health effects.
+      Waltz can warn you when you work too long for one sitting, giving you metrics
+      to increase your daily well-being.
     </p>
-  </section>
-  <section class="container">
-    <div class="section-img on-top">
-      <img src="/img/clock.svg" class="timecard" />
     </div>
-    <div class="section-text">
-      <h1>Waltz gives clients great invoices.</h1>
+  </div>
+
+  <div class="feature feature-right">
+    <img src="/img/features/readmebuttons.svg" />
+    <div class="content content-large">
+      <h2>Badges</h2>
       <p>
-        Easily track the time you work on a project with <code>waltz</code>. Before
-        you start your work for the day, be sure to <code>waltz in</code>. Need to
-        run a few errands or get out of the house? Run <code>waltz out</code>. Too
-        lazy for that dance? Instead, run <code>waltz watch</code> to listen
-        for changes and auto-clock you in or out. In addition to an invoice for
-        the client, you also get work-time metrics for yourself.
+        At a glance, show the amount of unpaid time for any project, on any
+        branch, at any time on a project's <code>README.md</code>.
       </p>
     </div>
-    <div class="section-img on-right">
-      <img src="/img/clock.svg" class="timecard" />
+  </div>
+
+  <div class="feature feature-right">
+    <img src="/img/features/heart.svg" />
+    <div class="content content-large">
+      <h2>We &lt;3 Open Source</h2>
+      <p>
+        As a thank you to the many open source projects behind Waltz, open source
+        projects get a free, all access pass. Private repos only cost a few
+        dollars a piece - for more information about private repositories, 
+        <a href="/pricing">take a look at our pricing details.</a>
+      </p>
     </div>
-  </section>
-  <section class="container">
-    <div class="section-img">
-      <img src="/img/money.svg" class="money" />
-    </div>
-    <div class="section-text">
-      <h1>We also give you metrics on how you get work done.</h1>
-    </div>
-  </section>
-  <section class="container">
-    <h1>What's the value prop?</h1>
-    <ul>
-      <li>Great looking and informative invoice for the client</li>
-      <li>Metrics from work data</li>
-      <li>Warning when you don't get up from your desk enough</li>
-      <li>Personal branding</li>
-      <li>Little effort for the coder</li>
-      <li>Collaborative</li>
-    </ul>
-  </section>
+  </div>
+</div>
+
+<div class="features features-install">
+  <h1>Sold? Give Waltz a try:</h1>
+  <pre>
+    $ npm install -g waltz
+    $ waltz init --commit
+    $ git push origin master
+  </pre>
+
+  <% if (!user) { %>
+    <a class="btn btn-primary btn-lg btn-block" href="/login">Then, sign in.</a>
+  <% } else { %>
+    <a class="btn btn-next-step" href="/app">Then, open the app.</a>
+  <% } %>
+
+  <small>
+    Waltz currently only supports Linux and OSX. Before running, insure
+    <a href="//nodejs.org">node</a> is installed.
+  </small>
 </div>
 
 <% include footer %>

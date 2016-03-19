@@ -11,6 +11,7 @@ import {
   repoDetails,
   newTimecardData,
   helpInstallingClient,
+  error,
 } from '../../reducers/repo';
 const old_state = helpers.initialState;
 
@@ -108,13 +109,21 @@ describe('reducers/repo.js', function() {
     });
   });
   describe('discoveredRepos', function() {
-    it('should create the event', function() {
-      let new_state = discoveredRepos(old_state.discovered_repos, {
+    it('should add repos with no existing repos', function() {
+      let new_state = discoveredRepos([], {
         type: "server/REPOS_DISCOVERED",
         repos: [{foo: "bar"}],
         page: 1,
       });
       assert.deepEqual(new_state, [{foo: "bar"}]);
+    });
+    it('should add unique repos with preexisting repos', function() {
+      let new_state = discoveredRepos([{user: "user-exists", repo: "repo-exists"}], {
+        type: "server/REPOS_DISCOVERED",
+        repos: [{user: "i-am-new", repo: "i-am-too"}, {user: "user-exists", repo: "repo-exists"}],
+        page: 0,
+      });
+      assert.deepEqual(new_state, [{user: "user-exists", repo: "repo-exists"}, {user: "i-am-new", repo: "i-am-too"}]);
     });
     it('should not be effected by another event', function() {
       let new_state = discoveredRepos(old_state.discovered_repos, {
@@ -341,6 +350,30 @@ describe('reducers/repo.js', function() {
         type: "SOME_OTHER_EVENT",
       });
       assert.deepEqual(new_state, false);
+    });
+  });
+  describe('error', function() {
+    it('should show an error', function() {
+      let new_state = error(null, {
+        type: "server/ERROR",
+        error: "i-am-an-error",
+      });
+      assert.deepEqual(new_state, {
+        error: "i-am-an-error",
+        from: "backend",
+      });
+    });
+    it('should hide the error modal', function() {
+      let new_state = error(null, {
+        type: "HIDE_ERROR_MODAL",
+      });
+      assert.deepEqual(new_state, null);
+    });
+    it('should not be effected by another event', function() {
+      let new_state = error(null, {
+        type: "SOME_OTHER_EVENT",
+      });
+      assert.deepEqual(new_state, null);
     });
   });
 });

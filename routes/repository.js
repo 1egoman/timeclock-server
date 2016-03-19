@@ -46,10 +46,21 @@ function index(req, res) {
     user: req.user,
   });
 }
-
 function features(req, res) {
   res.render('features', {
     title: 'Waltz Features',
+    user: req.user,
+  });
+}
+function pricing(req, res) {
+  res.render('pricing', {
+    title: 'Waltz Pricing',
+    user: req.user,
+  });
+}
+function presskit(req, res) {
+  res.render('presskit', {
+    title: 'Waltz Press Kit',
     user: req.user,
   });
 }
@@ -82,9 +93,11 @@ function doReport(req, res) {
 }
 
 module.exports = {
-  getRepo: getRepo,
-  doError: doError,
+  getRepo,
+  doError,
+  doReport,
   index,
   features,
-  doReport: doReport,
+  pricing,
+  presskit,
 }

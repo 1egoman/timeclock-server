@@ -2,6 +2,7 @@
   @extend .jumbotron;
   margin-bottom: 0px;
   width: 100%;
+  background: transparent;
 
   & > h1 {
     font-weight: lighter;
@@ -10,6 +11,8 @@
 
 .master {
   overflow-x: hidden;
+  background: #fff;
+
   section.container {
     margin-top: 2em;
     margin-bottom: 4em;
@@ -78,7 +81,14 @@
   }
 }
 
-.byline {
+.more-features {
+  display: block;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 2em;
+
+  .btn {
+    border-color: $brand-success;
+    border-width: 2px;
+    color: $brand-success;
+  }
 }

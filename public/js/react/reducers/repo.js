@@ -64,10 +64,13 @@ export function activeRepo(state = null, action) {
 
 export function discoveredRepos(state = [], action) {
   if (action.type === "server/REPOS_DISCOVERED") {
-    return state.concat(action.repos);
-  // } else if (action.type === "server/REPO_IMPORT") {
-  //   // when a new repo is imported, remove it from `discovered_repos`
-  //   return state.filter((i) => !(i.user === action.repo.user && i.repo === action.repo.repo))
+    // only add repos that already haven't been added already
+    let new_repos = action.repos.filter((repo) => {
+      return state.every((existing) => {
+        return !(existing.user === repo.user && existing.repo === repo.repo);
+      });
+    });
+    return state.concat(new_repos);
   } else {
     return state;
   }
@@ -187,3 +190,17 @@ export function helpInstallingClient(state = false, action) {
     return state;
   }
 }
+
+// the backend rasied an error
+export function error(state = null, action) {
+  if (action.type === "server/ERROR") {
+    return {
+      error: action.error || "Unexplained error - please email support!",
+      from: "backend",
+    };
+  } else if (action.type === "HIDE_ERROR_MODAL") {
+    return null;
+  } else {
+    return state;
+  }
+};

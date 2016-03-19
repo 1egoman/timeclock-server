@@ -1,0 +1,35 @@
+footer {
+  @extend .container-fluid;
+  height: 148px;
+  margin-top: 32px;
+
+  .wrapper {
+    @extend .container;
+
+    & > ul > li {
+      @include make-xs-column(12);
+      @include make-md-column(3);
+      list-style-type: none;
+      display: inline-block;
+      margin-bottom: 1em;
+
+      &.product { color: $brand-primary; }
+      &.press { color: $brand-success; }
+      &.social { color: $brand-info; }
+      &.legal { color: $gray-light; }
+
+      h5 {
+        font-size: 1.16em;
+        font-weight: bold;
+      }
+
+      ul, li { display: block; }
+      ul, li, a {
+        color: $gray;
+        padding-left: 0em;
+        list-style-type: none;
+        margin: 0.5em 0.1em;
+      }
+    }
+  }
+}

@@ -29,7 +29,7 @@ export function InstallClientHelpComponent({client_help_dialog, hideModal}) {
         sudo apt-get install -y nodejs
       </pre>
       <h4>Windows</h4>
-      <p>Currently, windows support is not supported.</p>
+      <p>Currently, windows is not supported.</p>
 
       <h2>Install Waltz</h2>
       <p>Open a terminal and paste the following snippet:</p>

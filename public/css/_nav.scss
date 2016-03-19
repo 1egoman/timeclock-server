@@ -1,5 +1,7 @@
 .navbar {
   background: $gray-lighter;
+  background: #fff;
+  border-bottom: 2px solid $gray-lighter;
   a { color: $brand-primary; }
 
   .navbar-brand img {

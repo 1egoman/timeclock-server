@@ -185,7 +185,7 @@ describe('card.totalDuration()', function() {
 
 describe('card.getReportTemplate()', function() {
   it('should get the report for a github repo', function(done) {
-    card.getReportTemplate("1egoman/clockmaker:templates/testing.ejs").then((data) => {
+    card.getReportTemplate("waltz-app/themes:testing.ejs").then((data) => {
       assert.equal(data, "Hello World!\n");
       done();
     }).catch(done);

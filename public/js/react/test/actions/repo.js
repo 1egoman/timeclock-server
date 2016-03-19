@@ -13,6 +13,7 @@ import {
   changeStagingTimecardData,
   deleteRepo,
   showWaltzInstallInstructions,
+  hideErrorModal,
 } from '../../actions/repo';
 
 describe('actions/repo.js', function() {
@@ -161,6 +162,13 @@ describe('actions/repo.js', function() {
       assert.deepEqual(showWaltzInstallInstructions(false), {
         type: "HELP_INSTALL_WALTZ",
         value: false,
+      });
+    });
+  });
+  describe('hideErrorModal', function() {
+    it('should create the event', function() {
+      assert.deepEqual(hideErrorModal(), {
+        type: "HIDE_ERROR_MODAL",
       });
     });
   });

@@ -1,0 +1,61 @@
+.pricing-hero {
+  @extend .container;
+
+  & > h1 {
+    text-align: center;
+    margin-bottom: 1em;
+  }
+}
+
+.price-list {
+  .price-disco section { background: $brand-primary; }
+  .price-jive section { background: $brand-info; }
+  .price-polka section { background: $brand-success; }
+}
+
+// each of the prices (the top 3, and the lower one)
+.price {
+  @include make-xs-column(12);
+  @include make-md-column(4);
+  height: 21rem;
+  color: #fff;
+
+  section {
+    height: 100%;
+    padding: 1em 1.8em;
+  }
+
+  h1 {
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 0px;
+  }
+
+  .price-amount {
+    font-size: 4rem;
+    margin-top: 0.5em;
+    display: inline-block;
+
+    small {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+// "freestyle" - aka, a user that needs a ton of resources
+.price.price-freestyle {
+  @include make-xs-column(12);
+  @include make-md-column(12);
+  @include clearfix;
+  height: 12rem;
+  color: $gray-dark;
+
+  h1 {
+    text-align: left;
+  }
+
+  p {
+  }
+}

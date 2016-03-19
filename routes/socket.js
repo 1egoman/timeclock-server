@@ -71,7 +71,7 @@ module.exports = function(socket) {
           type: "server/REPO_IMPORT",
           repo: action.repo,
         });
-      }, sendError);
+      }, sendError(socket));
 
     // delete a repo from a user's account
     } else if (action.type === 'server/DELETE_REPO') {
@@ -82,7 +82,7 @@ module.exports = function(socket) {
           repo: action.repo,
           user: action.user,
         });
-      }, sendError);
+      }, sendError(socket));
 
     // get the branches for a repo
     } else if (action.type === 'server/GET_BRANCHES') {
@@ -92,7 +92,7 @@ module.exports = function(socket) {
           type: "server/BRANCHES_FOR",
           branches,
         });
-      }, sendError);
+      }, sendError(socket));
 
     // get the timecard for the specified repo
     } else if (action.type === 'server/GET_TIMECARD') {
@@ -110,7 +110,7 @@ module.exports = function(socket) {
         socket.emit("action", Object.assign({
           type: "server/TOKEN_RESET",
         }, data));
-      }, sendError);
+      }, sendError(socket));
 
     // change the value of a sumset of settings within the user model
     } else if (action.type === 'server/CHANGE_SETTING') {
@@ -120,7 +120,7 @@ module.exports = function(socket) {
           type: "server/SETTING_CHANGED",
           settings: data,
         });
-      }, sendError);
+      }, sendError(socket));
 
     // when the page loads for the first time, update the state to reflect the
     // initial url

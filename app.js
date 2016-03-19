@@ -118,6 +118,9 @@ app.get('/auth/logout', (req, res) => {
 // ------------------------------------------------------------------------------
 app.get('/', mixpanelHelpers.trackPageView, repo.index);
 app.get('/features', mixpanelHelpers.trackPageView, repo.features);
+app.get('/pricing', mixpanelHelpers.trackPageView, repo.pricing);
+app.get('/presskit', mixpanelHelpers.trackPageView, repo.presskit);
+
 app.get('/:username/:repo.svg', badges.fetchBadge);
 app.get('/embed/:username/:repo/:ref?', repo.getRepo, repo.doReport);
 app.get('/:username/:repo', repo.getRepo, (req, res) => {
@@ -208,7 +211,12 @@ io.on('connection', function(socket) {
     type: "server/INIT",
     repos: socket.request.user.repos,
     active_repo: null,
-    user: User.sanitize(socket.request.user),
+
+    // the normal user, plus their allottments for paid services.
+    user: Object.assign(
+      User.sanitize(socket.request.user),
+      {allotments: User.getAllotments(socket.request.user)}
+    ),
   });
 
   socket.on('action', onSocketAction(socket));
