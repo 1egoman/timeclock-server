@@ -119,7 +119,8 @@ app.get('/auth/logout', (req, res) => {
 app.get('/', mixpanelHelpers.trackPageView, repo.index);
 app.get('/features', mixpanelHelpers.trackPageView, repo.features);
 app.get('/pricing', mixpanelHelpers.trackPageView, repo.pricing);
-app.get('/presskit', mixpanelHelpers.trackPageView, repo.presskit);
+app.get('/press', mixpanelHelpers.trackPageView, repo.presskit);
+app.get('/sample-invoice', mixpanelHelpers.trackPageView, (req,res) => res.redirect("/embed/waltz-app/sample"));
 
 app.get('/:username/:repo.svg', badges.fetchBadge);
 app.get('/embed/:username/:repo/:ref?', repo.getRepo, repo.doReport);
@@ -153,14 +154,16 @@ if (process.env.NODE_ENV === "production") {
       res.render('error', {
         msg: err,
         error: {},
-        title: 'Unexpected Error'
+        title: 'Unexpected Error',
+        user: req.user,
       });
     } else {
       res.status(err.status || 500);
       res.render('error', {
         msg: "Unexpected error. If this error persists, contact us.",
         error: {},
-        title: 'Unexpected Error'
+        title: 'Unexpected Error',
+        user: req.user,
       });
     }
   });
@@ -170,6 +173,7 @@ if (process.env.NODE_ENV === "production") {
     res.render('error', {
       msg: err.stack ? err.stack : err,
       error: err,
+      user: req.user,
       title: 'error'
     });
   });

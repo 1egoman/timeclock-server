@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # compile sass
-node-sass public/css/style.scss public/css/style.css
+node-sass --output-style compressed public/css/style.scss public/css/style.css
 
 # First, transpile all code from s2015 to es5. Then, pipe into browserify to
 # resolve all those requires.

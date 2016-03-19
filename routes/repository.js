@@ -27,6 +27,7 @@ function doError(req, res, code) {
         title: "Error",
         user: req.params.username,
         repo: req.params.repo,
+        user: req.user,
       });
     } else {
       console.error(err);
@@ -80,6 +81,9 @@ function doReport(req, res) {
     if (card.assertIsCard(timecard)) {
       // make the report
       card.getReportTemplate(timecard.reportFormat || "default").then((template) => {
+
+        // add the waltz badge on the top
+        template += "<a href='/?ref=iv'><img style='position:absolute;top:20px;left:20px;width:64px;z-index:999;background:#fff;padding:4px;' src='/img/logo_made_with.svg'></a>"
         let ejs_data = card.getTimecardRenderDetails(timecard),
             report = ejs.render(template, ejs_data);
         res.send(report);

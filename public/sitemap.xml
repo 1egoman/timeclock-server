@@ -1,0 +1,26 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <url>
+    <loc>http://waltzapp.co/</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>http://waltzapp.co/features</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>http://waltzapp.co/pricing</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>http://waltzapp.co/press</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>http://waltzapp.co/embed/waltz-app/sample</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>http://waltzapp.co/sample-invoice</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+</urlset>
