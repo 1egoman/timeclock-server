@@ -188,7 +188,13 @@ describe('card.getReportTemplate()', function() {
     card.getReportTemplate("waltz-app/themes:testing.ejs").then((data) => {
       assert.equal(data, "Hello World!\n");
       done();
-    }).catch(done);
+    }).catch(console.error.bind(console));
+  });
+  it('should get the report for a default entry', function(done) {
+    card.getReportTemplate("testing").then((data) => {
+      assert.equal(data, "Hello World!\n");
+      done();
+    }).catch(console.error.bind(console));
   });
 });
 

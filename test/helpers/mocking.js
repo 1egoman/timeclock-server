@@ -58,6 +58,7 @@ exports.user1 = {
   access_token: "access-token-is-here",
   github_id: 12345,
   _id: "the-user-id-in-mongo",
+  repos: [],
 }
 
 exports.timecard = {

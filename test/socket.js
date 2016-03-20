@@ -2,6 +2,8 @@
 const assert = require("assert"),
       Promise = require("promise"),
       mocking = require("./helpers/mocking"),
+      sinon = require("sinon"),
+      User = require("../lib/model/user"),
       socket = require("../routes/socket");
 
 // create a "mock" socket that wraps the real functionality
@@ -48,6 +50,7 @@ describe("routes/socket.js", function() {
   });
   describe("server/IMPORT_REPO", function() {
     it('should import a repo with valid info', function(done) {
+      sinon.stub(User, "update").callsArgWith(2, null);
       let skt = {
         emit(action, data) {
           assert.equal(action, "action");
@@ -61,7 +64,6 @@ describe("routes/socket.js", function() {
               type: "server/REPO_IMPORT",
               repo: mocking.repos[0],
             });
-            done();
           }
         },
         request: {user: mocking.user1},
@@ -70,15 +72,12 @@ describe("routes/socket.js", function() {
         repo: mocking.repos[0],
       };
 
-      let response = socket(skt, {}, {
-        // mongoose user model
-        update(identifier, query, cb) {
-          assert.deepEqual(query, {
-            $push: {repos: mocking.repos[0]},
-          });
-          cb(null); // no error
-        },
-      })(action);
+      let response = socket(skt)(action);
+
+      assert(User.update.calledWith({_id: mocking.user1}, {
+        $push: {repos: mocking.repos[0]},
+      }));
+      done();
     });
     it('should error on error', function(done) {
       let skt = createSocketWrapping({
