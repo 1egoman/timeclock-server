@@ -6298,6 +6298,20 @@ button.close {
   margin-top: 4rem;
   margin-bottom: 4rem; }
 
+.btn-50 + small {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: #777777; }
+  @media (min-width: 992px) {
+    .btn-50 + small {
+      float: left;
+      width: 50%; } }
+  @media (min-width: 992px) {
+    .btn-50 + small {
+      margin-left: 50%; } }
+
 .presskit {
   margin-bottom: 6em; }
   .presskit h1 {

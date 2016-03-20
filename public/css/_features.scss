@@ -137,3 +137,9 @@
   margin-top: 4rem;
   margin-bottom: 4rem;
 }
+
+.btn-50 + small {
+  @include make-md-column(6);
+  @include make-md-column-offset(6);
+  color: $gray-light;
+}
