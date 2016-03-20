@@ -6049,11 +6049,7 @@ button.close {
 .more-features {
   display: block;
   text-align: center;
-  margin-bottom: 2em; }
-  .more-features .btn {
-    border-color: #8ac450;
-    border-width: 2px;
-    color: #8ac450; }
+  margin: 2em; }
 
 .container-report .report-header {
   background: #EEE;
