@@ -120,7 +120,7 @@ app.get('/', mixpanelHelpers.trackPageView, repo.index);
 app.get('/features', mixpanelHelpers.trackPageView, repo.features);
 app.get('/pricing', mixpanelHelpers.trackPageView, repo.pricing);
 app.get('/press', mixpanelHelpers.trackPageView, repo.presskit);
-app.get('/sample-invoice', mixpanelHelpers.trackPageView, (req,res) => res.redirect("/embed/waltz-app/sample"));
+app.get('/sample-invoice', mixpanelHelpers.trackPageView, repo.sampleinvoice);
 
 app.get('/:username/:repo.svg', badges.fetchBadge);
 app.get('/embed/:username/:repo/:ref?', repo.getRepo, repo.doReport);

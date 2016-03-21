@@ -1,0 +1,81 @@
+.sample-invoice {
+  @extend .container;
+  max-width: 800px;
+  color: #333;
+  height: 100%;
+  padding: 10px;
+  font-family: "Open Sans", Helvetica, sans-serif;
+  cursor: default;
+
+  .header {
+    background: #6AC15F;
+    padding: 2em;
+    margin-bottom: 0.8em;
+    color: #fff;
+    text-align: center;
+  }
+  .prehead {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.8em;
+    margin-bottom: 0.6em;
+    display: inline-block;
+  }
+  .body {
+    padding-left: 1.2em;
+  }
+  li {
+    list-style-type: none;
+  }
+  li:before {
+    content: "- ";
+  }
+  .header a, .header p {
+    color: white;
+  }
+  .disabled, .disabled span {
+    text-decoration: line-through;
+  }
+  .right {
+    float: right;
+  }
+  li.enabled {
+    background: $state-success-bg;
+    padding: 6px 16px;
+  }
+  li.disabled {
+    background: $state-warning-bg;
+    padding: 6px 16px;
+  }
+  .totaltime {
+    padding: 6px 16px;
+    width: 100%;
+    display: block;
+    background: $state-info-bg;
+  }
+}
+
+// bold, intro text
+.sample-invoice-header {
+  @extend .container;
+  margin-bottom: 2em;
+
+  h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 8rem;
+  }
+  h2 {
+    text-align: center;
+    font-weight: normal;
+    font-size: 4rem;
+    margin-top: 0em;
+  }
+  h3 {
+    text-align: center;
+    font-weight: normal;
+    font-size: 1.6rem;
+    margin-top: 0em;
+    color: $gray-light;
+  }
+}

@@ -110,24 +110,5 @@
   <a class="btn btn-success btn-lg" href="/features">For more info, take a look at our features.</a>
 </div>
 
-<div class="features features-install">
-  <h1>Sold? Give Waltz a try:</h1>
-  <pre>
-    $ npm install -g waltz
-    $ waltz init --commit
-    $ git push origin master
-  </pre>
-
-  <% if (!user) { %>
-    <a class="btn btn-primary btn-lg btn-block" href="/login">Then, sign in.</a>
-  <% } else { %>
-    <a class="btn btn-next-step" href="/app">Then, open the app.</a>
-  <% } %>
-
-  <small>
-    Waltz currently only supports Linux and OSX. Before running, insure
-    <a href="//nodejs.org">node</a> is installed.
-  </small>
-</div>
-
+<% include install_prompt %>
 <% include footer %>

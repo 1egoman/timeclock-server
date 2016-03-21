@@ -65,6 +65,12 @@ function presskit(req, res) {
     user: req.user,
   });
 }
+function sampleinvoice(req, res) {
+  res.render('sampleinvoice', {
+    title: 'Waltz Invoice',
+    user: req.user,
+  });
+}
 
 // get a repo
 function doReport(req, res) {
@@ -104,4 +110,5 @@ module.exports = {
   features,
   pricing,
   presskit,
+  sampleinvoice,
 }
