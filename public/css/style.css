@@ -71,7 +71,7 @@ mark {
   background: #ff0;
   color: #000; }
 
-small {
+small, .repo-commit-node-author {
   font-size: 80%; }
 
 sub,
@@ -1146,19 +1146,20 @@ h1, h2, h3, h4, h5, h6,
   font-weight: 500;
   line-height: 1.1;
   color: inherit; }
-  h1 small,
-  h1 .small, h2 small,
-  h2 .small, h3 small,
-  h3 .small, h4 small,
-  h4 .small, h5 small,
-  h5 .small, h6 small,
+  h1 small, h1 .repo-commit-node-author,
+  h1 .small, h2 small, h2 .repo-commit-node-author,
+  h2 .small, h3 small, h3 .repo-commit-node-author,
+  h3 .small, h4 small, h4 .repo-commit-node-author,
+  h4 .small, h5 small, h5 .repo-commit-node-author,
+  h5 .small, h6 small, h6 .repo-commit-node-author,
   h6 .small,
   .h1 small,
-  .h1 .small, .h2 small,
-  .h2 .small, .h3 small,
-  .h3 .small, .h4 small,
-  .h4 .small, .h5 small,
-  .h5 .small, .h6 small,
+  .h1 .repo-commit-node-author,
+  .h1 .small, .h2 small, .h2 .repo-commit-node-author,
+  .h2 .small, .h3 small, .h3 .repo-commit-node-author,
+  .h3 .small, .h4 small, .h4 .repo-commit-node-author,
+  .h4 .small, .h5 small, .h5 .repo-commit-node-author,
+  .h5 .small, .h6 small, .h6 .repo-commit-node-author,
   .h6 .small {
     font-weight: normal;
     line-height: 1;
@@ -1169,14 +1170,16 @@ h2, .h2,
 h3, .h3 {
   margin-top: 20px;
   margin-bottom: 10px; }
-  h1 small,
-  h1 .small, .h1 small,
+  h1 small, h1 .repo-commit-node-author,
+  h1 .small, .h1 small, .h1 .repo-commit-node-author,
   .h1 .small,
   h2 small,
-  h2 .small, .h2 small,
+  h2 .repo-commit-node-author,
+  h2 .small, .h2 small, .h2 .repo-commit-node-author,
   .h2 .small,
   h3 small,
-  h3 .small, .h3 small,
+  h3 .repo-commit-node-author,
+  h3 .small, .h3 small, .h3 .repo-commit-node-author,
   .h3 .small {
     font-size: 65%; }
 
@@ -1185,14 +1188,16 @@ h5, .h5,
 h6, .h6 {
   margin-top: 10px;
   margin-bottom: 10px; }
-  h4 small,
-  h4 .small, .h4 small,
+  h4 small, h4 .repo-commit-node-author,
+  h4 .small, .h4 small, .h4 .repo-commit-node-author,
   .h4 .small,
   h5 small,
-  h5 .small, .h5 small,
+  h5 .repo-commit-node-author,
+  h5 .small, .h5 small, .h5 .repo-commit-node-author,
   .h5 .small,
   h6 small,
-  h6 .small, .h6 small,
+  h6 .repo-commit-node-author,
+  h6 .small, .h6 small, .h6 .repo-commit-node-author,
   .h6 .small {
     font-size: 75%; }
 
@@ -1226,7 +1231,7 @@ p {
     .lead {
       font-size: 21px; } }
 
-small,
+small, .repo-commit-node-author,
 .small {
   font-size: 85%; }
 
@@ -1416,6 +1421,7 @@ blockquote {
     margin-bottom: 0; }
   blockquote footer,
   blockquote small,
+  blockquote .repo-commit-node-author,
   blockquote .small {
     display: block;
     font-size: 80%;
@@ -1423,6 +1429,7 @@ blockquote {
     color: #777777; }
     blockquote footer:before,
     blockquote small:before,
+    blockquote .repo-commit-node-author:before,
     blockquote .small:before {
       content: '\2014 \00A0'; }
 
@@ -1437,16 +1444,20 @@ blockquote.pull-right,
   text-align: right; }
   .blockquote-reverse footer:before,
   .blockquote-reverse small:before,
+  .blockquote-reverse .repo-commit-node-author:before,
   .blockquote-reverse .small:before,
   blockquote.pull-right footer:before, .feature.feature-right blockquote.content footer:before, .repo-details.repo-details-import .repos blockquote.btn-pick-me footer:before,
   blockquote.pull-right small:before, .feature.feature-right blockquote.content small:before, .repo-details.repo-details-import .repos blockquote.btn-pick-me small:before,
+  blockquote.pull-right .repo-commit-node-author:before, .feature.feature-right blockquote.content .repo-commit-node-author:before, .repo-details.repo-details-import .repos blockquote.btn-pick-me .repo-commit-node-author:before,
   blockquote.pull-right .small:before, .feature.feature-right blockquote.content .small:before, .repo-details.repo-details-import .repos blockquote.btn-pick-me .small:before {
     content: ''; }
   .blockquote-reverse footer:after,
   .blockquote-reverse small:after,
+  .blockquote-reverse .repo-commit-node-author:after,
   .blockquote-reverse .small:after,
   blockquote.pull-right footer:after, .feature.feature-right blockquote.content footer:after, .repo-details.repo-details-import .repos blockquote.btn-pick-me footer:after,
   blockquote.pull-right small:after, .feature.feature-right blockquote.content small:after, .repo-details.repo-details-import .repos blockquote.btn-pick-me small:after,
+  blockquote.pull-right .repo-commit-node-author:after, .feature.feature-right blockquote.content .repo-commit-node-author:after, .repo-details.repo-details-import .repos blockquote.btn-pick-me .repo-commit-node-author:after,
   blockquote.pull-right .small:after, .feature.feature-right blockquote.content .small:after, .repo-details.repo-details-import .repos blockquote.btn-pick-me .small:after {
     content: '\00A0 \2014'; }
 
@@ -4697,10 +4708,13 @@ button.list-group-item, button.repo {
   border-color: #51c4c4; }
   .list-group-item.active .list-group-item-heading, .active.repo .list-group-item-heading,
   .list-group-item.active .list-group-item-heading > small, .active.repo .list-group-item-heading > small,
+  .list-group-item.active .list-group-item-heading > .repo-commit-node-author, .active.repo .list-group-item-heading > .repo-commit-node-author,
   .list-group-item.active .list-group-item-heading > .small, .active.repo .list-group-item-heading > .small, .list-group-item.active:hover .list-group-item-heading, .active.repo:hover .list-group-item-heading,
   .list-group-item.active:hover .list-group-item-heading > small, .active.repo:hover .list-group-item-heading > small,
+  .list-group-item.active:hover .list-group-item-heading > .repo-commit-node-author, .active.repo:hover .list-group-item-heading > .repo-commit-node-author,
   .list-group-item.active:hover .list-group-item-heading > .small, .active.repo:hover .list-group-item-heading > .small, .list-group-item.active:focus .list-group-item-heading, .active.repo:focus .list-group-item-heading,
   .list-group-item.active:focus .list-group-item-heading > small, .active.repo:focus .list-group-item-heading > small,
+  .list-group-item.active:focus .list-group-item-heading > .repo-commit-node-author, .active.repo:focus .list-group-item-heading > .repo-commit-node-author,
   .list-group-item.active:focus .list-group-item-heading > .small, .active.repo:focus .list-group-item-heading > .small {
     color: inherit; }
   .list-group-item.active .list-group-item-text, .active.repo .list-group-item-text, .list-group-item.active:hover .list-group-item-text, .active.repo:hover .list-group-item-text, .list-group-item.active:focus .list-group-item-text, .active.repo:focus .list-group-item-text {
@@ -4837,8 +4851,10 @@ button.list-group-item-danger {
   color: inherit; }
   .panel-title > a,
   .panel-title > small,
+  .panel-title > .repo-commit-node-author,
   .panel-title > .small,
   .panel-title > small > a,
+  .panel-title > .repo-commit-node-author > a,
   .panel-title > .small > a {
     color: inherit; }
 
@@ -6154,7 +6170,7 @@ button.close {
     font-size: 4rem;
     margin-top: 0.5em;
     display: inline-block; }
-    .price .price-amount small {
+    .price .price-amount small, .price .price-amount .repo-commit-node-author {
       font-size: 1.6rem; }
 
 .price.price-freestyle {
@@ -6251,7 +6267,7 @@ button.close {
     padding-top: 2rem;
     margin-top: 0px;
     margin-bottom: 0px; }
-  .features.features-install small {
+  .features.features-install small, .features.features-install .repo-commit-node-author {
     color: #777777; }
 
 .feature {
@@ -6298,18 +6314,18 @@ button.close {
   margin-top: 4rem;
   margin-bottom: 4rem; }
 
-.btn-50 + small {
+.btn-50 + small, .btn-50 + .repo-commit-node-author {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
   color: #777777; }
   @media (min-width: 992px) {
-    .btn-50 + small {
+    .btn-50 + small, .btn-50 + .repo-commit-node-author {
       float: left;
       width: 50%; } }
   @media (min-width: 992px) {
-    .btn-50 + small {
+    .btn-50 + small, .btn-50 + .repo-commit-node-author {
       margin-left: 50%; } }
 
 .presskit {
@@ -6543,7 +6559,8 @@ footer {
 .repo-details {
   padding-left: 20px;
   background: #fff;
-  padding-bottom: 2em; }
+  padding-bottom: 2em;
+  position: relative; }
   .repo-details .repo-details-header {
     height: 96px;
     background: #fff;
@@ -6634,6 +6651,35 @@ footer {
   font-size: 2.25rem; }
   .repo-provider-badge span {
     color: #333333; }
+
+.repo-details-tabs {
+  margin-top: -32px; }
+  .repo-details-tabs .nav-tabs, .repo-details-tabs .feature-collapse ul, .feature-collapse .repo-details-tabs ul {
+    float: right;
+    margin-right: 10px; }
+
+.repo-commit-node-avatar {
+  width: 18px;
+  float: left;
+  margin-right: 1em; }
+
+.repo-commit-node-author {
+  display: block;
+  color: #777777; }
+
+.repo-commits {
+  height: 100%;
+  top: 0px;
+  background: #eeeeee;
+  width: 2px; }
+
+.repo-commit-node-handle {
+  display: block;
+  width: 24px;
+  height: 24px;
+  color: #51c4c4;
+  background: #555555;
+  margin: 10px; }
 
 .time-delta i {
   cursor: pointer;

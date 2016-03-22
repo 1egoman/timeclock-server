@@ -1,0 +1,30 @@
+
+// the repo commit dialog
+.repo-commit-node-avatar {
+  width: 18px;
+  float: left;
+  margin-right: 1em;
+}
+
+.repo-commit-node-author {
+  @extend small;
+  display: block;
+  color: $gray-light;
+}
+
+// the commit graph
+.repo-commits {
+  height: 100%;
+  top: 0px;
+  background: $gray-lighter;
+  width: 2px;
+}
+
+.repo-commit-node-handle {
+  display: block;
+  width: 24px;
+  height: 24px;
+  color: $brand-primary;
+  background: $gray;
+  margin: 10px;
+}

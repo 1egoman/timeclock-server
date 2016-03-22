@@ -83,6 +83,7 @@ $details-left-margin: 20px;
   padding-left: $details-left-margin;
   background: #fff;
   padding-bottom: 2em;
+  position: relative;
 
   .repo-details-header {
     height: $top-pane-height;
@@ -205,4 +206,13 @@ $details-left-margin: 20px;
   margin: 0.75rem;
   font-size: 2.25rem;
   span { color: $text-color;  }
+}
+
+.repo-details-tabs {
+  margin-top: -32px; // height of tabs
+
+  .nav-tabs {
+    float: right;
+    margin-right: 10px;
+  }
 }
