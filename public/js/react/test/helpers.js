@@ -8,6 +8,7 @@ exports.initialState = {
   repo_details: {
     branch: null,
     branches: null,
+    commits: null,
     timecard: null,
     _comesfrom: [null, null], // the repo behind the current timecard
     _page: 0,

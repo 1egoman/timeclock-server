@@ -98,6 +98,10 @@ export function repoDetails(state = {branch: null}, action) {
   } else if (action.type === "server/BRANCHES_FOR") {
     return Object.assign({}, state, {branches: action.branches, error: null});
 
+  // the commit history for the branch
+  } else if (action.type === "server/COMMITS_FOR") {
+    return Object.assign({}, state, {commits: action.commits, error: null});
+
   // the timecard assosiated with a repository
   } else if (action.type === "server/TIMECARD") {
     if (

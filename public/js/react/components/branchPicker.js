@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { changeBranch, getTimecard } from '../actions/repo';
+import { changeBranch, getTimecard, getCommits } from '../actions/repo';
 import {getCurrentBranch, getAllBranches} from '../helpers/branch';
 import _ from "underscore";
 import Select from 'react-select';
@@ -39,6 +39,7 @@ const BranchPicker = connect(mapPropsToStore, (dispatch, props) => {
     chooseBranch(repo) {
       return (branch) => {
         dispatch(changeBranch(branch));
+        dispatch(getCommits(repo, branch)); // get commits for the repo and branch
         dispatch(getTimecard(repo, branch));
       };
     }

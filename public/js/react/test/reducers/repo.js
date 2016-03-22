@@ -144,6 +144,7 @@ describe('reducers/repo.js', function() {
         branch: "another-branch",
         branches: null,
         timecard: null,
+        commits: null,
         _comesfrom: [null, null],
         _page: 0,
         _canpaginateforward: false,
@@ -158,6 +159,7 @@ describe('reducers/repo.js', function() {
       assert.deepEqual(new_state, {
         branch: null,
         branches: null,
+        commits: null,
         timecard: null,
         _comesfrom: [null, null],
         _page: 0,
@@ -174,6 +176,7 @@ describe('reducers/repo.js', function() {
       assert.deepEqual(new_state, {
         branch: null,
         branches: null,
+        commits: null,
         timecard: null,
         _comesfrom: [null, null],
         _page: 0,
@@ -189,6 +192,23 @@ describe('reducers/repo.js', function() {
       assert.deepEqual(new_state, {
         branch: null,
         branches: ["master", "dev", "a-branch"],
+        commits: null,
+        timecard: null,
+        _comesfrom: [null, null],
+        _page: 0,
+        _canpaginateforward: false,
+        error: null,
+      });
+    });
+    it('should update commits on server/COMMITS_FOR', function() {
+      let new_state = repoDetails(old_state.repo_details, {
+        type: "server/COMMITS_FOR",
+        commits: [{committer: {username: "a-user"}, message: "abc", sha: "my-sha"}],
+      });
+      assert.deepEqual(new_state, {
+        branch: null,
+        branches: null,
+        commits: [{committer: {username: "a-user"}, message: "abc", sha: "my-sha"}],
         timecard: null,
         _comesfrom: [null, null],
         _page: 0,
@@ -209,6 +229,7 @@ describe('reducers/repo.js', function() {
       assert.deepEqual(new_state, {
         branch: null,
         branches: null,
+        commits: null,
         timecard: {foo: "bar"},
         users: [{foo: "baz"}],
         _comesfrom: ["username", "a-repository", null],
@@ -232,6 +253,7 @@ describe('reducers/repo.js', function() {
       assert.deepEqual(new_state, {
         branch: null,
         branches: null,
+        commits: null,
         timecard: {card: [{foo: "bar"}]},
         users: [{foo: "baz"}],
         _comesfrom: ["username", "a-repository", "ref"],
@@ -254,6 +276,7 @@ describe('reducers/repo.js', function() {
       assert.deepEqual(second_new_state, {
         branch: null,
         branches: null,
+        commits: null,
         timecard: {card: [{foo: "bar"}, {hello: "world"}]},
         users: [{foo: "baz"}, {second: "user"}],
         _comesfrom: ["username", "a-repository", "ref"],
@@ -270,6 +293,7 @@ describe('reducers/repo.js', function() {
       assert.deepEqual(new_state, {
         branch: null,
         branches: null,
+        commits: null,
         timecard: null,
         _comesfrom: [null, null], // the repo behind the current timecard
         _page: 0,

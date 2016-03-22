@@ -43,7 +43,7 @@ const Repo = connect((store, ownProps) => {
       return () => {
         dispatch(selectRepo(repo)); // select a new repo
         dispatch(getBranches(repo)); // also, pull in the branch data for this new repo 
-        dispatch(getCommits(repo)); // get commits for the repo
+        dispatch(getCommits(repo)); // get commits for the repo and branch
         dispatch(getTimecard(repo)); // lastly, pull in the timecard data too
         browserHistory.push(`/app/${repo.user}/${repo.repo}`); // change the router to reflect the change
       }
