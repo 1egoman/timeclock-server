@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {selectRepo, getBranches, getTimecard} from '../actions/repo';
+import {selectRepo, getBranches, getTimecard, getCommits} from '../actions/repo';
 import { browserHistory } from 'react-router';
 import { getRepoByIndex } from '../helpers/get_repo';
 
@@ -43,6 +43,7 @@ const Repo = connect((store, ownProps) => {
       return () => {
         dispatch(selectRepo(repo)); // select a new repo
         dispatch(getBranches(repo)); // also, pull in the branch data for this new repo 
+        dispatch(getCommits(repo)); // get commits for the repo
         dispatch(getTimecard(repo)); // lastly, pull in the timecard data too
         browserHistory.push(`/app/${repo.user}/${repo.repo}`); // change the router to reflect the change
       }

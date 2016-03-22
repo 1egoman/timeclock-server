@@ -10,6 +10,7 @@ const required_repo = require("../lib/repo"),
       importRepo = require("../lib/events/importRepo"),
       deleteRepo = require("../lib/events/deleteRepo"),
       getBranches = require("../lib/events/getBranches"),
+      getCommits = require("../lib/events/getCommits"),
       resetToken = require("../lib/events/resetToken"),
       changeSetting = require("../lib/events/changeSetting"),
 
@@ -31,6 +32,8 @@ function sendError(socket) {
 module.exports = function(socket) {
   let repo = required_repo, User = user_model;
   return function(action) {
+    console.log("New", action.type, "by", socket.request.user.username);
+
     // discover all repos to import
     if (action.type === 'server/DISCOVER_REPOS') {
       process.env.NODE_ENV !== "test" && console.log(`Discovering all repos for ${socket.request.user.username}`);
@@ -94,6 +97,17 @@ module.exports = function(socket) {
         });
       }, sendError(socket));
 
+    // get the commits for a repo
+    } else if (action.type === 'server/GET_COMMITS') {
+      getCommits(action, socket).then((commits) => {
+        mixpanel.track(socket, "commits.get", {commits});
+        socket.emit("action", {
+          type: "server/COMMITS_FOR",
+          commits,
+        });
+      }, sendError(socket));
+
+
     // get the timecard for the specified repo
     } else if (action.type === 'server/GET_TIMECARD') {
       getTimecard(action, socket).then((timecard) => {
@@ -129,6 +143,11 @@ module.exports = function(socket) {
       if (match = action.payload.pathname.match(/\/app\/([\w]+)\/([\w]+)/)) {
         module.exports(socket)({
           type: "server/GET_BRANCHES",
+          user: match[1],
+          repo: match[2],
+        });
+        module.exports(socket)({
+          type: "server/GET_COMMITS",
           user: match[1],
           repo: match[2],
         });

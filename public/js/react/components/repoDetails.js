@@ -13,6 +13,7 @@ import {getTimeDelta, getAvatarFor} from '../helpers/timecard';
 import {getProviderBadgeForRepo} from '../helpers/provider_badge';
 import {getRepoByIndex} from '../helpers/get_repo';
 import Loading from './loading';
+import RepoCommits from './repoCommits';
 
 function emptyTimecard({helpInstallingWaltz}) {
   return <div className="timecard timecard-is-empty">
@@ -136,6 +137,9 @@ export const RepoDetailsComponent = ({
           >Print Report</button>
         </div>
       </div>
+
+      {/* a list of commits */}
+      <RepoCommits />
 
       {/* list of all times in the timecard */}
       {timecard ? <div className="repo-details-report-table">
