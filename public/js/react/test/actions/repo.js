@@ -8,6 +8,7 @@ import {
   openRepoImportDialog,
   changeBranch,
   getBranches,
+  getCommits,
   getTimecard,
   askUserToCreateNewTimecard,
   changeStagingTimecardData,
@@ -82,6 +83,32 @@ describe('actions/repo.js', function() {
         type: "server/GET_BRANCHES",
         user: "username",
         repo: "repository",
+      });
+    });
+  });
+  describe('getCommits', function() {
+    it('should create the event', function() {
+      assert.deepEqual(getCommits({user: "username", repo: "repository"}, "master"), {
+        type: "server/GET_COMMITS",
+        user: "username",
+        repo: "repository",
+        ref: "master"
+      });
+    });
+    it('should create the event, without a branch', function() {
+      assert.deepEqual(getCommits({user: "username", repo: "repository"}), {
+        type: "server/GET_COMMITS",
+        user: "username",
+        repo: "repository",
+        ref: null,
+      });
+    });
+    it('should create the event, without a branch, defaulting to repo default_branch', function() {
+      assert.deepEqual(getCommits({user: "username", repo: "repository", default_branch: "master"}), {
+        type: "server/GET_COMMITS",
+        user: "username",
+        repo: "repository",
+        ref: "master",
       });
     });
   });

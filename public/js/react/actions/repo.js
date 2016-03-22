@@ -52,7 +52,7 @@ export function getBranches(repo) {
 
 // query the backend for the branches of the current repo
 export function getCommits(repo, branch) {
-  branch = branch || repo.default_branch; // default to the default branch
+  branch = branch || repo.default_branch || null; // default to the default branch
   return {
     type: "server/GET_COMMITS",
     user: repo.user,
