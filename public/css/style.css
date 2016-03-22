@@ -6249,8 +6249,8 @@ button.close {
   .features.features-install pre {
     margin-top: 3rem;
     padding-top: 2rem;
-    margin-bottom: 0px;
-    padding-bottom: 0px; }
+    margin-top: 0px;
+    margin-bottom: 0px; }
   .features.features-install small {
     color: #777777; }
 
