@@ -150,7 +150,7 @@ describe('reducers/repo.js', function() {
         error: null,
       });
     });
-    it('should reset branch on SELECT_REPO', function() {
+    it('should reset branch and close all modals on SELECT_REPO', function() {
       let new_state = repoDetails(old_state.repo_details, {
         type: "SELECT_REPO",
         index: 0,
@@ -162,10 +162,11 @@ describe('reducers/repo.js', function() {
         _comesfrom: [null, null],
         _page: 0,
         _canpaginateforward: false,
+        show_share_modal: false,
         error: null,
       });
     });
-    it('should reset branch on server/REPO_DELETED', function() {
+    it('should reset branch and close all modals on server/REPO_DELETED', function() {
       let new_state = repoDetails(old_state.repo_details, {
         type: "server/REPO_DELETED",
         user: "username",
@@ -178,6 +179,7 @@ describe('reducers/repo.js', function() {
         _comesfrom: [null, null],
         _page: 0,
         _canpaginateforward: false,
+        show_share_modal: false,
         error: null,
       });
     });

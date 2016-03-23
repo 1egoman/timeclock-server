@@ -132,7 +132,7 @@ export const RepoDetailsComponent = ({
             readOnly={true}
           />
 
-          {/* a button to open a share dialog so the user can share the invoice */}
+          {/* open a share dialog so the user can share the invoice with clients or collaborators */}
           <div className="repo-details-report-share">
             <ShareWithClient />
             {/* share the report */}

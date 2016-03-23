@@ -92,6 +92,7 @@ export function repoDetails(state = {branch: null}, action) {
       branches: null,
       timecard: null,
       error: null,
+      show_share_modal: false,
     });
 
   // the current repo's branches
