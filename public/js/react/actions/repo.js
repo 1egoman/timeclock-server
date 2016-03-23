@@ -105,3 +105,12 @@ export function showShareModal(value=true) {
     value,
   };
 };
+
+export function shareWithEmails(emails, message) {
+  return {
+    type: "server/SHARE_WITH",
+    via: "email",
+    emails,
+    message,
+  };
+};

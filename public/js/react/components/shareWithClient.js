@@ -3,7 +3,11 @@ import {connect} from 'react-redux';
 import {
   showShareModal,
 } from '../actions/repo';
-import {Modal, Input} from 'react-bootstrap';
+import {
+  Modal,
+  Input,
+  Button,
+} from 'react-bootstrap';
 
 export const shareWithClientComponent = ({
   user,
@@ -17,9 +21,21 @@ export const shareWithClientComponent = ({
       <Modal.Title>Share {active_repo[0]}/{active_repo[1]} with...</Modal.Title>
     </Modal.Header>
     <Modal.Body>
-      <h3>Share invoice with client</h3>
-      <Input type="text" placeholder="Add email to share" />
+      <Input
+        type="text"
+        placeholder="email@example.com"
+        label="Who should we share with?"
+      />
+      <Input
+        type="textarea"
+        label="Add an optional message"
+        placeholder="Take a look at my groovy invoice!"
+        style={{resize: "vertical"}}
+      />
     </Modal.Body>
+    <Modal.Footer>
+      <Button className="pull-right" bsStyle="primary" onClick={submitShare}>Share</Button>
+    </Modal.Footer>
   </Modal>;
 };
 
@@ -33,6 +49,9 @@ const shareWithClient = connect((store, props) => {
   return {
     hideModal() {
       dispatch(showShareModal(false)); // hide it
+    },
+    submitShare(emails, msg) {
+      dispatch(shareWithEmails(emails, msg));
     },
   };
 })(shareWithClientComponent);
