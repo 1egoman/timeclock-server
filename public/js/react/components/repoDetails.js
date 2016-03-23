@@ -6,6 +6,7 @@ import {
   changeBranch,
   getTimecard,
   showWaltzInstallInstructions,
+  showShareModal,
 } from '../actions/repo';
 import ImportRepo from './importRepo';
 import {getCurrentBranch, getAllBranches} from '../helpers/branch';
@@ -13,6 +14,7 @@ import {getTimeDelta, getAvatarFor} from '../helpers/timecard';
 import {getProviderBadgeForRepo} from '../helpers/provider_badge';
 import {getRepoByIndex} from '../helpers/get_repo';
 import Loading from './loading';
+import ShareWithClient from './shareWithClient';
 
 function emptyTimecard({helpInstallingWaltz}) {
   return <div className="timecard timecard-is-empty">
@@ -72,6 +74,7 @@ export const RepoDetailsComponent = ({
   getMoreTimes,
   toImportRepoPage,
   helpInstallingWaltz,
+  openShareModal,
 }) => {
   // import new repos
   if (repo_import_dialog_open && has_discovered_repos) {
@@ -84,7 +87,7 @@ export const RepoDetailsComponent = ({
       spinner
     />;
 
-  // a repo was selected
+  // a repo error
   } else if (repo_details.error) {
     return <div>
       <h1>Uh, oh!</h1>
@@ -134,6 +137,15 @@ export const RepoDetailsComponent = ({
             className="btn btn-info repo-details-print-report"
             onClick={printReport(repo, current_branch)}
           >Print Report</button>
+
+          <div className="repo-details-report-share">
+            <ShareWithClient />
+            {/* share the report */}
+            <button
+              className="btn btn-info repo-details-print-report"
+              onClick={openShareModal.bind(this)}
+            >Share Report</button>
+          </div>
         </div>
       </div>
 
@@ -215,6 +227,10 @@ const RepoDetails = connect(mapStateToProps, (dispatch, props) => {
 
     helpInstallingWaltz() {
       dispatch(showWaltzInstallInstructions());
+    },
+
+    openShareModal() {
+      dispatch(showShareModal());
     },
   };
 })(RepoDetailsComponent);

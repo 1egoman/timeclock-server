@@ -137,6 +137,12 @@ export function repoDetails(state = {branch: null}, action) {
       });
     }
 
+  } else if (action.type === "SHOW_REPO_SHARE_MODAL") {
+    return Object.assign({}, state, {
+      show_share_modal: action.value,
+      error: null,
+    });
+
   // No timecard in the repo?
   } else if (action.type === "server/ERROR" && action.error === "NO_TIMECARD_IN_REPO") {
     return Object.assign({}, state, {
