@@ -138,11 +138,29 @@ export function repoDetails(state = {branch: null}, action) {
       });
     }
 
+  // open the share repo modal
   } else if (action.type === "SHOW_REPO_SHARE_MODAL") {
     return Object.assign({}, state, {
       show_share_modal: action.value,
       error: null,
     });
+
+  // send share request to server
+  } else if (action.type === "server/SHARE_WITH") {
+    return Object.assign({}, state, {
+      show_share_modal: false,
+      waiting_for_share_modal_response: true,
+      error: null,
+    });
+
+  // successfully shared, so close.
+  } else if (action.type === "server/SHARE_COMPLETE") {
+    return Object.assign({}, state, {
+      show_share_modal: false,
+      waiting_for_share_modal_response: false,
+      error: null,
+    });
+
 
   // No timecard in the repo?
   } else if (action.type === "server/ERROR" && action.error === "NO_TIMECARD_IN_REPO") {

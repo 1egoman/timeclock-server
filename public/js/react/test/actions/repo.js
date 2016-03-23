@@ -189,11 +189,13 @@ describe('actions/repo.js', function() {
   });
   describe('shareWithEmails', function() {
     it('should create the event', function() {
-      assert.deepEqual(shareWithEmails(["foo@bar.com", "my@email.org"], "Lorem Ipsum."), {
+      assert.deepEqual(shareWithEmails({repo: "a-repo", user: "a-user"}, ["foo@bar.com", "my@email.org"], "Lorem Ipsum."), {
         type: "server/SHARE_WITH",
         via: "email",
         emails: ["foo@bar.com", "my@email.org"],
-        message: "Lorem Ipsum."
+        message: "Lorem Ipsum.",
+        user: "a-user",
+        repo: "a-repo",
       });
     });
   });

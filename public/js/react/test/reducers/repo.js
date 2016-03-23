@@ -295,6 +295,38 @@ describe('reducers/repo.js', function() {
         show_share_modal: true,
       });
     });
+    it('should let the modal know we\'ve initated the share to the server on server/SHARE_WITH', function() {
+      let new_state = repoDetails(old_state.repo_details, {
+        type: "server/SHARE_WITH",
+      });
+      assert.deepEqual(new_state, {
+        branch: null,
+        branches: null,
+        timecard: null,
+        _comesfrom: [null, null], // the repo behind the current timecard
+        _page: 0,
+        _canpaginateforward: false,
+        error: null,
+        show_share_modal: false,
+        waiting_for_share_modal_response: true,
+      });
+    });
+    it('should update state when share complete on server/SHARE_COMPLETE', function() {
+      let new_state = repoDetails(old_state.repo_details, {
+        type: "server/SHARE_COMPLETE",
+      });
+      assert.deepEqual(new_state, {
+        branch: null,
+        branches: null,
+        timecard: null,
+        _comesfrom: [null, null], // the repo behind the current timecard
+        _page: 0,
+        _canpaginateforward: false,
+        error: null,
+        show_share_modal: false,
+        waiting_for_share_modal_response: false,
+      });
+    });
     it('should not be effected by another event', function() {
       let new_state = repoDetails(old_state.repo_details, {
         type: "SOME_OTHER_EVENT",
