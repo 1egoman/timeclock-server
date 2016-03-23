@@ -277,6 +277,22 @@ describe('reducers/repo.js', function() {
         error: "There isn't a timecard in this repo. Please add one by running waltz init locally,\n              or if you have, push up your changes\n              .",
       });
     });
+    it('should open repo share modal on SHOW_REPO_SHARE_MODAL', function() {
+      let new_state = repoDetails(old_state.repo_details, {
+        type: "SHOW_REPO_SHARE_MODAL",
+        value: true,
+      });
+      assert.deepEqual(new_state, {
+        branch: null,
+        branches: null,
+        timecard: null,
+        _comesfrom: [null, null], // the repo behind the current timecard
+        _page: 0,
+        _canpaginateforward: false,
+        error: null,
+        show_share_modal: true,
+      });
+    });
     it('should not be effected by another event', function() {
       let new_state = repoDetails(old_state.repo_details, {
         type: "SOME_OTHER_EVENT",
