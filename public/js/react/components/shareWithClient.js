@@ -2,19 +2,26 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {
   showShareModal,
+  shareWithEmails,
 } from '../actions/repo';
 import {
   Modal,
   Input,
   Button,
 } from 'react-bootstrap';
+import {reduxForm} from 'redux-form';
 
 export const shareWithClientComponent = ({
   user,
   show,
   active_repo,
 
+  // from redux-form
+  fields: {email, message},
+  handleSubmit,
+
   hideModal,
+  submitShare,
 }) => {
   return <Modal show={show} onHide={hideModal}>
     <Modal.Header closeButton>
@@ -25,21 +32,27 @@ export const shareWithClientComponent = ({
         type="text"
         placeholder="email@example.com"
         label="Who should we share with?"
+        {...email}
       />
       <Input
         type="textarea"
         label="Add an optional message"
         placeholder="Take a look at my groovy invoice!"
         style={{resize: "vertical"}}
+        {...message}
       />
     </Modal.Body>
     <Modal.Footer>
-      <Button className="pull-right" bsStyle="primary" onClick={submitShare}>Share</Button>
+      <Button
+        className="pull-right"
+        bsStyle="primary"
+        onClick={handleSubmit(submitShare)}
+      >Share</Button>
     </Modal.Footer>
   </Modal>;
 };
 
-const shareWithClient = connect((store, props) => {
+let shareWithClient = connect((store, props) => {
   return {
     user: store.user,
     active_repo: store.active_repo,
@@ -50,9 +63,17 @@ const shareWithClient = connect((store, props) => {
     hideModal() {
       dispatch(showShareModal(false)); // hide it
     },
-    submitShare(emails, msg) {
-      dispatch(shareWithEmails(emails, msg));
+    submitShare({email, message}) {
+      dispatch(shareWithEmails([email], message));
+      props.resetForm();
     },
   };
 })(shareWithClientComponent);
+
+// add redux-form for the email and message data
+shareWithClient = reduxForm({
+  fields: ["email", "message"],
+  form: "share_with_client",
+})(shareWithClient);
+
 export default shareWithClient;

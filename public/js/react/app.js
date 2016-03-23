@@ -5,6 +5,7 @@ import { Provider, connect } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import {reducer as formReducer} from 'redux-form';
 import {repoView, settingsView, notFoundRoute} from './router';
 import InstallClientHelp from './components/installClientHelp';
 import ErrorModal from './components/errorModal';
@@ -77,6 +78,7 @@ const waltzApp = combineReducers({
   new_timecard_staging: newTimecardData,
   client_help_dialog: helpInstallingClient,
   error,
+  form: formReducer,
 });
 
 // "Store"
