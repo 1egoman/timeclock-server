@@ -46,7 +46,7 @@ export const shareWithClientComponent = ({
       <Button
         className="pull-right"
         bsStyle="primary"
-        onClick={handleSubmit(submitShare)}
+        onClick={handleSubmit(submitShare.bind(this, active_repo))}
       >Share</Button>
     </Modal.Footer>
   </Modal>;
@@ -63,9 +63,8 @@ let shareWithClient = connect((store, props) => {
     hideModal() {
       dispatch(showShareModal(false)); // hide it
     },
-    submitShare({email, message}) {
-      dispatch(shareWithEmails([email], message));
-      props.resetForm();
+    submitShare([user, repo], {email, message}) {
+      dispatch(shareWithEmails(user, repo, [email], message));
     },
   };
 })(shareWithClientComponent);

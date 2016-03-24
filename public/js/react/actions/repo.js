@@ -106,13 +106,13 @@ export function showShareModal(value=true) {
   };
 };
 
-export function shareWithEmails(repo, emails, message) {
+export function shareWithEmails(user, repo, emails, message) {
   return {
     type: "server/SHARE_WITH",
     via: "email",
     emails,
     message,
-    user: repo.user,
-    repo: repo.repo,
+    user,
+    repo,
   };
 };
