@@ -98,3 +98,21 @@ export function hideErrorModal() {
     type: "HIDE_ERROR_MODAL",
   };
 };
+
+export function showShareModal(value=true) {
+  return {
+    type: "SHOW_REPO_SHARE_MODAL",
+    value,
+  };
+};
+
+export function shareWithEmails(user, repo, emails, message) {
+  return {
+    type: "server/SHARE_WITH",
+    via: "email",
+    emails,
+    message,
+    user,
+    repo,
+  };
+};

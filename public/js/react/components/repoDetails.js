@@ -6,6 +6,7 @@ import {
   changeBranch,
   getTimecard,
   showWaltzInstallInstructions,
+  showShareModal,
 } from '../actions/repo';
 import ImportRepo from './importRepo';
 import {getCurrentBranch, getAllBranches} from '../helpers/branch';
@@ -13,6 +14,7 @@ import {getTimeDelta, getAvatarFor} from '../helpers/timecard';
 import {getProviderBadgeForRepo} from '../helpers/provider_badge';
 import {getRepoByIndex} from '../helpers/get_repo';
 import Loading from './loading';
+import ShareWithClient from './shareWithClient';
 
 function emptyTimecard({helpInstallingWaltz}) {
   return <div className="timecard timecard-is-empty">
@@ -72,6 +74,7 @@ export const RepoDetailsComponent = ({
   getMoreTimes,
   toImportRepoPage,
   helpInstallingWaltz,
+  openShareModal,
 }) => {
   // import new repos
   if (repo_import_dialog_open && has_discovered_repos) {
@@ -84,7 +87,7 @@ export const RepoDetailsComponent = ({
       spinner
     />;
 
-  // a repo was selected
+  // a repo error
   } else if (repo_details.error) {
     return <div>
       <h1>Uh, oh!</h1>
@@ -128,6 +131,16 @@ export const RepoDetailsComponent = ({
             value={`http://waltzapp.co/embed/${repo.user}/${repo.repo}/${current_branch}${repo.is_private ? '?token='+user.badge_token : ''}`}
             readOnly={true}
           />
+
+          {/* open a share dialog so the user can share the invoice with clients or collaborators */}
+          <div className="repo-details-report-share">
+            <ShareWithClient />
+            {/* share the report */}
+            <button
+              className="btn btn-success"
+              onClick={openShareModal.bind(this)}
+            >Share Report</button>
+          </div>
 
           {/* print a copy of the report */}
           <button
@@ -215,6 +228,10 @@ const RepoDetails = connect(mapStateToProps, (dispatch, props) => {
 
     helpInstallingWaltz() {
       dispatch(showWaltzInstallInstructions());
+    },
+
+    openShareModal() {
+      dispatch(showShareModal());
     },
   };
 })(RepoDetailsComponent);

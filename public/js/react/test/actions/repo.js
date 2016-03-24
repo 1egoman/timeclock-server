@@ -14,6 +14,8 @@ import {
   deleteRepo,
   showWaltzInstallInstructions,
   hideErrorModal,
+  showShareModal,
+  shareWithEmails,
 } from '../../actions/repo';
 
 describe('actions/repo.js', function() {
@@ -162,6 +164,38 @@ describe('actions/repo.js', function() {
       assert.deepEqual(showWaltzInstallInstructions(false), {
         type: "HELP_INSTALL_WALTZ",
         value: false,
+      });
+    });
+  });
+  describe('showShareModal', function() {
+    it('should create the event', function() {
+      assert.deepEqual(showShareModal(false), {
+        type: "SHOW_REPO_SHARE_MODAL",
+        value: false,
+      });
+    });
+    it('should create the event with true', function() {
+      assert.deepEqual(showShareModal(true), {
+        type: "SHOW_REPO_SHARE_MODAL",
+        value: true,
+      });
+    });
+    it('should create the event, defaulting to true', function() {
+      assert.deepEqual(showShareModal(), {
+        type: "SHOW_REPO_SHARE_MODAL",
+        value: true,
+      });
+    });
+  });
+  describe('shareWithEmails', function() {
+    it('should create the event', function() {
+      assert.deepEqual(shareWithEmails({repo: "a-repo", user: "a-user"}, ["foo@bar.com", "my@email.org"], "Lorem Ipsum."), {
+        type: "server/SHARE_WITH",
+        via: "email",
+        emails: ["foo@bar.com", "my@email.org"],
+        message: "Lorem Ipsum.",
+        user: "a-user",
+        repo: "a-repo",
       });
     });
   });

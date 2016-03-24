@@ -6565,7 +6565,7 @@ footer {
       margin-bottom: 8px;
       float: left; }
     .repo-details .repo-details-header .repo-details-report-link {
-      width: 300px;
+      width: 400px;
       float: left;
       margin: 0em 0.5em; }
       .repo-details .repo-details-header .repo-details-report-link:before, .repo-details .repo-details-header .repo-details-report-link:after {
@@ -6577,6 +6577,9 @@ footer {
         width: 200px;
         float: left; }
       .repo-details .repo-details-header .repo-details-report-link .repo-details-print-report {
+        float: right;
+        width: 100px; }
+      .repo-details .repo-details-header .repo-details-report-link .repo-details-report-share {
         float: right;
         width: 100px; }
   .repo-details .repo-details-badge {
