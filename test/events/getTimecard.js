@@ -10,7 +10,7 @@ const assert = require("assert"),
       User = require("../../lib/models/user");
 
 describe("lib/events/getTimecard.js", function() {
-  describe("valid empty timecard and users", function() {
+  describe("with valid empty timecard and users", function() {
     beforeEach(() => {
       sinon.stub(repo, "getFileFromRepo").resolves({card: [], foo: "bar"});
       sinon.stub(repo, "getUserMetaFor").resolves({username: "a-user", some: "metadata"});
@@ -71,7 +71,7 @@ describe("lib/events/getTimecard.js", function() {
       }).catch(done);
     });
   });
-  describe("valid 10-entry timecard and users", function() {
+  describe("with valid 10-entry timecard and users", function() {
     let timecard = _.range(0, 10).map((i) => {
       return {
         date: "Sun Jan 17 2016",
@@ -121,7 +121,7 @@ describe("lib/events/getTimecard.js", function() {
       }).catch(done);
     });
   });
-  describe("valid 100-entry timecard and users", function() {
+  describe("with valid 100-entry timecard and users", function() {
     let timecard = _.range(0, 100).map((i, ct) => {
       return {
         date: "Sun Jan 17 2016",
@@ -200,7 +200,7 @@ describe("lib/events/getTimecard.js", function() {
       }).catch(done);
     });
   });
-  describe("valid 10-entry timecard, but users fail", function() {
+  describe("with valid 10-entry timecard, but users fail", function() {
     let timecard = _.range(0, 10).map((i) => {
       return {
         date: "Sun Jan 17 2016",
@@ -240,7 +240,7 @@ describe("lib/events/getTimecard.js", function() {
       }).catch(done);
     });
   });
-  describe("bad timecard, repo doesn't exist", function() {
+  describe("with bad timecard, repo doesn't exist", function() {
     beforeEach(() => {
       sinon.stub(repo, "getFileFromRepo").rejects("Not Found");
       sinon.stub(repo, "getUserMetaFor").resolves({username: "a-user", some: "metadata"});
@@ -269,7 +269,7 @@ describe("lib/events/getTimecard.js", function() {
       }).catch(done);
     });
   });
-  describe("bad timecard, unexpected error", function() {
+  describe("with bad timecard, unexpected error", function() {
     let thrown_error = new Error("Big bad error");
     beforeEach(() => {
       sinon.stub(repo, "getFileFromRepo").rejects(thrown_error);
@@ -299,7 +299,7 @@ describe("lib/events/getTimecard.js", function() {
       }).catch(done);
     });
   });
-  describe("bad timecard, doesn't validate", function() {
+  describe("with bad timecard, doesn't validate", function() {
     beforeEach(() => {
       sinon.stub(repo, "getFileFromRepo").resolves({bad: "timecard"});
       sinon.stub(repo, "getUserMetaFor").resolves({username: "a-user", some: "metadata"});

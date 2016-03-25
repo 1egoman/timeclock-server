@@ -148,7 +148,7 @@ describe("lib/events/importRepo.js", function() {
     }).catch(done);
   });
 
-  describe("private repos", () => {
+  describe("with a private repo", () => {
     it('should import a private repo with valid info', function(done) {
       let skt = socketHelpers.createMockSocketWith({
         repos: [],
