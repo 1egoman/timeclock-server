@@ -179,7 +179,7 @@ export const RepoDetailsComponent = ({
         <Loading
           title="Loading Timecard..."
           spinner
-        />;
+        />
       </div>}
     </div>;
 
