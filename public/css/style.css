@@ -3252,7 +3252,7 @@ tbody.collapse.in {
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box; }
-  .dropdown-menu.pull-right, .feature.feature-right .dropdown-menu.content, .repo-details.repo-details-import .repos .dropdown-menu.btn-pick-me {
+  .dropdown-menu.pull-right, .feature.feature-right .dropdown-menu.content, .sample-invoice .total-cost span.dropdown-menu.value, .repo-details.repo-details-import .repos .dropdown-menu.btn-pick-me {
     right: 0;
     left: auto; }
   .dropdown-menu .divider {
@@ -3320,7 +3320,7 @@ tbody.collapse.in {
   top: 0;
   z-index: 990; }
 
-.pull-right > .dropdown-menu, .feature.feature-right .content > .dropdown-menu, .repo-details.repo-details-import .repos .btn-pick-me > .dropdown-menu {
+.pull-right > .dropdown-menu, .feature.feature-right .content > .dropdown-menu, .sample-invoice .total-cost span.value > .dropdown-menu, .repo-details.repo-details-import .repos .btn-pick-me > .dropdown-menu {
   right: 0;
   left: auto; }
 
@@ -4612,7 +4612,8 @@ a.thumbnail.active {
 
 .media-right,
 .media > .pull-right, .feature.feature-right
-.media > .content, .repo-details.repo-details-import .repos
+.media > .content, .sample-invoice .total-cost
+.media > span.value, .repo-details.repo-details-import .repos
 .media > .btn-pick-me {
   padding-left: 10px; }
 
@@ -5743,7 +5744,7 @@ button.close {
   margin-left: auto;
   margin-right: auto; }
 
-.pull-right, .feature.feature-right .content, .repo-details.repo-details-import .repos .btn-pick-me {
+.pull-right, .feature.feature-right .content, .sample-invoice .total-cost span.value, .repo-details.repo-details-import .repos .btn-pick-me {
   float: right !important; }
 
 .pull-left, .feature.feature-left .content, .repos .repos-controls .repos-label {
@@ -6446,9 +6447,9 @@ button.close {
     .sample-invoice .project-info .project {
       padding: 0.5em; }
     .sample-invoice .project-info .totals {
-      padding: 0.5em;
+      padding: 1em;
       color: #fff;
-      background: #6AC15F; }
+      margin-top: 0.8em; }
       .sample-invoice .project-info .totals:before, .sample-invoice .project-info .totals:after {
         content: " ";
         display: table; }
@@ -6465,7 +6466,10 @@ button.close {
     min-height: 1px;
     padding-left: 15px;
     padding-right: 15px;
-    height: 10em; }
+    height: 10em;
+    border-top: 4px solid #333333;
+    margin-top: 2em;
+    padding: 1em 1em 0em 1em; }
     @media (min-width: 992px) {
       .sample-invoice .total-cost {
         float: left;
@@ -6473,21 +6477,22 @@ button.close {
     @media (min-width: 992px) {
       .sample-invoice .total-cost {
         margin-left: 66.6666666667%; } }
-    .sample-invoice .total-cost span {
+    .sample-invoice .total-cost span.tax {
+      color: #777777; }
+    .sample-invoice .total-cost span.value {
       white-space: nowrap;
-      display: block; }
-    .sample-invoice .total-cost .project {
-      padding: 0.5em; }
-    .sample-invoice .total-cost .totals {
-      padding: 0.5em;
-      color: #fff;
-      background: #6AC15F; }
+      display: inline; }
+    .sample-invoice .total-cost span.prehead {
+      white-space: nowrap;
+      display: inline;
+      margin-right: 1em; }
   .sample-invoice .body {
-    padding-left: 1.2em;
     position: relative;
     min-height: 1px;
     padding-left: 15px;
-    padding-right: 15px; }
+    padding-right: 15px;
+    padding-left: 1.2em;
+    margin-top: 2em; }
     @media (min-width: 992px) {
       .sample-invoice .body {
         float: left;
