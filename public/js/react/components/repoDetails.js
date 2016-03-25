@@ -139,14 +139,14 @@ export const RepoDetailsComponent = ({
             <button
               className="btn btn-success"
               onClick={openShareModal.bind(this)}
-            >Share Report</button>
+            >Share Invoice</button>
           </div>
 
           {/* print a copy of the report */}
           <button
             className="btn btn-info repo-details-print-report"
             onClick={printReport(repo, current_branch)}
-          >Print Report</button>
+          >Print Invoice</button>
         </div>
       </div>
 
@@ -179,7 +179,7 @@ export const RepoDetailsComponent = ({
         <Loading
           title="Loading Timecard..."
           spinner
-        />;
+        />
       </div>}
     </div>;
 
