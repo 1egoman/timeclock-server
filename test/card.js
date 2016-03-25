@@ -185,7 +185,7 @@ describe('card.totalDuration()', function() {
   });
 });
 
-describe.only('card.getReportTemplate()', function() {
+describe('card.getReportTemplate()', function() {
   beforeEach(() => {
     let call = sinon.stub(repo, "getFileFromRepo");
 

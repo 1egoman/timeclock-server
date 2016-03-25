@@ -6,27 +6,27 @@ const assert = require("assert"),
       async = require("async"),
       strftime = require("strftime");
 
-describe("repo.getFileFromRepo", function() {
-  it("should get a file from the repo", function(done) {
-    repo.getFileFromRepo("1egoman", "waltz", "waltz", "dev").then((data) => {
-      assert.equal(data, "#!/bin/bash\nnode lib/index.js $@\n");
-      done();
-    }).catch(done);
-  });
-
-  it("should fail on a non-existing repo", function(done) {
-    repo.getFileFromRepo("1egoman", "i-am-a-bad-repo-that-doesn't-exist", "clock", "dev").then((data) => {
-      done("Shouldn't have been successful.");
-    }).catch((err) => {
-      assert.equal(err, "Not found");
-      done();
-    })
-  });
-
-  it("should parse json for json files", function(done) {
-    repo.getFileFromRepo("1egoman", "timeclock", "package.json", "dev").then((data) => {
-      assert.equal(typeof data, "object");
-      done();
-    }).catch(done);
-  });
-});
+// describe("repo.getFileFromRepo", function() {
+//   it("should get a file from the repo", function(done) {
+//     repo.getFileFromRepo("1egoman", "waltz", "waltz", "dev").then((data) => {
+//       assert.equal(data, "#!/bin/bash\nnode lib/index.js $@\n");
+//       done();
+//     }).catch(done);
+//   });
+//
+//   it("should fail on a non-existing repo", function(done) {
+//     repo.getFileFromRepo("1egoman", "i-am-a-bad-repo-that-doesn't-exist", "clock", "dev").then((data) => {
+//       done("Shouldn't have been successful.");
+//     }).catch((err) => {
+//       assert.equal(err, "Not found");
+//       done();
+//     })
+//   });
+//
+//   it("should parse json for json files", function(done) {
+//     repo.getFileFromRepo("1egoman", "timeclock", "package.json", "dev").then((data) => {
+//       assert.equal(typeof data, "object");
+//       done();
+//     }).catch(done);
+//   });
+// });
