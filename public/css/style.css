@@ -5948,25 +5948,43 @@ button.close {
   box-shadow: none;
   -webkit-box-shadow: none; }
 
-.btn.btn-xl {
-  border-radius: 0px;
-  padding: 1em;
-  font-size: 30px;
-  font-weight: lighter; }
-  .btn.btn-xl.btn-block, .features.features-install .btn.btn-xl.btn-next-step {
-    width: 100%;
-    margin: 0px auto;
-    display: block; }
-  .btn.btn-xl.btn-50 {
-    width: 100%;
-    margin: 10px auto;
-    display: block;
-    margin-left: 1%;
-    margin-right: 1%; }
-    @media (min-width: 768px) {
-      .btn.btn-xl.btn-50 {
-        width: 48%;
-        float: left; } }
+.btn {
+  border-bottom: 4px solid rgba(0, 0, 0, 0.15); }
+  .btn.btn-xl {
+    border-radius: 0px;
+    padding: 1em;
+    font-size: 30px;
+    font-weight: lighter; }
+    .btn.btn-xl.btn-block, .features.features-install .btn.btn-xl.btn-next-step {
+      width: 100%;
+      margin: 0px auto;
+      display: block; }
+    .btn.btn-xl.btn-50 {
+      width: 100%;
+      margin: 10px auto;
+      display: block;
+      margin-left: 1%;
+      margin-right: 1%; }
+      @media (min-width: 768px) {
+        .btn.btn-xl.btn-50 {
+          width: 48%;
+          float: left; } }
+  .btn.btn-hollow {
+    background-color: transparent;
+    color: #fff; }
+    .btn.btn-hollow.btn-primary, .features.features-install .btn.btn-hollow.btn-next-step {
+      border: 4px solid #51c4c4; }
+    .btn.btn-hollow.btn-info {
+      border: 4px solid #8a51c4; }
+    .btn.btn-hollow.btn-success {
+      border: 4px solid #8ac450; }
+    .btn.btn-hollow.btn-warning {
+      border: 4px solid #E2D54A; }
+    .btn.btn-hollow.btn-danger {
+      border: 4px solid #c45151; }
+    .btn.btn-hollow:hover, .btn.btn-hollow:active, .btn.btn-hollow:focus {
+      background-color: #fff;
+      color: #333333; }
 
 .hero {
   margin-bottom: 0px;
@@ -6380,47 +6398,114 @@ button.close {
     font-size: 1.4em; }
 
 .sample-invoice {
-  max-width: 800px;
+  max-width: 1000px;
   color: #333;
   height: 100%;
-  padding: 10px;
   font-family: "Open Sans", Helvetica, sans-serif;
-  cursor: default; }
+  cursor: default;
+  background: #fff;
+  padding: 64px 12px 32px 12px; }
   .sample-invoice .header {
-    background: #6AC15F;
-    padding: 2em;
     margin-bottom: 0.8em;
     color: #fff;
-    text-align: center; }
+    text-align: center;
+    width: 400px; }
   .sample-invoice .prehead {
     text-transform: uppercase;
     font-weight: bold;
     font-size: 0.8em;
     margin-bottom: 0.6em;
     display: inline-block; }
+  .sample-invoice .contact-info {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 10em; }
+    @media (min-width: 992px) {
+      .sample-invoice .contact-info {
+        float: left;
+        width: 66.6666666667%; } }
+    .sample-invoice .contact-info span {
+      white-space: nowrap;
+      display: block; }
+  .sample-invoice .project-info {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 10em; }
+    @media (min-width: 992px) {
+      .sample-invoice .project-info {
+        float: left;
+        width: 33.3333333333%; } }
+    .sample-invoice .project-info span {
+      white-space: nowrap;
+      display: block; }
+    .sample-invoice .project-info .project {
+      padding: 0.5em; }
+    .sample-invoice .project-info .totals {
+      padding: 0.5em;
+      color: #fff;
+      background: #6AC15F; }
+      .sample-invoice .project-info .totals:before, .sample-invoice .project-info .totals:after {
+        content: " ";
+        display: table; }
+      .sample-invoice .project-info .totals:after {
+        clear: both; }
+      .sample-invoice .project-info .totals small {
+        margin-top: 0.425em; }
+        .sample-invoice .project-info .totals small:before {
+          content: "("; }
+        .sample-invoice .project-info .totals small:after {
+          content: ")"; }
+  .sample-invoice .total-cost {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 10em; }
+    @media (min-width: 992px) {
+      .sample-invoice .total-cost {
+        float: left;
+        width: 33.3333333333%; } }
+    @media (min-width: 992px) {
+      .sample-invoice .total-cost {
+        margin-left: 66.6666666667%; } }
+    .sample-invoice .total-cost span {
+      white-space: nowrap;
+      display: block; }
+    .sample-invoice .total-cost .project {
+      padding: 0.5em; }
+    .sample-invoice .total-cost .totals {
+      padding: 0.5em;
+      color: #fff;
+      background: #6AC15F; }
   .sample-invoice .body {
-    padding-left: 1.2em; }
+    padding-left: 1.2em;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px; }
+    @media (min-width: 992px) {
+      .sample-invoice .body {
+        float: left;
+        width: 100%; } }
   .sample-invoice li {
     list-style-type: none; }
-  .sample-invoice li:before {
-    content: "- "; }
   .sample-invoice .header a, .sample-invoice .header p {
     color: white; }
-  .sample-invoice .disabled, .sample-invoice .disabled span {
-    text-decoration: line-through; }
   .sample-invoice .right {
     float: right; }
   .sample-invoice li.enabled {
-    background: #dff0d8;
     padding: 6px 16px; }
   .sample-invoice li.disabled {
-    background: #fcf8e3;
-    padding: 6px 16px; }
+    padding: 6px 16px;
+    color: #777777; }
   .sample-invoice .totaltime {
     padding: 6px 16px;
     width: 100%;
-    display: block;
-    background: #d9edf7; }
+    display: block; }
 
 .sample-invoice-header {
   margin-bottom: 2em; }
@@ -6481,7 +6566,6 @@ footer {
       margin: 0.5em 0.1em; }
 
 .navbar {
-  background: #eeeeee;
   background: #fff;
   border-bottom: 2px solid #eeeeee; }
   .navbar a {

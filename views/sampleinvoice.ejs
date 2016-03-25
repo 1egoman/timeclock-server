@@ -2,113 +2,35 @@
   <div class="sample-invoice-header">
     <h1>What does one</h1>
     <h2>of our invoices look like?</h2>
-    <h3>(hover over each colored section for more information)</h3>
   </div>
   <div class="sample-invoice">
-    <div
-      class="header"
-      data-toggle="popover"
-      title="A Name and Tagline"
-      data-content="Label each invoice with a descriptive name and tagline to
-      explain the scope of work to the client."
-      data-trigger="hover"
-      data-placement="bottom"
-    >
-      <h1>Matt&#39;s Bakery</h1>
-      <h2>A website redesign</h2>
+    <!-- top section -->
+    <div class="contact-info">
+      <span class="name">My Web design company</span>
+      <span class="address">123 Blue ocean road</span>
+      <span class="address-2">Somecityname, NY 12345</span>
+    </div>
+    <div class="project-info">
+      <span class="project">
+        <span class="prehead">Project</span>
+        <span class="address">Matt's Bakery - Website Redesign</span>
+      </span>
+      <span class="totals">
+        <span class="prehead">Amount Due</span>
+        <span class="pull-left">$874.00</span>
+        <small class="pull-right">656 minutes</small>
+      </span>
     </div>
     
     <div class="body">
       <span class="prehead">Breakdown</span>
-        <span
-          data-toggle="popover"
-          title="Paid Time"
-          data-content="Paid times can be styled differently, or hidden
-          altogether depending on the template."
-          data-trigger="hover"
-          data-placement="top"
-        >
+        <span>
           <li class="disabled">
-            Sun Jan 17 2016
-            <span class="right">
-              11:43:00 to 13:43:03
-            </span>
-          </li>
-          <li class="disabled">
-            Tue Jan 19 2016
-            <span class="right">
-              13:15:38 to 18:30:40
-            </span>
-          </li>
-          <li class="disabled">
-            Sat Jan 23 2016
-            <span class="right">
-              15:00:00 to 19:30:40
-            </span>
-          </li>
-          <li class="disabled">
-            Sun Jan 24 2016
-            <span class="right">
-              15:23:07 to 19:52:09
-            </span>
-          </li>
-          <li class="disabled">
-            Mon Jan 25 2016
-            <span class="right">
-              20:16:12 to 21:21:50
-            </span>
-          </li>
-          <li class="disabled">
-            Sat Jan 30 2016
-            <span class="right">
-              17:34:17 to 18:04:35
-            </span>
-          </li>
-          <li class="disabled">
-            Sat Jan 30 2016
-            <span class="right">
-              18:29:12 to 20:48:41
-            </span>
-          </li>
-          <li class="disabled">
-            Mon Feb 01 2016
-            <span class="right">
-              18:45:15 to 19:23:19
-            </span>
-          </li>
-          <li class="disabled">
-            Mon Feb 08 2016
-            <span class="right">
-              17:00:09 to 17:52:37
-            </span>
-          </li>
-          <li class="disabled">
-            Wed Feb 10 2016
-            <span class="right">
-              14:49:36 to 14:50:47
-            </span>
-          </li>
-          <li class="disabled">
-            Sat Feb 13 2016
-            <span class="right">
-              15:00:18 to 15:54:07
-            </span>
-          </li>
-          <li class="disabled">
-            Mon Feb 15 2016
-            <span class="right">
-              07:13:10 to 07:51:02
-            </span>
+            Previously paid
+            <span class="right">20 minutes</span>
           </li>
         </span>
-        <span
-          data-toggle="popover"
-          title="Unpaid Time"
-          data-content="Unpaid times are front and center to visually lay out
-          the time spent working on each feature."
-          data-trigger="hover"
-          data-placement="top"
-        >
+        <span>
           <li class="enabled">
             Tue Feb 16 2016
             <span class="right">
@@ -146,21 +68,10 @@
             </span>
           </li>
         </span>
-      <br/>
-      <span class="prehead">Totals</span>
-      <br/>
-      <span
-        data-toggle="popover"
-        title="Total Time"
-        data-content="Clearly show the client the amount of unpaid time spent on
-        the project. Either charge an hourly rate, or define a total project
-        cost if you'd prefer to be paid a flat rate."
-        data-trigger="hover"
-        data-placement="top"
-        class="totaltime"
-      >
-        656 minutes of work &times; $80 an hour
-        <span class="pull-right">$874.00</span>
+      <span class="total-cost">
+        <span class="prehead">Tax</span>
+        <span>$30.00 (4.5% of total)</span>
+        $80 an hour
       </span>
     </div>
   </div>

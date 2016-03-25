@@ -1,4 +1,5 @@
 .btn {
+  border-bottom: 4px solid rgba(0, 0, 0, 0.15);
   &.btn-xl {
     @extend .btn-lg;
     border-radius: 0px;
@@ -21,6 +22,21 @@
         width: 48%;
         float: left;
       }
+    }
+  }
+
+  &.btn-hollow {
+    background-color: transparent;
+    color: #fff;
+    &.btn-primary { border: 4px solid $brand-primary; }
+    &.btn-info { border: 4px solid $brand-info; }
+    &.btn-success { border: 4px solid $brand-success; }
+    &.btn-warning { border: 4px solid $brand-warning; }
+    &.btn-danger { border: 4px solid $brand-danger; }
+
+    &:hover, &:active, &:focus {
+      background-color: #fff;
+      color: $gray-dark;
     }
   }
 }

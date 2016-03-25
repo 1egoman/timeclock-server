@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-light" style="margin-bottom: 0px;">
+  <nav class="navbar navbar-<%= typeof nav_type === "undefined" ? "light" : nav_type %>" style="margin-bottom: 0px;">
   <div class="container-fluid">
     <div class="navbar-header">
       <button
@@ -33,7 +33,6 @@
     <div class="collapse navbar-collapse" id="nav">
       <ul class="nav navbar-nav">
         <li><a href="/">Home</a></li>
-        <li><a href="/features">Features</a></li>
         <!-- <li><a href="/pricing">Pricing</a></li> -->
       </ul>
       <ul class="nav navbar-nav pull-right">

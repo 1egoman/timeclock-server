@@ -1,18 +1,18 @@
 .sample-invoice {
   @extend .container;
-  max-width: 800px;
+  max-width: 1000px;
   color: #333;
   height: 100%;
-  padding: 10px;
   font-family: "Open Sans", Helvetica, sans-serif;
   cursor: default;
+  background: #fff;
+  padding: 64px 12px 32px 12px;
 
   .header {
-    background: #6AC15F;
-    padding: 2em;
     margin-bottom: 0.8em;
     color: #fff;
     text-align: center;
+    width: 400px;
   }
   .prehead {
     text-transform: uppercase;
@@ -21,37 +21,93 @@
     margin-bottom: 0.6em;
     display: inline-block;
   }
+
+  .contact-info {
+    @include make-md-column(8);
+    height: 10em;
+
+    span {
+      white-space: nowrap;
+      display: block;
+    }
+  }
+
+  // the project name, tagline, and
+  .project-info {
+    @include make-md-column(4);
+    height: 10em;
+
+    span {
+      white-space: nowrap;
+      display: block;
+    }
+
+    .project {
+      padding: 0.5em;
+    }
+
+    .totals {
+      @include clearfix;
+      padding: 0.5em;
+      color: #fff;
+      background: #6AC15F;
+
+      // amount of minutes
+      small {
+        margin-top: 0.425em;
+        &:before { content: "("; }
+        &:after { content: ")"; }
+      }
+    }
+  }
+
+  .total-cost {
+    @include make-md-column(4);
+    @include make-md-column-offset(8);
+    height: 10em;
+
+    span {
+      white-space: nowrap;
+      display: block;
+    }
+
+    .project {
+      padding: 0.5em;
+    }
+
+    .totals {
+      padding: 0.5em;
+      color: #fff;
+      background: #6AC15F;
+    }
+  }
+
   .body {
     padding-left: 1.2em;
+    @include make-md-column(12);
   }
   li {
     list-style-type: none;
   }
-  li:before {
-    content: "- ";
-  }
   .header a, .header p {
     color: white;
-  }
-  .disabled, .disabled span {
-    text-decoration: line-through;
   }
   .right {
     float: right;
   }
   li.enabled {
-    background: $state-success-bg;
+    // background: $state-success-bg;
     padding: 6px 16px;
   }
   li.disabled {
-    background: $state-warning-bg;
     padding: 6px 16px;
+    color: $gray-light;
   }
   .totaltime {
     padding: 6px 16px;
     width: 100%;
     display: block;
-    background: $state-info-bg;
+    // background: $state-info-bg;
   }
 }
 
