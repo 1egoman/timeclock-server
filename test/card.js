@@ -263,6 +263,8 @@ describe('card.getTimecardRenderDetails()', function() {
       args: {},
       totalTime: 0,
       totalCost: null,
+      paidTime: 0,
+      paidCost: null,
     });
 
     let card_for_test = [
@@ -279,6 +281,8 @@ describe('card.getTimecardRenderDetails()', function() {
       args: {},
       totalTime: 3600,
       totalCost: null,
+      paidTime: 0,
+      paidCost: null,
     });
   });
   it('should correctly calculate the cost of a timecard', function() {
@@ -287,6 +291,19 @@ describe('card.getTimecardRenderDetails()', function() {
       args: {},
       totalTime: 120,
       totalCost: 1.67,
+      paidTime: 0,
+      paidCost: 0,
+    });
+  });
+  it('should correctly calculate the cost of a timecard, with a titleCost', function() {
+    let titleSampleCard = Object.assign({}, sampleCard, {hourlyRate: null, totalRate: 1000.00});
+    assert.deepEqual(card.getTimecardRenderDetails(titleSampleCard), {
+      timecard: titleSampleCard,
+      args: {},
+      totalTime: 120,
+      totalCost: 1000.00,
+      paidTime: 0,
+      paidCost: null,
     });
   });
   it('should be sure that any args passed are returned', function() {
@@ -295,6 +312,8 @@ describe('card.getTimecardRenderDetails()', function() {
       args: {foo: "bar", another: 1},
       totalTime: 0,
       totalCost: null,
+      paidTime: 0,
+      paidCost: null,
     });
     assert.deepEqual(card.getTimecardRenderDetails({card: [], args: {foo: "bar", another: 1}}), {
       timecard: {
@@ -304,6 +323,8 @@ describe('card.getTimecardRenderDetails()', function() {
       args: {foo: "bar", another: 1},
       totalTime: 0,
       totalCost: null,
+      paidTime: 0,
+      paidCost: null,
     });
   });
   it('should be sure that args are extended correctly', function() {
@@ -315,6 +336,8 @@ describe('card.getTimecardRenderDetails()', function() {
       args: {foo: "baz", another: 1},
       totalTime: 0,
       totalCost: null,
+      paidTime: 0,
+      paidCost: null,
     });
   });
 });
