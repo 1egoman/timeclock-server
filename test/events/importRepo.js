@@ -8,8 +8,6 @@ const assert = require("assert"),
       sinon = require("sinon"),
       User = require("../../lib/models/user");
 
-require('sinon-as-promised');
-
 describe("lib/events/importRepo.js", function() {
   beforeEach(() => {
     sinon.stub(User, "update").callsArgWith(2, null);
