@@ -1,5 +1,6 @@
 .btn {
-  border-bottom: 4px solid rgba(0, 0, 0, 0.15);
+  border-bottom: 3px solid rgba(0, 0, 0, 0.15);
+  padding-bottom: 3.5px;
   &.btn-xl {
     @extend .btn-lg;
     border-radius: 0px;

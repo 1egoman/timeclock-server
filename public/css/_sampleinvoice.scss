@@ -22,6 +22,7 @@
     display: inline-block;
   }
 
+  // the contact info section on the left top
   .contact-info {
     @include make-md-column(8);
     height: 10em;
@@ -32,7 +33,7 @@
     }
   }
 
-  // the project name, tagline, and
+  // the project name, tagline, and amount due on the right top
   .project-info {
     @include make-md-column(4);
     height: 10em;
@@ -48,9 +49,9 @@
 
     .totals {
       @include clearfix;
-      padding: 0.5em;
+      padding: 1em;
       color: #fff;
-      background: #6AC15F;
+      margin-top: 0.8em;
 
       // amount of minutes
       small {
@@ -61,30 +62,34 @@
     }
   }
 
+  // bottom section with tax and total
   .total-cost {
     @include make-md-column(4);
     @include make-md-column-offset(8);
     height: 10em;
+    border-top: 4px solid $text-color;
+    margin-top: 2em;
+    padding: 1em 1em 0em 1em;
 
-    span {
+    span.tax { color: $gray-light; }
+
+    span.value {
       white-space: nowrap;
-      display: block;
+      display: inline;
+      @extend .pull-right;
     }
 
-    .project {
-      padding: 0.5em;
-    }
-
-    .totals {
-      padding: 0.5em;
-      color: #fff;
-      background: #6AC15F;
+    span.prehead {
+      white-space: nowrap;
+      display: inline;
+      margin-right: 1em;
     }
   }
 
   .body {
-    padding-left: 1.2em;
     @include make-md-column(12);
+    padding-left: 1.2em;
+    margin-top: 2em;
   }
   li {
     list-style-type: none;
