@@ -5949,7 +5949,8 @@ button.close {
   -webkit-box-shadow: none; }
 
 .btn {
-  border-bottom: 4px solid rgba(0, 0, 0, 0.15); }
+  border-bottom: 3px solid rgba(0, 0, 0, 0.15);
+  padding-bottom: 3.5px; }
   .btn.btn-xl {
     border-radius: 0px;
     padding: 1em;
