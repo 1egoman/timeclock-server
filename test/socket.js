@@ -3,7 +3,7 @@ const assert = require("assert"),
       Promise = require("promise"),
       mocking = require("./helpers/mocking"),
       sinon = require("sinon"),
-      User = require("../lib/model/user"),
+      User = require("../lib/models/user"),
       socket = require("../routes/socket");
 
 // create a "mock" socket that wraps the real functionality
@@ -49,55 +49,55 @@ describe("routes/socket.js", function() {
     });
   });
   describe("server/IMPORT_REPO", function() {
-    it('should import a repo with valid info', function(done) {
-      sinon.stub(User, "update").callsArgWith(2, null);
-      let skt = {
-        emit(action, data) {
-          assert.equal(action, "action");
-          if (data.type === "server/PUT_REPO") {
-            assert.deepEqual(data, {
-              type: "server/PUT_REPO",
-              repo: mocking.repos[0],
+      it('should import a repo with valid info', function(done) {
+        sinon.stub(User, "update").callsArgWith(2, null);
+        let skt = {
+          emit(action, data) {
+            assert.equal(action, "action");
+            if (data.type === "server/PUT_REPO") {
+              assert.deepEqual(data, {
+                type: "server/PUT_REPO",
+                repo: mocking.repos[0],
+              });
+            } else {
+              assert.deepEqual(data, {
+                type: "server/REPO_IMPORT",
+                repo: mocking.repos[0],
+              });
+            }
+          },
+          request: {user: mocking.user1},
+        }, action = {
+          type: "server/IMPORT_REPO",
+          repo: mocking.repos[0],
+        };
+
+        let response = socket(skt)(action);
+
+        assert(User.update.calledWith({_id: mocking.user1}, {
+          $push: {repos: mocking.repos[0]},
+        }));
+        done();
+      });
+      it('should error on error', function(done) {
+        let skt = createSocketWrapping({
+          type: "server/ERROR",
+          error: "an error",
+        }, done), action = {
+          type: "server/IMPORT_REPO",
+          repo: mocking.repos[0],
+        };
+
+        let response = socket(skt, {}, {
+          // mongoose user model
+          update(identifier, query, cb) {
+            assert.deepEqual(query, {
+              $push: {repos: mocking.repos[0]},
             });
-          } else {
-            assert.deepEqual(data, {
-              type: "server/REPO_IMPORT",
-              repo: mocking.repos[0],
-            });
-          }
-        },
-        request: {user: mocking.user1},
-      }, action = {
-        type: "server/IMPORT_REPO",
-        repo: mocking.repos[0],
-      };
-
-      let response = socket(skt)(action);
-
-      assert(User.update.calledWith({_id: mocking.user1}, {
-        $push: {repos: mocking.repos[0]},
-      }));
-      done();
-    });
-    it('should error on error', function(done) {
-      let skt = createSocketWrapping({
-        type: "server/ERROR",
-        error: "an error",
-      }, done), action = {
-        type: "server/IMPORT_REPO",
-        repo: mocking.repos[0],
-      };
-
-      let response = socket(skt, {}, {
-        // mongoose user model
-        update(identifier, query, cb) {
-          assert.deepEqual(query, {
-            $push: {repos: mocking.repos[0]},
-          });
-          cb("an error"); // no error
-        },
-      })(action);
-    });
+            cb("an error"); // no error
+          },
+        })(action);
+      });
   });
   describe("server/GET_BRANCHES", function() {
     it('should get a repo\'s branches', function(done) {

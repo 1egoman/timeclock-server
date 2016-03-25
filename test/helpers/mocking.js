@@ -21,6 +21,17 @@ exports.repos = [
     default_branch: "master",
     provider: "github",
   },
+  {
+    user: "username",
+    repo: "a-private-repo",
+    desc: "a-desc",
+    is_pending: false,
+    is_private: true,
+    has_timecard: true,
+    owner_type: "user",
+    default_branch: "master",
+    provider: "github",
+  },
 ];
 
 exports.github_repos = [
@@ -59,6 +70,17 @@ exports.user1 = {
   github_id: 12345,
   _id: "the-user-id-in-mongo",
   repos: [],
+}
+
+exports.user2 = {
+  username: "username",
+  badge_token: "badge-token",
+  profile_url: "http://example.com/user/profile/here",
+  provider: "github",
+  access_token: "access-token-is-here",
+  github_id: 12345,
+  _id: "the-user-id-in-mongo",
+  repos: exports.repos,
 }
 
 exports.timecard = {
