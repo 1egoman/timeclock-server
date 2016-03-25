@@ -70,6 +70,7 @@ exports.user1 = {
   github_id: 12345,
   _id: "the-user-id-in-mongo",
   repos: [],
+  plan: "free",
 }
 
 exports.user2 = {
