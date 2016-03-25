@@ -6486,9 +6486,15 @@ footer {
   border-bottom: 2px solid #eeeeee; }
   .navbar a {
     color: #51c4c4; }
-  .navbar .navbar-brand img {
-    height: 36px;
-    margin-top: -8px; }
+  .navbar .navbar-brand {
+    position: relative; }
+    .navbar .navbar-brand img {
+      height: 36px;
+      margin-top: -8px; }
+    .navbar .navbar-brand #HW_badge_cont {
+      position: absolute;
+      top: 0px;
+      right: 0px; }
   .navbar .fa.fa-bars {
     font-size: 120%;
     color: #333333; }
