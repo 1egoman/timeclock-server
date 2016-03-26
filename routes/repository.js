@@ -31,11 +31,17 @@ function doError(req, res, code, msg) {
         user: req.user,
         msg,
       });
+    } else if (msg.show_errors){
+      console.error("SHOWN", err);
+      res.status(code).render("error", {
+        title: "Error",
+        msg: err,
+        user: req.user,
+      });
     } else {
       console.error(err);
       res.status(code).render("error", {
         title: "Error",
-        msg: err,
         user: req.user,
         msg,
       });
@@ -106,7 +112,7 @@ function doReport(req, res) {
             res.send(full_invoice);
           }
         });
-      }).catch(doError(req, res, 400, `The template you chose doesn't exist. (${timecard.reportFormat}) Maybe try another?`));
+      }).catch(doError(req, res, 400, {show_errors: true}));
     } else {
       res.status(400).send({
         error: "Timecard is malformed.",
