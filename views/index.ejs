@@ -4,9 +4,85 @@
   <h1>Waltz makes</h1>
   <h2>nice-looking invoices easy.</h2>
 
-  <div class="container" style="margin-top: 120px; margin-bottom: 64px;">
+  <div class="container">
     <% include get_started_buttons %>
   </div>
+
+  <div class="sample-invoice">
+    <!-- top section -->
+    <div class="contact-info">
+      <span class="name">John Smith</span>
+      <span class="address">123 Oak Street</span>
+      <span class="address-2">Syracuse, NY 13210</span>
+    </div>
+    <div class="project-info">
+      <span class="project">
+        <span class="prehead">Project</span>
+        <span class="address">Matt's Bakery - Website Redesign</span>
+      </span>
+      <span class="totals" style="background-color: #6AC15F;">
+        <span class="prehead">Amount Due</span>
+        <span class="pull-left">$874.00</span>
+        <small class="pull-right">656 minutes</small>
+      </span>
+    </div>
+    
+    <div class="body">
+      <span class="prehead">Breakdown</span>
+        <span>
+          <li class="disabled">
+            Previous time
+            <span class="right">50 minutes</span>
+          </li>
+        </span>
+        <span>
+          <li class="enabled">
+            Tue Feb 16 2016
+            <span class="right">
+              18:47:30 to 18:52:20
+            </span>
+          </li>
+          <li class="enabled">
+            Thu Feb 18 2016
+            <span class="right">
+              12:13:50 to 12:17:10
+            </span>
+          </li>
+          <li class="enabled">
+            Sat Feb 20 2016
+            <span class="right">
+              12:25:42 to 12:38:54
+            </span>
+          </li>
+          <li class="enabled">
+            Sat Feb 21 2016
+            <span class="right">
+              12:25:42 to 12:38:54
+            </span>
+          </li>
+          <li class="enabled">
+            Sat Feb 21 2016
+            <span class="right">
+              12:25:42 to 12:38:54
+            </span>
+          </li>
+          <li class="enabled">
+            Sat Feb 21 2016
+            <span class="right">
+              12:30:26 to 22:38:10
+            </span>
+          </li>
+        </span>
+      <span class="total-cost" style="border-color: #6AC15F;">
+        <span class="prehead tax">Tax</span>
+        <span class="value tax">$30.00</span>
+        <br/>
+        <span class="prehead">Total</span>
+        <span class="value">$874.00</span>
+      </span>
+    </div>
+  </div>
+
 </div>
 
 <div class="master">

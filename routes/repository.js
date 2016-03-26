@@ -100,7 +100,7 @@ function doReport(req, res) {
         error: "Timecard is malformed.",
       });
     }
-  }).catch(doError(req, res, 404));
+  }).catch(doError(req, res, 404, "We couldn't get the timecard associated with this repository and branch."));
 }
 
 module.exports = {
