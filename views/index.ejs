@@ -1,192 +1,148 @@
 <% include header %>
 
-<div class="features features-hero">
-  <h1>Waltz makes</h1>
-  <h2>nice-looking invoices easy.</h2>
+<div class="features-group primary">
+  <div class="features features-hero">
+    <h1>Waltz makes</h1>
+    <h2>nice-looking invoices easy.</h2>
 
-  <div class="container">
-    <% include get_started_buttons %>
-  </div>
+    <div class="features-getting-started-buttons">
+      <% include get_started_buttons %>
+    </div>
 
-  <div class="sample-invoice">
-    <!-- top section -->
-    <div class="contact-info">
-      <span class="name">John Smith</span>
-      <span class="address">123 Oak Street</span>
-      <span class="address-2">Syracuse, NY 13210</span>
-    </div>
-    <div class="project-info">
-      <span class="project">
-        <span class="prehead">Project</span>
-        <span class="address">Matt's Bakery - Website Redesign</span>
-      </span>
-      <span class="totals" style="background-color: #6AC15F;">
-        <span class="prehead">Amount Due</span>
-        <span class="pull-left">$874.00</span>
-        <small class="pull-right">656 minutes</small>
-      </span>
-    </div>
-    
-    <div class="body">
-      <span class="prehead">Breakdown</span>
-        <span>
-          <li class="disabled">
-            Previous time
-            <span class="right">50 minutes</span>
-          </li>
+    <div class="sample-invoice">
+      <!-- top section -->
+      <div class="contact-info">
+        <span class="name">John Smith</span>
+        <span class="address">123 Oak Street</span>
+        <span class="address-2">Syracuse, NY 13210</span>
+      </div>
+      <div class="project-info">
+        <span class="project">
+          <span class="prehead">Project</span>
+          <span class="address">Matt's Bakery - Website Redesign</span>
         </span>
-        <span>
-          <li class="enabled">
-            Tue Feb 16 2016
-            <span class="right">
-              18:47:30 to 18:52:20
-            </span>
-          </li>
-          <li class="enabled">
-            Thu Feb 18 2016
-            <span class="right">
-              12:13:50 to 12:17:10
-            </span>
-          </li>
-          <li class="enabled">
-            Sat Feb 20 2016
-            <span class="right">
-              12:25:42 to 12:38:54
-            </span>
-          </li>
-          <li class="enabled">
-            Sat Feb 21 2016
-            <span class="right">
-              12:25:42 to 12:38:54
-            </span>
-          </li>
-          <li class="enabled">
-            Sat Feb 21 2016
-            <span class="right">
-              12:25:42 to 12:38:54
-            </span>
-          </li>
-          <li class="enabled">
-            Sat Feb 21 2016
-            <span class="right">
-              12:30:26 to 22:38:10
-            </span>
-          </li>
+        <span class="totals" style="background-color: #6AC15F;">
+          <span class="prehead">Amount Due</span>
+          <span class="pull-left">$874.00</span>
+          <small class="pull-right">656 minutes</small>
         </span>
-      <span class="total-cost" style="border-color: #6AC15F;">
-        <span class="prehead tax">Tax</span>
-        <span class="value tax">$30.00</span>
-        <br/>
-        <span class="prehead">Total</span>
-        <span class="value">$874.00</span>
-      </span>
+      </div>
+      
+      <div class="body">
+        <span class="prehead">Breakdown</span>
+          <span>
+            <li class="disabled">
+              Previous time
+              <span class="right">50 minutes</span>
+            </li>
+          </span>
+          <span>
+            <li class="enabled">
+              Tue Feb 16 2016
+              <span class="right">
+                18:47:30 to 18:52:20
+              </span>
+            </li>
+            <li class="enabled">
+              Thu Feb 18 2016
+              <span class="right">
+                12:13:50 to 12:17:10
+              </span>
+            </li>
+            <li class="enabled">
+              Sat Feb 20 2016
+              <span class="right">
+                12:25:42 to 12:38:54
+              </span>
+            </li>
+            <li class="enabled">
+              Sat Feb 21 2016
+              <span class="right">
+                12:25:42 to 12:38:54
+              </span>
+            </li>
+            <li class="enabled">
+              Sat Feb 21 2016
+              <span class="right">
+                12:25:42 to 12:38:54
+              </span>
+            </li>
+            <li class="enabled">
+              Sat Feb 21 2016
+              <span class="right">
+                12:30:26 to 22:38:10
+              </span>
+            </li>
+          </span>
+        <span class="total-cost" style="border-color: #6AC15F;">
+          <span class="prehead tax">Tax</span>
+          <span class="value tax">$30.00</span>
+          <br/>
+          <span class="prehead">Total</span>
+          <span class="value">$874.00</span>
+        </span>
+      </div>
     </div>
   </div>
-
 </div>
 
-<div class="master">
-  <section class="container">
-    <h2>The Problem</h2>
-    <p>
-      Invoices are a pain, especially for freelance developers. From calculating
-      the amount of hours that you've put into a project, to creating the actual
-      invoice and doing design work, most developers would rather do
-      something else. Wouldn't you love to get rid of the process?
-    </p>
-  </section>
-  <section class="container">
-    <div class="section-img on-top">
-      <img src="/img/clock.svg" class="timecard" />
-    </div>
-    <div class="section-text">
-      <h2>The Solution</h2>
-      <p>
-        Easily track the time you work on a project with <code>waltz</code>. Before
-        you start your work for the day, be sure to <code>waltz in</code>. Need to
-        run a few errands or get out of the house? Run <code>waltz out</code>. Too
-        lazy for that dance? Instead, run <code>waltz watch</code> to listen
-        for changes and auto-clock you in or out. In addition to an invoice for
-        the client, you also get work-time metrics for yourself.
-      </p>
-    </div>
-    <div class="section-img on-right">
-      <img src="/img/clock.svg" class="timecard" />
-    </div>
-  </section>
-  <section class="container">
-    <div class="section-img">
-      <img src="/img/money.svg" class="money" />
-    </div>
-    <div class="section-text">
-      <h2>Paycheck time</h2>
-      <p>
-        Time to get paid? Push up your latest changes, and visit
-        <code>http://waltzapp.co/username/repo</code>. Don't like
-        what you see? Open up <code>.timecard.json</code> within the project, and change
-        <code>reportFormat</code> to any of <a
-        href="//github.com/waltz-app/themes">our themes</a>, or make <a
-        href="//github.com/waltz-app/docs/blob/master/make-a-theme.md">your own</a>. After pushing up your changes, take a look at your
-        new invoice. Was that hard?
-      </p>
-    </div>
-  </section>
-</div>
-
-<div class="features feature-collapse">
-  <ul role="tablist">
-    <li role="presentation" class="active">
-      <a href="#great-by-default" aria-controls="great-by-default" role="tab" data-toggle="tab">
-        <h4>Great by default</h4>
-        <p>
-          Provide a name, a tagline, and a template, and Waltz will do the rest. Don't
-          like our templates? With minimal knowlege, design your own. Beautiful invoices
-          were never so easy!
-        </p>
-      </a>
-    </li>
-    <li role="presentation">
-      <a href="#version-controlled" aria-controls="version-controlled" role="tab" data-toggle="tab">
-        <h4>Version controlled</h4>
-        <p>
-          Because invoices are stored with your code, easily diff invoices across branches to
-          quickly determine the time spent on individual features.
-        </p>
-      </a>
-    </li>
-    <li role="presentation">
-      <a href="#collaborative" aria-controls="collaborative" role="tab" data-toggle="tab">
-        <h4>Collaborative</h4>
-        <p>
-          Because we integrate with pre-existing codebases, the collaborative workflow
-          one uses when working on a project works across invoices in a similar
-          manner.
-        </p>
-      </a>
-    </li>
-    <li role="presentation">
-      <a href="#own-your-data" aria-controls="own-your-data" role="tab" data-toggle="tab">
-        <h4>Own your data</h4>
-        <p>
-          When your data is in your hands, you can ensure what should stay private will.
-          Should you ever want to migrate data to another service, it's easily accessible
-          and versioned along with your code.
-        </p>
-      </a>
-    </li>
-  </ul>
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="great-by-default">
-      <img class="img-full" src="/img/features/great-by-default.svg" />
-    </div>
-    <div role="tabpanel" class="tab-pane" id="version-controlled">
-      <img class="img-full" src="/img/features/version-controlled.svg" />
-    </div>
-    <div role="tabpanel" class="tab-pane" id="collaborative">
-      <img class="img-full" src="/img/features/collaborative.svg" />
-    </div>
-    <div role="tabpanel" class="tab-pane" id="own-your-data">
-      <img class="img-full" src="/img/features/own-your-data.svg" />
+<div class="features-group white">
+  <a name="learnmore"></a>
+  <div class="features feature-collapse">
+    <ul role="tablist">
+      <li role="presentation" class="active">
+        <a href="#great-by-default" aria-controls="great-by-default" role="tab" data-toggle="tab">
+          <h4>Great by default</h4>
+          <p>
+            Provide a name, a tagline, and a template, and Waltz will do the rest. Don't
+            like our templates? With minimal knowlege, design your own. Beautiful invoices
+            were never so easy!
+          </p>
+        </a>
+      </li>
+      <li role="presentation">
+        <a href="#version-controlled" aria-controls="version-controlled" role="tab" data-toggle="tab">
+          <h4>Version controlled</h4>
+          <p>
+            Because invoices are stored with your code, easily diff invoices across branches to
+            quickly determine the time spent on individual features.
+          </p>
+        </a>
+      </li>
+      <li role="presentation">
+        <a href="#collaborative" aria-controls="collaborative" role="tab" data-toggle="tab">
+          <h4>Collaborative</h4>
+          <p>
+            Because we integrate with pre-existing codebases, the collaborative workflow
+            one uses when working on a project works across invoices in a similar
+            manner.
+          </p>
+        </a>
+      </li>
+      <li role="presentation">
+        <a href="#own-your-data" aria-controls="own-your-data" role="tab" data-toggle="tab">
+          <h4>Own your data</h4>
+          <p>
+            When your data is in your hands, you can ensure what should stay private will.
+            Should you ever want to migrate data to another service, it's easily accessible
+            and versioned along with your code.
+          </p>
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="great-by-default">
+        <img class="img-full" src="/img/features/great-by-default.svg" />
+      </div>
+      <div role="tabpanel" class="tab-pane" id="version-controlled">
+        <img class="img-full" src="/img/features/version-controlled.svg" />
+      </div>
+      <div role="tabpanel" class="tab-pane" id="collaborative">
+        <img class="img-full" src="/img/features/collaborative.svg" />
+      </div>
+      <div role="tabpanel" class="tab-pane" id="own-your-data">
+        <img class="img-full" src="/img/features/own-your-data.svg" />
+      </div>
     </div>
   </div>
 </div>

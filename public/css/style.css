@@ -1505,24 +1505,24 @@ pre {
   max-height: 340px;
   overflow-y: scroll; }
 
-.container, .container-report .report-header .report-header-inner, .pricing-hero, .features.features-hero, .feature-collapse, .features.features-install, .feature, .features-getting-started-buttons, .presskit, .sample-invoice, .sample-invoice-header, footer .wrapper {
+.container, .container-report .report-header .report-header-inner, .pricing-hero, .features.features-hero, .feature-collapse, .features.features-install, .feature, .features-getting-started-buttons, .presskit, .sample-invoice, footer .wrapper {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px; }
-  .container:before, .container-report .report-header .report-header-inner:before, .pricing-hero:before, .features.features-hero:before, .feature-collapse:before, .features.features-install:before, .feature:before, .features-getting-started-buttons:before, .presskit:before, .sample-invoice:before, .sample-invoice-header:before, footer .wrapper:before, .container:after, .container-report .report-header .report-header-inner:after, .pricing-hero:after, .features.features-hero:after, .feature-collapse:after, .features.features-install:after, .feature:after, .features-getting-started-buttons:after, .presskit:after, .sample-invoice:after, .sample-invoice-header:after, footer .wrapper:after {
+  .container:before, .container-report .report-header .report-header-inner:before, .pricing-hero:before, .features.features-hero:before, .feature-collapse:before, .features.features-install:before, .feature:before, .features-getting-started-buttons:before, .presskit:before, .sample-invoice:before, footer .wrapper:before, .container:after, .container-report .report-header .report-header-inner:after, .pricing-hero:after, .features.features-hero:after, .feature-collapse:after, .features.features-install:after, .feature:after, .features-getting-started-buttons:after, .presskit:after, .sample-invoice:after, footer .wrapper:after {
     content: " ";
     display: table; }
-  .container:after, .container-report .report-header .report-header-inner:after, .pricing-hero:after, .features.features-hero:after, .feature-collapse:after, .features.features-install:after, .feature:after, .features-getting-started-buttons:after, .presskit:after, .sample-invoice:after, .sample-invoice-header:after, footer .wrapper:after {
+  .container:after, .container-report .report-header .report-header-inner:after, .pricing-hero:after, .features.features-hero:after, .feature-collapse:after, .features.features-install:after, .feature:after, .features-getting-started-buttons:after, .presskit:after, .sample-invoice:after, footer .wrapper:after {
     clear: both; }
   @media (min-width: 768px) {
-    .container, .container-report .report-header .report-header-inner, .pricing-hero, .features.features-hero, .feature-collapse, .features.features-install, .feature, .features-getting-started-buttons, .presskit, .sample-invoice, .sample-invoice-header, footer .wrapper {
+    .container, .container-report .report-header .report-header-inner, .pricing-hero, .features.features-hero, .feature-collapse, .features.features-install, .feature, .features-getting-started-buttons, .presskit, .sample-invoice, footer .wrapper {
       width: 750px; } }
   @media (min-width: 992px) {
-    .container, .container-report .report-header .report-header-inner, .pricing-hero, .features.features-hero, .feature-collapse, .features.features-install, .feature, .features-getting-started-buttons, .presskit, .sample-invoice, .sample-invoice-header, footer .wrapper {
+    .container, .container-report .report-header .report-header-inner, .pricing-hero, .features.features-hero, .feature-collapse, .features.features-install, .feature, .features-getting-started-buttons, .presskit, .sample-invoice, footer .wrapper {
       width: 970px; } }
   @media (min-width: 1200px) {
-    .container, .container-report .report-header .report-header-inner, .pricing-hero, .features.features-hero, .feature-collapse, .features.features-install, .feature, .features-getting-started-buttons, .presskit, .sample-invoice, .sample-invoice-header, footer .wrapper {
+    .container, .container-report .report-header .report-header-inner, .pricing-hero, .features.features-hero, .feature-collapse, .features.features-install, .feature, .features-getting-started-buttons, .presskit, .sample-invoice, footer .wrapper {
       width: 1170px; } }
 
 .container-fluid, .features.features-more, footer {
@@ -3817,15 +3817,15 @@ tbody.collapse.in {
     .navbar-fixed-bottom .navbar-collapse {
       max-height: 200px; } }
 
-.container > .navbar-header, .container-report .report-header .report-header-inner > .navbar-header, .pricing-hero > .navbar-header, .features.features-hero > .navbar-header, .feature-collapse > .navbar-header, .features.features-install > .navbar-header, .feature > .navbar-header, .features-getting-started-buttons > .navbar-header, .presskit > .navbar-header, .sample-invoice > .navbar-header, .sample-invoice-header > .navbar-header, footer .wrapper > .navbar-header,
-.container > .navbar-collapse, .container-report .report-header .report-header-inner > .navbar-collapse, .pricing-hero > .navbar-collapse, .features.features-hero > .navbar-collapse, .feature-collapse > .navbar-collapse, .features.features-install > .navbar-collapse, .feature > .navbar-collapse, .features-getting-started-buttons > .navbar-collapse, .presskit > .navbar-collapse, .sample-invoice > .navbar-collapse, .sample-invoice-header > .navbar-collapse, footer .wrapper > .navbar-collapse,
+.container > .navbar-header, .container-report .report-header .report-header-inner > .navbar-header, .pricing-hero > .navbar-header, .features.features-hero > .navbar-header, .feature-collapse > .navbar-header, .features.features-install > .navbar-header, .feature > .navbar-header, .features-getting-started-buttons > .navbar-header, .presskit > .navbar-header, .sample-invoice > .navbar-header, footer .wrapper > .navbar-header,
+.container > .navbar-collapse, .container-report .report-header .report-header-inner > .navbar-collapse, .pricing-hero > .navbar-collapse, .features.features-hero > .navbar-collapse, .feature-collapse > .navbar-collapse, .features.features-install > .navbar-collapse, .feature > .navbar-collapse, .features-getting-started-buttons > .navbar-collapse, .presskit > .navbar-collapse, .sample-invoice > .navbar-collapse, footer .wrapper > .navbar-collapse,
 .container-fluid > .navbar-header, .features.features-more > .navbar-header, footer > .navbar-header,
 .container-fluid > .navbar-collapse, .features.features-more > .navbar-collapse, footer > .navbar-collapse {
   margin-right: -15px;
   margin-left: -15px; }
   @media (min-width: 768px) {
-    .container > .navbar-header, .container-report .report-header .report-header-inner > .navbar-header, .pricing-hero > .navbar-header, .features.features-hero > .navbar-header, .feature-collapse > .navbar-header, .features.features-install > .navbar-header, .feature > .navbar-header, .features-getting-started-buttons > .navbar-header, .presskit > .navbar-header, .sample-invoice > .navbar-header, .sample-invoice-header > .navbar-header, footer .wrapper > .navbar-header,
-    .container > .navbar-collapse, .container-report .report-header .report-header-inner > .navbar-collapse, .pricing-hero > .navbar-collapse, .features.features-hero > .navbar-collapse, .feature-collapse > .navbar-collapse, .features.features-install > .navbar-collapse, .feature > .navbar-collapse, .features-getting-started-buttons > .navbar-collapse, .presskit > .navbar-collapse, .sample-invoice > .navbar-collapse, .sample-invoice-header > .navbar-collapse, footer .wrapper > .navbar-collapse,
+    .container > .navbar-header, .container-report .report-header .report-header-inner > .navbar-header, .pricing-hero > .navbar-header, .features.features-hero > .navbar-header, .feature-collapse > .navbar-header, .features.features-install > .navbar-header, .feature > .navbar-header, .features-getting-started-buttons > .navbar-header, .presskit > .navbar-header, .sample-invoice > .navbar-header, footer .wrapper > .navbar-header,
+    .container > .navbar-collapse, .container-report .report-header .report-header-inner > .navbar-collapse, .pricing-hero > .navbar-collapse, .features.features-hero > .navbar-collapse, .feature-collapse > .navbar-collapse, .features.features-install > .navbar-collapse, .feature > .navbar-collapse, .features-getting-started-buttons > .navbar-collapse, .presskit > .navbar-collapse, .sample-invoice > .navbar-collapse, footer .wrapper > .navbar-collapse,
     .container-fluid > .navbar-header, .features.features-more > .navbar-header, footer > .navbar-header,
     .container-fluid > .navbar-collapse, .features.features-more > .navbar-collapse, footer > .navbar-collapse {
       margin-right: 0;
@@ -3869,7 +3869,7 @@ tbody.collapse.in {
   .navbar-brand > img {
     display: block; }
   @media (min-width: 768px) {
-    .navbar > .container .navbar-brand, .container-report .report-header .navbar > .report-header-inner .navbar-brand, .navbar > .pricing-hero .navbar-brand, .navbar > .features.features-hero .navbar-brand, .navbar > .feature-collapse .navbar-brand, .navbar > .features.features-install .navbar-brand, .navbar > .feature .navbar-brand, .navbar > .features-getting-started-buttons .navbar-brand, .navbar > .presskit .navbar-brand, .navbar > .sample-invoice .navbar-brand, .navbar > .sample-invoice-header .navbar-brand, footer .navbar > .wrapper .navbar-brand,
+    .navbar > .container .navbar-brand, .container-report .report-header .navbar > .report-header-inner .navbar-brand, .navbar > .pricing-hero .navbar-brand, .navbar > .features.features-hero .navbar-brand, .navbar > .feature-collapse .navbar-brand, .navbar > .features.features-install .navbar-brand, .navbar > .feature .navbar-brand, .navbar > .features-getting-started-buttons .navbar-brand, .navbar > .presskit .navbar-brand, .navbar > .sample-invoice .navbar-brand, footer .navbar > .wrapper .navbar-brand,
     .navbar > .container-fluid .navbar-brand,
     .navbar > .features.features-more .navbar-brand,
     .navbar > footer .navbar-brand {
@@ -4390,40 +4390,38 @@ a.badge:hover, a.badge:focus {
   text-decoration: none;
   cursor: pointer; }
 
-.jumbotron, .hero {
+.jumbotron {
   padding-top: 30px;
   padding-bottom: 30px;
   margin-bottom: 30px;
   color: inherit;
   background-color: #eeeeee; }
-  .jumbotron h1, .hero h1,
-  .jumbotron .h1, .hero .h1 {
+  .jumbotron h1,
+  .jumbotron .h1 {
     color: inherit; }
-  .jumbotron p, .hero p {
+  .jumbotron p {
     margin-bottom: 15px;
     font-size: 21px;
     font-weight: 200; }
-  .jumbotron > hr, .hero > hr {
+  .jumbotron > hr {
     border-top-color: #d5d5d5; }
-  .container .jumbotron, .container-report .report-header .report-header-inner .jumbotron, .pricing-hero .jumbotron, .features.features-hero .jumbotron, .feature-collapse .jumbotron, .features.features-install .jumbotron, .feature .jumbotron, .features-getting-started-buttons .jumbotron, .presskit .jumbotron, .sample-invoice .jumbotron, .sample-invoice-header .jumbotron, footer .wrapper .jumbotron, .container .hero, .container-report .report-header .report-header-inner .hero, .pricing-hero .hero, .features.features-hero .hero, .feature-collapse .hero, .features.features-install .hero, .feature .hero, .features-getting-started-buttons .hero, .presskit .hero, .sample-invoice .hero, .sample-invoice-header .hero, footer .wrapper .hero,
-  .container-fluid .jumbotron, .features.features-more .jumbotron, footer .jumbotron,
-  .container-fluid .hero, .features.features-more .hero, footer .hero {
+  .container .jumbotron, .container-report .report-header .report-header-inner .jumbotron, .pricing-hero .jumbotron, .features.features-hero .jumbotron, .feature-collapse .jumbotron, .features.features-install .jumbotron, .feature .jumbotron, .features-getting-started-buttons .jumbotron, .presskit .jumbotron, .sample-invoice .jumbotron, footer .wrapper .jumbotron,
+  .container-fluid .jumbotron, .features.features-more .jumbotron, footer .jumbotron {
     border-radius: 0px;
     padding-left: 15px;
     padding-right: 15px; }
-  .jumbotron .container, .hero .container, .jumbotron .container-report .report-header .report-header-inner, .container-report .report-header .jumbotron .report-header-inner, .hero .container-report .report-header .report-header-inner, .container-report .report-header .hero .report-header-inner, .jumbotron .pricing-hero, .hero .pricing-hero, .jumbotron .features.features-hero, .hero .features.features-hero, .jumbotron .feature-collapse, .hero .feature-collapse, .jumbotron .features.features-install, .hero .features.features-install, .jumbotron .feature, .hero .feature, .jumbotron .features-getting-started-buttons, .hero .features-getting-started-buttons, .jumbotron .presskit, .hero .presskit, .jumbotron .sample-invoice, .hero .sample-invoice, .jumbotron .sample-invoice-header, .hero .sample-invoice-header, .jumbotron footer .wrapper, footer .jumbotron .wrapper, .hero footer .wrapper, footer .hero .wrapper {
+  .jumbotron .container, .jumbotron .container-report .report-header .report-header-inner, .container-report .report-header .jumbotron .report-header-inner, .jumbotron .pricing-hero, .jumbotron .features.features-hero, .jumbotron .feature-collapse, .jumbotron .features.features-install, .jumbotron .feature, .jumbotron .features-getting-started-buttons, .jumbotron .presskit, .jumbotron .sample-invoice, .jumbotron footer .wrapper, footer .jumbotron .wrapper {
     max-width: 100%; }
   @media screen and (min-width: 768px) {
-    .jumbotron, .hero {
+    .jumbotron {
       padding-top: 48px;
       padding-bottom: 48px; }
-      .container .jumbotron, .container-report .report-header .report-header-inner .jumbotron, .pricing-hero .jumbotron, .features.features-hero .jumbotron, .feature-collapse .jumbotron, .features.features-install .jumbotron, .feature .jumbotron, .features-getting-started-buttons .jumbotron, .presskit .jumbotron, .sample-invoice .jumbotron, .sample-invoice-header .jumbotron, footer .wrapper .jumbotron, .container .hero, .container-report .report-header .report-header-inner .hero, .pricing-hero .hero, .features.features-hero .hero, .feature-collapse .hero, .features.features-install .hero, .feature .hero, .features-getting-started-buttons .hero, .presskit .hero, .sample-invoice .hero, .sample-invoice-header .hero, footer .wrapper .hero,
-      .container-fluid .jumbotron, .features.features-more .jumbotron, footer .jumbotron,
-      .container-fluid .hero, .features.features-more .hero, footer .hero {
+      .container .jumbotron, .container-report .report-header .report-header-inner .jumbotron, .pricing-hero .jumbotron, .features.features-hero .jumbotron, .feature-collapse .jumbotron, .features.features-install .jumbotron, .feature .jumbotron, .features-getting-started-buttons .jumbotron, .presskit .jumbotron, .sample-invoice .jumbotron, footer .wrapper .jumbotron,
+      .container-fluid .jumbotron, .features.features-more .jumbotron, footer .jumbotron {
         padding-left: 60px;
         padding-right: 60px; }
-      .jumbotron h1, .hero h1,
-      .jumbotron .h1, .hero .h1 {
+      .jumbotron h1,
+      .jumbotron .h1 {
         font-size: 63px; } }
 
 .thumbnail {
@@ -5988,57 +5986,50 @@ button.close {
       background-color: #fff;
       color: #333333; }
 
-.hero {
-  margin-bottom: 0px;
-  width: 100%;
-  background: transparent; }
-  .hero > h1 {
-    font-weight: lighter; }
-
 .master {
   overflow-x: hidden;
   background: #fff; }
-  .master section.container, .master .container-report .report-header section.report-header-inner, .container-report .report-header .master section.report-header-inner, .master section.pricing-hero, .master section.features.features-hero, .master section.feature-collapse, .master section.features.features-install, .master section.feature, .master section.features-getting-started-buttons, .master section.presskit, .master section.sample-invoice, .master section.sample-invoice-header, .master footer section.wrapper, footer .master section.wrapper {
+  .master section.container, .master .container-report .report-header section.report-header-inner, .container-report .report-header .master section.report-header-inner, .master section.pricing-hero, .master section.features.features-hero, .master section.feature-collapse, .master section.features.features-install, .master section.feature, .master section.features-getting-started-buttons, .master section.presskit, .master section.sample-invoice, .master footer section.wrapper, footer .master section.wrapper {
     margin-top: 2em;
     margin-bottom: 4em; }
-    .master section.container .section-text, .master .container-report .report-header section.report-header-inner .section-text, .container-report .report-header .master section.report-header-inner .section-text, .master section.pricing-hero .section-text, .master section.features.features-hero .section-text, .master section.feature-collapse .section-text, .master section.features.features-install .section-text, .master section.feature .section-text, .master section.features-getting-started-buttons .section-text, .master section.presskit .section-text, .master section.sample-invoice .section-text, .master section.sample-invoice-header .section-text, .master footer section.wrapper .section-text, footer .master section.wrapper .section-text {
+    .master section.container .section-text, .master .container-report .report-header section.report-header-inner .section-text, .container-report .report-header .master section.report-header-inner .section-text, .master section.pricing-hero .section-text, .master section.features.features-hero .section-text, .master section.feature-collapse .section-text, .master section.features.features-install .section-text, .master section.feature .section-text, .master section.features-getting-started-buttons .section-text, .master section.presskit .section-text, .master section.sample-invoice .section-text, .master footer section.wrapper .section-text, footer .master section.wrapper .section-text {
       position: relative;
       min-height: 1px;
       padding-left: 15px;
       padding-right: 15px; }
       @media (min-width: 992px) {
-        .master section.container .section-text, .master .container-report .report-header section.report-header-inner .section-text, .container-report .report-header .master section.report-header-inner .section-text, .master section.pricing-hero .section-text, .master section.features.features-hero .section-text, .master section.feature-collapse .section-text, .master section.features.features-install .section-text, .master section.feature .section-text, .master section.features-getting-started-buttons .section-text, .master section.presskit .section-text, .master section.sample-invoice .section-text, .master section.sample-invoice-header .section-text, .master footer section.wrapper .section-text, footer .master section.wrapper .section-text {
+        .master section.container .section-text, .master .container-report .report-header section.report-header-inner .section-text, .container-report .report-header .master section.report-header-inner .section-text, .master section.pricing-hero .section-text, .master section.features.features-hero .section-text, .master section.feature-collapse .section-text, .master section.features.features-install .section-text, .master section.feature .section-text, .master section.features-getting-started-buttons .section-text, .master section.presskit .section-text, .master section.sample-invoice .section-text, .master footer section.wrapper .section-text, footer .master section.wrapper .section-text {
           float: left;
           width: 66.6666666667%; } }
-    .master section.container p, .master .container-report .report-header section.report-header-inner p, .container-report .report-header .master section.report-header-inner p, .master section.pricing-hero p, .master section.features.features-hero p, .master section.feature-collapse p, .master section.features.features-install p, .master section.feature p, .master section.features-getting-started-buttons p, .master section.presskit p, .master section.sample-invoice p, .master section.sample-invoice-header p, .master footer section.wrapper p, footer .master section.wrapper p {
+    .master section.container p, .master .container-report .report-header section.report-header-inner p, .container-report .report-header .master section.report-header-inner p, .master section.pricing-hero p, .master section.features.features-hero p, .master section.feature-collapse p, .master section.features.features-install p, .master section.feature p, .master section.features-getting-started-buttons p, .master section.presskit p, .master section.sample-invoice p, .master footer section.wrapper p, footer .master section.wrapper p {
       font-size: 1.4em; }
-    .master section.container .section-img, .master .container-report .report-header section.report-header-inner .section-img, .container-report .report-header .master section.report-header-inner .section-img, .master section.pricing-hero .section-img, .master section.features.features-hero .section-img, .master section.feature-collapse .section-img, .master section.features.features-install .section-img, .master section.feature .section-img, .master section.features-getting-started-buttons .section-img, .master section.presskit .section-img, .master section.sample-invoice .section-img, .master section.sample-invoice-header .section-img, .master footer section.wrapper .section-img, footer .master section.wrapper .section-img {
+    .master section.container .section-img, .master .container-report .report-header section.report-header-inner .section-img, .container-report .report-header .master section.report-header-inner .section-img, .master section.pricing-hero .section-img, .master section.features.features-hero .section-img, .master section.feature-collapse .section-img, .master section.features.features-install .section-img, .master section.feature .section-img, .master section.features-getting-started-buttons .section-img, .master section.presskit .section-img, .master section.sample-invoice .section-img, .master footer section.wrapper .section-img, footer .master section.wrapper .section-img {
       position: relative;
       min-height: 1px;
       padding-left: 15px;
       padding-right: 15px; }
       @media (min-width: 992px) {
-        .master section.container .section-img, .master .container-report .report-header section.report-header-inner .section-img, .container-report .report-header .master section.report-header-inner .section-img, .master section.pricing-hero .section-img, .master section.features.features-hero .section-img, .master section.feature-collapse .section-img, .master section.features.features-install .section-img, .master section.feature .section-img, .master section.features-getting-started-buttons .section-img, .master section.presskit .section-img, .master section.sample-invoice .section-img, .master section.sample-invoice-header .section-img, .master footer section.wrapper .section-img, footer .master section.wrapper .section-img {
+        .master section.container .section-img, .master .container-report .report-header section.report-header-inner .section-img, .container-report .report-header .master section.report-header-inner .section-img, .master section.pricing-hero .section-img, .master section.features.features-hero .section-img, .master section.feature-collapse .section-img, .master section.features.features-install .section-img, .master section.feature .section-img, .master section.features-getting-started-buttons .section-img, .master section.presskit .section-img, .master section.sample-invoice .section-img, .master footer section.wrapper .section-img, footer .master section.wrapper .section-img {
           float: left;
           width: 33.3333333333%; } }
       @media (min-width: 992px) {
-        .master section.container .section-img.on-top, .master .container-report .report-header section.report-header-inner .section-img.on-top, .container-report .report-header .master section.report-header-inner .section-img.on-top, .master section.pricing-hero .section-img.on-top, .master section.features.features-hero .section-img.on-top, .master section.feature-collapse .section-img.on-top, .master section.features.features-install .section-img.on-top, .master section.feature .section-img.on-top, .master section.features-getting-started-buttons .section-img.on-top, .master section.presskit .section-img.on-top, .master section.sample-invoice .section-img.on-top, .master section.sample-invoice-header .section-img.on-top, .master footer section.wrapper .section-img.on-top, footer .master section.wrapper .section-img.on-top {
+        .master section.container .section-img.on-top, .master .container-report .report-header section.report-header-inner .section-img.on-top, .container-report .report-header .master section.report-header-inner .section-img.on-top, .master section.pricing-hero .section-img.on-top, .master section.features.features-hero .section-img.on-top, .master section.feature-collapse .section-img.on-top, .master section.features.features-install .section-img.on-top, .master section.feature .section-img.on-top, .master section.features-getting-started-buttons .section-img.on-top, .master section.presskit .section-img.on-top, .master section.sample-invoice .section-img.on-top, .master footer section.wrapper .section-img.on-top, footer .master section.wrapper .section-img.on-top {
           display: none; } }
-      .master section.container .section-img.on-right, .master .container-report .report-header section.report-header-inner .section-img.on-right, .container-report .report-header .master section.report-header-inner .section-img.on-right, .master section.pricing-hero .section-img.on-right, .master section.features.features-hero .section-img.on-right, .master section.feature-collapse .section-img.on-right, .master section.features.features-install .section-img.on-right, .master section.feature .section-img.on-right, .master section.features-getting-started-buttons .section-img.on-right, .master section.presskit .section-img.on-right, .master section.sample-invoice .section-img.on-right, .master section.sample-invoice-header .section-img.on-right, .master footer section.wrapper .section-img.on-right, footer .master section.wrapper .section-img.on-right {
+      .master section.container .section-img.on-right, .master .container-report .report-header section.report-header-inner .section-img.on-right, .container-report .report-header .master section.report-header-inner .section-img.on-right, .master section.pricing-hero .section-img.on-right, .master section.features.features-hero .section-img.on-right, .master section.feature-collapse .section-img.on-right, .master section.features.features-install .section-img.on-right, .master section.feature .section-img.on-right, .master section.features-getting-started-buttons .section-img.on-right, .master section.presskit .section-img.on-right, .master section.sample-invoice .section-img.on-right, .master footer section.wrapper .section-img.on-right, footer .master section.wrapper .section-img.on-right {
         display: none; }
         @media (min-width: 992px) {
-          .master section.container .section-img.on-right, .master .container-report .report-header section.report-header-inner .section-img.on-right, .container-report .report-header .master section.report-header-inner .section-img.on-right, .master section.pricing-hero .section-img.on-right, .master section.features.features-hero .section-img.on-right, .master section.feature-collapse .section-img.on-right, .master section.features.features-install .section-img.on-right, .master section.feature .section-img.on-right, .master section.features-getting-started-buttons .section-img.on-right, .master section.presskit .section-img.on-right, .master section.sample-invoice .section-img.on-right, .master section.sample-invoice-header .section-img.on-right, .master footer section.wrapper .section-img.on-right, footer .master section.wrapper .section-img.on-right {
+          .master section.container .section-img.on-right, .master .container-report .report-header section.report-header-inner .section-img.on-right, .container-report .report-header .master section.report-header-inner .section-img.on-right, .master section.pricing-hero .section-img.on-right, .master section.features.features-hero .section-img.on-right, .master section.feature-collapse .section-img.on-right, .master section.features.features-install .section-img.on-right, .master section.feature .section-img.on-right, .master section.features-getting-started-buttons .section-img.on-right, .master section.presskit .section-img.on-right, .master section.sample-invoice .section-img.on-right, .master footer section.wrapper .section-img.on-right, footer .master section.wrapper .section-img.on-right {
             display: block; } }
-      .master section.container .section-img .money, .master .container-report .report-header section.report-header-inner .section-img .money, .container-report .report-header .master section.report-header-inner .section-img .money, .master section.pricing-hero .section-img .money, .master section.features.features-hero .section-img .money, .master section.feature-collapse .section-img .money, .master section.features.features-install .section-img .money, .master section.feature .section-img .money, .master section.features-getting-started-buttons .section-img .money, .master section.presskit .section-img .money, .master section.sample-invoice .section-img .money, .master section.sample-invoice-header .section-img .money, .master footer section.wrapper .section-img .money, footer .master section.wrapper .section-img .money {
+      .master section.container .section-img .money, .master .container-report .report-header section.report-header-inner .section-img .money, .container-report .report-header .master section.report-header-inner .section-img .money, .master section.pricing-hero .section-img .money, .master section.features.features-hero .section-img .money, .master section.feature-collapse .section-img .money, .master section.features.features-install .section-img .money, .master section.feature .section-img .money, .master section.features-getting-started-buttons .section-img .money, .master section.presskit .section-img .money, .master section.sample-invoice .section-img .money, .master footer section.wrapper .section-img .money, footer .master section.wrapper .section-img .money {
         height: 200px; }
         @media (min-width: 992px) {
-          .master section.container .section-img .money, .master .container-report .report-header section.report-header-inner .section-img .money, .container-report .report-header .master section.report-header-inner .section-img .money, .master section.pricing-hero .section-img .money, .master section.features.features-hero .section-img .money, .master section.feature-collapse .section-img .money, .master section.features.features-install .section-img .money, .master section.feature .section-img .money, .master section.features-getting-started-buttons .section-img .money, .master section.presskit .section-img .money, .master section.sample-invoice .section-img .money, .master section.sample-invoice-header .section-img .money, .master footer section.wrapper .section-img .money, footer .master section.wrapper .section-img .money {
+          .master section.container .section-img .money, .master .container-report .report-header section.report-header-inner .section-img .money, .container-report .report-header .master section.report-header-inner .section-img .money, .master section.pricing-hero .section-img .money, .master section.features.features-hero .section-img .money, .master section.feature-collapse .section-img .money, .master section.features.features-install .section-img .money, .master section.feature .section-img .money, .master section.features-getting-started-buttons .section-img .money, .master section.presskit .section-img .money, .master section.sample-invoice .section-img .money, .master footer section.wrapper .section-img .money, footer .master section.wrapper .section-img .money {
             height: 100%;
             margin-left: -360px; } }
-      .master section.container .section-img .timecard, .master .container-report .report-header section.report-header-inner .section-img .timecard, .container-report .report-header .master section.report-header-inner .section-img .timecard, .master section.pricing-hero .section-img .timecard, .master section.features.features-hero .section-img .timecard, .master section.feature-collapse .section-img .timecard, .master section.features.features-install .section-img .timecard, .master section.feature .section-img .timecard, .master section.features-getting-started-buttons .section-img .timecard, .master section.presskit .section-img .timecard, .master section.sample-invoice .section-img .timecard, .master section.sample-invoice-header .section-img .timecard, .master footer section.wrapper .section-img .timecard, footer .master section.wrapper .section-img .timecard {
+      .master section.container .section-img .timecard, .master .container-report .report-header section.report-header-inner .section-img .timecard, .container-report .report-header .master section.report-header-inner .section-img .timecard, .master section.pricing-hero .section-img .timecard, .master section.features.features-hero .section-img .timecard, .master section.feature-collapse .section-img .timecard, .master section.features.features-install .section-img .timecard, .master section.feature .section-img .timecard, .master section.features-getting-started-buttons .section-img .timecard, .master section.presskit .section-img .timecard, .master section.sample-invoice .section-img .timecard, .master footer section.wrapper .section-img .timecard, footer .master section.wrapper .section-img .timecard {
         height: 200px; }
         @media (min-width: 992px) {
-          .master section.container .section-img .timecard, .master .container-report .report-header section.report-header-inner .section-img .timecard, .container-report .report-header .master section.report-header-inner .section-img .timecard, .master section.pricing-hero .section-img .timecard, .master section.features.features-hero .section-img .timecard, .master section.feature-collapse .section-img .timecard, .master section.features.features-install .section-img .timecard, .master section.feature .section-img .timecard, .master section.features-getting-started-buttons .section-img .timecard, .master section.presskit .section-img .timecard, .master section.sample-invoice .section-img .timecard, .master section.sample-invoice-header .section-img .timecard, .master footer section.wrapper .section-img .timecard, footer .master section.wrapper .section-img .timecard {
+          .master section.container .section-img .timecard, .master .container-report .report-header section.report-header-inner .section-img .timecard, .container-report .report-header .master section.report-header-inner .section-img .timecard, .master section.pricing-hero .section-img .timecard, .master section.features.features-hero .section-img .timecard, .master section.feature-collapse .section-img .timecard, .master section.features.features-install .section-img .timecard, .master section.feature .section-img .timecard, .master section.features-getting-started-buttons .section-img .timecard, .master section.presskit .section-img .timecard, .master section.sample-invoice .section-img .timecard, .master footer section.wrapper .section-img .timecard, footer .master section.wrapper .section-img .timecard {
             height: 100%;
             margin-right: -360px; } }
 
@@ -6202,19 +6193,74 @@ button.close {
   .price.price-freestyle h1 {
     text-align: left; }
 
-.features.features-hero h1 {
-  text-align: center;
-  font-weight: bold;
-  font-size: 8rem; }
+.features.features-hero {
+  background-color: #51c4c4;
+  color: #fff;
+  /* Firefox < 16 */
+  /* Safari, Chrome and Opera > 12.1 */
+  /* Internet Explorer */
+  /* Opera < 12.1 */ }
+  .features.features-hero h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 10rem; }
+  .features.features-hero h2 {
+    text-align: center;
+    font-weight: normal;
+    font-size: 4.8rem;
+    margin-top: 0em; }
 
-.features.features-hero h2 {
-  text-align: center;
-  font-weight: normal;
-  font-size: 4rem;
-  margin-top: 0em; }
+@keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-moz-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-ms-keyframes fadein {
+  .features.features-hero from {
+    opacity: 0; }
+  .features.features-hero to {
+    opacity: 1; } }
+
+@-o-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+  .features.features-hero .sample-invoice {
+    opacity: 1;
+    -webkit-animation: fadein 0.5s;
+    /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 0.5s;
+    /* Firefox < 16 */
+    -ms-animation: fadein 0.5s;
+    /* Internet Explorer */
+    -o-animation: fadein 0.5s;
+    /* Opera < 12.1 */
+    animation: fadein 0.5s; }
+
+.features-group {
+  padding: 4rem 0px 0px 0px; }
+  .features-group.white {
+    background-color: #fff; }
+  .features-group.gray {
+    background-color: #eeeeee; }
+  .features-group.primary {
+    background-color: #51c4c4; }
 
 .features.features-more {
-  margin-top: 4rem;
   background: #8a51c4;
   color: #fff; }
   .features.features-more h1 {
@@ -6224,7 +6270,8 @@ button.close {
     margin-top: 6.4rem; }
 
 .feature-collapse {
-  margin-top: 3.2rem; }
+  margin-top: 3.2rem;
+  padding-bottom: 4rem; }
   .feature-collapse ul {
     position: relative;
     min-height: 1px;
@@ -6271,6 +6318,8 @@ button.close {
     padding-top: 2rem;
     margin-top: 0px;
     margin-bottom: 0px; }
+  .features.features-install .btn-next-step {
+    padding-bottom: 10px; }
   .features.features-install small {
     color: #777777; }
 
@@ -6323,7 +6372,7 @@ button.close {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  color: #777777; }
+  color: #eeeeee; }
   @media (min-width: 992px) {
     .btn-50 + small {
       float: left;
@@ -6406,7 +6455,7 @@ button.close {
   font-family: "Open Sans", Helvetica, sans-serif;
   cursor: default;
   background: #fff;
-  padding: 64px 12px 32px 12px; }
+  padding: 84px 16px 32px 16px; }
   .sample-invoice .header {
     margin-bottom: 0.8em;
     color: #fff;
@@ -6463,6 +6512,12 @@ button.close {
           content: ")"; }
   .sample-invoice .total-cost {
     position: relative;
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
     min-height: 1px;
     padding-left: 15px;
     padding-right: 15px;
@@ -6512,24 +6567,6 @@ button.close {
     padding: 6px 16px;
     width: 100%;
     display: block; }
-
-.sample-invoice-header {
-  margin-bottom: 2em; }
-  .sample-invoice-header h1 {
-    text-align: center;
-    font-weight: bold;
-    font-size: 8rem; }
-  .sample-invoice-header h2 {
-    text-align: center;
-    font-weight: normal;
-    font-size: 4rem;
-    margin-top: 0em; }
-  .sample-invoice-header h3 {
-    text-align: center;
-    font-weight: normal;
-    font-size: 1.6rem;
-    margin-top: 0em;
-    color: #777777; }
 
 footer {
   height: 148px;
