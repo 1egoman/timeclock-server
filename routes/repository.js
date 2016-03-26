@@ -20,7 +20,7 @@ function getRepo(req, res, next) {
   }
 }
 
-function doError(req, res, code) {
+function doError(req, res, code, msg) {
   return (err) => {
     if (code === 404) {
       res.render("404", {
@@ -28,6 +28,7 @@ function doError(req, res, code) {
         user: req.params.username,
         repo: req.params.repo,
         user: req.user,
+        msg,
       });
     } else {
       console.error(err);
@@ -35,6 +36,7 @@ function doError(req, res, code) {
         title: "Error",
         msg: err,
         user: req.user,
+        msg,
       });
     }
   };
@@ -87,13 +89,12 @@ function doReport(req, res) {
     if (card.assertIsCard(timecard)) {
       // make the report
       card.getReportTemplate(timecard.reportFormat || "default").then((template) => {
-
         // add the waltz badge on the top
         template += "<a href='/?ref=iv'><img style='position:absolute;top:20px;left:20px;width:64px;z-index:999;background:#fff;padding:4px;' src='/img/logo_made_with.svg'></a>"
         let ejs_data = card.getTimecardRenderDetails(timecard),
             report = ejs.render(template, ejs_data);
         res.send(report);
-      }).catch(doError(req, res, 400));
+      }).catch(doError(req, res, 400, `The template you chose doesn't exist. (${timecard.reportFormat}) Maybe try another?`));
     } else {
       res.status(400).send({
         error: "Timecard is malformed.",
