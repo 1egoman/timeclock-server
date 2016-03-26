@@ -6366,6 +6366,10 @@ button.close {
   border-width: 2px;
   border-radius: 2px; }
 
+.btn-white.btn-outline, .invoice.invoice-payment form .btn-white[type=submit], .invoice.invoice-payment .btn-white.link-btn, .invoice.invoice-payment .btn-white.more-btn {
+  color: #fff;
+  border-color: #fff; }
+
 .btn-default.btn-outline, .invoice.invoice-payment form .btn-default[type=submit], .invoice.invoice-payment .btn-default.link-btn, .invoice.invoice-payment .more-btn {
   color: #777777;
   border-color: #777777; }
@@ -6389,6 +6393,10 @@ button.close {
 .btn-danger.btn-outline, .invoice.invoice-payment form .btn-danger[type=submit], .invoice.invoice-payment .btn-danger.link-btn, .invoice.invoice-payment .btn-danger.more-btn {
   color: #c45151;
   border-color: #c45151; }
+
+.btn-white.btn-outline:hover, .invoice.invoice-payment form .btn-white[type=submit]:hover, .invoice.invoice-payment .btn-white.link-btn:hover, .invoice.invoice-payment .btn-white.more-btn:hover {
+  color: #51c4c4;
+  background: #fff; }
 
 .btn-default.btn-outline:hover, .invoice.invoice-payment form .btn-default[type=submit]:hover, .invoice.invoice-payment .btn-default.link-btn:hover, .invoice.invoice-payment .more-btn:hover {
   color: #fff;
