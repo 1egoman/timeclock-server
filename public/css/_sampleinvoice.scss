@@ -2,7 +2,6 @@
   @extend .container;
   max-width: 1000px;
   color: #333;
-  height: 100%;
   font-family: "Open Sans", Helvetica, sans-serif;
   cursor: default;
   background: #fff;
@@ -52,6 +51,7 @@
       padding: 1em;
       color: #fff;
       margin-top: 0.8em;
+      background-color: $brand-success;
 
       // amount of minutes
       small {
@@ -71,6 +71,7 @@
     border-top: 4px solid $text-color;
     margin-top: 2em;
     padding: 1em 1em 0em 1em;
+    border-color: $brand-success;
 
     span.tax { color: $gray-light; }
 

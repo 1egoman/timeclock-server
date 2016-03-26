@@ -1,0 +1,41 @@
+<% title = "Waltz invoice" %>
+<% include header %>
+
+<div class="invoice invoice-container">
+  <%- contents %>
+</div>
+
+<!-- made with waltz -->
+<a href='/?ref=iv'>
+  <img
+  style='position:absolute;top:20px;left:20px;width:64px;z-index:999;background:#fff;padding:4px;'
+  src='/img/logo_made_with.svg' />
+</a>
+
+<!-- payment -->
+<% if (invoice_data.totalCost) { %>
+  <div class="invoice invoice-payment">
+    <h2>What next?</h2>
+
+    <div class="next-item">
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_xclick">
+        <input type="hidden" name="business" value="myemail@example.com">
+        <input type="hidden" name="lc" value="US">
+        <input type="hidden" name="item_name" value="Payment for <%= invoice_data.timecard.name || "work completed" %>">
+        <input type="hidden" name="amount" value="<%= invoice_data.totalCost %>">
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="hidden" name="button_subtype" value="services">
+        <input type="hidden" name="no_note" value="0">
+        <input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynow_LG.gif:NonHostedGuest">
+        <input type="submit" value="Pay with Paypal" />
+      </form>
+    </div>
+    <div class="next-item">
+      <a href="mailto:<%= user.payment_email %>" class="link-btn">Email Client</a>
+    </div>
+    <div class="next-item">
+      <a href="//waltzapp.co?ref=iv2" class="more-btn">About this invoice</a>
+    </div>
+  </div>
+<% } %>

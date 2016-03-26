@@ -26,18 +26,53 @@
     }
   }
 
-  &.btn-hollow {
-    background-color: transparent;
-    color: #fff;
-    &.btn-primary { border: 4px solid $brand-primary; }
-    &.btn-info { border: 4px solid $brand-info; }
-    &.btn-success { border: 4px solid $brand-success; }
-    &.btn-warning { border: 4px solid $brand-warning; }
-    &.btn-danger { border: 4px solid $brand-danger; }
-
-    &:hover, &:active, &:focus {
-      background-color: #fff;
-      color: $gray-dark;
-    }
-  }
 }
+
+
+.btn-outline {
+  background-color: transparent;
+  color: inherit;
+  transition: all .1s;
+  background-image: none;
+  text-shadow: none;
+  border-width: 2px;
+  border-radius: 2px;
+}
+
+.btn-default.btn-outline { color: $gray-light; border-color: $gray-light; } 
+.btn-primary.btn-outline { color: $brand-primary; border-color: $brand-primary; } 
+.btn-success.btn-outline { color: $brand-success; border-color: $brand-success; } 
+.btn-info.btn-outline { color: $brand-info; border-color: $brand-info; } 
+.btn-warning.btn-outline { color: $brand-warning; border-color: $brand-warning; } 
+.btn-danger.btn-outline { color: $brand-danger; border-color: $brand-danger; }
+
+.btn-default.btn-outline:hover{
+  color: #fff;
+  background: $gray-light;
+}
+
+.btn-primary.btn-outline:hover{
+  color: #fff;
+  background: $brand-primary;
+}
+
+.btn-success.btn-outline:hover{
+  color: #fff;
+  background: $brand-success;
+}
+
+.btn-info.btn-outline:hover{
+  color: #fff;
+  background: $brand-info;
+}
+
+.btn-warning.btn-outline:hover{
+  color: #fff;
+  background: $brand-warning;
+}
+
+.btn-danger.btn-outline:hover {
+  color: #fff;
+  background: $brand-danger;
+}
+

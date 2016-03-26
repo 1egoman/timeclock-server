@@ -53,6 +53,8 @@
         -ms-animation: fadein $invoice-fade; /* Internet Explorer */
          -o-animation: fadein $invoice-fade; /* Opera < 12.1 */
             animation: fadein $invoice-fade;
+
+    box-shadow: 8px 8px rgba($gray, 0.25);
   }
 }
 
