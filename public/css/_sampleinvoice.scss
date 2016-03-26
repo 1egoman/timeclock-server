@@ -2,11 +2,10 @@
   @extend .container;
   max-width: 1000px;
   color: #333;
-  height: 100%;
   font-family: "Open Sans", Helvetica, sans-serif;
   cursor: default;
   background: #fff;
-  padding: 64px 12px 32px 12px;
+  padding: 84px 16px 32px 16px;
 
   .header {
     margin-bottom: 0.8em;
@@ -52,6 +51,7 @@
       padding: 1em;
       color: #fff;
       margin-top: 0.8em;
+      background-color: $brand-success;
 
       // amount of minutes
       small {
@@ -64,12 +64,14 @@
 
   // bottom section with tax and total
   .total-cost {
+    @include make-xs-column(12);
     @include make-md-column(4);
     @include make-md-column-offset(8);
     height: 10em;
     border-top: 4px solid $text-color;
     margin-top: 2em;
     padding: 1em 1em 0em 1em;
+    border-color: $brand-success;
 
     span.tax { color: $gray-light; }
 
@@ -113,30 +115,5 @@
     width: 100%;
     display: block;
     // background: $state-info-bg;
-  }
-}
-
-// bold, intro text
-.sample-invoice-header {
-  @extend .container;
-  margin-bottom: 2em;
-
-  h1 {
-    text-align: center;
-    font-weight: bold;
-    font-size: 8rem;
-  }
-  h2 {
-    text-align: center;
-    font-weight: normal;
-    font-size: 4rem;
-    margin-top: 0em;
-  }
-  h3 {
-    text-align: center;
-    font-weight: normal;
-    font-size: 1.6rem;
-    margin-top: 0em;
-    color: $gray-light;
   }
 }

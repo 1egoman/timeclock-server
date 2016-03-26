@@ -3,6 +3,7 @@ const repo = require("../lib/repo"),
       ejs = require("ejs"),
       isAuthenticated = require("../lib/is_authenticated"),
       getAuthenticatedUser = require("./badge").getAuthenticatedUser,
+      path = require("path"),
       card = require("../lib/card");
 
 // get the repo that is being specified.
@@ -90,10 +91,21 @@ function doReport(req, res) {
       // make the report
       card.getReportTemplate(timecard.reportFormat || "default").then((template) => {
         // add the waltz badge on the top
-        template += "<a href='/?ref=iv'><img style='position:absolute;top:20px;left:20px;width:64px;z-index:999;background:#fff;padding:4px;' src='/img/logo_made_with.svg'></a>"
-        let ejs_data = card.getTimecardRenderDetails(timecard),
-            report = ejs.render(template, ejs_data);
-        res.send(report);
+        let ejs_data = card.getTimecardRenderDetails(timecard);
+        let invoice = ejs.render(template, ejs_data);
+        ejs.renderFile(path.join(__dirname, '..', 'views', 'invoice.ejs'), {
+          contents: invoice,
+          invoice_data: ejs_data,
+          no_nav: true,
+          ENV_DEVELOPMENT: (process.env.NODE_ENV || "development") === "development",
+          user: req.user,
+        }, function(err, full_invoice) {
+          if (err) {
+            throw new Error(err);
+          } else {
+            res.send(full_invoice);
+          }
+        });
       }).catch(doError(req, res, 400, `The template you chose doesn't exist. (${timecard.reportFormat}) Maybe try another?`));
     } else {
       res.status(400).send({
