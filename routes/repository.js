@@ -85,7 +85,7 @@ function sampleinvoice(req, res) {
 function doReport(req, res) {
   let ref = req.params.ref || req.parent_repo.default_branch || "master";
   getAuthenticatedUser(req).then((user) => {
-    repo.getFileFromRepo(
+    return repo.getFileFromRepo(
       req.params.username,
       req.params.repo,
       null,
