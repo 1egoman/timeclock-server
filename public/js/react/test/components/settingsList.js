@@ -22,7 +22,12 @@ describe('components/settingsList.js', function() {
           avatar: "http://i-am-an-avatar-url",
           badge_token: "a-badge-token",
           provider: "github",
+          email: "regularemail@example.com"
         },
+        settings: {
+          payment_email: "email@example.com"
+        },
+        changePaymentEmail: "change-payment-email",
       }), <div className="panel panel-default">
         <div className="panel-heading">Waltz Settings</div>
         <div className="panel-body">
@@ -39,6 +44,15 @@ describe('components/settingsList.js', function() {
               </a>
             </span>
           </h1>
+          <div className="setting-list-payment-email">
+            <Input
+              type="text"
+              label="Payment email"
+              placeholder="regularemail@example.com"
+              value="email@example.com"
+              onChange="change-payment-email"
+            />
+          </div>
         </div>
       </div>);
     });
@@ -144,14 +158,18 @@ describe('components/settingsList.js', function() {
         avatar: "http://i-am-an-avatar-url",
         badge_token: "a-badge-token",
         provider: "github",
-      }, changeLongWorkPeriodDuration = () => "change-long-work-period-function";
+        email: "regularemail@example.com",
+      }, changeLongWorkPeriodDuration = () => "change-long-work-period-function",
+         changePaymentEmail = () => "change-payment-email";
       assert.deepEqual(settingsListComponent({
         user,
         settings: {
           long_work_period: 90,
+          payment_email: "email@example.com",
         },
         resetToken: resetTokenSpy,
         changeLongWorkPeriodDuration,
+        changePaymentEmail,
       }), <div className="settings-list">
           {/* general user info */}
           <div className="col-md-12">
@@ -171,6 +189,16 @@ describe('components/settingsList.js', function() {
                     </a>
                   </span>
                 </h1>
+
+                <div className="setting-list-payment-email">
+                  <Input
+                    type="text"
+                    label="Payment email"
+                    placeholder="regularemail@example.com"
+                    value="email@example.com"
+                    onChange={changePaymentEmail}
+                  />
+                </div>
               </div>
             </div>
           </div>

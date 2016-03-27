@@ -7,9 +7,10 @@ import {
   preemptiveSettingUpdate,
 } from '../actions/settings';
 import {Button, Input} from 'react-bootstrap';
+import EmailValidator from 'email-validator';
 
 // user info pane
-export function userInfo({user}) {
+export function userInfo({settings, user, changePaymentEmail, validateEmail}) {
   return <div className="panel panel-default">
     <div className="panel-heading">Waltz Settings</div>
     <div className="panel-body">
@@ -20,6 +21,16 @@ export function userInfo({user}) {
           {getUserBadge(user)}
         </span>
       </h1>
+
+      <div className="setting-list-payment-email">
+        <Input
+          type="text"
+          label="Payment email"
+          placeholder={user.email}
+          value={settings.payment_email}
+          onChange={changePaymentEmail}
+        />
+      </div>
     </div>
   </div>;
 }
@@ -74,12 +85,14 @@ export function settingsListComponent({
 
   resetToken,
   changeLongWorkPeriodDuration,
+  changePaymentEmail,
+  validateEmail,
 }) {
   if (user) {
     return <div className="settings-list">
       {/* general user info */}
       <div className="col-md-12">
-        {userInfo({user})}
+        {userInfo({user, settings, changePaymentEmail, validateEmail})}
       </div>
 
       {/* badge / report token */}
@@ -113,9 +126,19 @@ const settingsList = connect(mapStateToProps, (dispatch, props) => {
     },
 
     changeLongWorkPeriodDuration(event) {
-      let setting = {
-        long_work_period: event.target.value,
-      };
+      let setting = { long_work_period: event.target.value };
+      // update the setting locally, and push the change remotely.
+      dispatch(changeSetting(setting));
+      dispatch(preemptiveSettingUpdate(setting));
+    },
+
+    validateEmail(email) {
+      return EmailValidator.validate(email);
+    },
+
+    changePaymentEmail(event) {
+      let value = event.target.value;
+      let setting = { payment_email: value };
       // update the setting locally, and push the change remotely.
       dispatch(changeSetting(setting));
       dispatch(preemptiveSettingUpdate(setting));
