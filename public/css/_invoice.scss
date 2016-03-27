@@ -4,6 +4,7 @@
 .invoice.invoice-payment {
   @extend .container;
   border-top: 2px solid $gray-lighter;
+  margin-bottom: 2.4em;
 
   h2 {
     font-size: 1.4rem;

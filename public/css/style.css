@@ -6886,7 +6886,8 @@ button.close {
     font-size: 1.4em; }
 
 .invoice.invoice-payment {
-  border-top: 2px solid #eeeeee; }
+  border-top: 2px solid #eeeeee;
+  margin-bottom: 2.4em; }
   .invoice.invoice-payment h2 {
     font-size: 1.4rem;
     text-align: center;
