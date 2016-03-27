@@ -85,39 +85,40 @@ function sampleinvoice(req, res) {
 function doReport(req, res) {
   let ref = req.params.ref || req.parent_repo.default_branch || "master";
   getAuthenticatedUser(req).then((user) => {
-    return repo.getFileFromRepo(
+    repo.getFileFromRepo(
       req.params.username,
       req.params.repo,
       null,
       ref,
       user
-    );
-  }).then((timecard) => {
-    if (card.assertIsCard(timecard)) {
-      // make the report
-      card.getReportTemplate(timecard.reportFormat || "default").then((template) => {
-        // add the waltz badge on the top
-        let ejs_data = card.getTimecardRenderDetails(timecard);
-        let invoice = ejs.render(template, ejs_data);
-        ejs.renderFile(path.join(__dirname, '..', 'views', 'invoice.ejs'), {
-          contents: invoice,
-          invoice_data: ejs_data,
-          no_nav: true,
-          ENV_DEVELOPMENT: (process.env.NODE_ENV || "development") === "development",
-          user: req.user,
-        }, function(err, full_invoice) {
-          if (err) {
-            throw new Error(err);
-          } else {
-            res.send(full_invoice);
-          }
+    ).then((timecard) => {
+      if (card.assertIsCard(timecard)) {
+        // make the report
+        card.getReportTemplate(timecard.reportFormat || "default").then((template) => {
+          // add the waltz badge on the top
+          let ejs_data = card.getTimecardRenderDetails(timecard);
+          let invoice = ejs.render(template, ejs_data);
+          ejs.renderFile(path.join(__dirname, '..', 'views', 'invoice.ejs'), {
+            contents: invoice,
+            invoice_data: ejs_data,
+            no_nav: true,
+            ENV_DEVELOPMENT: (process.env.NODE_ENV || "development") === "development",
+            user: req.user,
+            tokened_user: user,
+          }, function(err, full_invoice) {
+            if (err) {
+              throw new Error(err);
+            } else {
+              res.send(full_invoice);
+            }
+          });
+        }).catch(doError(req, res, 400, {show_errors: true}));
+      } else {
+        res.status(400).send({
+          error: "Timecard is malformed.",
         });
-      }).catch(doError(req, res, 400, {show_errors: true}));
-    } else {
-      res.status(400).send({
-        error: "Timecard is malformed.",
-      });
-    }
+      }
+    });
   }).catch(doError(req, res, 404, "We couldn't get the timecard associated with this repository and branch."));
 }
 

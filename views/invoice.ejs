@@ -13,14 +13,14 @@
 </a>
 
 <!-- payment -->
-<% if (invoice_data.totalCost && user.email) { %>
+<% if (invoice_data.totalCost && tokened_user && tokened_user.email) { %>
   <div class="invoice invoice-payment">
     <h2>What next?</h2>
 
     <div class="next-item">
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
         <input type="hidden" name="cmd" value="_xclick">
-        <input type="hidden" name="business" value="<%= user.settings.payment_email || user.email %>">
+        <input type="hidden" name="business" value="<%= tokened_user.settings.payment_email || tokened_user.email %>">
         <input type="hidden" name="lc" value="US">
         <input type="hidden" name="item_name" value="Payment for <%= invoice_data.timecard.name || "work completed" %>">
         <input type="hidden" name="amount" value="<%= invoice_data.totalCost %>">
@@ -32,7 +32,7 @@
       </form>
     </div>
     <div class="next-item">
-      <a href="mailto:<%= user.email || user.settings.payment_email %>" class="link-btn">Email Client</a>
+      <a href="mailto:<%= tokened_user.email || tokened_user.settings.payment_email %>" class="link-btn">Email Client</a>
     </div>
     <div class="next-item">
       <a href="//waltzapp.co?ref=iv2" class="more-btn">About this invoice</a>
