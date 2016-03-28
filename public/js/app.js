@@ -1,5 +1,6 @@
 $(document).ready(function () {
   $('[data-toggle="popover"]').popover();
+  $('[data-toggle="tooltip"]').tooltip();
 
   // select the popover contents on click
   $("body").on("click", ".repo-badge .popover-content", function() {

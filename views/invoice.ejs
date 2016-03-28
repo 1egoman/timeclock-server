@@ -18,7 +18,8 @@
     <h2>What next?</h2>
 
     <div class="next-item">
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"> -->
+      <div>
         <input type="hidden" name="cmd" value="_xclick">
         <input type="hidden" name="business" value="<%= tokened_user.settings.payment_email || tokened_user.email %>">
         <input type="hidden" name="lc" value="US">
@@ -28,8 +29,15 @@
         <input type="hidden" name="button_subtype" value="services">
         <input type="hidden" name="no_note" value="0">
         <input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynow_LG.gif:NonHostedGuest">
-        <input type="submit" value="Pay with Paypal" />
-      </form>
+        <input
+          type="submit" 
+          data-toggle="tooltip"
+          data-placement="top"
+          title="Coming soon!"
+          value="Pay with Paypal"
+          class="disabled"
+        />
+      </div>
     </div>
     <div class="next-item">
       <a href="mailto:<%= tokened_user.email || tokened_user.settings.payment_email %>" class="link-btn">Email Client</a>
@@ -39,3 +47,5 @@
     </div>
   </div>
 <% } %>
+
+<% include footer %>

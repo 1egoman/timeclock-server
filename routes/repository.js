@@ -102,6 +102,7 @@ function doReport(req, res) {
             contents: invoice,
             invoice_data: ejs_data,
             no_nav: true,
+            no_footer: true,
             ENV_DEVELOPMENT: (process.env.NODE_ENV || "development") === "development",
             user: req.user,
             tokened_user: user,

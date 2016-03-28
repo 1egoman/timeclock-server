@@ -1,42 +1,44 @@
-<footer>
-  <div class="wrapper">
-    <ul>
-      <li class="product">
-        <h5>Waltz</h5>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/app/">Open the app</a></li>
-          <!-- <li><a href="/pricing">Pricing</a></li> -->
-        </ul>
-      </li>
-      <li class="press">
-        <h5>Press</h5>
-        <ul>
-          <li><a href="/press">Press Kit</a></li>
-          <li><a href="http://rgaus.net">Founder Information</a></li>
-        </ul>
-      </li>
-      <li class="social">
-        <h5>Social</h5>
-        <ul>
-          <li><a href="mailto:rsg1egoman+waltz@gmail.com?subject=Waltz">Email</a></li>
-          <li><a href="//twitter.com/rgausnet">Twitter</a></li>
-          <li><a href="//github.com/waltz-app">Github</a></li>
-        </ul>
-      </li>
-      <li class="legal">
-        <h5>Legal</h5>
-        <ul>
-          <li>Copyright Ryan Gaus, 2016</li>
-          <li>
-            Waltz CLI is licensed under the open source
-            <a href="https://opensource.org/licenses/MIT" target="_blank">MIT Licence.</a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-</footer>
+<% if (typeof no_footer === "undefined" || !no_footer) { %>
+  <footer>
+    <div class="wrapper">
+      <ul>
+        <li class="product">
+          <h5>Waltz</h5>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/app/">Open the app</a></li>
+            <!-- <li><a href="/pricing">Pricing</a></li> -->
+          </ul>
+        </li>
+        <li class="press">
+          <h5>Press</h5>
+          <ul>
+            <li><a href="/press">Press Kit</a></li>
+            <li><a href="http://rgaus.net">Founder Information</a></li>
+          </ul>
+        </li>
+        <li class="social">
+          <h5>Social</h5>
+          <ul>
+            <li><a href="mailto:rsg1egoman+waltz@gmail.com?subject=Waltz">Email</a></li>
+            <li><a href="//twitter.com/rgausnet">Twitter</a></li>
+            <li><a href="//github.com/waltz-app">Github</a></li>
+          </ul>
+        </li>
+        <li class="legal">
+          <h5>Legal</h5>
+          <ul>
+            <li>Copyright Ryan Gaus, 2016</li>
+            <li>
+              Waltz CLI is licensed under the open source
+              <a href="https://opensource.org/licenses/MIT" target="_blank">MIT Licence.</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </footer>
+<% } %>
 
 <script type="text/javascript" src="/js/jquery-1.12.0.min.js"></script>
 <script>var HW_config={selector:".navbar-brand",account:"27NVA7"}</script>

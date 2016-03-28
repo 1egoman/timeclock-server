@@ -19,7 +19,7 @@
     @include make-md-column(4);
   }
 
-  form [type=submit] {
+  [type=submit] {
     @extend .btn;
     @extend .btn-xl;
     @extend .btn-block;
@@ -27,6 +27,7 @@
     @extend .btn-primary.btn-outline;
 
     margin-top: 4rem;
+    cursor: not-allowed;
   }
 
   .link-btn {
