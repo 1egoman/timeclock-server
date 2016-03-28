@@ -24,4 +24,9 @@ $(document).ready(function () {
     }
   });
 
+  // mixpanel stats
+  $("[ref=learnmore]").on("click", function() { mixpanel.track("click-learnmore") });
+  $("[ref=signin]").on("click", function() { mixpanel.track("click-login", {from: "gettingstarted"}) });
+  $("[ref=loginnav]").on("click", function() { mixpanel.track("click-login", {from: "nav"}) });
+
 });

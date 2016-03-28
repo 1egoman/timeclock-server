@@ -1,6 +1,6 @@
 <% if (!user) { %>
-  <a class="btn btn-outline btn-white btn-xl btn-50 smooth" href="#learnmore">Learn More</a>
-  <a class="btn btn-outline btn-white btn-xl btn-50" href="/login">Sign in with Github</a>
+  <a ref="learnmore" class="btn btn-outline btn-white btn-xl btn-50 smooth" href="#learnmore">Learn More</a>
+  <a ref="signin" class="btn btn-outline btn-white btn-xl btn-50" href="/login">Sign in with Github</a>
   <small>It doesn't cost anything to get started, and you can cancel at any time.</small>
 <% } else { %>
   <a class="btn btn-outline btn-white btn-xl btn-50" href="/auth/logout">Logout <%= user.username %></a>
