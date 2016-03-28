@@ -58,7 +58,9 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElemen
 mixpanel.init("<%= process.env.MIXPANEL_TOKEN %>");
 <% if (typeof user !== "undefined") { %>
 mixpanel.identify("<%= user._id %>");
-<% } %></script>
+<% } %>
+mixpanel.track("view");
+</script>
 <!-- end Mixpanel -->
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/app.js"></script>
