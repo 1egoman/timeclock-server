@@ -59,7 +59,6 @@ mixpanel.init("<%= process.env.MIXPANEL_TOKEN %>");
 <% if (typeof user !== "undefined") { %>
 mixpanel.identify("<%= user._id %>");
 <% } %>
-mixpanel.track("view");
 </script>
 <!-- end Mixpanel -->
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
