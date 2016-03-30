@@ -6643,7 +6643,12 @@ button.close {
   .features.features-hero h2 {
     text-align: center;
     font-weight: normal;
-    font-size: 4.8rem;
+    font-size: 3.6rem;
+    margin-top: 0em; }
+  .features.features-hero h3 {
+    text-align: center;
+    font-weight: normal;
+    font-size: 3.2rem;
     margin-top: 0em; }
 
 @keyframes fadein {
