@@ -1,5 +1,3 @@
-"use strict";
-
 // open the repo import dialog
 export function repoImportDialogOpen(state = false, action) {
   if (action.type === "server/DISCOVER_REPOS") {
@@ -215,17 +213,3 @@ export function helpInstallingClient(state = false, action) {
     return state;
   }
 }
-
-// the backend rasied an error
-export function error(state = null, action) {
-  if (action.type === "server/ERROR") {
-    return {
-      error: action.error || "Unexplained error - please email support!",
-      from: "backend",
-    };
-  } else if (action.type === "HIDE_ERROR_MODAL") {
-    return null;
-  } else {
-    return state;
-  }
-};

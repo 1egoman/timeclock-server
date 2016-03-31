@@ -1,9 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {
-  showShareModal,
-  shareWithEmails,
-} from '../actions/repo';
+import { showShareModal } from '../actions/modal';
+import { shareWithEmails } from '../actions/repo';
 import {
   Modal,
   Input,

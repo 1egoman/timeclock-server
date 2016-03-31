@@ -58,9 +58,9 @@ import {
   repoDetails,
   newTimecardData,
   helpInstallingClient,
-  error
 } from './reducers/repo';
 import { user } from './reducers/user';
+import { error } from './reducers/error';
 
 
 const waltzApp = combineReducers({
@@ -100,6 +100,7 @@ let store = waltzCreateStore(waltzApp, {
     _comesfrom: [null, null], // the source of the timecard by default is nowhere.
   }
 });
+if (window.devToolsExtension) { window.store = store; }
 
 
 // router redux history syncer
