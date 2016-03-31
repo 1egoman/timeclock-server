@@ -5,9 +5,11 @@ import {
   openRepoImportDialog,
   changeBranch,
   getTimecard,
+} from '../actions/repo';
+import {
   showWaltzInstallInstructions,
   showShareModal,
-} from '../actions/repo';
+} from '../actions/modal';
 import ImportRepo from './importRepo';
 import {getCurrentBranch, getAllBranches} from '../helpers/branch';
 import {getTimeDelta, getAvatarFor} from '../helpers/timecard';
