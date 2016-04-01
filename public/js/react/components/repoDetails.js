@@ -134,21 +134,21 @@ export const RepoDetailsComponent = ({
             readOnly={true}
           />
 
-          {/* open a share dialog so the user can share the invoice with clients or collaborators */}
+          {/* open a share dialog so the user can share the timecard with clients or collaborators */}
           <div className="repo-details-report-share">
             <ShareWithClient />
             {/* share the report */}
             <button
               className="btn btn-success"
               onClick={openShareModal.bind(this)}
-            >Share Invoice</button>
+            >Share</button>
           </div>
 
           {/* print a copy of the report */}
           <button
             className="btn btn-info repo-details-print-report"
             onClick={printReport(repo, current_branch)}
-          >Print Invoice</button>
+          >Print</button>
         </div>
       </div>
 

@@ -35,7 +35,7 @@ export const shareWithClientComponent = ({
       <Input
         type="textarea"
         label="Add an optional message"
-        placeholder="Take a look at my groovy invoice!"
+        placeholder="Take a look at my timesheet!"
         style={{resize: "vertical"}}
         {...message}
       />
