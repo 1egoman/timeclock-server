@@ -1,5 +1,3 @@
-"use strict";
-
 // open the repo import dialog
 export function repoImportDialogOpen(state = false, action) {
   if (action.type === "server/DISCOVER_REPOS") {
@@ -92,6 +90,7 @@ export function repoDetails(state = {branch: null}, action) {
       branches: null,
       timecard: null,
       error: null,
+      show_share_modal: false,
     });
 
   // the current repo's branches
@@ -140,6 +139,30 @@ export function repoDetails(state = {branch: null}, action) {
         error: null,
       });
     }
+
+  // open the share repo modal
+  } else if (action.type === "SHOW_REPO_SHARE_MODAL") {
+    return Object.assign({}, state, {
+      show_share_modal: action.value,
+      error: null,
+    });
+
+  // send share request to server
+  } else if (action.type === "server/SHARE_WITH") {
+    return Object.assign({}, state, {
+      show_share_modal: false,
+      waiting_for_share_modal_response: true,
+      error: null,
+    });
+
+  // successfully shared, so close.
+  } else if (action.type === "server/SHARE_COMPLETE") {
+    return Object.assign({}, state, {
+      show_share_modal: false,
+      waiting_for_share_modal_response: false,
+      error: null,
+    });
+
 
   // No timecard in the repo?
   } else if (action.type === "server/ERROR" && action.error === "NO_TIMECARD_IN_REPO") {
@@ -194,17 +217,3 @@ export function helpInstallingClient(state = false, action) {
     return state;
   }
 }
-
-// the backend rasied an error
-export function error(state = null, action) {
-  if (action.type === "server/ERROR") {
-    return {
-      error: action.error || "Unexplained error - please email support!",
-      from: "backend",
-    };
-  } else if (action.type === "HIDE_ERROR_MODAL") {
-    return null;
-  } else {
-    return state;
-  }
-};

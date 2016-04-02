@@ -151,7 +151,7 @@ describe('reducers/repo.js', function() {
         error: null,
       });
     });
-    it('should reset branch on SELECT_REPO', function() {
+    it('should reset branch and close all modals on SELECT_REPO', function() {
       let new_state = repoDetails(old_state.repo_details, {
         type: "SELECT_REPO",
         index: 0,
@@ -164,10 +164,11 @@ describe('reducers/repo.js', function() {
         _comesfrom: [null, null],
         _page: 0,
         _canpaginateforward: false,
+        show_share_modal: false,
         error: null,
       });
     });
-    it('should reset branch on server/REPO_DELETED', function() {
+    it('should reset branch and close all modals on server/REPO_DELETED', function() {
       let new_state = repoDetails(old_state.repo_details, {
         type: "server/REPO_DELETED",
         user: "username",
@@ -181,6 +182,7 @@ describe('reducers/repo.js', function() {
         _comesfrom: [null, null],
         _page: 0,
         _canpaginateforward: false,
+        show_share_modal: false,
         error: null,
       });
     });
@@ -301,6 +303,54 @@ describe('reducers/repo.js', function() {
         error: "There isn't a timecard in this repo. Please add one by running waltz init locally,\n              or if you have, push up your changes\n              .",
       });
     });
+    it('should open repo share modal on SHOW_REPO_SHARE_MODAL', function() {
+      let new_state = repoDetails(old_state.repo_details, {
+        type: "SHOW_REPO_SHARE_MODAL",
+        value: true,
+      });
+      assert.deepEqual(new_state, {
+        branch: null,
+        branches: null,
+        timecard: null,
+        _comesfrom: [null, null], // the repo behind the current timecard
+        _page: 0,
+        _canpaginateforward: false,
+        error: null,
+        show_share_modal: true,
+      });
+    });
+    it('should let the modal know we\'ve initated the share to the server on server/SHARE_WITH', function() {
+      let new_state = repoDetails(old_state.repo_details, {
+        type: "server/SHARE_WITH",
+      });
+      assert.deepEqual(new_state, {
+        branch: null,
+        branches: null,
+        timecard: null,
+        _comesfrom: [null, null], // the repo behind the current timecard
+        _page: 0,
+        _canpaginateforward: false,
+        error: null,
+        show_share_modal: false,
+        waiting_for_share_modal_response: true,
+      });
+    });
+    it('should update state when share complete on server/SHARE_COMPLETE', function() {
+      let new_state = repoDetails(old_state.repo_details, {
+        type: "server/SHARE_COMPLETE",
+      });
+      assert.deepEqual(new_state, {
+        branch: null,
+        branches: null,
+        timecard: null,
+        _comesfrom: [null, null], // the repo behind the current timecard
+        _page: 0,
+        _canpaginateforward: false,
+        error: null,
+        show_share_modal: false,
+        waiting_for_share_modal_response: false,
+      });
+    });
     it('should not be effected by another event', function() {
       let new_state = repoDetails(old_state.repo_details, {
         type: "SOME_OTHER_EVENT",
@@ -374,30 +424,6 @@ describe('reducers/repo.js', function() {
         type: "SOME_OTHER_EVENT",
       });
       assert.deepEqual(new_state, false);
-    });
-  });
-  describe('error', function() {
-    it('should show an error', function() {
-      let new_state = error(null, {
-        type: "server/ERROR",
-        error: "i-am-an-error",
-      });
-      assert.deepEqual(new_state, {
-        error: "i-am-an-error",
-        from: "backend",
-      });
-    });
-    it('should hide the error modal', function() {
-      let new_state = error(null, {
-        type: "HIDE_ERROR_MODAL",
-      });
-      assert.deepEqual(new_state, null);
-    });
-    it('should not be effected by another event', function() {
-      let new_state = error(null, {
-        type: "SOME_OTHER_EVENT",
-      });
-      assert.deepEqual(new_state, null);
     });
   });
 });

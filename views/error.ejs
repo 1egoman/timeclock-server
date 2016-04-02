@@ -8,8 +8,11 @@
         We cannot find this repo. If you think there should be a repo here, try
         logging in <a href="/auth/github">here</a> first.
       </p>
+    <% } else if (ENV_DEVELOPMENT) { %>
+      <pre><%= msg %></pre>
     <% } else { %>
-      <pre><%- msg %></pre>
+      <pre><%= msg %></pre>
+      <p>Sometimes, all you need to do it log in <a href="/auth/github">here</a> first.</p>
     <% } %>
   </div>
   

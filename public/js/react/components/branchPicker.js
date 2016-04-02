@@ -13,15 +13,19 @@ export const BranchPickerComponent = ({
 
   chooseBranch,
 }) => {
-  let select_branches = branches.map((i) => {
-    return {value: i, label: i}
-  });
-  return <Select
-    value={current_branch || repo.default_branch}
-    options={select_branches}
-    clearable={false}
-    onChange={chooseBranch(repo)}
-  />
+  if (branches) {
+    let select_branches = branches.map((i) => {
+      return {value: i, label: i}
+    });
+    return <Select
+      value={current_branch || repo.default_branch}
+      options={select_branches}
+      clearable={false}
+      onChange={chooseBranch(repo)}
+    />
+  } else {
+    return null;
+  }
 };
 
 export function mapPropsToStore(store, props) {

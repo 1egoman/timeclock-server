@@ -1,0 +1,49 @@
+.invoice.invoice-container {
+  @extend .container;
+}
+.invoice.invoice-payment {
+  @extend .container;
+  border-top: 2px solid $gray-lighter;
+  margin-bottom: 2.4em;
+
+  h2 {
+    font-size: 1.4rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: $gray-light;
+  }
+
+  .next-item {
+    @include make-xs-column(12);
+    @include make-md-column(4);
+  }
+
+  .convert-btn {
+    @extend .btn;
+    @extend .btn-xl;
+    @extend .btn-block;
+    @extend .btn-outline;
+    @extend .btn-primary.btn-outline;
+
+    margin-top: 4rem;
+    cursor: not-allowed;
+  }
+
+  .link-btn {
+    @extend .btn;
+    @extend .btn-xl;
+    @extend .btn-block;
+    @extend .btn-outline;
+    @extend .btn-success.btn-outline;
+    margin-top: 4rem;
+  }
+  .more-btn {
+    @extend .btn;
+    @extend .btn-xl;
+    @extend .btn-block;
+    @extend .btn-outline;
+    @extend .btn-default.btn-outline;
+    margin-top: 4rem;
+  }
+}

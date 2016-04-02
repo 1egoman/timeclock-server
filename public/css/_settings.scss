@@ -13,6 +13,13 @@
     }
   }
 
+  // the payment email container
+  .setting-list-payment-email {
+    width: 400px;
+    display: block;
+    float: left;
+  }
+
   // provider badge
   .setting-list-provider-badge .user-provider-badge {
     color: $text-color;

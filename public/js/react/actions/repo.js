@@ -97,15 +97,13 @@ export function deleteRepo(user, repo) {
   };
 };
 
-export function showWaltzInstallInstructions(value = true) {
+export function shareWithEmails(user, repo, emails, message) {
   return {
-    type: "HELP_INSTALL_WALTZ",
-    value,
-  };
-};
-
-export function hideErrorModal() {
-  return {
-    type: "HIDE_ERROR_MODAL",
+    type: "server/SHARE_WITH",
+    via: "email",
+    emails,
+    message,
+    user,
+    repo,
   };
 };

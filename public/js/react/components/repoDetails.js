@@ -5,8 +5,11 @@ import {
   openRepoImportDialog,
   changeBranch,
   getTimecard,
-  showWaltzInstallInstructions,
 } from '../actions/repo';
+import {
+  showWaltzInstallInstructions,
+  showShareModal,
+} from '../actions/modal';
 import ImportRepo from './importRepo';
 import {getCurrentBranch, getAllBranches} from '../helpers/branch';
 import {getTimeDelta, getAvatarFor} from '../helpers/timecard';
@@ -15,6 +18,7 @@ import {getRepoByIndex} from '../helpers/get_repo';
 import Loading from './loading';
 import RepoCommits from './repoCommits';
 import {Tabs, Tab} from 'react-bootstrap';
+import ShareWithClient from './shareWithClient';
 
 function emptyTimecard({helpInstallingWaltz}) {
   return <div className="timecard timecard-is-empty">
@@ -74,6 +78,7 @@ export const RepoDetailsComponent = ({
   getMoreTimes,
   toImportRepoPage,
   helpInstallingWaltz,
+  openShareModal,
 }) => {
   // import new repos
   if (repo_import_dialog_open && has_discovered_repos) {
@@ -86,7 +91,7 @@ export const RepoDetailsComponent = ({
       spinner
     />;
 
-  // a repo was selected
+  // a repo error
   } else if (repo_details.error) {
     return <div>
       <h1>Uh, oh!</h1>
@@ -131,11 +136,21 @@ export const RepoDetailsComponent = ({
             readOnly={true}
           />
 
-          {/* print a copy of the report */}
-          <button
-            className="btn btn-info repo-details-print-report"
-            onClick={printReport(repo, current_branch)}
-          >Print Report</button>
+          {/* open a share dialog so the user can share the timecard with clients or collaborators */}
+          <div className="repo-details-report-share">
+            <ShareWithClient />
+            {/* share the report */}
+            <button
+              className="btn btn-success"
+              onClick={openShareModal.bind(this)}
+            >Share</button>
+
+            {/* print a copy of the report */}
+            <button
+              className="btn btn-info repo-details-print-report"
+              onClick={printReport(repo, current_branch)}
+            >Print</button>
+          </div>
         </div>
       </div>
 
@@ -227,6 +242,10 @@ const RepoDetails = connect(mapStateToProps, (dispatch, props) => {
 
     helpInstallingWaltz() {
       dispatch(showWaltzInstallInstructions());
+    },
+
+    openShareModal() {
+      dispatch(showShareModal());
     },
   };
 })(RepoDetailsComponent);

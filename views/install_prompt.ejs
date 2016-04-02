@@ -1,19 +1,13 @@
 <div class="features features-install">
   <h1>Sold? Give Waltz a try:</h1>
 
-  <% if (!user) { %>
-    <a class="btn btn-primary btn-lg btn-block" href="/login">Sign in, then</a>
-  <% } else { %>
-    <!-- <a class="btn btn-next-step" href="/app">Then, open the app.</a> -->
-  <% } %>
-
   <pre>
     $ npm install -g waltz
     $ waltz init --commit
     $ git push origin master
   </pre>
   <% if (!user) { %>
-    <!-- <a class="btn btn-primary btn-lg btn-block" href="/login">Sign in, then</a> -->
+    <a class="btn btn-next-step" href="/login">Then, Sign in</a>
   <% } else { %>
     <a class="btn btn-next-step" href="/app">Then, open the app.</a>
   <% } %>

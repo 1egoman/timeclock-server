@@ -1,18 +1,17 @@
 .sample-invoice {
   @extend .container;
-  max-width: 800px;
+  max-width: 1000px;
   color: #333;
-  height: 100%;
-  padding: 10px;
   font-family: "Open Sans", Helvetica, sans-serif;
   cursor: default;
+  background: #fff;
+  padding: 84px 16px 32px 16px;
 
   .header {
-    background: #6AC15F;
-    padding: 2em;
     margin-bottom: 0.8em;
     color: #fff;
     text-align: center;
+    width: 400px;
   }
   .prehead {
     text-transform: uppercase;
@@ -21,61 +20,100 @@
     margin-bottom: 0.6em;
     display: inline-block;
   }
+
+  // the contact info section on the left top
+  .contact-info {
+    @include make-md-column(8);
+    height: 10em;
+
+    span {
+      white-space: nowrap;
+      display: block;
+    }
+  }
+
+  // the project name, tagline, and amount due on the right top
+  .project-info {
+    @include make-md-column(4);
+    height: 10em;
+
+    span {
+      white-space: nowrap;
+      display: block;
+    }
+
+    .project {
+      padding: 0.5em;
+    }
+
+    .totals {
+      @include clearfix;
+      padding: 1em;
+      color: #fff;
+      margin-top: 0.8em;
+      background-color: $brand-success;
+
+      // amount of minutes
+      small {
+        margin-top: 0.425em;
+        &:before { content: "("; }
+        &:after { content: ")"; }
+      }
+    }
+  }
+
+  // bottom section with tax and total
+  .total-cost {
+    @include make-xs-column(12);
+    @include make-md-column(4);
+    @include make-md-column-offset(8);
+    height: 10em;
+    border-top: 4px solid $text-color;
+    margin-top: 2em;
+    padding: 1em 1em 0em 1em;
+    border-color: $brand-success;
+
+    span.tax { color: $gray-light; }
+
+    span.value {
+      white-space: nowrap;
+      display: inline;
+      @extend .pull-right;
+    }
+
+    span.prehead {
+      white-space: nowrap;
+      display: inline;
+      margin-right: 1em;
+    }
+  }
+
   .body {
+    @include make-md-column(12);
     padding-left: 1.2em;
+    margin-top: 2em;
   }
   li {
     list-style-type: none;
   }
-  li:before {
-    content: "- ";
-  }
   .header a, .header p {
     color: white;
-  }
-  .disabled, .disabled span {
-    text-decoration: line-through;
   }
   .right {
     float: right;
   }
   li.enabled {
-    background: $state-success-bg;
+    // background: $state-success-bg;
     padding: 6px 16px;
   }
   li.disabled {
-    background: $state-warning-bg;
     padding: 6px 16px;
+    color: $gray-light;
   }
   .totaltime {
     padding: 6px 16px;
     width: 100%;
     display: block;
-    background: $state-info-bg;
-  }
-}
-
-// bold, intro text
-.sample-invoice-header {
-  @extend .container;
-  margin-bottom: 2em;
-
-  h1 {
-    text-align: center;
-    font-weight: bold;
-    font-size: 8rem;
-  }
-  h2 {
-    text-align: center;
-    font-weight: normal;
-    font-size: 4rem;
-    margin-top: 0em;
-  }
-  h3 {
-    text-align: center;
-    font-weight: normal;
-    font-size: 1.6rem;
-    margin-top: 0em;
-    color: $gray-light;
+    // background: $state-info-bg;
   }
 }

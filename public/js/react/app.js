@@ -5,6 +5,7 @@ import { Provider, connect } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import {reducer as formReducer} from 'redux-form';
 import {repoView, settingsView, notFoundRoute} from './router';
 import InstallClientHelp from './components/installClientHelp';
 import ErrorModal from './components/errorModal';
@@ -57,9 +58,9 @@ import {
   repoDetails,
   newTimecardData,
   helpInstallingClient,
-  error
 } from './reducers/repo';
 import { user } from './reducers/user';
+import { error } from './reducers/error';
 
 
 const waltzApp = combineReducers({
@@ -77,6 +78,7 @@ const waltzApp = combineReducers({
   new_timecard_staging: newTimecardData,
   client_help_dialog: helpInstallingClient,
   error,
+  form: formReducer,
 });
 
 // "Store"
@@ -98,6 +100,7 @@ let store = waltzCreateStore(waltzApp, {
     _comesfrom: [null, null], // the source of the timecard by default is nowhere.
   }
 });
+if (window.devToolsExtension) { window.store = store; }
 
 
 // router redux history syncer

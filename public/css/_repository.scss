@@ -105,7 +105,7 @@ $details-left-margin: 20px;
     // the box to get a link to the report
     // and print it
     .repo-details-report-link {
-      width: 300px;
+      width: 400px;
       float: left;
       margin: 0em 0.5em;
       @include clearfix;
@@ -113,11 +113,6 @@ $details-left-margin: 20px;
       input[type=text] {
         width: 200px;
         float: left;
-      }
-
-      .repo-details-print-report {
-        float: right;
-        width: 100px;
       }
     }
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Modal, Button} from 'react-bootstrap';
-import {hideErrorModal} from '../actions/repo';
+import {hideErrorModal} from '../actions/modal';
 
 export function ErrorModalComponent({error, hideModal}) {
   return <Modal show={Boolean(error)} onHide={hideModal}>

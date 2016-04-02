@@ -1,12 +1,21 @@
 .navbar {
-  background: $gray-lighter;
   background: #fff;
   border-bottom: 2px solid $gray-lighter;
-  a { color: $brand-primary; }
+  a { color: $brand-primary-dark; }
 
-  .navbar-brand img {
-    height: 36px;
-    margin-top: -8px;
+  .navbar-brand {
+    position: relative;
+    img {
+      height: 36px;
+      margin-top: -8px;
+    }
+
+    // headway badge
+    #HW_badge_cont {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+    }
   }
 
   .fa.fa-bars {

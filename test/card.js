@@ -2,8 +2,10 @@
 const assert = require("assert"),
       mockFs = require("mock-fs"),
       card = require("../lib/card"),
+      repo = require("../lib/repo"),
       fs = require("fs"),
       async = require("async"),
+      sinon = require("sinon"),
       strftime = require("strftime"),
       sampleCard = {
         reportFormat: "default",
@@ -184,17 +186,44 @@ describe('card.totalDuration()', function() {
 });
 
 describe('card.getReportTemplate()', function() {
+  beforeEach(() => {
+    let call = sinon.stub(repo, "getFileFromRepo");
+
+    call
+    .withArgs("waltz-app", "themes", "testing.ejs")
+    .onFirstCall()
+    .resolves("Hello World!\n")
+
+    call
+    .withArgs("waltz-app", "themes", "default.ejs")
+    .onFirstCall()
+    .resolves("Hello Default World!\n");
+  });
+  afterEach(() => repo.getFileFromRepo.restore());
+
   it('should get the report for a github repo', function(done) {
     card.getReportTemplate("waltz-app/themes:testing.ejs").then((data) => {
       assert.equal(data, "Hello World!\n");
       done();
-    }).catch(console.error.bind(console));
+    }).catch(done);
   });
-  it('should get the report for a default entry', function(done) {
+  it('should get the report for a default theme', function(done) {
     card.getReportTemplate("testing").then((data) => {
       assert.equal(data, "Hello World!\n");
       done();
-    }).catch(console.error.bind(console));
+    }).catch(done);
+  });
+  it('should get the report for the default theme entry', function(done) {
+    card.getReportTemplate().then((data) => {
+      assert.equal(data, "Hello Default World!\n");
+      done();
+    }).catch(done);
+  });
+  it('should get the report for a local file', function(done) {
+    card.getReportTemplate('./test/helpers/theme.ejs').then((data) => {
+      assert.equal(data.toString(), "Hello Local World!\n");
+      done();
+    }).catch(done);
   });
 });
 
@@ -234,6 +263,8 @@ describe('card.getTimecardRenderDetails()', function() {
       args: {},
       totalTime: 0,
       totalCost: null,
+      paidTime: 0,
+      paidCost: null,
     });
 
     let card_for_test = [
@@ -250,6 +281,8 @@ describe('card.getTimecardRenderDetails()', function() {
       args: {},
       totalTime: 3600,
       totalCost: null,
+      paidTime: 0,
+      paidCost: null,
     });
   });
   it('should correctly calculate the cost of a timecard', function() {
@@ -258,6 +291,19 @@ describe('card.getTimecardRenderDetails()', function() {
       args: {},
       totalTime: 120,
       totalCost: 1.67,
+      paidTime: 0,
+      paidCost: 0,
+    });
+  });
+  it('should correctly calculate the cost of a timecard, with a titleCost', function() {
+    let titleSampleCard = Object.assign({}, sampleCard, {hourlyRate: null, totalRate: 1000.00});
+    assert.deepEqual(card.getTimecardRenderDetails(titleSampleCard), {
+      timecard: titleSampleCard,
+      args: {},
+      totalTime: 120,
+      totalCost: 1000.00,
+      paidTime: 0,
+      paidCost: null,
     });
   });
   it('should be sure that any args passed are returned', function() {
@@ -266,6 +312,8 @@ describe('card.getTimecardRenderDetails()', function() {
       args: {foo: "bar", another: 1},
       totalTime: 0,
       totalCost: null,
+      paidTime: 0,
+      paidCost: null,
     });
     assert.deepEqual(card.getTimecardRenderDetails({card: [], args: {foo: "bar", another: 1}}), {
       timecard: {
@@ -275,6 +323,8 @@ describe('card.getTimecardRenderDetails()', function() {
       args: {foo: "bar", another: 1},
       totalTime: 0,
       totalCost: null,
+      paidTime: 0,
+      paidCost: null,
     });
   });
   it('should be sure that args are extended correctly', function() {
@@ -286,6 +336,8 @@ describe('card.getTimecardRenderDetails()', function() {
       args: {foo: "baz", another: 1},
       totalTime: 0,
       totalCost: null,
+      paidTime: 0,
+      paidCost: null,
     });
   });
 });

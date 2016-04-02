@@ -13,6 +13,7 @@ const required_repo = require("../lib/repo"),
       getCommits = require("../lib/events/getCommits"),
       resetToken = require("../lib/events/resetToken"),
       changeSetting = require("../lib/events/changeSetting"),
+      shareWith = require("../lib/events/shareWith"),
 
       TIMECARD_PAGE_LENGTH = 20; // the amount of times that are returned per request,
 
@@ -136,6 +137,19 @@ module.exports = function(socket) {
         });
       }, sendError(socket));
 
+    } else if (action.type === 'server/SHARE_WITH') {
+      shareWith(action, socket).then((data) => {
+        mixpanel.track(socket, "user.share.with", {
+          emails: action.emails,
+          message: action.message,
+        });
+        socket.emit("action", {
+          type: "server/SHARE_COMPLETE",
+          emails: action.emails,
+          user: action.user,
+          repo: action.repo,
+        });
+      }, sendError(socket));
     // when the page loads for the first time, update the state to reflect the
     // initial url
     } else if (action.type === '@@router/LOCATION_CHANGE' && action.payload && action.payload.action === "POP") {

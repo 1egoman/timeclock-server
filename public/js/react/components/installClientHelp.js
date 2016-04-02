@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Modal, Button} from 'react-bootstrap';
-import {showWaltzInstallInstructions} from '../actions/repo';
+import {showWaltzInstallInstructions} from '../actions/modal';
 
 export function InstallClientHelpComponent({client_help_dialog, hideModal}) {
   return <Modal show={client_help_dialog} onHide={hideModal}>
@@ -37,6 +37,8 @@ export function InstallClientHelpComponent({client_help_dialog, hideModal}) {
         npm install -g waltz<br/>
         waltz --version
       </pre>
+      <h2>Learn more</h2>
+      <pre>waltz --help</pre>
     </Modal.Body>
   </Modal>;
 }
