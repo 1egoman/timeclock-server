@@ -33,8 +33,11 @@ $repo-commit-max-height: $repo-commit-width * 5;
   border-bottom: 6px solid rgba(0, 0, 0, 0.2);
   cursor: pointer;
 
+  &.repo-commit-node-type-waltzinit {
+    background: lighten($brand-success, 24%);
+  }
   &.repo-commit-node-type-merge {
-    background: $brand-info;
+    background: lighten($brand-info, 24%);
   }
 
   // for really large `.repo-commit-node`s, limit their height and put a break

@@ -4,7 +4,9 @@ import {OverlayTrigger, Popover} from 'react-bootstrap';
 import _ from 'underscore';
 
 function getRepoCommitNodeType(message) {
-  if (message.indexOf("merge") !== -1) {
+  if (message.indexOf("Created timecard for Waltz:") !== -1) {
+    return "waltzinit";
+  } else if (message.indexOf("Merge") !== -1) {
     return "merge";
   } else {
     return false;
@@ -29,7 +31,7 @@ export function RepoCommitNode({
       <span className="repo-commit-node-message">{message}</span>
       <span className="repo-commit-node-author">by {committer.username}</span>
     </span>
-  </Popover>
+  </Popover>;
   return <OverlayTrigger trigger="click" rootClose placement="left" overlay={tooltip}>
     <span
       className={`
@@ -37,7 +39,7 @@ export function RepoCommitNode({
         repo-commit-node-type-${getRepoCommitNodeType(message) || 'none'}
         ${breakInside ? 'repo-commit-node-should-break' : ''}
       `.split('\n').join(' ')}
-      style={{height: `${breakInside ? 'none' : length+'px'}`}}
+      style={{height: `${length}px`}}
     >
       {breakInside ? <span className="repo-commit-node-break"></span> : null}
     </span>
@@ -46,20 +48,16 @@ export function RepoCommitNode({
 
 // given a list of commits, reduce their length to be reletively small ratios of
 // each other
-function reduceLengthOfCommits(commits, ct=1) {
-  let total = 8;
-  let reduced = commits.map((i) => {
+function reduceLengthOfCommits(commits, maxBlockHeight=1000) {
+  let maxLength = _.max(commits.map((i) => i.length));
+  return commits.map((i) => {
+    let length = i.length / maxLength * maxBlockHeight,
+        breakInside = length > (maxBlockHeight / 6);
     return Object.assign(i, {
-      length: i.length / (total - ct),
-      breakInside: i.length > (total * 100),
+      length: breakInside ? null : length,
+      breakInside,
     });
   });
-
-  if (ct < (total - 1)) {
-    return reduceLengthOfCommits(reduced, ++ct);
-  } else {
-    return reduced;
-  }
 }
 
 export function repoCommitsComponent({

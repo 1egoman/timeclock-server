@@ -7288,8 +7288,10 @@ footer {
   margin-bottom: 1.2px;
   border-bottom: 6px solid rgba(0, 0, 0, 0.2);
   cursor: pointer; }
+  .repo-commit-node-handle.repo-commit-node-type-waltzinit {
+    background: #c7e3ac; }
   .repo-commit-node-handle.repo-commit-node-type-merge {
-    background: #8a51c4; }
+    background: #c7ace3; }
   .repo-commit-node-handle.repo-commit-node-should-break {
     position: relative;
     height: 150px; }
