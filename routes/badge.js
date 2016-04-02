@@ -41,8 +41,8 @@ function fetchBadge(req, res) {
   })
   .then((timecard) => {
     let total = card.totalDuration(timecard),
-        min = Math.floor(total / 60) % 60,
-        hour = Math.floor(total / 3600),
+        min = Math.abs(Math.floor(total / 60) % 60),
+        hour = Math.abs(Math.floor(total / 3600)),
         color = (function(total) {
           if (total < BADGE_WARNING_AMT) {
             return "blue"; // we're ok

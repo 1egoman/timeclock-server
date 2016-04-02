@@ -12,19 +12,51 @@
   color: $gray-light;
 }
 
-// the commit graph
+// the commitInsidegraph
 .repo-commits {
   height: 100%;
   top: 0px;
   background: $gray-lighter;
   width: 2px;
+  margin-top: 20px;
 }
 
+$repo-commit-width: 24px;
+$repo-commit-max-height: $repo-commit-width * 5;
 .repo-commit-node-handle {
   display: block;
-  width: 24px;
+  width: $repo-commit-width;
   height: 24px;
   color: $brand-primary;
-  background: $gray;
-  margin: 10px;
+  background: $gray-lighter;
+  margin-bottom: 1.2px;
+  border-bottom: 6px solid rgba(0, 0, 0, 0.2);
+
+  &:first-child {
+    background: $brand-primary;
+  }
+
+  &.repo-commit-node-type-merge {
+    background: $brand-info;
+  }
+
+  // for really large `.repo-commit-node`s, limit their height and put a break
+  // in the middle.
+  $repo-commit-node-break-width: 36px;
+  &.repo-commit-node-should-break {
+    position: relative;
+    height: 150px;
+    .repo-commit-node-break {
+      display: block;
+      width: $repo-commit-node-break-width;
+      height: 12px;
+
+      // center it in the center of the block
+      position: absolute;
+      top: $repo-commit-max-height / 2 + 6px; 
+      left: -($repo-commit-node-break-width - $repo-commit-width) / 3;
+      background-image: url(/img/commits/squiggle.png);
+      background-repeat: no-repeat;
+    }
+  }
 }

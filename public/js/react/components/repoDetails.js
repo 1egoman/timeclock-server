@@ -186,7 +186,7 @@ export const RepoDetailsComponent = ({
               <Loading
                 title="Loading Timecard..."
                 spinner
-              />;
+              />
             </div>}
           </Tab>
           <Tab eventKey={1} title="Metrics">
