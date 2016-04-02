@@ -40,8 +40,8 @@ describe("lib/events/shareWith.js", function() {
             <div style="width:500px;margin:64px auto;background:#FFF;padding:20px;">
               <h2>Hello!</h2>
               <p>
-                You have been invited to look at an invoice for a-user/a-repo on Waltz, a
-                simple way for freelancers to create great looking invoices for clients.
+                You have been invited to look at an timesheet for a-user/a-repo on Waltz, a
+                simple way for freelancers to create great looking timecards for clients.
               </p>
               <p></p>
               <a target="_blank" href="http://waltzapp.co/embed/a-user/a-repo?ref=mail">
@@ -83,8 +83,8 @@ describe("lib/events/shareWith.js", function() {
             <div style="width:500px;margin:64px auto;background:#FFF;padding:20px;">
               <h2>Hello!</h2>
               <p>
-                You have been invited to look at an invoice for a-user/a-repo on Waltz, a
-                simple way for freelancers to create great looking invoices for clients.
+                You have been invited to look at a timesheet for a-user/a-repo on Waltz, a
+                simple way for freelancers to create great looking timecards for clients.
               </p>
               <p></p>
               <a target="_blank" href="http://waltzapp.co/embed/a-user/a-repo?token=badge-token&ref=mail">

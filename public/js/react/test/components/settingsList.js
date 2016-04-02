@@ -75,7 +75,7 @@ describe('components/settingsList.js', function() {
             This token is used to provide authentication on your behalf to private
             embedded badges and reports that are sent to others who may not be logged in.
             Resetting this token will <strong>break all existing private badges and and links to private
-            invoices.</strong>
+            timecards.</strong>
           </p>
           <div className="badge-token-box">
             <div className="token-box">a-badge-token</div>
@@ -106,7 +106,7 @@ describe('components/settingsList.js', function() {
             This token is used to provide authentication on your behalf to private
             embedded badges and reports that are sent to others who may not be logged in.
             Resetting this token will <strong>break all existing private badges and and links to private
-            invoices.</strong>
+            timecards.</strong>
           </p>
           <div className="badge-token-box">
             <div className="token-box">
@@ -212,7 +212,7 @@ describe('components/settingsList.js', function() {
                   This token is used to provide authentication on your behalf to private
                   embedded badges and reports that are sent to others who may not be logged in.
                   Resetting this token will <strong>break all existing private badges and and links to private
-                  invoices.</strong>
+                  timecards.</strong>
                 </p>
                 <div className="badge-token-box">
                   <div className="token-box">a-badge-token</div>

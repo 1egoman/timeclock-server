@@ -225,9 +225,9 @@ th {
     page-break-after: avoid; }
   .navbar {
     display: none; }
-  .btn > .caret, .invoice.invoice-payment [type=submit] > .caret, .invoice.invoice-payment .link-btn > .caret, .invoice.invoice-payment .more-btn > .caret,
+  .btn > .caret, .invoice.invoice-payment .convert-btn > .caret, .invoice.invoice-payment .link-btn > .caret, .invoice.invoice-payment .more-btn > .caret,
   .dropup > .btn > .caret, .invoice.invoice-payment
-  .dropup > [type=submit] > .caret, .invoice.invoice-payment
+  .dropup > .convert-btn > .caret, .invoice.invoice-payment
   .dropup > .link-btn > .caret, .invoice.invoice-payment
   .dropup > .more-btn > .caret {
     border-top-color: #000 !important; }
@@ -2369,9 +2369,9 @@ input[type="search"] {
   .input-group-sm > input[type="date"].token-box,
   .input-group-sm > .input-group-btn > input[type="date"].btn, .settings-list .badge-token-box
   .input-group-sm > .token-btn > input[type="date"].btn, .invoice.invoice-payment
-  .input-group-sm > .input-group-btn > input[type="date"][type=submit], .settings-list .badge-token-box .invoice.invoice-payment
-  .input-group-sm > .token-btn > input[type="date"][type=submit], .invoice.invoice-payment .settings-list .badge-token-box
-  .input-group-sm > .token-btn > input[type="date"][type=submit], .invoice.invoice-payment
+  .input-group-sm > .input-group-btn > input[type="date"].convert-btn, .settings-list .badge-token-box .invoice.invoice-payment
+  .input-group-sm > .token-btn > input[type="date"].convert-btn, .invoice.invoice-payment .settings-list .badge-token-box
+  .input-group-sm > .token-btn > input[type="date"].convert-btn, .invoice.invoice-payment
   .input-group-sm > .input-group-btn > input[type="date"].link-btn, .settings-list .badge-token-box .invoice.invoice-payment
   .input-group-sm > .token-btn > input[type="date"].link-btn, .invoice.invoice-payment .settings-list .badge-token-box
   .input-group-sm > .token-btn > input[type="date"].link-btn, .invoice.invoice-payment
@@ -2388,11 +2388,11 @@ input[type="search"] {
   .settings-list .badge-token-box
   .input-group-sm > .token-btn > input[type="time"].btn,
   .invoice.invoice-payment
-  .input-group-sm > .input-group-btn > input[type="time"][type=submit],
+  .input-group-sm > .input-group-btn > input[type="time"].convert-btn,
   .settings-list .badge-token-box .invoice.invoice-payment
-  .input-group-sm > .token-btn > input[type="time"][type=submit],
+  .input-group-sm > .token-btn > input[type="time"].convert-btn,
   .invoice.invoice-payment .settings-list .badge-token-box
-  .input-group-sm > .token-btn > input[type="time"][type=submit],
+  .input-group-sm > .token-btn > input[type="time"].convert-btn,
   .invoice.invoice-payment
   .input-group-sm > .input-group-btn > input[type="time"].link-btn,
   .settings-list .badge-token-box .invoice.invoice-payment
@@ -2416,11 +2416,11 @@ input[type="search"] {
   .settings-list .badge-token-box
   .input-group-sm > .token-btn > input[type="datetime-local"].btn,
   .invoice.invoice-payment
-  .input-group-sm > .input-group-btn > input[type="datetime-local"][type=submit],
+  .input-group-sm > .input-group-btn > input[type="datetime-local"].convert-btn,
   .settings-list .badge-token-box .invoice.invoice-payment
-  .input-group-sm > .token-btn > input[type="datetime-local"][type=submit],
+  .input-group-sm > .token-btn > input[type="datetime-local"].convert-btn,
   .invoice.invoice-payment .settings-list .badge-token-box
-  .input-group-sm > .token-btn > input[type="datetime-local"][type=submit],
+  .input-group-sm > .token-btn > input[type="datetime-local"].convert-btn,
   .invoice.invoice-payment
   .input-group-sm > .input-group-btn > input[type="datetime-local"].link-btn,
   .settings-list .badge-token-box .invoice.invoice-payment
@@ -2444,11 +2444,11 @@ input[type="search"] {
   .settings-list .badge-token-box
   .input-group-sm > .token-btn > input[type="month"].btn,
   .invoice.invoice-payment
-  .input-group-sm > .input-group-btn > input[type="month"][type=submit],
+  .input-group-sm > .input-group-btn > input[type="month"].convert-btn,
   .settings-list .badge-token-box .invoice.invoice-payment
-  .input-group-sm > .token-btn > input[type="month"][type=submit],
+  .input-group-sm > .token-btn > input[type="month"].convert-btn,
   .invoice.invoice-payment .settings-list .badge-token-box
-  .input-group-sm > .token-btn > input[type="month"][type=submit],
+  .input-group-sm > .token-btn > input[type="month"].convert-btn,
   .invoice.invoice-payment
   .input-group-sm > .input-group-btn > input[type="month"].link-btn,
   .settings-list .badge-token-box .invoice.invoice-payment
@@ -2469,9 +2469,9 @@ input[type="search"] {
   .input-group-lg > input[type="date"].token-box,
   .input-group-lg > .input-group-btn > input[type="date"].btn, .settings-list .badge-token-box
   .input-group-lg > .token-btn > input[type="date"].btn, .invoice.invoice-payment
-  .input-group-lg > .input-group-btn > input[type="date"][type=submit], .settings-list .badge-token-box .invoice.invoice-payment
-  .input-group-lg > .token-btn > input[type="date"][type=submit], .invoice.invoice-payment .settings-list .badge-token-box
-  .input-group-lg > .token-btn > input[type="date"][type=submit], .invoice.invoice-payment
+  .input-group-lg > .input-group-btn > input[type="date"].convert-btn, .settings-list .badge-token-box .invoice.invoice-payment
+  .input-group-lg > .token-btn > input[type="date"].convert-btn, .invoice.invoice-payment .settings-list .badge-token-box
+  .input-group-lg > .token-btn > input[type="date"].convert-btn, .invoice.invoice-payment
   .input-group-lg > .input-group-btn > input[type="date"].link-btn, .settings-list .badge-token-box .invoice.invoice-payment
   .input-group-lg > .token-btn > input[type="date"].link-btn, .invoice.invoice-payment .settings-list .badge-token-box
   .input-group-lg > .token-btn > input[type="date"].link-btn, .invoice.invoice-payment
@@ -2488,11 +2488,11 @@ input[type="search"] {
   .settings-list .badge-token-box
   .input-group-lg > .token-btn > input[type="time"].btn,
   .invoice.invoice-payment
-  .input-group-lg > .input-group-btn > input[type="time"][type=submit],
+  .input-group-lg > .input-group-btn > input[type="time"].convert-btn,
   .settings-list .badge-token-box .invoice.invoice-payment
-  .input-group-lg > .token-btn > input[type="time"][type=submit],
+  .input-group-lg > .token-btn > input[type="time"].convert-btn,
   .invoice.invoice-payment .settings-list .badge-token-box
-  .input-group-lg > .token-btn > input[type="time"][type=submit],
+  .input-group-lg > .token-btn > input[type="time"].convert-btn,
   .invoice.invoice-payment
   .input-group-lg > .input-group-btn > input[type="time"].link-btn,
   .settings-list .badge-token-box .invoice.invoice-payment
@@ -2516,11 +2516,11 @@ input[type="search"] {
   .settings-list .badge-token-box
   .input-group-lg > .token-btn > input[type="datetime-local"].btn,
   .invoice.invoice-payment
-  .input-group-lg > .input-group-btn > input[type="datetime-local"][type=submit],
+  .input-group-lg > .input-group-btn > input[type="datetime-local"].convert-btn,
   .settings-list .badge-token-box .invoice.invoice-payment
-  .input-group-lg > .token-btn > input[type="datetime-local"][type=submit],
+  .input-group-lg > .token-btn > input[type="datetime-local"].convert-btn,
   .invoice.invoice-payment .settings-list .badge-token-box
-  .input-group-lg > .token-btn > input[type="datetime-local"][type=submit],
+  .input-group-lg > .token-btn > input[type="datetime-local"].convert-btn,
   .invoice.invoice-payment
   .input-group-lg > .input-group-btn > input[type="datetime-local"].link-btn,
   .settings-list .badge-token-box .invoice.invoice-payment
@@ -2544,11 +2544,11 @@ input[type="search"] {
   .settings-list .badge-token-box
   .input-group-lg > .token-btn > input[type="month"].btn,
   .invoice.invoice-payment
-  .input-group-lg > .input-group-btn > input[type="month"][type=submit],
+  .input-group-lg > .input-group-btn > input[type="month"].convert-btn,
   .settings-list .badge-token-box .invoice.invoice-payment
-  .input-group-lg > .token-btn > input[type="month"][type=submit],
+  .input-group-lg > .token-btn > input[type="month"].convert-btn,
   .invoice.invoice-payment .settings-list .badge-token-box
-  .input-group-lg > .token-btn > input[type="month"][type=submit],
+  .input-group-lg > .token-btn > input[type="month"].convert-btn,
   .invoice.invoice-payment
   .input-group-lg > .input-group-btn > input[type="month"].link-btn,
   .settings-list .badge-token-box .invoice.invoice-payment
@@ -2641,9 +2641,9 @@ fieldset[disabled]
   .input-group-lg > .form-control-static.token-box,
   .input-group-lg > .input-group-btn > .form-control-static.btn, .settings-list .badge-token-box
   .input-group-lg > .token-btn > .form-control-static.btn, .invoice.invoice-payment
-  .input-group-lg > .input-group-btn > .form-control-static[type=submit], .settings-list .badge-token-box .invoice.invoice-payment
-  .input-group-lg > .token-btn > .form-control-static[type=submit], .invoice.invoice-payment .settings-list .badge-token-box
-  .input-group-lg > .token-btn > .form-control-static[type=submit], .invoice.invoice-payment
+  .input-group-lg > .input-group-btn > .form-control-static.convert-btn, .settings-list .badge-token-box .invoice.invoice-payment
+  .input-group-lg > .token-btn > .form-control-static.convert-btn, .invoice.invoice-payment .settings-list .badge-token-box
+  .input-group-lg > .token-btn > .form-control-static.convert-btn, .invoice.invoice-payment
   .input-group-lg > .input-group-btn > .form-control-static.link-btn, .settings-list .badge-token-box .invoice.invoice-payment
   .input-group-lg > .token-btn > .form-control-static.link-btn, .invoice.invoice-payment .settings-list .badge-token-box
   .input-group-lg > .token-btn > .form-control-static.link-btn, .invoice.invoice-payment
@@ -2654,9 +2654,9 @@ fieldset[disabled]
   .input-group-sm > .form-control-static.token-box,
   .input-group-sm > .input-group-btn > .form-control-static.btn, .settings-list .badge-token-box
   .input-group-sm > .token-btn > .form-control-static.btn, .invoice.invoice-payment
-  .input-group-sm > .input-group-btn > .form-control-static[type=submit], .settings-list .badge-token-box .invoice.invoice-payment
-  .input-group-sm > .token-btn > .form-control-static[type=submit], .invoice.invoice-payment .settings-list .badge-token-box
-  .input-group-sm > .token-btn > .form-control-static[type=submit], .invoice.invoice-payment
+  .input-group-sm > .input-group-btn > .form-control-static.convert-btn, .settings-list .badge-token-box .invoice.invoice-payment
+  .input-group-sm > .token-btn > .form-control-static.convert-btn, .invoice.invoice-payment .settings-list .badge-token-box
+  .input-group-sm > .token-btn > .form-control-static.convert-btn, .invoice.invoice-payment
   .input-group-sm > .input-group-btn > .form-control-static.link-btn, .settings-list .badge-token-box .invoice.invoice-payment
   .input-group-sm > .token-btn > .form-control-static.link-btn, .invoice.invoice-payment .settings-list .badge-token-box
   .input-group-sm > .token-btn > .form-control-static.link-btn, .invoice.invoice-payment
@@ -2671,9 +2671,9 @@ fieldset[disabled]
 .input-group-sm > .token-box,
 .input-group-sm > .input-group-btn > .btn, .settings-list .badge-token-box
 .input-group-sm > .token-btn > .btn, .invoice.invoice-payment
-.input-group-sm > .input-group-btn > [type=submit], .settings-list .badge-token-box .invoice.invoice-payment
-.input-group-sm > .token-btn > [type=submit], .invoice.invoice-payment .settings-list .badge-token-box
-.input-group-sm > .token-btn > [type=submit], .invoice.invoice-payment
+.input-group-sm > .input-group-btn > .convert-btn, .settings-list .badge-token-box .invoice.invoice-payment
+.input-group-sm > .token-btn > .convert-btn, .invoice.invoice-payment .settings-list .badge-token-box
+.input-group-sm > .token-btn > .convert-btn, .invoice.invoice-payment
 .input-group-sm > .input-group-btn > .link-btn, .settings-list .badge-token-box .invoice.invoice-payment
 .input-group-sm > .token-btn > .link-btn, .invoice.invoice-payment .settings-list .badge-token-box
 .input-group-sm > .token-btn > .link-btn, .invoice.invoice-payment
@@ -2691,9 +2691,9 @@ select.input-sm, .input-group-sm > select.form-control,
 .input-group-sm > select.token-box,
 .input-group-sm > .input-group-btn > select.btn, .settings-list .badge-token-box
 .input-group-sm > .token-btn > select.btn, .invoice.invoice-payment
-.input-group-sm > .input-group-btn > select[type=submit], .settings-list .badge-token-box .invoice.invoice-payment
-.input-group-sm > .token-btn > select[type=submit], .invoice.invoice-payment .settings-list .badge-token-box
-.input-group-sm > .token-btn > select[type=submit], .invoice.invoice-payment
+.input-group-sm > .input-group-btn > select.convert-btn, .settings-list .badge-token-box .invoice.invoice-payment
+.input-group-sm > .token-btn > select.convert-btn, .invoice.invoice-payment .settings-list .badge-token-box
+.input-group-sm > .token-btn > select.convert-btn, .invoice.invoice-payment
 .input-group-sm > .input-group-btn > select.link-btn, .settings-list .badge-token-box .invoice.invoice-payment
 .input-group-sm > .token-btn > select.link-btn, .invoice.invoice-payment .settings-list .badge-token-box
 .input-group-sm > .token-btn > select.link-btn, .invoice.invoice-payment
@@ -2708,9 +2708,9 @@ textarea.input-sm, .input-group-sm > textarea.form-control,
 .input-group-sm > textarea.token-box,
 .input-group-sm > .input-group-btn > textarea.btn, .settings-list .badge-token-box
 .input-group-sm > .token-btn > textarea.btn, .invoice.invoice-payment
-.input-group-sm > .input-group-btn > textarea[type=submit], .settings-list .badge-token-box .invoice.invoice-payment
-.input-group-sm > .token-btn > textarea[type=submit], .invoice.invoice-payment .settings-list .badge-token-box
-.input-group-sm > .token-btn > textarea[type=submit], .invoice.invoice-payment
+.input-group-sm > .input-group-btn > textarea.convert-btn, .settings-list .badge-token-box .invoice.invoice-payment
+.input-group-sm > .token-btn > textarea.convert-btn, .invoice.invoice-payment .settings-list .badge-token-box
+.input-group-sm > .token-btn > textarea.convert-btn, .invoice.invoice-payment
 .input-group-sm > .input-group-btn > textarea.link-btn, .settings-list .badge-token-box .invoice.invoice-payment
 .input-group-sm > .token-btn > textarea.link-btn, .invoice.invoice-payment .settings-list .badge-token-box
 .input-group-sm > .token-btn > textarea.link-btn, .invoice.invoice-payment
@@ -2726,11 +2726,11 @@ select[multiple].input-sm,
 .settings-list .badge-token-box
 .input-group-sm > .token-btn > select[multiple].btn,
 .invoice.invoice-payment
-.input-group-sm > .input-group-btn > select[multiple][type=submit],
+.input-group-sm > .input-group-btn > select[multiple].convert-btn,
 .settings-list .badge-token-box .invoice.invoice-payment
-.input-group-sm > .token-btn > select[multiple][type=submit],
+.input-group-sm > .token-btn > select[multiple].convert-btn,
 .invoice.invoice-payment .settings-list .badge-token-box
-.input-group-sm > .token-btn > select[multiple][type=submit],
+.input-group-sm > .token-btn > select[multiple].convert-btn,
 .invoice.invoice-payment
 .input-group-sm > .input-group-btn > select[multiple].link-btn,
 .settings-list .badge-token-box .invoice.invoice-payment
@@ -2772,9 +2772,9 @@ select[multiple].input-sm,
 .input-group-lg > .token-box,
 .input-group-lg > .input-group-btn > .btn, .settings-list .badge-token-box
 .input-group-lg > .token-btn > .btn, .invoice.invoice-payment
-.input-group-lg > .input-group-btn > [type=submit], .settings-list .badge-token-box .invoice.invoice-payment
-.input-group-lg > .token-btn > [type=submit], .invoice.invoice-payment .settings-list .badge-token-box
-.input-group-lg > .token-btn > [type=submit], .invoice.invoice-payment
+.input-group-lg > .input-group-btn > .convert-btn, .settings-list .badge-token-box .invoice.invoice-payment
+.input-group-lg > .token-btn > .convert-btn, .invoice.invoice-payment .settings-list .badge-token-box
+.input-group-lg > .token-btn > .convert-btn, .invoice.invoice-payment
 .input-group-lg > .input-group-btn > .link-btn, .settings-list .badge-token-box .invoice.invoice-payment
 .input-group-lg > .token-btn > .link-btn, .invoice.invoice-payment .settings-list .badge-token-box
 .input-group-lg > .token-btn > .link-btn, .invoice.invoice-payment
@@ -2792,9 +2792,9 @@ select.input-lg, .input-group-lg > select.form-control,
 .input-group-lg > select.token-box,
 .input-group-lg > .input-group-btn > select.btn, .settings-list .badge-token-box
 .input-group-lg > .token-btn > select.btn, .invoice.invoice-payment
-.input-group-lg > .input-group-btn > select[type=submit], .settings-list .badge-token-box .invoice.invoice-payment
-.input-group-lg > .token-btn > select[type=submit], .invoice.invoice-payment .settings-list .badge-token-box
-.input-group-lg > .token-btn > select[type=submit], .invoice.invoice-payment
+.input-group-lg > .input-group-btn > select.convert-btn, .settings-list .badge-token-box .invoice.invoice-payment
+.input-group-lg > .token-btn > select.convert-btn, .invoice.invoice-payment .settings-list .badge-token-box
+.input-group-lg > .token-btn > select.convert-btn, .invoice.invoice-payment
 .input-group-lg > .input-group-btn > select.link-btn, .settings-list .badge-token-box .invoice.invoice-payment
 .input-group-lg > .token-btn > select.link-btn, .invoice.invoice-payment .settings-list .badge-token-box
 .input-group-lg > .token-btn > select.link-btn, .invoice.invoice-payment
@@ -2809,9 +2809,9 @@ textarea.input-lg, .input-group-lg > textarea.form-control,
 .input-group-lg > textarea.token-box,
 .input-group-lg > .input-group-btn > textarea.btn, .settings-list .badge-token-box
 .input-group-lg > .token-btn > textarea.btn, .invoice.invoice-payment
-.input-group-lg > .input-group-btn > textarea[type=submit], .settings-list .badge-token-box .invoice.invoice-payment
-.input-group-lg > .token-btn > textarea[type=submit], .invoice.invoice-payment .settings-list .badge-token-box
-.input-group-lg > .token-btn > textarea[type=submit], .invoice.invoice-payment
+.input-group-lg > .input-group-btn > textarea.convert-btn, .settings-list .badge-token-box .invoice.invoice-payment
+.input-group-lg > .token-btn > textarea.convert-btn, .invoice.invoice-payment .settings-list .badge-token-box
+.input-group-lg > .token-btn > textarea.convert-btn, .invoice.invoice-payment
 .input-group-lg > .input-group-btn > textarea.link-btn, .settings-list .badge-token-box .invoice.invoice-payment
 .input-group-lg > .token-btn > textarea.link-btn, .invoice.invoice-payment .settings-list .badge-token-box
 .input-group-lg > .token-btn > textarea.link-btn, .invoice.invoice-payment
@@ -2827,11 +2827,11 @@ select[multiple].input-lg,
 .settings-list .badge-token-box
 .input-group-lg > .token-btn > select[multiple].btn,
 .invoice.invoice-payment
-.input-group-lg > .input-group-btn > select[multiple][type=submit],
+.input-group-lg > .input-group-btn > select[multiple].convert-btn,
 .settings-list .badge-token-box .invoice.invoice-payment
-.input-group-lg > .token-btn > select[multiple][type=submit],
+.input-group-lg > .token-btn > select[multiple].convert-btn,
 .invoice.invoice-payment .settings-list .badge-token-box
-.input-group-lg > .token-btn > select[multiple][type=submit],
+.input-group-lg > .token-btn > select[multiple].convert-btn,
 .invoice.invoice-payment
 .input-group-lg > .input-group-btn > select[multiple].link-btn,
 .settings-list .badge-token-box .invoice.invoice-payment
@@ -2890,9 +2890,9 @@ select[multiple].input-lg,
 .input-group-lg > .token-box + .form-control-feedback,
 .input-group-lg > .input-group-btn > .btn + .form-control-feedback, .settings-list .badge-token-box
 .input-group-lg > .token-btn > .btn + .form-control-feedback, .invoice.invoice-payment
-.input-group-lg > .input-group-btn > [type=submit] + .form-control-feedback, .settings-list .badge-token-box .invoice.invoice-payment
-.input-group-lg > .token-btn > [type=submit] + .form-control-feedback, .invoice.invoice-payment .settings-list .badge-token-box
-.input-group-lg > .token-btn > [type=submit] + .form-control-feedback, .invoice.invoice-payment
+.input-group-lg > .input-group-btn > .convert-btn + .form-control-feedback, .settings-list .badge-token-box .invoice.invoice-payment
+.input-group-lg > .token-btn > .convert-btn + .form-control-feedback, .invoice.invoice-payment .settings-list .badge-token-box
+.input-group-lg > .token-btn > .convert-btn + .form-control-feedback, .invoice.invoice-payment
 .input-group-lg > .input-group-btn > .link-btn + .form-control-feedback, .settings-list .badge-token-box .invoice.invoice-payment
 .input-group-lg > .token-btn > .link-btn + .form-control-feedback, .invoice.invoice-payment .settings-list .badge-token-box
 .input-group-lg > .token-btn > .link-btn + .form-control-feedback, .invoice.invoice-payment
@@ -2910,9 +2910,9 @@ select[multiple].input-lg,
 .input-group-sm > .token-box + .form-control-feedback,
 .input-group-sm > .input-group-btn > .btn + .form-control-feedback, .settings-list .badge-token-box
 .input-group-sm > .token-btn > .btn + .form-control-feedback, .invoice.invoice-payment
-.input-group-sm > .input-group-btn > [type=submit] + .form-control-feedback, .settings-list .badge-token-box .invoice.invoice-payment
-.input-group-sm > .token-btn > [type=submit] + .form-control-feedback, .invoice.invoice-payment .settings-list .badge-token-box
-.input-group-sm > .token-btn > [type=submit] + .form-control-feedback, .invoice.invoice-payment
+.input-group-sm > .input-group-btn > .convert-btn + .form-control-feedback, .settings-list .badge-token-box .invoice.invoice-payment
+.input-group-sm > .token-btn > .convert-btn + .form-control-feedback, .invoice.invoice-payment .settings-list .badge-token-box
+.input-group-sm > .token-btn > .convert-btn + .form-control-feedback, .invoice.invoice-payment
 .input-group-sm > .input-group-btn > .link-btn + .form-control-feedback, .settings-list .badge-token-box .invoice.invoice-payment
 .input-group-sm > .token-btn > .link-btn + .form-control-feedback, .invoice.invoice-payment .settings-list .badge-token-box
 .input-group-sm > .token-btn > .link-btn + .form-control-feedback, .invoice.invoice-payment
@@ -3110,7 +3110,7 @@ select[multiple].input-lg,
     padding-top: 6px;
     font-size: 12px; } }
 
-.btn, .invoice.invoice-payment [type=submit], .invoice.invoice-payment .link-btn, .invoice.invoice-payment .more-btn {
+.btn, .invoice.invoice-payment .convert-btn, .invoice.invoice-payment .link-btn, .invoice.invoice-payment .more-btn {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -3129,22 +3129,22 @@ select[multiple].input-lg,
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none; }
-  .btn:focus, .invoice.invoice-payment [type=submit]:focus, .invoice.invoice-payment .link-btn:focus, .invoice.invoice-payment .more-btn:focus, .btn.focus, .invoice.invoice-payment .focus[type=submit], .invoice.invoice-payment .focus.link-btn, .invoice.invoice-payment .focus.more-btn, .btn:active:focus, .invoice.invoice-payment [type=submit]:active:focus, .invoice.invoice-payment .link-btn:active:focus, .invoice.invoice-payment .more-btn:active:focus, .btn:active.focus, .invoice.invoice-payment [type=submit]:active.focus, .invoice.invoice-payment .link-btn:active.focus, .invoice.invoice-payment .more-btn:active.focus, .btn.active:focus, .invoice.invoice-payment .active[type=submit]:focus, .invoice.invoice-payment .active.link-btn:focus, .invoice.invoice-payment .active.more-btn:focus, .btn.active.focus, .invoice.invoice-payment .active.focus[type=submit], .invoice.invoice-payment .active.focus.link-btn, .invoice.invoice-payment .active.focus.more-btn {
+  .btn:focus, .invoice.invoice-payment .convert-btn:focus, .invoice.invoice-payment .link-btn:focus, .invoice.invoice-payment .more-btn:focus, .btn.focus, .invoice.invoice-payment .focus.convert-btn, .invoice.invoice-payment .focus.link-btn, .invoice.invoice-payment .focus.more-btn, .btn:active:focus, .invoice.invoice-payment .convert-btn:active:focus, .invoice.invoice-payment .link-btn:active:focus, .invoice.invoice-payment .more-btn:active:focus, .btn:active.focus, .invoice.invoice-payment .convert-btn:active.focus, .invoice.invoice-payment .link-btn:active.focus, .invoice.invoice-payment .more-btn:active.focus, .btn.active:focus, .invoice.invoice-payment .active.convert-btn:focus, .invoice.invoice-payment .active.link-btn:focus, .invoice.invoice-payment .active.more-btn:focus, .btn.active.focus, .invoice.invoice-payment .active.focus.convert-btn, .invoice.invoice-payment .active.focus.link-btn, .invoice.invoice-payment .active.focus.more-btn {
     outline: thin dotted;
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px; }
-  .btn:hover, .invoice.invoice-payment [type=submit]:hover, .invoice.invoice-payment .link-btn:hover, .invoice.invoice-payment .more-btn:hover, .btn:focus, .invoice.invoice-payment [type=submit]:focus, .invoice.invoice-payment .link-btn:focus, .invoice.invoice-payment .more-btn:focus, .btn.focus, .invoice.invoice-payment .focus[type=submit], .invoice.invoice-payment .focus.link-btn, .invoice.invoice-payment .focus.more-btn {
+  .btn:hover, .invoice.invoice-payment .convert-btn:hover, .invoice.invoice-payment .link-btn:hover, .invoice.invoice-payment .more-btn:hover, .btn:focus, .invoice.invoice-payment .convert-btn:focus, .invoice.invoice-payment .link-btn:focus, .invoice.invoice-payment .more-btn:focus, .btn.focus, .invoice.invoice-payment .focus.convert-btn, .invoice.invoice-payment .focus.link-btn, .invoice.invoice-payment .focus.more-btn {
     color: #333;
     text-decoration: none; }
-  .btn:active, .invoice.invoice-payment [type=submit]:active, .invoice.invoice-payment .link-btn:active, .invoice.invoice-payment .more-btn:active, .btn.active, .invoice.invoice-payment .active[type=submit], .invoice.invoice-payment .active.link-btn, .invoice.invoice-payment .active.more-btn {
+  .btn:active, .invoice.invoice-payment .convert-btn:active, .invoice.invoice-payment .link-btn:active, .invoice.invoice-payment .more-btn:active, .btn.active, .invoice.invoice-payment .active.convert-btn, .invoice.invoice-payment .active.link-btn, .invoice.invoice-payment .active.more-btn {
     outline: 0;
     background-image: none;
     -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); }
-  .btn.disabled, .invoice.invoice-payment .disabled[type=submit], .invoice.invoice-payment .disabled.link-btn, .invoice.invoice-payment .disabled.more-btn, .btn[disabled], .invoice.invoice-payment [disabled][type=submit], .invoice.invoice-payment [disabled].link-btn, .invoice.invoice-payment [disabled].more-btn,
+  .btn.disabled, .invoice.invoice-payment .disabled.convert-btn, .invoice.invoice-payment .disabled.link-btn, .invoice.invoice-payment .disabled.more-btn, .btn[disabled], .invoice.invoice-payment [disabled].convert-btn, .invoice.invoice-payment [disabled].link-btn, .invoice.invoice-payment [disabled].more-btn,
   fieldset[disabled] .btn,
-  fieldset[disabled] .invoice.invoice-payment [type=submit], .invoice.invoice-payment
-  fieldset[disabled] [type=submit],
+  fieldset[disabled] .invoice.invoice-payment .convert-btn, .invoice.invoice-payment
+  fieldset[disabled] .convert-btn,
   fieldset[disabled] .invoice.invoice-payment .link-btn, .invoice.invoice-payment
   fieldset[disabled] .link-btn,
   fieldset[disabled] .invoice.invoice-payment .more-btn, .invoice.invoice-payment
@@ -3155,10 +3155,10 @@ select[multiple].input-lg,
     -webkit-box-shadow: none;
     box-shadow: none; }
 
-a.btn.disabled, .invoice.invoice-payment a.disabled[type=submit], .invoice.invoice-payment a.disabled.link-btn, .invoice.invoice-payment a.disabled.more-btn,
+a.btn.disabled, .invoice.invoice-payment a.disabled.convert-btn, .invoice.invoice-payment a.disabled.link-btn, .invoice.invoice-payment a.disabled.more-btn,
 fieldset[disabled] a.btn,
-fieldset[disabled] .invoice.invoice-payment a[type=submit], .invoice.invoice-payment
-fieldset[disabled] a[type=submit],
+fieldset[disabled] .invoice.invoice-payment a.convert-btn, .invoice.invoice-payment
+fieldset[disabled] a.convert-btn,
 fieldset[disabled] .invoice.invoice-payment a.link-btn, .invoice.invoice-payment
 fieldset[disabled] a.link-btn,
 fieldset[disabled] .invoice.invoice-payment a.more-btn, .invoice.invoice-payment
@@ -3419,40 +3419,40 @@ fieldset[disabled] a.more-btn {
     color: #777777;
     text-decoration: none; }
 
-.btn-lg, .btn-group-lg > .btn, .btn.btn-xl, .invoice.invoice-payment [type=submit], .invoice.invoice-payment .link-btn, .invoice.invoice-payment .more-btn, .features.features-install .btn-next-step {
+.btn-lg, .btn-group-lg > .btn, .btn.btn-xl, .invoice.invoice-payment .convert-btn, .invoice.invoice-payment .link-btn, .invoice.invoice-payment .more-btn, .features.features-install .btn-next-step {
   padding: 10px 16px;
   font-size: 18px;
   line-height: 1.3333333;
   border-radius: 0px; }
 
-.btn-sm, .btn-group-sm > .btn, .invoice.invoice-payment .btn-group-sm > [type=submit], .invoice.invoice-payment .btn-group-sm > .link-btn, .invoice.invoice-payment .btn-group-sm > .more-btn {
+.btn-sm, .btn-group-sm > .btn, .invoice.invoice-payment .btn-group-sm > .convert-btn, .invoice.invoice-payment .btn-group-sm > .link-btn, .invoice.invoice-payment .btn-group-sm > .more-btn {
   padding: 5px 10px;
   font-size: 12px;
   line-height: 1.5;
   border-radius: 0px; }
 
-.btn-xs, .btn-group-xs > .btn, .invoice.invoice-payment .btn-group-xs > [type=submit], .invoice.invoice-payment .btn-group-xs > .link-btn, .invoice.invoice-payment .btn-group-xs > .more-btn {
+.btn-xs, .btn-group-xs > .btn, .invoice.invoice-payment .btn-group-xs > .convert-btn, .invoice.invoice-payment .btn-group-xs > .link-btn, .invoice.invoice-payment .btn-group-xs > .more-btn {
   padding: 1px 5px;
   font-size: 12px;
   line-height: 1.5;
   border-radius: 0px; }
 
-.btn-block, .features.features-install .btn-next-step, .invoice.invoice-payment [type=submit], .invoice.invoice-payment .link-btn, .invoice.invoice-payment .more-btn {
+.btn-block, .features.features-install .btn-next-step, .invoice.invoice-payment .convert-btn, .invoice.invoice-payment .link-btn, .invoice.invoice-payment .more-btn {
   display: block;
   width: 100%; }
 
-.btn-block + .btn-block, .features.features-install .btn-next-step + .btn-block, .invoice.invoice-payment [type=submit] + .btn-block, .invoice.invoice-payment .link-btn + .btn-block, .invoice.invoice-payment .more-btn + .btn-block, .features.features-install .btn-block + .btn-next-step, .features.features-install .btn-next-step + .btn-next-step, .invoice.invoice-payment .features.features-install [type=submit] + .btn-next-step, .features.features-install .invoice.invoice-payment [type=submit] + .btn-next-step, .invoice.invoice-payment .features.features-install .link-btn + .btn-next-step, .features.features-install .invoice.invoice-payment .link-btn + .btn-next-step, .invoice.invoice-payment .features.features-install .more-btn + .btn-next-step, .features.features-install .invoice.invoice-payment .more-btn + .btn-next-step, .invoice.invoice-payment .btn-block + [type=submit], .features.features-install .invoice.invoice-payment .btn-next-step + [type=submit], .invoice.invoice-payment .features.features-install .btn-next-step + [type=submit], .invoice.invoice-payment [type=submit] + [type=submit], .invoice.invoice-payment .link-btn + [type=submit], .invoice.invoice-payment .more-btn + [type=submit], .invoice.invoice-payment .btn-block + .link-btn, .features.features-install .invoice.invoice-payment .btn-next-step + .link-btn, .invoice.invoice-payment .features.features-install .btn-next-step + .link-btn, .invoice.invoice-payment [type=submit] + .link-btn, .invoice.invoice-payment .link-btn + .link-btn, .invoice.invoice-payment .more-btn + .link-btn, .invoice.invoice-payment .btn-block + .more-btn, .features.features-install .invoice.invoice-payment .btn-next-step + .more-btn, .invoice.invoice-payment .features.features-install .btn-next-step + .more-btn, .invoice.invoice-payment [type=submit] + .more-btn, .invoice.invoice-payment .link-btn + .more-btn, .invoice.invoice-payment .more-btn + .more-btn {
+.btn-block + .btn-block, .features.features-install .btn-next-step + .btn-block, .invoice.invoice-payment .convert-btn + .btn-block, .invoice.invoice-payment .link-btn + .btn-block, .invoice.invoice-payment .more-btn + .btn-block, .features.features-install .btn-block + .btn-next-step, .features.features-install .btn-next-step + .btn-next-step, .invoice.invoice-payment .features.features-install .convert-btn + .btn-next-step, .features.features-install .invoice.invoice-payment .convert-btn + .btn-next-step, .invoice.invoice-payment .features.features-install .link-btn + .btn-next-step, .features.features-install .invoice.invoice-payment .link-btn + .btn-next-step, .invoice.invoice-payment .features.features-install .more-btn + .btn-next-step, .features.features-install .invoice.invoice-payment .more-btn + .btn-next-step, .invoice.invoice-payment .btn-block + .convert-btn, .features.features-install .invoice.invoice-payment .btn-next-step + .convert-btn, .invoice.invoice-payment .features.features-install .btn-next-step + .convert-btn, .invoice.invoice-payment .convert-btn + .convert-btn, .invoice.invoice-payment .link-btn + .convert-btn, .invoice.invoice-payment .more-btn + .convert-btn, .invoice.invoice-payment .btn-block + .link-btn, .features.features-install .invoice.invoice-payment .btn-next-step + .link-btn, .invoice.invoice-payment .features.features-install .btn-next-step + .link-btn, .invoice.invoice-payment .convert-btn + .link-btn, .invoice.invoice-payment .link-btn + .link-btn, .invoice.invoice-payment .more-btn + .link-btn, .invoice.invoice-payment .btn-block + .more-btn, .features.features-install .invoice.invoice-payment .btn-next-step + .more-btn, .invoice.invoice-payment .features.features-install .btn-next-step + .more-btn, .invoice.invoice-payment .convert-btn + .more-btn, .invoice.invoice-payment .link-btn + .more-btn, .invoice.invoice-payment .more-btn + .more-btn {
   margin-top: 5px; }
 
-input[type="submit"].btn-block, .features.features-install input[type="submit"].btn-next-step, .invoice.invoice-payment input[type="submit"][type=submit], .invoice.invoice-payment input[type="submit"].link-btn, .invoice.invoice-payment input[type="submit"].more-btn,
+input[type="submit"].btn-block, .features.features-install input[type="submit"].btn-next-step, .invoice.invoice-payment input[type="submit"].convert-btn, .invoice.invoice-payment input[type="submit"].link-btn, .invoice.invoice-payment input[type="submit"].more-btn,
 input[type="reset"].btn-block,
 .features.features-install input[type="reset"].btn-next-step,
-.invoice.invoice-payment input[type="reset"][type=submit],
+.invoice.invoice-payment input[type="reset"].convert-btn,
 .invoice.invoice-payment input[type="reset"].link-btn,
 .invoice.invoice-payment input[type="reset"].more-btn,
 input[type="button"].btn-block,
 .features.features-install input[type="button"].btn-next-step,
-.invoice.invoice-payment input[type="button"][type=submit],
+.invoice.invoice-payment input[type="button"].convert-btn,
 .invoice.invoice-payment input[type="button"].link-btn,
 .invoice.invoice-payment input[type="button"].more-btn {
   width: 100%; }
@@ -3623,43 +3623,43 @@ tbody.collapse.in {
   position: relative;
   display: inline-block;
   vertical-align: middle; }
-  .btn-group > .btn, .invoice.invoice-payment .btn-group > [type=submit], .invoice.invoice-payment .btn-group > .link-btn, .invoice.invoice-payment .btn-group > .more-btn,
+  .btn-group > .btn, .invoice.invoice-payment .btn-group > .convert-btn, .invoice.invoice-payment .btn-group > .link-btn, .invoice.invoice-payment .btn-group > .more-btn,
   .btn-group-vertical > .btn, .invoice.invoice-payment
-  .btn-group-vertical > [type=submit], .invoice.invoice-payment
+  .btn-group-vertical > .convert-btn, .invoice.invoice-payment
   .btn-group-vertical > .link-btn, .invoice.invoice-payment
   .btn-group-vertical > .more-btn {
     position: relative;
     float: left; }
-    .btn-group > .btn:hover, .invoice.invoice-payment .btn-group > [type=submit]:hover, .invoice.invoice-payment .btn-group > .link-btn:hover, .invoice.invoice-payment .btn-group > .more-btn:hover, .btn-group > .btn:focus, .invoice.invoice-payment .btn-group > [type=submit]:focus, .invoice.invoice-payment .btn-group > .link-btn:focus, .invoice.invoice-payment .btn-group > .more-btn:focus, .btn-group > .btn:active, .invoice.invoice-payment .btn-group > [type=submit]:active, .invoice.invoice-payment .btn-group > .link-btn:active, .invoice.invoice-payment .btn-group > .more-btn:active, .btn-group > .btn.active, .invoice.invoice-payment .btn-group > .active[type=submit], .invoice.invoice-payment .btn-group > .active.link-btn, .invoice.invoice-payment .btn-group > .active.more-btn,
+    .btn-group > .btn:hover, .invoice.invoice-payment .btn-group > .convert-btn:hover, .invoice.invoice-payment .btn-group > .link-btn:hover, .invoice.invoice-payment .btn-group > .more-btn:hover, .btn-group > .btn:focus, .invoice.invoice-payment .btn-group > .convert-btn:focus, .invoice.invoice-payment .btn-group > .link-btn:focus, .invoice.invoice-payment .btn-group > .more-btn:focus, .btn-group > .btn:active, .invoice.invoice-payment .btn-group > .convert-btn:active, .invoice.invoice-payment .btn-group > .link-btn:active, .invoice.invoice-payment .btn-group > .more-btn:active, .btn-group > .btn.active, .invoice.invoice-payment .btn-group > .active.convert-btn, .invoice.invoice-payment .btn-group > .active.link-btn, .invoice.invoice-payment .btn-group > .active.more-btn,
     .btn-group-vertical > .btn:hover, .invoice.invoice-payment
-    .btn-group-vertical > [type=submit]:hover, .invoice.invoice-payment
+    .btn-group-vertical > .convert-btn:hover, .invoice.invoice-payment
     .btn-group-vertical > .link-btn:hover, .invoice.invoice-payment
     .btn-group-vertical > .more-btn:hover,
     .btn-group-vertical > .btn:focus, .invoice.invoice-payment
-    .btn-group-vertical > [type=submit]:focus, .invoice.invoice-payment
+    .btn-group-vertical > .convert-btn:focus, .invoice.invoice-payment
     .btn-group-vertical > .link-btn:focus, .invoice.invoice-payment
     .btn-group-vertical > .more-btn:focus,
     .btn-group-vertical > .btn:active, .invoice.invoice-payment
-    .btn-group-vertical > [type=submit]:active, .invoice.invoice-payment
+    .btn-group-vertical > .convert-btn:active, .invoice.invoice-payment
     .btn-group-vertical > .link-btn:active, .invoice.invoice-payment
     .btn-group-vertical > .more-btn:active,
     .btn-group-vertical > .btn.active, .invoice.invoice-payment
-    .btn-group-vertical > .active[type=submit], .invoice.invoice-payment
+    .btn-group-vertical > .active.convert-btn, .invoice.invoice-payment
     .btn-group-vertical > .active.link-btn, .invoice.invoice-payment
     .btn-group-vertical > .active.more-btn {
       z-index: 2; }
 
-.btn-group .btn + .btn, .btn-group .invoice.invoice-payment [type=submit] + .btn, .invoice.invoice-payment .btn-group [type=submit] + .btn, .btn-group .invoice.invoice-payment .link-btn + .btn, .invoice.invoice-payment .btn-group .link-btn + .btn, .btn-group .invoice.invoice-payment .more-btn + .btn, .invoice.invoice-payment .btn-group .more-btn + .btn, .btn-group .invoice.invoice-payment .btn + [type=submit], .invoice.invoice-payment .btn-group .btn + [type=submit], .btn-group .invoice.invoice-payment [type=submit] + [type=submit], .invoice.invoice-payment .btn-group [type=submit] + [type=submit], .btn-group .invoice.invoice-payment .link-btn + [type=submit], .invoice.invoice-payment .btn-group .link-btn + [type=submit], .btn-group .invoice.invoice-payment .more-btn + [type=submit], .invoice.invoice-payment .btn-group .more-btn + [type=submit], .btn-group .invoice.invoice-payment .btn + .link-btn, .invoice.invoice-payment .btn-group .btn + .link-btn, .btn-group .invoice.invoice-payment [type=submit] + .link-btn, .invoice.invoice-payment .btn-group [type=submit] + .link-btn, .btn-group .invoice.invoice-payment .link-btn + .link-btn, .invoice.invoice-payment .btn-group .link-btn + .link-btn, .btn-group .invoice.invoice-payment .more-btn + .link-btn, .invoice.invoice-payment .btn-group .more-btn + .link-btn, .btn-group .invoice.invoice-payment .btn + .more-btn, .invoice.invoice-payment .btn-group .btn + .more-btn, .btn-group .invoice.invoice-payment [type=submit] + .more-btn, .invoice.invoice-payment .btn-group [type=submit] + .more-btn, .btn-group .invoice.invoice-payment .link-btn + .more-btn, .invoice.invoice-payment .btn-group .link-btn + .more-btn, .btn-group .invoice.invoice-payment .more-btn + .more-btn, .invoice.invoice-payment .btn-group .more-btn + .more-btn,
+.btn-group .btn + .btn, .btn-group .invoice.invoice-payment .convert-btn + .btn, .invoice.invoice-payment .btn-group .convert-btn + .btn, .btn-group .invoice.invoice-payment .link-btn + .btn, .invoice.invoice-payment .btn-group .link-btn + .btn, .btn-group .invoice.invoice-payment .more-btn + .btn, .invoice.invoice-payment .btn-group .more-btn + .btn, .btn-group .invoice.invoice-payment .btn + .convert-btn, .invoice.invoice-payment .btn-group .btn + .convert-btn, .btn-group .invoice.invoice-payment .convert-btn + .convert-btn, .invoice.invoice-payment .btn-group .convert-btn + .convert-btn, .btn-group .invoice.invoice-payment .link-btn + .convert-btn, .invoice.invoice-payment .btn-group .link-btn + .convert-btn, .btn-group .invoice.invoice-payment .more-btn + .convert-btn, .invoice.invoice-payment .btn-group .more-btn + .convert-btn, .btn-group .invoice.invoice-payment .btn + .link-btn, .invoice.invoice-payment .btn-group .btn + .link-btn, .btn-group .invoice.invoice-payment .convert-btn + .link-btn, .invoice.invoice-payment .btn-group .convert-btn + .link-btn, .btn-group .invoice.invoice-payment .link-btn + .link-btn, .invoice.invoice-payment .btn-group .link-btn + .link-btn, .btn-group .invoice.invoice-payment .more-btn + .link-btn, .invoice.invoice-payment .btn-group .more-btn + .link-btn, .btn-group .invoice.invoice-payment .btn + .more-btn, .invoice.invoice-payment .btn-group .btn + .more-btn, .btn-group .invoice.invoice-payment .convert-btn + .more-btn, .invoice.invoice-payment .btn-group .convert-btn + .more-btn, .btn-group .invoice.invoice-payment .link-btn + .more-btn, .invoice.invoice-payment .btn-group .link-btn + .more-btn, .btn-group .invoice.invoice-payment .more-btn + .more-btn, .invoice.invoice-payment .btn-group .more-btn + .more-btn,
 .btn-group .btn + .btn-group,
-.btn-group .invoice.invoice-payment [type=submit] + .btn-group, .invoice.invoice-payment
-.btn-group [type=submit] + .btn-group,
+.btn-group .invoice.invoice-payment .convert-btn + .btn-group, .invoice.invoice-payment
+.btn-group .convert-btn + .btn-group,
 .btn-group .invoice.invoice-payment .link-btn + .btn-group, .invoice.invoice-payment
 .btn-group .link-btn + .btn-group,
 .btn-group .invoice.invoice-payment .more-btn + .btn-group, .invoice.invoice-payment
 .btn-group .more-btn + .btn-group,
 .btn-group .btn-group + .btn,
-.btn-group .invoice.invoice-payment .btn-group + [type=submit], .invoice.invoice-payment
-.btn-group .btn-group + [type=submit],
+.btn-group .invoice.invoice-payment .btn-group + .convert-btn, .invoice.invoice-payment
+.btn-group .btn-group + .convert-btn,
 .btn-group .invoice.invoice-payment .btn-group + .link-btn, .invoice.invoice-payment
 .btn-group .btn-group + .link-btn,
 .btn-group .invoice.invoice-payment .btn-group + .more-btn, .invoice.invoice-payment
@@ -3674,28 +3674,28 @@ tbody.collapse.in {
     display: table; }
   .btn-toolbar:after {
     clear: both; }
-  .btn-toolbar .btn, .btn-toolbar .invoice.invoice-payment [type=submit], .invoice.invoice-payment .btn-toolbar [type=submit], .btn-toolbar .invoice.invoice-payment .link-btn, .invoice.invoice-payment .btn-toolbar .link-btn, .btn-toolbar .invoice.invoice-payment .more-btn, .invoice.invoice-payment .btn-toolbar .more-btn,
+  .btn-toolbar .btn, .btn-toolbar .invoice.invoice-payment .convert-btn, .invoice.invoice-payment .btn-toolbar .convert-btn, .btn-toolbar .invoice.invoice-payment .link-btn, .invoice.invoice-payment .btn-toolbar .link-btn, .btn-toolbar .invoice.invoice-payment .more-btn, .invoice.invoice-payment .btn-toolbar .more-btn,
   .btn-toolbar .btn-group,
   .btn-toolbar .input-group,
   .btn-toolbar .settings-list .badge-token-box, .settings-list
   .btn-toolbar .badge-token-box {
     float: left; }
-  .btn-toolbar > .btn, .invoice.invoice-payment .btn-toolbar > [type=submit], .invoice.invoice-payment .btn-toolbar > .link-btn, .invoice.invoice-payment .btn-toolbar > .more-btn,
+  .btn-toolbar > .btn, .invoice.invoice-payment .btn-toolbar > .convert-btn, .invoice.invoice-payment .btn-toolbar > .link-btn, .invoice.invoice-payment .btn-toolbar > .more-btn,
   .btn-toolbar > .btn-group,
   .btn-toolbar > .input-group, .settings-list
   .btn-toolbar > .badge-token-box {
     margin-left: 5px; }
 
-.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle), .invoice.invoice-payment .btn-group > [type=submit]:not(:first-child):not(:last-child):not(.dropdown-toggle), .invoice.invoice-payment .btn-group > .link-btn:not(:first-child):not(:last-child):not(.dropdown-toggle), .invoice.invoice-payment .btn-group > .more-btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle), .invoice.invoice-payment .btn-group > .convert-btn:not(:first-child):not(:last-child):not(.dropdown-toggle), .invoice.invoice-payment .btn-group > .link-btn:not(:first-child):not(:last-child):not(.dropdown-toggle), .invoice.invoice-payment .btn-group > .more-btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
   border-radius: 0; }
 
-.btn-group > .btn:first-child, .invoice.invoice-payment .btn-group > [type=submit]:first-child, .invoice.invoice-payment .btn-group > .link-btn:first-child, .invoice.invoice-payment .btn-group > .more-btn:first-child {
+.btn-group > .btn:first-child, .invoice.invoice-payment .btn-group > .convert-btn:first-child, .invoice.invoice-payment .btn-group > .link-btn:first-child, .invoice.invoice-payment .btn-group > .more-btn:first-child {
   margin-left: 0; }
-  .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle), .invoice.invoice-payment .btn-group > [type=submit]:first-child:not(:last-child):not(.dropdown-toggle), .invoice.invoice-payment .btn-group > .link-btn:first-child:not(:last-child):not(.dropdown-toggle), .invoice.invoice-payment .btn-group > .more-btn:first-child:not(:last-child):not(.dropdown-toggle) {
+  .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle), .invoice.invoice-payment .btn-group > .convert-btn:first-child:not(:last-child):not(.dropdown-toggle), .invoice.invoice-payment .btn-group > .link-btn:first-child:not(:last-child):not(.dropdown-toggle), .invoice.invoice-payment .btn-group > .more-btn:first-child:not(:last-child):not(.dropdown-toggle) {
     border-bottom-right-radius: 0;
     border-top-right-radius: 0; }
 
-.btn-group > .btn:last-child:not(:first-child), .invoice.invoice-payment .btn-group > [type=submit]:last-child:not(:first-child), .invoice.invoice-payment .btn-group > .link-btn:last-child:not(:first-child), .invoice.invoice-payment .btn-group > .more-btn:last-child:not(:first-child),
+.btn-group > .btn:last-child:not(:first-child), .invoice.invoice-payment .btn-group > .convert-btn:last-child:not(:first-child), .invoice.invoice-payment .btn-group > .link-btn:last-child:not(:first-child), .invoice.invoice-payment .btn-group > .more-btn:last-child:not(:first-child),
 .btn-group > .dropdown-toggle:not(:first-child) {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0; }
@@ -3703,15 +3703,15 @@ tbody.collapse.in {
 .btn-group > .btn-group {
   float: left; }
 
-.btn-group > .btn-group:not(:first-child):not(:last-child) > .btn, .invoice.invoice-payment .btn-group > .btn-group:not(:first-child):not(:last-child) > [type=submit], .invoice.invoice-payment .btn-group > .btn-group:not(:first-child):not(:last-child) > .link-btn, .invoice.invoice-payment .btn-group > .btn-group:not(:first-child):not(:last-child) > .more-btn {
+.btn-group > .btn-group:not(:first-child):not(:last-child) > .btn, .invoice.invoice-payment .btn-group > .btn-group:not(:first-child):not(:last-child) > .convert-btn, .invoice.invoice-payment .btn-group > .btn-group:not(:first-child):not(:last-child) > .link-btn, .invoice.invoice-payment .btn-group > .btn-group:not(:first-child):not(:last-child) > .more-btn {
   border-radius: 0; }
 
-.btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child, .invoice.invoice-payment .btn-group > .btn-group:first-child:not(:last-child) > [type=submit]:last-child, .invoice.invoice-payment .btn-group > .btn-group:first-child:not(:last-child) > .link-btn:last-child, .invoice.invoice-payment .btn-group > .btn-group:first-child:not(:last-child) > .more-btn:last-child,
+.btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child, .invoice.invoice-payment .btn-group > .btn-group:first-child:not(:last-child) > .convert-btn:last-child, .invoice.invoice-payment .btn-group > .btn-group:first-child:not(:last-child) > .link-btn:last-child, .invoice.invoice-payment .btn-group > .btn-group:first-child:not(:last-child) > .more-btn:last-child,
 .btn-group > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0; }
 
-.btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child, .invoice.invoice-payment .btn-group > .btn-group:last-child:not(:first-child) > [type=submit]:first-child, .invoice.invoice-payment .btn-group > .btn-group:last-child:not(:first-child) > .link-btn:first-child, .invoice.invoice-payment .btn-group > .btn-group:last-child:not(:first-child) > .more-btn:first-child {
+.btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child, .invoice.invoice-payment .btn-group > .btn-group:last-child:not(:first-child) > .convert-btn:first-child, .invoice.invoice-payment .btn-group > .btn-group:last-child:not(:first-child) > .link-btn:first-child, .invoice.invoice-payment .btn-group > .btn-group:last-child:not(:first-child) > .more-btn:first-child {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0; }
 
@@ -3719,11 +3719,11 @@ tbody.collapse.in {
 .btn-group.open .dropdown-toggle {
   outline: 0; }
 
-.btn-group > .btn + .dropdown-toggle, .invoice.invoice-payment .btn-group > [type=submit] + .dropdown-toggle, .invoice.invoice-payment .btn-group > .link-btn + .dropdown-toggle, .invoice.invoice-payment .btn-group > .more-btn + .dropdown-toggle {
+.btn-group > .btn + .dropdown-toggle, .invoice.invoice-payment .btn-group > .convert-btn + .dropdown-toggle, .invoice.invoice-payment .btn-group > .link-btn + .dropdown-toggle, .invoice.invoice-payment .btn-group > .more-btn + .dropdown-toggle {
   padding-left: 8px;
   padding-right: 8px; }
 
-.btn-group > .btn-lg + .dropdown-toggle, .btn-group-lg.btn-group > .btn + .dropdown-toggle, .btn-group > .btn.btn-xl + .dropdown-toggle, .invoice.invoice-payment .btn-group > [type=submit] + .dropdown-toggle, .invoice.invoice-payment .btn-group > .link-btn + .dropdown-toggle, .invoice.invoice-payment .btn-group > .more-btn + .dropdown-toggle, .features.features-install .btn-group > .btn-next-step + .dropdown-toggle {
+.btn-group > .btn-lg + .dropdown-toggle, .btn-group-lg.btn-group > .btn + .dropdown-toggle, .btn-group > .btn.btn-xl + .dropdown-toggle, .invoice.invoice-payment .btn-group > .convert-btn + .dropdown-toggle, .invoice.invoice-payment .btn-group > .link-btn + .dropdown-toggle, .invoice.invoice-payment .btn-group > .more-btn + .dropdown-toggle, .features.features-install .btn-group > .btn-next-step + .dropdown-toggle {
   padding-left: 12px;
   padding-right: 12px; }
 
@@ -3734,20 +3734,20 @@ tbody.collapse.in {
     -webkit-box-shadow: none;
     box-shadow: none; }
 
-.btn .caret, .invoice.invoice-payment [type=submit] .caret, .invoice.invoice-payment .link-btn .caret, .invoice.invoice-payment .more-btn .caret {
+.btn .caret, .invoice.invoice-payment .convert-btn .caret, .invoice.invoice-payment .link-btn .caret, .invoice.invoice-payment .more-btn .caret {
   margin-left: 0; }
 
-.btn-lg .caret, .btn-group-lg > .btn .caret, .btn.btn-xl .caret, .invoice.invoice-payment [type=submit] .caret, .invoice.invoice-payment .link-btn .caret, .invoice.invoice-payment .more-btn .caret, .features.features-install .btn-next-step .caret {
+.btn-lg .caret, .btn-group-lg > .btn .caret, .btn.btn-xl .caret, .invoice.invoice-payment .convert-btn .caret, .invoice.invoice-payment .link-btn .caret, .invoice.invoice-payment .more-btn .caret, .features.features-install .btn-next-step .caret {
   border-width: 5px 5px 0;
   border-bottom-width: 0; }
 
-.dropup .btn-lg .caret, .dropup .btn-group-lg > .btn .caret, .dropup .btn.btn-xl .caret, .dropup .invoice.invoice-payment [type=submit] .caret, .invoice.invoice-payment .dropup [type=submit] .caret, .dropup .invoice.invoice-payment .link-btn .caret, .invoice.invoice-payment .dropup .link-btn .caret, .dropup .invoice.invoice-payment .more-btn .caret, .invoice.invoice-payment .dropup .more-btn .caret, .dropup .features.features-install .btn-next-step .caret, .features.features-install .dropup .btn-next-step .caret {
+.dropup .btn-lg .caret, .dropup .btn-group-lg > .btn .caret, .dropup .btn.btn-xl .caret, .dropup .invoice.invoice-payment .convert-btn .caret, .invoice.invoice-payment .dropup .convert-btn .caret, .dropup .invoice.invoice-payment .link-btn .caret, .invoice.invoice-payment .dropup .link-btn .caret, .dropup .invoice.invoice-payment .more-btn .caret, .invoice.invoice-payment .dropup .more-btn .caret, .dropup .features.features-install .btn-next-step .caret, .features.features-install .dropup .btn-next-step .caret {
   border-width: 0 5px 5px; }
 
-.btn-group-vertical > .btn, .invoice.invoice-payment .btn-group-vertical > [type=submit], .invoice.invoice-payment .btn-group-vertical > .link-btn, .invoice.invoice-payment .btn-group-vertical > .more-btn,
+.btn-group-vertical > .btn, .invoice.invoice-payment .btn-group-vertical > .convert-btn, .invoice.invoice-payment .btn-group-vertical > .link-btn, .invoice.invoice-payment .btn-group-vertical > .more-btn,
 .btn-group-vertical > .btn-group,
 .btn-group-vertical > .btn-group > .btn, .invoice.invoice-payment
-.btn-group-vertical > .btn-group > [type=submit], .invoice.invoice-payment
+.btn-group-vertical > .btn-group > .convert-btn, .invoice.invoice-payment
 .btn-group-vertical > .btn-group > .link-btn, .invoice.invoice-payment
 .btn-group-vertical > .btn-group > .more-btn {
   display: block;
@@ -3762,46 +3762,46 @@ tbody.collapse.in {
 .btn-group-vertical > .btn-group:after {
   clear: both; }
 
-.btn-group-vertical > .btn-group > .btn, .invoice.invoice-payment .btn-group-vertical > .btn-group > [type=submit], .invoice.invoice-payment .btn-group-vertical > .btn-group > .link-btn, .invoice.invoice-payment .btn-group-vertical > .btn-group > .more-btn {
+.btn-group-vertical > .btn-group > .btn, .invoice.invoice-payment .btn-group-vertical > .btn-group > .convert-btn, .invoice.invoice-payment .btn-group-vertical > .btn-group > .link-btn, .invoice.invoice-payment .btn-group-vertical > .btn-group > .more-btn {
   float: none; }
 
-.btn-group-vertical > .btn + .btn, .invoice.invoice-payment .btn-group-vertical > [type=submit] + .btn, .invoice.invoice-payment .btn-group-vertical > .link-btn + .btn, .invoice.invoice-payment .btn-group-vertical > .more-btn + .btn, .invoice.invoice-payment .btn-group-vertical > .btn + [type=submit], .invoice.invoice-payment .btn-group-vertical > [type=submit] + [type=submit], .invoice.invoice-payment .btn-group-vertical > .link-btn + [type=submit], .invoice.invoice-payment .btn-group-vertical > .more-btn + [type=submit], .invoice.invoice-payment .btn-group-vertical > .btn + .link-btn, .invoice.invoice-payment .btn-group-vertical > [type=submit] + .link-btn, .invoice.invoice-payment .btn-group-vertical > .link-btn + .link-btn, .invoice.invoice-payment .btn-group-vertical > .more-btn + .link-btn, .invoice.invoice-payment .btn-group-vertical > .btn + .more-btn, .invoice.invoice-payment .btn-group-vertical > [type=submit] + .more-btn, .invoice.invoice-payment .btn-group-vertical > .link-btn + .more-btn, .invoice.invoice-payment .btn-group-vertical > .more-btn + .more-btn,
+.btn-group-vertical > .btn + .btn, .invoice.invoice-payment .btn-group-vertical > .convert-btn + .btn, .invoice.invoice-payment .btn-group-vertical > .link-btn + .btn, .invoice.invoice-payment .btn-group-vertical > .more-btn + .btn, .invoice.invoice-payment .btn-group-vertical > .btn + .convert-btn, .invoice.invoice-payment .btn-group-vertical > .convert-btn + .convert-btn, .invoice.invoice-payment .btn-group-vertical > .link-btn + .convert-btn, .invoice.invoice-payment .btn-group-vertical > .more-btn + .convert-btn, .invoice.invoice-payment .btn-group-vertical > .btn + .link-btn, .invoice.invoice-payment .btn-group-vertical > .convert-btn + .link-btn, .invoice.invoice-payment .btn-group-vertical > .link-btn + .link-btn, .invoice.invoice-payment .btn-group-vertical > .more-btn + .link-btn, .invoice.invoice-payment .btn-group-vertical > .btn + .more-btn, .invoice.invoice-payment .btn-group-vertical > .convert-btn + .more-btn, .invoice.invoice-payment .btn-group-vertical > .link-btn + .more-btn, .invoice.invoice-payment .btn-group-vertical > .more-btn + .more-btn,
 .btn-group-vertical > .btn + .btn-group, .invoice.invoice-payment
-.btn-group-vertical > [type=submit] + .btn-group, .invoice.invoice-payment
+.btn-group-vertical > .convert-btn + .btn-group, .invoice.invoice-payment
 .btn-group-vertical > .link-btn + .btn-group, .invoice.invoice-payment
 .btn-group-vertical > .more-btn + .btn-group,
 .btn-group-vertical > .btn-group + .btn, .invoice.invoice-payment
-.btn-group-vertical > .btn-group + [type=submit], .invoice.invoice-payment
+.btn-group-vertical > .btn-group + .convert-btn, .invoice.invoice-payment
 .btn-group-vertical > .btn-group + .link-btn, .invoice.invoice-payment
 .btn-group-vertical > .btn-group + .more-btn,
 .btn-group-vertical > .btn-group + .btn-group {
   margin-top: -1px;
   margin-left: 0; }
 
-.btn-group-vertical > .btn:not(:first-child):not(:last-child), .invoice.invoice-payment .btn-group-vertical > [type=submit]:not(:first-child):not(:last-child), .invoice.invoice-payment .btn-group-vertical > .link-btn:not(:first-child):not(:last-child), .invoice.invoice-payment .btn-group-vertical > .more-btn:not(:first-child):not(:last-child) {
+.btn-group-vertical > .btn:not(:first-child):not(:last-child), .invoice.invoice-payment .btn-group-vertical > .convert-btn:not(:first-child):not(:last-child), .invoice.invoice-payment .btn-group-vertical > .link-btn:not(:first-child):not(:last-child), .invoice.invoice-payment .btn-group-vertical > .more-btn:not(:first-child):not(:last-child) {
   border-radius: 0; }
 
-.btn-group-vertical > .btn:first-child:not(:last-child), .invoice.invoice-payment .btn-group-vertical > [type=submit]:first-child:not(:last-child), .invoice.invoice-payment .btn-group-vertical > .link-btn:first-child:not(:last-child), .invoice.invoice-payment .btn-group-vertical > .more-btn:first-child:not(:last-child) {
+.btn-group-vertical > .btn:first-child:not(:last-child), .invoice.invoice-payment .btn-group-vertical > .convert-btn:first-child:not(:last-child), .invoice.invoice-payment .btn-group-vertical > .link-btn:first-child:not(:last-child), .invoice.invoice-payment .btn-group-vertical > .more-btn:first-child:not(:last-child) {
   border-top-right-radius: 0px;
   border-top-left-radius: 0px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0; }
 
-.btn-group-vertical > .btn:last-child:not(:first-child), .invoice.invoice-payment .btn-group-vertical > [type=submit]:last-child:not(:first-child), .invoice.invoice-payment .btn-group-vertical > .link-btn:last-child:not(:first-child), .invoice.invoice-payment .btn-group-vertical > .more-btn:last-child:not(:first-child) {
+.btn-group-vertical > .btn:last-child:not(:first-child), .invoice.invoice-payment .btn-group-vertical > .convert-btn:last-child:not(:first-child), .invoice.invoice-payment .btn-group-vertical > .link-btn:last-child:not(:first-child), .invoice.invoice-payment .btn-group-vertical > .more-btn:last-child:not(:first-child) {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
   border-bottom-right-radius: 0px;
   border-bottom-left-radius: 0px; }
 
-.btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn, .invoice.invoice-payment .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > [type=submit], .invoice.invoice-payment .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .link-btn, .invoice.invoice-payment .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .more-btn {
+.btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn, .invoice.invoice-payment .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .convert-btn, .invoice.invoice-payment .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .link-btn, .invoice.invoice-payment .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .more-btn {
   border-radius: 0; }
 
-.btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn:last-child, .invoice.invoice-payment .btn-group-vertical > .btn-group:first-child:not(:last-child) > [type=submit]:last-child, .invoice.invoice-payment .btn-group-vertical > .btn-group:first-child:not(:last-child) > .link-btn:last-child, .invoice.invoice-payment .btn-group-vertical > .btn-group:first-child:not(:last-child) > .more-btn:last-child,
+.btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn:last-child, .invoice.invoice-payment .btn-group-vertical > .btn-group:first-child:not(:last-child) > .convert-btn:last-child, .invoice.invoice-payment .btn-group-vertical > .btn-group:first-child:not(:last-child) > .link-btn:last-child, .invoice.invoice-payment .btn-group-vertical > .btn-group:first-child:not(:last-child) > .more-btn:last-child,
 .btn-group-vertical > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0; }
 
-.btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn:first-child, .invoice.invoice-payment .btn-group-vertical > .btn-group:last-child:not(:first-child) > [type=submit]:first-child, .invoice.invoice-payment .btn-group-vertical > .btn-group:last-child:not(:first-child) > .link-btn:first-child, .invoice.invoice-payment .btn-group-vertical > .btn-group:last-child:not(:first-child) > .more-btn:first-child {
+.btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn:first-child, .invoice.invoice-payment .btn-group-vertical > .btn-group:last-child:not(:first-child) > .convert-btn:first-child, .invoice.invoice-payment .btn-group-vertical > .btn-group:last-child:not(:first-child) > .link-btn:first-child, .invoice.invoice-payment .btn-group-vertical > .btn-group:last-child:not(:first-child) > .more-btn:first-child {
   border-top-right-radius: 0;
   border-top-left-radius: 0; }
 
@@ -3810,27 +3810,27 @@ tbody.collapse.in {
   width: 100%;
   table-layout: fixed;
   border-collapse: separate; }
-  .btn-group-justified > .btn, .invoice.invoice-payment .btn-group-justified > [type=submit], .invoice.invoice-payment .btn-group-justified > .link-btn, .invoice.invoice-payment .btn-group-justified > .more-btn,
+  .btn-group-justified > .btn, .invoice.invoice-payment .btn-group-justified > .convert-btn, .invoice.invoice-payment .btn-group-justified > .link-btn, .invoice.invoice-payment .btn-group-justified > .more-btn,
   .btn-group-justified > .btn-group {
     float: none;
     display: table-cell;
     width: 1%; }
-  .btn-group-justified > .btn-group .btn, .btn-group-justified > .btn-group .invoice.invoice-payment [type=submit], .invoice.invoice-payment .btn-group-justified > .btn-group [type=submit], .btn-group-justified > .btn-group .invoice.invoice-payment .link-btn, .invoice.invoice-payment .btn-group-justified > .btn-group .link-btn, .btn-group-justified > .btn-group .invoice.invoice-payment .more-btn, .invoice.invoice-payment .btn-group-justified > .btn-group .more-btn {
+  .btn-group-justified > .btn-group .btn, .btn-group-justified > .btn-group .invoice.invoice-payment .convert-btn, .invoice.invoice-payment .btn-group-justified > .btn-group .convert-btn, .btn-group-justified > .btn-group .invoice.invoice-payment .link-btn, .invoice.invoice-payment .btn-group-justified > .btn-group .link-btn, .btn-group-justified > .btn-group .invoice.invoice-payment .more-btn, .invoice.invoice-payment .btn-group-justified > .btn-group .more-btn {
     width: 100%; }
   .btn-group-justified > .btn-group .dropdown-menu {
     left: auto; }
 
-[data-toggle="buttons"] > .btn input[type="radio"], .invoice.invoice-payment [data-toggle="buttons"] > [type=submit] input[type="radio"], .invoice.invoice-payment [data-toggle="buttons"] > .link-btn input[type="radio"], .invoice.invoice-payment [data-toggle="buttons"] > .more-btn input[type="radio"],
+[data-toggle="buttons"] > .btn input[type="radio"], .invoice.invoice-payment [data-toggle="buttons"] > .convert-btn input[type="radio"], .invoice.invoice-payment [data-toggle="buttons"] > .link-btn input[type="radio"], .invoice.invoice-payment [data-toggle="buttons"] > .more-btn input[type="radio"],
 [data-toggle="buttons"] > .btn input[type="checkbox"], .invoice.invoice-payment
-[data-toggle="buttons"] > [type=submit] input[type="checkbox"], .invoice.invoice-payment
+[data-toggle="buttons"] > .convert-btn input[type="checkbox"], .invoice.invoice-payment
 [data-toggle="buttons"] > .link-btn input[type="checkbox"], .invoice.invoice-payment
 [data-toggle="buttons"] > .more-btn input[type="checkbox"],
 [data-toggle="buttons"] > .btn-group > .btn input[type="radio"], .invoice.invoice-payment
-[data-toggle="buttons"] > .btn-group > [type=submit] input[type="radio"], .invoice.invoice-payment
+[data-toggle="buttons"] > .btn-group > .convert-btn input[type="radio"], .invoice.invoice-payment
 [data-toggle="buttons"] > .btn-group > .link-btn input[type="radio"], .invoice.invoice-payment
 [data-toggle="buttons"] > .btn-group > .more-btn input[type="radio"],
 [data-toggle="buttons"] > .btn-group > .btn input[type="checkbox"], .invoice.invoice-payment
-[data-toggle="buttons"] > .btn-group > [type=submit] input[type="checkbox"], .invoice.invoice-payment
+[data-toggle="buttons"] > .btn-group > .convert-btn input[type="checkbox"], .invoice.invoice-payment
 [data-toggle="buttons"] > .btn-group > .link-btn input[type="checkbox"], .invoice.invoice-payment
 [data-toggle="buttons"] > .btn-group > .more-btn input[type="checkbox"] {
   position: absolute;
@@ -3887,13 +3887,13 @@ tbody.collapse.in {
   .input-group-sm > .token-box,
   .input-group-sm > .input-group-btn > .input-group-addon.btn, .settings-list .badge-token-box
   .input-group-sm > .token-btn > .input-group-addon.btn, .invoice.invoice-payment
-  .input-group-sm > .input-group-btn > .input-group-addon[type=submit], .settings-list .badge-token-box .invoice.invoice-payment
-  .input-group-sm > .token-btn > .input-group-addon[type=submit], .invoice.invoice-payment .settings-list .badge-token-box
-  .input-group-sm > .token-btn > .input-group-addon[type=submit], .invoice.invoice-payment .settings-list .badge-token-box
-  .input-group-sm > .input-group-btn > [type=submit].token-box, .invoice.invoice-payment .settings-list .badge-token-box
-  .input-group-sm > .token-btn > [type=submit].token-box, .settings-list .badge-token-box .invoice.invoice-payment
-  .input-group-sm > .input-group-btn > [type=submit].token-box, .settings-list .badge-token-box .invoice.invoice-payment
-  .input-group-sm > .token-btn > [type=submit].token-box, .invoice.invoice-payment
+  .input-group-sm > .input-group-btn > .input-group-addon.convert-btn, .settings-list .badge-token-box .invoice.invoice-payment
+  .input-group-sm > .token-btn > .input-group-addon.convert-btn, .invoice.invoice-payment .settings-list .badge-token-box
+  .input-group-sm > .token-btn > .input-group-addon.convert-btn, .invoice.invoice-payment .settings-list .badge-token-box
+  .input-group-sm > .input-group-btn > .convert-btn.token-box, .invoice.invoice-payment .settings-list .badge-token-box
+  .input-group-sm > .token-btn > .convert-btn.token-box, .settings-list .badge-token-box .invoice.invoice-payment
+  .input-group-sm > .input-group-btn > .convert-btn.token-box, .settings-list .badge-token-box .invoice.invoice-payment
+  .input-group-sm > .token-btn > .convert-btn.token-box, .invoice.invoice-payment
   .input-group-sm > .input-group-btn > .input-group-addon.link-btn, .settings-list .badge-token-box .invoice.invoice-payment
   .input-group-sm > .token-btn > .input-group-addon.link-btn, .invoice.invoice-payment .settings-list .badge-token-box
   .input-group-sm > .token-btn > .input-group-addon.link-btn, .invoice.invoice-payment .settings-list .badge-token-box
@@ -3918,13 +3918,13 @@ tbody.collapse.in {
   .input-group-lg > .token-box,
   .input-group-lg > .input-group-btn > .input-group-addon.btn, .settings-list .badge-token-box
   .input-group-lg > .token-btn > .input-group-addon.btn, .invoice.invoice-payment
-  .input-group-lg > .input-group-btn > .input-group-addon[type=submit], .settings-list .badge-token-box .invoice.invoice-payment
-  .input-group-lg > .token-btn > .input-group-addon[type=submit], .invoice.invoice-payment .settings-list .badge-token-box
-  .input-group-lg > .token-btn > .input-group-addon[type=submit], .invoice.invoice-payment .settings-list .badge-token-box
-  .input-group-lg > .input-group-btn > [type=submit].token-box, .invoice.invoice-payment .settings-list .badge-token-box
-  .input-group-lg > .token-btn > [type=submit].token-box, .settings-list .badge-token-box .invoice.invoice-payment
-  .input-group-lg > .input-group-btn > [type=submit].token-box, .settings-list .badge-token-box .invoice.invoice-payment
-  .input-group-lg > .token-btn > [type=submit].token-box, .invoice.invoice-payment
+  .input-group-lg > .input-group-btn > .input-group-addon.convert-btn, .settings-list .badge-token-box .invoice.invoice-payment
+  .input-group-lg > .token-btn > .input-group-addon.convert-btn, .invoice.invoice-payment .settings-list .badge-token-box
+  .input-group-lg > .token-btn > .input-group-addon.convert-btn, .invoice.invoice-payment .settings-list .badge-token-box
+  .input-group-lg > .input-group-btn > .convert-btn.token-box, .invoice.invoice-payment .settings-list .badge-token-box
+  .input-group-lg > .token-btn > .convert-btn.token-box, .settings-list .badge-token-box .invoice.invoice-payment
+  .input-group-lg > .input-group-btn > .convert-btn.token-box, .settings-list .badge-token-box .invoice.invoice-payment
+  .input-group-lg > .token-btn > .convert-btn.token-box, .invoice.invoice-payment
   .input-group-lg > .input-group-btn > .input-group-addon.link-btn, .settings-list .badge-token-box .invoice.invoice-payment
   .input-group-lg > .token-btn > .input-group-addon.link-btn, .invoice.invoice-payment .settings-list .badge-token-box
   .input-group-lg > .token-btn > .input-group-addon.link-btn, .invoice.invoice-payment .settings-list .badge-token-box
@@ -3952,20 +3952,20 @@ tbody.collapse.in {
 .input-group-addon:first-child,
 .settings-list .badge-token-box .token-box:first-child,
 .input-group-btn:first-child > .btn, .settings-list .badge-token-box .token-btn:first-child > .btn, .invoice.invoice-payment
-.input-group-btn:first-child > [type=submit], .settings-list .badge-token-box .invoice.invoice-payment .token-btn:first-child > [type=submit], .invoice.invoice-payment .settings-list .badge-token-box .token-btn:first-child > [type=submit], .invoice.invoice-payment
+.input-group-btn:first-child > .convert-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:first-child > .convert-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:first-child > .convert-btn, .invoice.invoice-payment
 .input-group-btn:first-child > .link-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:first-child > .link-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:first-child > .link-btn, .invoice.invoice-payment
 .input-group-btn:first-child > .more-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:first-child > .more-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:first-child > .more-btn,
 .input-group-btn:first-child > .btn-group > .btn, .settings-list .badge-token-box .token-btn:first-child > .btn-group > .btn, .invoice.invoice-payment
-.input-group-btn:first-child > .btn-group > [type=submit], .settings-list .badge-token-box .invoice.invoice-payment .token-btn:first-child > .btn-group > [type=submit], .invoice.invoice-payment .settings-list .badge-token-box .token-btn:first-child > .btn-group > [type=submit], .invoice.invoice-payment
+.input-group-btn:first-child > .btn-group > .convert-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:first-child > .btn-group > .convert-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:first-child > .btn-group > .convert-btn, .invoice.invoice-payment
 .input-group-btn:first-child > .btn-group > .link-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:first-child > .btn-group > .link-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:first-child > .btn-group > .link-btn, .invoice.invoice-payment
 .input-group-btn:first-child > .btn-group > .more-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:first-child > .btn-group > .more-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:first-child > .btn-group > .more-btn,
 .input-group-btn:first-child > .dropdown-toggle, .settings-list .badge-token-box .token-btn:first-child > .dropdown-toggle,
 .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle), .settings-list .badge-token-box .token-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle), .invoice.invoice-payment
-.input-group-btn:last-child > [type=submit]:not(:last-child):not(.dropdown-toggle), .settings-list .badge-token-box .invoice.invoice-payment .token-btn:last-child > [type=submit]:not(:last-child):not(.dropdown-toggle), .invoice.invoice-payment .settings-list .badge-token-box .token-btn:last-child > [type=submit]:not(:last-child):not(.dropdown-toggle), .invoice.invoice-payment
+.input-group-btn:last-child > .convert-btn:not(:last-child):not(.dropdown-toggle), .settings-list .badge-token-box .invoice.invoice-payment .token-btn:last-child > .convert-btn:not(:last-child):not(.dropdown-toggle), .invoice.invoice-payment .settings-list .badge-token-box .token-btn:last-child > .convert-btn:not(:last-child):not(.dropdown-toggle), .invoice.invoice-payment
 .input-group-btn:last-child > .link-btn:not(:last-child):not(.dropdown-toggle), .settings-list .badge-token-box .invoice.invoice-payment .token-btn:last-child > .link-btn:not(:last-child):not(.dropdown-toggle), .invoice.invoice-payment .settings-list .badge-token-box .token-btn:last-child > .link-btn:not(:last-child):not(.dropdown-toggle), .invoice.invoice-payment
 .input-group-btn:last-child > .more-btn:not(:last-child):not(.dropdown-toggle), .settings-list .badge-token-box .invoice.invoice-payment .token-btn:last-child > .more-btn:not(:last-child):not(.dropdown-toggle), .invoice.invoice-payment .settings-list .badge-token-box .token-btn:last-child > .more-btn:not(:last-child):not(.dropdown-toggle),
 .input-group-btn:last-child > .btn-group:not(:last-child) > .btn, .settings-list .badge-token-box .token-btn:last-child > .btn-group:not(:last-child) > .btn, .invoice.invoice-payment
-.input-group-btn:last-child > .btn-group:not(:last-child) > [type=submit], .settings-list .badge-token-box .invoice.invoice-payment .token-btn:last-child > .btn-group:not(:last-child) > [type=submit], .invoice.invoice-payment .settings-list .badge-token-box .token-btn:last-child > .btn-group:not(:last-child) > [type=submit], .invoice.invoice-payment
+.input-group-btn:last-child > .btn-group:not(:last-child) > .convert-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:last-child > .btn-group:not(:last-child) > .convert-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:last-child > .btn-group:not(:last-child) > .convert-btn, .invoice.invoice-payment
 .input-group-btn:last-child > .btn-group:not(:last-child) > .link-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:last-child > .btn-group:not(:last-child) > .link-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:last-child > .btn-group:not(:last-child) > .link-btn, .invoice.invoice-payment
 .input-group-btn:last-child > .btn-group:not(:last-child) > .more-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:last-child > .btn-group:not(:last-child) > .more-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:last-child > .btn-group:not(:last-child) > .more-btn {
   border-bottom-right-radius: 0;
@@ -3978,20 +3978,20 @@ tbody.collapse.in {
 .input-group-addon:last-child,
 .settings-list .badge-token-box .token-box:last-child,
 .input-group-btn:last-child > .btn, .settings-list .badge-token-box .token-btn:last-child > .btn, .invoice.invoice-payment
-.input-group-btn:last-child > [type=submit], .settings-list .badge-token-box .invoice.invoice-payment .token-btn:last-child > [type=submit], .invoice.invoice-payment .settings-list .badge-token-box .token-btn:last-child > [type=submit], .invoice.invoice-payment
+.input-group-btn:last-child > .convert-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:last-child > .convert-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:last-child > .convert-btn, .invoice.invoice-payment
 .input-group-btn:last-child > .link-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:last-child > .link-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:last-child > .link-btn, .invoice.invoice-payment
 .input-group-btn:last-child > .more-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:last-child > .more-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:last-child > .more-btn,
 .input-group-btn:last-child > .btn-group > .btn, .settings-list .badge-token-box .token-btn:last-child > .btn-group > .btn, .invoice.invoice-payment
-.input-group-btn:last-child > .btn-group > [type=submit], .settings-list .badge-token-box .invoice.invoice-payment .token-btn:last-child > .btn-group > [type=submit], .invoice.invoice-payment .settings-list .badge-token-box .token-btn:last-child > .btn-group > [type=submit], .invoice.invoice-payment
+.input-group-btn:last-child > .btn-group > .convert-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:last-child > .btn-group > .convert-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:last-child > .btn-group > .convert-btn, .invoice.invoice-payment
 .input-group-btn:last-child > .btn-group > .link-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:last-child > .btn-group > .link-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:last-child > .btn-group > .link-btn, .invoice.invoice-payment
 .input-group-btn:last-child > .btn-group > .more-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:last-child > .btn-group > .more-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:last-child > .btn-group > .more-btn,
 .input-group-btn:last-child > .dropdown-toggle, .settings-list .badge-token-box .token-btn:last-child > .dropdown-toggle,
 .input-group-btn:first-child > .btn:not(:first-child), .settings-list .badge-token-box .token-btn:first-child > .btn:not(:first-child), .invoice.invoice-payment
-.input-group-btn:first-child > [type=submit]:not(:first-child), .settings-list .badge-token-box .invoice.invoice-payment .token-btn:first-child > [type=submit]:not(:first-child), .invoice.invoice-payment .settings-list .badge-token-box .token-btn:first-child > [type=submit]:not(:first-child), .invoice.invoice-payment
+.input-group-btn:first-child > .convert-btn:not(:first-child), .settings-list .badge-token-box .invoice.invoice-payment .token-btn:first-child > .convert-btn:not(:first-child), .invoice.invoice-payment .settings-list .badge-token-box .token-btn:first-child > .convert-btn:not(:first-child), .invoice.invoice-payment
 .input-group-btn:first-child > .link-btn:not(:first-child), .settings-list .badge-token-box .invoice.invoice-payment .token-btn:first-child > .link-btn:not(:first-child), .invoice.invoice-payment .settings-list .badge-token-box .token-btn:first-child > .link-btn:not(:first-child), .invoice.invoice-payment
 .input-group-btn:first-child > .more-btn:not(:first-child), .settings-list .badge-token-box .invoice.invoice-payment .token-btn:first-child > .more-btn:not(:first-child), .invoice.invoice-payment .settings-list .badge-token-box .token-btn:first-child > .more-btn:not(:first-child),
 .input-group-btn:first-child > .btn-group:not(:first-child) > .btn, .settings-list .badge-token-box .token-btn:first-child > .btn-group:not(:first-child) > .btn, .invoice.invoice-payment
-.input-group-btn:first-child > .btn-group:not(:first-child) > [type=submit], .settings-list .badge-token-box .invoice.invoice-payment .token-btn:first-child > .btn-group:not(:first-child) > [type=submit], .invoice.invoice-payment .settings-list .badge-token-box .token-btn:first-child > .btn-group:not(:first-child) > [type=submit], .invoice.invoice-payment
+.input-group-btn:first-child > .btn-group:not(:first-child) > .convert-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:first-child > .btn-group:not(:first-child) > .convert-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:first-child > .btn-group:not(:first-child) > .convert-btn, .invoice.invoice-payment
 .input-group-btn:first-child > .btn-group:not(:first-child) > .link-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:first-child > .btn-group:not(:first-child) > .link-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:first-child > .btn-group:not(:first-child) > .link-btn, .invoice.invoice-payment
 .input-group-btn:first-child > .btn-group:not(:first-child) > .more-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:first-child > .btn-group:not(:first-child) > .more-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:first-child > .btn-group:not(:first-child) > .more-btn {
   border-bottom-left-radius: 0;
@@ -4004,16 +4004,16 @@ tbody.collapse.in {
   position: relative;
   font-size: 0;
   white-space: nowrap; }
-  .input-group-btn > .btn, .settings-list .badge-token-box .token-btn > .btn, .invoice.invoice-payment .input-group-btn > [type=submit], .settings-list .badge-token-box .invoice.invoice-payment .token-btn > [type=submit], .invoice.invoice-payment .settings-list .badge-token-box .token-btn > [type=submit], .invoice.invoice-payment .input-group-btn > .link-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .link-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .link-btn, .invoice.invoice-payment .input-group-btn > .more-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .more-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .more-btn {
+  .input-group-btn > .btn, .settings-list .badge-token-box .token-btn > .btn, .invoice.invoice-payment .input-group-btn > .convert-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .convert-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .convert-btn, .invoice.invoice-payment .input-group-btn > .link-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .link-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .link-btn, .invoice.invoice-payment .input-group-btn > .more-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .more-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .more-btn {
     position: relative; }
-    .input-group-btn > .btn + .btn, .settings-list .badge-token-box .token-btn > .btn + .btn, .invoice.invoice-payment .input-group-btn > [type=submit] + .btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > [type=submit] + .btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > [type=submit] + .btn, .invoice.invoice-payment .input-group-btn > .link-btn + .btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .link-btn + .btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .link-btn + .btn, .invoice.invoice-payment .input-group-btn > .more-btn + .btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .more-btn + .btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .more-btn + .btn, .invoice.invoice-payment .input-group-btn > .btn + [type=submit], .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .btn + [type=submit], .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .btn + [type=submit], .invoice.invoice-payment .input-group-btn > [type=submit] + [type=submit], .settings-list .badge-token-box .invoice.invoice-payment .token-btn > [type=submit] + [type=submit], .invoice.invoice-payment .settings-list .badge-token-box .token-btn > [type=submit] + [type=submit], .invoice.invoice-payment .input-group-btn > .link-btn + [type=submit], .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .link-btn + [type=submit], .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .link-btn + [type=submit], .invoice.invoice-payment .input-group-btn > .more-btn + [type=submit], .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .more-btn + [type=submit], .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .more-btn + [type=submit], .invoice.invoice-payment .input-group-btn > .btn + .link-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .btn + .link-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .btn + .link-btn, .invoice.invoice-payment .input-group-btn > [type=submit] + .link-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > [type=submit] + .link-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > [type=submit] + .link-btn, .invoice.invoice-payment .input-group-btn > .link-btn + .link-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .link-btn + .link-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .link-btn + .link-btn, .invoice.invoice-payment .input-group-btn > .more-btn + .link-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .more-btn + .link-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .more-btn + .link-btn, .invoice.invoice-payment .input-group-btn > .btn + .more-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .btn + .more-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .btn + .more-btn, .invoice.invoice-payment .input-group-btn > [type=submit] + .more-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > [type=submit] + .more-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > [type=submit] + .more-btn, .invoice.invoice-payment .input-group-btn > .link-btn + .more-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .link-btn + .more-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .link-btn + .more-btn, .invoice.invoice-payment .input-group-btn > .more-btn + .more-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .more-btn + .more-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .more-btn + .more-btn {
+    .input-group-btn > .btn + .btn, .settings-list .badge-token-box .token-btn > .btn + .btn, .invoice.invoice-payment .input-group-btn > .convert-btn + .btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .convert-btn + .btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .convert-btn + .btn, .invoice.invoice-payment .input-group-btn > .link-btn + .btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .link-btn + .btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .link-btn + .btn, .invoice.invoice-payment .input-group-btn > .more-btn + .btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .more-btn + .btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .more-btn + .btn, .invoice.invoice-payment .input-group-btn > .btn + .convert-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .btn + .convert-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .btn + .convert-btn, .invoice.invoice-payment .input-group-btn > .convert-btn + .convert-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .convert-btn + .convert-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .convert-btn + .convert-btn, .invoice.invoice-payment .input-group-btn > .link-btn + .convert-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .link-btn + .convert-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .link-btn + .convert-btn, .invoice.invoice-payment .input-group-btn > .more-btn + .convert-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .more-btn + .convert-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .more-btn + .convert-btn, .invoice.invoice-payment .input-group-btn > .btn + .link-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .btn + .link-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .btn + .link-btn, .invoice.invoice-payment .input-group-btn > .convert-btn + .link-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .convert-btn + .link-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .convert-btn + .link-btn, .invoice.invoice-payment .input-group-btn > .link-btn + .link-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .link-btn + .link-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .link-btn + .link-btn, .invoice.invoice-payment .input-group-btn > .more-btn + .link-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .more-btn + .link-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .more-btn + .link-btn, .invoice.invoice-payment .input-group-btn > .btn + .more-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .btn + .more-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .btn + .more-btn, .invoice.invoice-payment .input-group-btn > .convert-btn + .more-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .convert-btn + .more-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .convert-btn + .more-btn, .invoice.invoice-payment .input-group-btn > .link-btn + .more-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .link-btn + .more-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .link-btn + .more-btn, .invoice.invoice-payment .input-group-btn > .more-btn + .more-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .more-btn + .more-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .more-btn + .more-btn {
       margin-left: -1px; }
-    .input-group-btn > .btn:hover, .settings-list .badge-token-box .token-btn > .btn:hover, .invoice.invoice-payment .input-group-btn > [type=submit]:hover, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > [type=submit]:hover, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > [type=submit]:hover, .invoice.invoice-payment .input-group-btn > .link-btn:hover, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .link-btn:hover, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .link-btn:hover, .invoice.invoice-payment .input-group-btn > .more-btn:hover, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .more-btn:hover, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .more-btn:hover, .input-group-btn > .btn:focus, .settings-list .badge-token-box .token-btn > .btn:focus, .invoice.invoice-payment .input-group-btn > [type=submit]:focus, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > [type=submit]:focus, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > [type=submit]:focus, .invoice.invoice-payment .input-group-btn > .link-btn:focus, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .link-btn:focus, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .link-btn:focus, .invoice.invoice-payment .input-group-btn > .more-btn:focus, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .more-btn:focus, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .more-btn:focus, .input-group-btn > .btn:active, .settings-list .badge-token-box .token-btn > .btn:active, .invoice.invoice-payment .input-group-btn > [type=submit]:active, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > [type=submit]:active, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > [type=submit]:active, .invoice.invoice-payment .input-group-btn > .link-btn:active, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .link-btn:active, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .link-btn:active, .invoice.invoice-payment .input-group-btn > .more-btn:active, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .more-btn:active, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .more-btn:active {
+    .input-group-btn > .btn:hover, .settings-list .badge-token-box .token-btn > .btn:hover, .invoice.invoice-payment .input-group-btn > .convert-btn:hover, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .convert-btn:hover, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .convert-btn:hover, .invoice.invoice-payment .input-group-btn > .link-btn:hover, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .link-btn:hover, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .link-btn:hover, .invoice.invoice-payment .input-group-btn > .more-btn:hover, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .more-btn:hover, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .more-btn:hover, .input-group-btn > .btn:focus, .settings-list .badge-token-box .token-btn > .btn:focus, .invoice.invoice-payment .input-group-btn > .convert-btn:focus, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .convert-btn:focus, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .convert-btn:focus, .invoice.invoice-payment .input-group-btn > .link-btn:focus, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .link-btn:focus, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .link-btn:focus, .invoice.invoice-payment .input-group-btn > .more-btn:focus, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .more-btn:focus, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .more-btn:focus, .input-group-btn > .btn:active, .settings-list .badge-token-box .token-btn > .btn:active, .invoice.invoice-payment .input-group-btn > .convert-btn:active, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .convert-btn:active, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .convert-btn:active, .invoice.invoice-payment .input-group-btn > .link-btn:active, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .link-btn:active, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .link-btn:active, .invoice.invoice-payment .input-group-btn > .more-btn:active, .settings-list .badge-token-box .invoice.invoice-payment .token-btn > .more-btn:active, .invoice.invoice-payment .settings-list .badge-token-box .token-btn > .more-btn:active {
       z-index: 2; }
-  .input-group-btn:first-child > .btn, .settings-list .badge-token-box .token-btn:first-child > .btn, .invoice.invoice-payment .input-group-btn:first-child > [type=submit], .settings-list .badge-token-box .invoice.invoice-payment .token-btn:first-child > [type=submit], .invoice.invoice-payment .settings-list .badge-token-box .token-btn:first-child > [type=submit], .invoice.invoice-payment .input-group-btn:first-child > .link-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:first-child > .link-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:first-child > .link-btn, .invoice.invoice-payment .input-group-btn:first-child > .more-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:first-child > .more-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:first-child > .more-btn,
+  .input-group-btn:first-child > .btn, .settings-list .badge-token-box .token-btn:first-child > .btn, .invoice.invoice-payment .input-group-btn:first-child > .convert-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:first-child > .convert-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:first-child > .convert-btn, .invoice.invoice-payment .input-group-btn:first-child > .link-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:first-child > .link-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:first-child > .link-btn, .invoice.invoice-payment .input-group-btn:first-child > .more-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:first-child > .more-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:first-child > .more-btn,
   .input-group-btn:first-child > .btn-group, .settings-list .badge-token-box .token-btn:first-child > .btn-group {
     margin-right: -1px; }
-  .input-group-btn:last-child > .btn, .settings-list .badge-token-box .token-btn:last-child > .btn, .invoice.invoice-payment .input-group-btn:last-child > [type=submit], .settings-list .badge-token-box .invoice.invoice-payment .token-btn:last-child > [type=submit], .invoice.invoice-payment .settings-list .badge-token-box .token-btn:last-child > [type=submit], .invoice.invoice-payment .input-group-btn:last-child > .link-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:last-child > .link-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:last-child > .link-btn, .invoice.invoice-payment .input-group-btn:last-child > .more-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:last-child > .more-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:last-child > .more-btn,
+  .input-group-btn:last-child > .btn, .settings-list .badge-token-box .token-btn:last-child > .btn, .invoice.invoice-payment .input-group-btn:last-child > .convert-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:last-child > .convert-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:last-child > .convert-btn, .invoice.invoice-payment .input-group-btn:last-child > .link-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:last-child > .link-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:last-child > .link-btn, .invoice.invoice-payment .input-group-btn:last-child > .more-btn, .settings-list .badge-token-box .invoice.invoice-payment .token-btn:last-child > .more-btn, .invoice.invoice-payment .settings-list .badge-token-box .token-btn:last-child > .more-btn,
   .input-group-btn:last-child > .btn-group, .settings-list .badge-token-box .token-btn:last-child > .btn-group {
     z-index: 2;
     margin-left: -1px; }
@@ -4401,10 +4401,10 @@ tbody.collapse.in {
 .navbar-btn {
   margin-top: 15px;
   margin-bottom: 15px; }
-  .navbar-btn.btn-sm, .btn-group-sm > .navbar-btn.btn, .invoice.invoice-payment .btn-group-sm > .navbar-btn[type=submit], .invoice.invoice-payment .btn-group-sm > .navbar-btn.link-btn, .invoice.invoice-payment .btn-group-sm > .navbar-btn.more-btn {
+  .navbar-btn.btn-sm, .btn-group-sm > .navbar-btn.btn, .invoice.invoice-payment .btn-group-sm > .navbar-btn.convert-btn, .invoice.invoice-payment .btn-group-sm > .navbar-btn.link-btn, .invoice.invoice-payment .btn-group-sm > .navbar-btn.more-btn {
     margin-top: 17px;
     margin-bottom: 17px; }
-  .navbar-btn.btn-xs, .btn-group-xs > .navbar-btn.btn, .invoice.invoice-payment .btn-group-xs > .navbar-btn[type=submit], .invoice.invoice-payment .btn-group-xs > .navbar-btn.link-btn, .invoice.invoice-payment .btn-group-xs > .navbar-btn.more-btn {
+  .navbar-btn.btn-xs, .btn-group-xs > .navbar-btn.btn, .invoice.invoice-payment .btn-group-xs > .navbar-btn.convert-btn, .invoice.invoice-payment .btn-group-xs > .navbar-btn.link-btn, .invoice.invoice-payment .btn-group-xs > .navbar-btn.more-btn {
     margin-top: 21px;
     margin-bottom: 21px; }
 
@@ -4697,7 +4697,7 @@ tbody.collapse.in {
   border-radius: .25em; }
   .label:empty {
     display: none; }
-  .btn .label, .invoice.invoice-payment [type=submit] .label, .invoice.invoice-payment .link-btn .label, .invoice.invoice-payment .more-btn .label {
+  .btn .label, .invoice.invoice-payment .convert-btn .label, .invoice.invoice-payment .link-btn .label, .invoice.invoice-payment .more-btn .label {
     position: relative;
     top: -1px; }
 
@@ -4751,12 +4751,12 @@ a.label:hover, a.label:focus {
   border-radius: 10px; }
   .badge:empty {
     display: none; }
-  .btn .badge, .invoice.invoice-payment [type=submit] .badge, .invoice.invoice-payment .link-btn .badge, .invoice.invoice-payment .more-btn .badge {
+  .btn .badge, .invoice.invoice-payment .convert-btn .badge, .invoice.invoice-payment .link-btn .badge, .invoice.invoice-payment .more-btn .badge {
     position: relative;
     top: -1px; }
-  .btn-xs .badge, .btn-group-xs > .btn .badge, .invoice.invoice-payment .btn-group-xs > [type=submit] .badge, .invoice.invoice-payment .btn-group-xs > .link-btn .badge, .invoice.invoice-payment .btn-group-xs > .more-btn .badge,
+  .btn-xs .badge, .btn-group-xs > .btn .badge, .invoice.invoice-payment .btn-group-xs > .convert-btn .badge, .invoice.invoice-payment .btn-group-xs > .link-btn .badge, .invoice.invoice-payment .btn-group-xs > .more-btn .badge,
   .btn-group-xs > .btn .badge, .invoice.invoice-payment
-  .btn-group-xs > [type=submit] .badge, .invoice.invoice-payment
+  .btn-group-xs > .convert-btn .badge, .invoice.invoice-payment
   .btn-group-xs > .link-btn .badge, .invoice.invoice-payment
   .btn-group-xs > .more-btn .badge {
     top: 0;
@@ -5667,12 +5667,12 @@ button.close {
     display: table; }
   .modal-footer:after {
     clear: both; }
-  .modal-footer .btn + .btn, .modal-footer .invoice.invoice-payment [type=submit] + .btn, .invoice.invoice-payment .modal-footer [type=submit] + .btn, .modal-footer .invoice.invoice-payment .link-btn + .btn, .invoice.invoice-payment .modal-footer .link-btn + .btn, .modal-footer .invoice.invoice-payment .more-btn + .btn, .invoice.invoice-payment .modal-footer .more-btn + .btn, .modal-footer .invoice.invoice-payment .btn + [type=submit], .invoice.invoice-payment .modal-footer .btn + [type=submit], .modal-footer .invoice.invoice-payment [type=submit] + [type=submit], .invoice.invoice-payment .modal-footer [type=submit] + [type=submit], .modal-footer .invoice.invoice-payment .link-btn + [type=submit], .invoice.invoice-payment .modal-footer .link-btn + [type=submit], .modal-footer .invoice.invoice-payment .more-btn + [type=submit], .invoice.invoice-payment .modal-footer .more-btn + [type=submit], .modal-footer .invoice.invoice-payment .btn + .link-btn, .invoice.invoice-payment .modal-footer .btn + .link-btn, .modal-footer .invoice.invoice-payment [type=submit] + .link-btn, .invoice.invoice-payment .modal-footer [type=submit] + .link-btn, .modal-footer .invoice.invoice-payment .link-btn + .link-btn, .invoice.invoice-payment .modal-footer .link-btn + .link-btn, .modal-footer .invoice.invoice-payment .more-btn + .link-btn, .invoice.invoice-payment .modal-footer .more-btn + .link-btn, .modal-footer .invoice.invoice-payment .btn + .more-btn, .invoice.invoice-payment .modal-footer .btn + .more-btn, .modal-footer .invoice.invoice-payment [type=submit] + .more-btn, .invoice.invoice-payment .modal-footer [type=submit] + .more-btn, .modal-footer .invoice.invoice-payment .link-btn + .more-btn, .invoice.invoice-payment .modal-footer .link-btn + .more-btn, .modal-footer .invoice.invoice-payment .more-btn + .more-btn, .invoice.invoice-payment .modal-footer .more-btn + .more-btn {
+  .modal-footer .btn + .btn, .modal-footer .invoice.invoice-payment .convert-btn + .btn, .invoice.invoice-payment .modal-footer .convert-btn + .btn, .modal-footer .invoice.invoice-payment .link-btn + .btn, .invoice.invoice-payment .modal-footer .link-btn + .btn, .modal-footer .invoice.invoice-payment .more-btn + .btn, .invoice.invoice-payment .modal-footer .more-btn + .btn, .modal-footer .invoice.invoice-payment .btn + .convert-btn, .invoice.invoice-payment .modal-footer .btn + .convert-btn, .modal-footer .invoice.invoice-payment .convert-btn + .convert-btn, .invoice.invoice-payment .modal-footer .convert-btn + .convert-btn, .modal-footer .invoice.invoice-payment .link-btn + .convert-btn, .invoice.invoice-payment .modal-footer .link-btn + .convert-btn, .modal-footer .invoice.invoice-payment .more-btn + .convert-btn, .invoice.invoice-payment .modal-footer .more-btn + .convert-btn, .modal-footer .invoice.invoice-payment .btn + .link-btn, .invoice.invoice-payment .modal-footer .btn + .link-btn, .modal-footer .invoice.invoice-payment .convert-btn + .link-btn, .invoice.invoice-payment .modal-footer .convert-btn + .link-btn, .modal-footer .invoice.invoice-payment .link-btn + .link-btn, .invoice.invoice-payment .modal-footer .link-btn + .link-btn, .modal-footer .invoice.invoice-payment .more-btn + .link-btn, .invoice.invoice-payment .modal-footer .more-btn + .link-btn, .modal-footer .invoice.invoice-payment .btn + .more-btn, .invoice.invoice-payment .modal-footer .btn + .more-btn, .modal-footer .invoice.invoice-payment .convert-btn + .more-btn, .invoice.invoice-payment .modal-footer .convert-btn + .more-btn, .modal-footer .invoice.invoice-payment .link-btn + .more-btn, .invoice.invoice-payment .modal-footer .link-btn + .more-btn, .modal-footer .invoice.invoice-payment .more-btn + .more-btn, .invoice.invoice-payment .modal-footer .more-btn + .more-btn {
     margin-left: 5px;
     margin-bottom: 0; }
-  .modal-footer .btn-group .btn + .btn, .modal-footer .btn-group .invoice.invoice-payment [type=submit] + .btn, .invoice.invoice-payment .modal-footer .btn-group [type=submit] + .btn, .modal-footer .btn-group .invoice.invoice-payment .link-btn + .btn, .invoice.invoice-payment .modal-footer .btn-group .link-btn + .btn, .modal-footer .btn-group .invoice.invoice-payment .more-btn + .btn, .invoice.invoice-payment .modal-footer .btn-group .more-btn + .btn, .modal-footer .btn-group .invoice.invoice-payment .btn + [type=submit], .invoice.invoice-payment .modal-footer .btn-group .btn + [type=submit], .modal-footer .btn-group .invoice.invoice-payment [type=submit] + [type=submit], .invoice.invoice-payment .modal-footer .btn-group [type=submit] + [type=submit], .modal-footer .btn-group .invoice.invoice-payment .link-btn + [type=submit], .invoice.invoice-payment .modal-footer .btn-group .link-btn + [type=submit], .modal-footer .btn-group .invoice.invoice-payment .more-btn + [type=submit], .invoice.invoice-payment .modal-footer .btn-group .more-btn + [type=submit], .modal-footer .btn-group .invoice.invoice-payment .btn + .link-btn, .invoice.invoice-payment .modal-footer .btn-group .btn + .link-btn, .modal-footer .btn-group .invoice.invoice-payment [type=submit] + .link-btn, .invoice.invoice-payment .modal-footer .btn-group [type=submit] + .link-btn, .modal-footer .btn-group .invoice.invoice-payment .link-btn + .link-btn, .invoice.invoice-payment .modal-footer .btn-group .link-btn + .link-btn, .modal-footer .btn-group .invoice.invoice-payment .more-btn + .link-btn, .invoice.invoice-payment .modal-footer .btn-group .more-btn + .link-btn, .modal-footer .btn-group .invoice.invoice-payment .btn + .more-btn, .invoice.invoice-payment .modal-footer .btn-group .btn + .more-btn, .modal-footer .btn-group .invoice.invoice-payment [type=submit] + .more-btn, .invoice.invoice-payment .modal-footer .btn-group [type=submit] + .more-btn, .modal-footer .btn-group .invoice.invoice-payment .link-btn + .more-btn, .invoice.invoice-payment .modal-footer .btn-group .link-btn + .more-btn, .modal-footer .btn-group .invoice.invoice-payment .more-btn + .more-btn, .invoice.invoice-payment .modal-footer .btn-group .more-btn + .more-btn {
+  .modal-footer .btn-group .btn + .btn, .modal-footer .btn-group .invoice.invoice-payment .convert-btn + .btn, .invoice.invoice-payment .modal-footer .btn-group .convert-btn + .btn, .modal-footer .btn-group .invoice.invoice-payment .link-btn + .btn, .invoice.invoice-payment .modal-footer .btn-group .link-btn + .btn, .modal-footer .btn-group .invoice.invoice-payment .more-btn + .btn, .invoice.invoice-payment .modal-footer .btn-group .more-btn + .btn, .modal-footer .btn-group .invoice.invoice-payment .btn + .convert-btn, .invoice.invoice-payment .modal-footer .btn-group .btn + .convert-btn, .modal-footer .btn-group .invoice.invoice-payment .convert-btn + .convert-btn, .invoice.invoice-payment .modal-footer .btn-group .convert-btn + .convert-btn, .modal-footer .btn-group .invoice.invoice-payment .link-btn + .convert-btn, .invoice.invoice-payment .modal-footer .btn-group .link-btn + .convert-btn, .modal-footer .btn-group .invoice.invoice-payment .more-btn + .convert-btn, .invoice.invoice-payment .modal-footer .btn-group .more-btn + .convert-btn, .modal-footer .btn-group .invoice.invoice-payment .btn + .link-btn, .invoice.invoice-payment .modal-footer .btn-group .btn + .link-btn, .modal-footer .btn-group .invoice.invoice-payment .convert-btn + .link-btn, .invoice.invoice-payment .modal-footer .btn-group .convert-btn + .link-btn, .modal-footer .btn-group .invoice.invoice-payment .link-btn + .link-btn, .invoice.invoice-payment .modal-footer .btn-group .link-btn + .link-btn, .modal-footer .btn-group .invoice.invoice-payment .more-btn + .link-btn, .invoice.invoice-payment .modal-footer .btn-group .more-btn + .link-btn, .modal-footer .btn-group .invoice.invoice-payment .btn + .more-btn, .invoice.invoice-payment .modal-footer .btn-group .btn + .more-btn, .modal-footer .btn-group .invoice.invoice-payment .convert-btn + .more-btn, .invoice.invoice-payment .modal-footer .btn-group .convert-btn + .more-btn, .modal-footer .btn-group .invoice.invoice-payment .link-btn + .more-btn, .invoice.invoice-payment .modal-footer .btn-group .link-btn + .more-btn, .modal-footer .btn-group .invoice.invoice-payment .more-btn + .more-btn, .invoice.invoice-payment .modal-footer .btn-group .more-btn + .more-btn {
     margin-left: -1px; }
-  .modal-footer .btn-block + .btn-block, .modal-footer .features.features-install .btn-next-step + .btn-block, .features.features-install .modal-footer .btn-next-step + .btn-block, .modal-footer .invoice.invoice-payment [type=submit] + .btn-block, .invoice.invoice-payment .modal-footer [type=submit] + .btn-block, .modal-footer .invoice.invoice-payment .link-btn + .btn-block, .invoice.invoice-payment .modal-footer .link-btn + .btn-block, .modal-footer .invoice.invoice-payment .more-btn + .btn-block, .invoice.invoice-payment .modal-footer .more-btn + .btn-block, .modal-footer .features.features-install .btn-block + .btn-next-step, .features.features-install .modal-footer .btn-block + .btn-next-step, .modal-footer .features.features-install .btn-next-step + .btn-next-step, .features.features-install .modal-footer .btn-next-step + .btn-next-step, .modal-footer .invoice.invoice-payment .features.features-install [type=submit] + .btn-next-step, .features.features-install .modal-footer .invoice.invoice-payment [type=submit] + .btn-next-step, .invoice.invoice-payment .modal-footer .features.features-install [type=submit] + .btn-next-step, .features.features-install .invoice.invoice-payment .modal-footer [type=submit] + .btn-next-step, .modal-footer .invoice.invoice-payment .features.features-install .link-btn + .btn-next-step, .features.features-install .modal-footer .invoice.invoice-payment .link-btn + .btn-next-step, .invoice.invoice-payment .modal-footer .features.features-install .link-btn + .btn-next-step, .features.features-install .invoice.invoice-payment .modal-footer .link-btn + .btn-next-step, .modal-footer .invoice.invoice-payment .features.features-install .more-btn + .btn-next-step, .features.features-install .modal-footer .invoice.invoice-payment .more-btn + .btn-next-step, .invoice.invoice-payment .modal-footer .features.features-install .more-btn + .btn-next-step, .features.features-install .invoice.invoice-payment .modal-footer .more-btn + .btn-next-step, .modal-footer .invoice.invoice-payment .btn-block + [type=submit], .invoice.invoice-payment .modal-footer .btn-block + [type=submit], .modal-footer .features.features-install .invoice.invoice-payment .btn-next-step + [type=submit], .invoice.invoice-payment .modal-footer .features.features-install .btn-next-step + [type=submit], .features.features-install .modal-footer .invoice.invoice-payment .btn-next-step + [type=submit], .invoice.invoice-payment .features.features-install .modal-footer .btn-next-step + [type=submit], .modal-footer .invoice.invoice-payment [type=submit] + [type=submit], .invoice.invoice-payment .modal-footer [type=submit] + [type=submit], .modal-footer .invoice.invoice-payment .link-btn + [type=submit], .invoice.invoice-payment .modal-footer .link-btn + [type=submit], .modal-footer .invoice.invoice-payment .more-btn + [type=submit], .invoice.invoice-payment .modal-footer .more-btn + [type=submit], .modal-footer .invoice.invoice-payment .btn-block + .link-btn, .invoice.invoice-payment .modal-footer .btn-block + .link-btn, .modal-footer .features.features-install .invoice.invoice-payment .btn-next-step + .link-btn, .invoice.invoice-payment .modal-footer .features.features-install .btn-next-step + .link-btn, .features.features-install .modal-footer .invoice.invoice-payment .btn-next-step + .link-btn, .invoice.invoice-payment .features.features-install .modal-footer .btn-next-step + .link-btn, .modal-footer .invoice.invoice-payment [type=submit] + .link-btn, .invoice.invoice-payment .modal-footer [type=submit] + .link-btn, .modal-footer .invoice.invoice-payment .link-btn + .link-btn, .invoice.invoice-payment .modal-footer .link-btn + .link-btn, .modal-footer .invoice.invoice-payment .more-btn + .link-btn, .invoice.invoice-payment .modal-footer .more-btn + .link-btn, .modal-footer .invoice.invoice-payment .btn-block + .more-btn, .invoice.invoice-payment .modal-footer .btn-block + .more-btn, .modal-footer .features.features-install .invoice.invoice-payment .btn-next-step + .more-btn, .invoice.invoice-payment .modal-footer .features.features-install .btn-next-step + .more-btn, .features.features-install .modal-footer .invoice.invoice-payment .btn-next-step + .more-btn, .invoice.invoice-payment .features.features-install .modal-footer .btn-next-step + .more-btn, .modal-footer .invoice.invoice-payment [type=submit] + .more-btn, .invoice.invoice-payment .modal-footer [type=submit] + .more-btn, .modal-footer .invoice.invoice-payment .link-btn + .more-btn, .invoice.invoice-payment .modal-footer .link-btn + .more-btn, .modal-footer .invoice.invoice-payment .more-btn + .more-btn, .invoice.invoice-payment .modal-footer .more-btn + .more-btn {
+  .modal-footer .btn-block + .btn-block, .modal-footer .features.features-install .btn-next-step + .btn-block, .features.features-install .modal-footer .btn-next-step + .btn-block, .modal-footer .invoice.invoice-payment .convert-btn + .btn-block, .invoice.invoice-payment .modal-footer .convert-btn + .btn-block, .modal-footer .invoice.invoice-payment .link-btn + .btn-block, .invoice.invoice-payment .modal-footer .link-btn + .btn-block, .modal-footer .invoice.invoice-payment .more-btn + .btn-block, .invoice.invoice-payment .modal-footer .more-btn + .btn-block, .modal-footer .features.features-install .btn-block + .btn-next-step, .features.features-install .modal-footer .btn-block + .btn-next-step, .modal-footer .features.features-install .btn-next-step + .btn-next-step, .features.features-install .modal-footer .btn-next-step + .btn-next-step, .modal-footer .invoice.invoice-payment .features.features-install .convert-btn + .btn-next-step, .features.features-install .modal-footer .invoice.invoice-payment .convert-btn + .btn-next-step, .invoice.invoice-payment .modal-footer .features.features-install .convert-btn + .btn-next-step, .features.features-install .invoice.invoice-payment .modal-footer .convert-btn + .btn-next-step, .modal-footer .invoice.invoice-payment .features.features-install .link-btn + .btn-next-step, .features.features-install .modal-footer .invoice.invoice-payment .link-btn + .btn-next-step, .invoice.invoice-payment .modal-footer .features.features-install .link-btn + .btn-next-step, .features.features-install .invoice.invoice-payment .modal-footer .link-btn + .btn-next-step, .modal-footer .invoice.invoice-payment .features.features-install .more-btn + .btn-next-step, .features.features-install .modal-footer .invoice.invoice-payment .more-btn + .btn-next-step, .invoice.invoice-payment .modal-footer .features.features-install .more-btn + .btn-next-step, .features.features-install .invoice.invoice-payment .modal-footer .more-btn + .btn-next-step, .modal-footer .invoice.invoice-payment .btn-block + .convert-btn, .invoice.invoice-payment .modal-footer .btn-block + .convert-btn, .modal-footer .features.features-install .invoice.invoice-payment .btn-next-step + .convert-btn, .invoice.invoice-payment .modal-footer .features.features-install .btn-next-step + .convert-btn, .features.features-install .modal-footer .invoice.invoice-payment .btn-next-step + .convert-btn, .invoice.invoice-payment .features.features-install .modal-footer .btn-next-step + .convert-btn, .modal-footer .invoice.invoice-payment .convert-btn + .convert-btn, .invoice.invoice-payment .modal-footer .convert-btn + .convert-btn, .modal-footer .invoice.invoice-payment .link-btn + .convert-btn, .invoice.invoice-payment .modal-footer .link-btn + .convert-btn, .modal-footer .invoice.invoice-payment .more-btn + .convert-btn, .invoice.invoice-payment .modal-footer .more-btn + .convert-btn, .modal-footer .invoice.invoice-payment .btn-block + .link-btn, .invoice.invoice-payment .modal-footer .btn-block + .link-btn, .modal-footer .features.features-install .invoice.invoice-payment .btn-next-step + .link-btn, .invoice.invoice-payment .modal-footer .features.features-install .btn-next-step + .link-btn, .features.features-install .modal-footer .invoice.invoice-payment .btn-next-step + .link-btn, .invoice.invoice-payment .features.features-install .modal-footer .btn-next-step + .link-btn, .modal-footer .invoice.invoice-payment .convert-btn + .link-btn, .invoice.invoice-payment .modal-footer .convert-btn + .link-btn, .modal-footer .invoice.invoice-payment .link-btn + .link-btn, .invoice.invoice-payment .modal-footer .link-btn + .link-btn, .modal-footer .invoice.invoice-payment .more-btn + .link-btn, .invoice.invoice-payment .modal-footer .more-btn + .link-btn, .modal-footer .invoice.invoice-payment .btn-block + .more-btn, .invoice.invoice-payment .modal-footer .btn-block + .more-btn, .modal-footer .features.features-install .invoice.invoice-payment .btn-next-step + .more-btn, .invoice.invoice-payment .modal-footer .features.features-install .btn-next-step + .more-btn, .features.features-install .modal-footer .invoice.invoice-payment .btn-next-step + .more-btn, .invoice.invoice-payment .features.features-install .modal-footer .btn-next-step + .more-btn, .modal-footer .invoice.invoice-payment .convert-btn + .more-btn, .invoice.invoice-payment .modal-footer .convert-btn + .more-btn, .modal-footer .invoice.invoice-payment .link-btn + .more-btn, .invoice.invoice-payment .modal-footer .link-btn + .more-btn, .modal-footer .invoice.invoice-payment .more-btn + .more-btn, .invoice.invoice-payment .modal-footer .more-btn + .more-btn {
     margin-left: 0; }
 
 .modal-scrollbar-measure {
@@ -6092,7 +6092,7 @@ button.close {
   color: #fff;
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6); }
-  .carousel-caption .btn, .carousel-caption .invoice.invoice-payment [type=submit], .invoice.invoice-payment .carousel-caption [type=submit], .carousel-caption .invoice.invoice-payment .link-btn, .invoice.invoice-payment .carousel-caption .link-btn, .carousel-caption .invoice.invoice-payment .more-btn, .invoice.invoice-payment .carousel-caption .more-btn {
+  .carousel-caption .btn, .carousel-caption .invoice.invoice-payment .convert-btn, .invoice.invoice-payment .carousel-caption .convert-btn, .carousel-caption .invoice.invoice-payment .link-btn, .invoice.invoice-payment .carousel-caption .link-btn, .carousel-caption .invoice.invoice-payment .more-btn, .invoice.invoice-payment .carousel-caption .more-btn {
     text-shadow: none; }
 
 @media screen and (min-width: 768px) {
@@ -6334,30 +6334,30 @@ button.close {
   box-shadow: none;
   -webkit-box-shadow: none; }
 
-.btn, .invoice.invoice-payment [type=submit], .invoice.invoice-payment .link-btn, .invoice.invoice-payment .more-btn {
+.btn, .invoice.invoice-payment .convert-btn, .invoice.invoice-payment .link-btn, .invoice.invoice-payment .more-btn {
   border-bottom: 3px solid rgba(0, 0, 0, 0.15);
   padding-bottom: 3.5px; }
-  .btn.btn-xl, .invoice.invoice-payment [type=submit], .invoice.invoice-payment .link-btn, .invoice.invoice-payment .more-btn {
+  .btn.btn-xl, .invoice.invoice-payment .convert-btn, .invoice.invoice-payment .link-btn, .invoice.invoice-payment .more-btn {
     border-radius: 0px;
     padding: 1em;
     font-size: 30px;
     font-weight: lighter; }
-    .btn.btn-xl.btn-block, .features.features-install .btn.btn-xl.btn-next-step, .invoice.invoice-payment [type=submit], .invoice.invoice-payment .link-btn, .invoice.invoice-payment .more-btn {
+    .btn.btn-xl.btn-block, .features.features-install .btn.btn-xl.btn-next-step, .invoice.invoice-payment .convert-btn, .invoice.invoice-payment .link-btn, .invoice.invoice-payment .more-btn {
       width: 100%;
       margin: 0px auto;
       display: block; }
-    .btn.btn-xl.btn-50, .invoice.invoice-payment .btn-50[type=submit], .invoice.invoice-payment .btn-50.link-btn, .invoice.invoice-payment .btn-50.more-btn {
+    .btn.btn-xl.btn-50, .invoice.invoice-payment .btn-50.convert-btn, .invoice.invoice-payment .btn-50.link-btn, .invoice.invoice-payment .btn-50.more-btn {
       width: 100%;
       margin: 10px auto;
       display: block;
       margin-left: 1%;
       margin-right: 1%; }
       @media (min-width: 768px) {
-        .btn.btn-xl.btn-50, .invoice.invoice-payment .btn-50[type=submit], .invoice.invoice-payment .btn-50.link-btn, .invoice.invoice-payment .btn-50.more-btn {
+        .btn.btn-xl.btn-50, .invoice.invoice-payment .btn-50.convert-btn, .invoice.invoice-payment .btn-50.link-btn, .invoice.invoice-payment .btn-50.more-btn {
           width: 48%;
           float: left; } }
 
-.btn-outline, .invoice.invoice-payment [type=submit], .invoice.invoice-payment .link-btn, .invoice.invoice-payment .more-btn {
+.btn-outline, .invoice.invoice-payment .convert-btn, .invoice.invoice-payment .link-btn, .invoice.invoice-payment .more-btn {
   background-color: transparent;
   color: inherit;
   transition: all .1s;
@@ -6366,59 +6366,59 @@ button.close {
   border-width: 2px;
   border-radius: 2px; }
 
-.btn-white.btn-outline, .invoice.invoice-payment .btn-white[type=submit], .invoice.invoice-payment .btn-white.link-btn, .invoice.invoice-payment .btn-white.more-btn {
+.btn-white.btn-outline, .invoice.invoice-payment .btn-white.convert-btn, .invoice.invoice-payment .btn-white.link-btn, .invoice.invoice-payment .btn-white.more-btn {
   color: #fff;
   border-color: #fff; }
 
-.btn-default.btn-outline, .invoice.invoice-payment .btn-default[type=submit], .invoice.invoice-payment .btn-default.link-btn, .invoice.invoice-payment .more-btn {
+.btn-default.btn-outline, .invoice.invoice-payment .btn-default.convert-btn, .invoice.invoice-payment .btn-default.link-btn, .invoice.invoice-payment .more-btn {
   color: #777777;
   border-color: #777777; }
 
-.btn-primary.btn-outline, .features.features-install .btn-outline.btn-next-step, .features.features-install .invoice.invoice-payment .btn-next-step.link-btn, .invoice.invoice-payment .features.features-install .btn-next-step.link-btn, .features.features-install .invoice.invoice-payment .btn-next-step.more-btn, .invoice.invoice-payment .features.features-install .btn-next-step.more-btn, .invoice.invoice-payment [type=submit], .invoice.invoice-payment .btn-primary.link-btn, .invoice.invoice-payment .btn-primary.more-btn {
+.btn-primary.btn-outline, .features.features-install .btn-outline.btn-next-step, .features.features-install .invoice.invoice-payment .btn-next-step.link-btn, .invoice.invoice-payment .features.features-install .btn-next-step.link-btn, .features.features-install .invoice.invoice-payment .btn-next-step.more-btn, .invoice.invoice-payment .features.features-install .btn-next-step.more-btn, .invoice.invoice-payment .convert-btn, .invoice.invoice-payment .btn-primary.link-btn, .invoice.invoice-payment .btn-primary.more-btn {
   color: #51c4c4;
   border-color: #51c4c4; }
 
-.btn-success.btn-outline, .invoice.invoice-payment .btn-success[type=submit], .invoice.invoice-payment .link-btn, .invoice.invoice-payment .btn-success.more-btn {
+.btn-success.btn-outline, .invoice.invoice-payment .btn-success.convert-btn, .invoice.invoice-payment .link-btn, .invoice.invoice-payment .btn-success.more-btn {
   color: #8ac450;
   border-color: #8ac450; }
 
-.btn-info.btn-outline, .invoice.invoice-payment .btn-info[type=submit], .invoice.invoice-payment .btn-info.link-btn, .invoice.invoice-payment .btn-info.more-btn {
+.btn-info.btn-outline, .invoice.invoice-payment .btn-info.convert-btn, .invoice.invoice-payment .btn-info.link-btn, .invoice.invoice-payment .btn-info.more-btn {
   color: #8a51c4;
   border-color: #8a51c4; }
 
-.btn-warning.btn-outline, .invoice.invoice-payment .btn-warning[type=submit], .invoice.invoice-payment .btn-warning.link-btn, .invoice.invoice-payment .btn-warning.more-btn {
+.btn-warning.btn-outline, .invoice.invoice-payment .btn-warning.convert-btn, .invoice.invoice-payment .btn-warning.link-btn, .invoice.invoice-payment .btn-warning.more-btn {
   color: #E2D54A;
   border-color: #E2D54A; }
 
-.btn-danger.btn-outline, .invoice.invoice-payment .btn-danger[type=submit], .invoice.invoice-payment .btn-danger.link-btn, .invoice.invoice-payment .btn-danger.more-btn {
+.btn-danger.btn-outline, .invoice.invoice-payment .btn-danger.convert-btn, .invoice.invoice-payment .btn-danger.link-btn, .invoice.invoice-payment .btn-danger.more-btn {
   color: #c45151;
   border-color: #c45151; }
 
-.btn-white.btn-outline:hover, .invoice.invoice-payment .btn-white[type=submit]:hover, .invoice.invoice-payment .btn-white.link-btn:hover, .invoice.invoice-payment .btn-white.more-btn:hover {
+.btn-white.btn-outline:hover, .invoice.invoice-payment .btn-white.convert-btn:hover, .invoice.invoice-payment .btn-white.link-btn:hover, .invoice.invoice-payment .btn-white.more-btn:hover {
   color: #51c4c4;
   background: #fff; }
 
-.btn-default.btn-outline:hover, .invoice.invoice-payment .btn-default[type=submit]:hover, .invoice.invoice-payment .btn-default.link-btn:hover, .invoice.invoice-payment .more-btn:hover {
+.btn-default.btn-outline:hover, .invoice.invoice-payment .btn-default.convert-btn:hover, .invoice.invoice-payment .btn-default.link-btn:hover, .invoice.invoice-payment .more-btn:hover {
   color: #fff;
   background: #777777; }
 
-.btn-primary.btn-outline:hover, .features.features-install .btn-outline.btn-next-step:hover, .features.features-install .invoice.invoice-payment .btn-next-step.link-btn:hover, .invoice.invoice-payment .features.features-install .btn-next-step.link-btn:hover, .features.features-install .invoice.invoice-payment .btn-next-step.more-btn:hover, .invoice.invoice-payment .features.features-install .btn-next-step.more-btn:hover, .invoice.invoice-payment [type=submit]:hover, .invoice.invoice-payment .btn-primary.link-btn:hover, .invoice.invoice-payment .btn-primary.more-btn:hover {
+.btn-primary.btn-outline:hover, .features.features-install .btn-outline.btn-next-step:hover, .features.features-install .invoice.invoice-payment .btn-next-step.link-btn:hover, .invoice.invoice-payment .features.features-install .btn-next-step.link-btn:hover, .features.features-install .invoice.invoice-payment .btn-next-step.more-btn:hover, .invoice.invoice-payment .features.features-install .btn-next-step.more-btn:hover, .invoice.invoice-payment .convert-btn:hover, .invoice.invoice-payment .btn-primary.link-btn:hover, .invoice.invoice-payment .btn-primary.more-btn:hover {
   color: #fff;
   background: #51c4c4; }
 
-.btn-success.btn-outline:hover, .invoice.invoice-payment .btn-success[type=submit]:hover, .invoice.invoice-payment .link-btn:hover, .invoice.invoice-payment .btn-success.more-btn:hover {
+.btn-success.btn-outline:hover, .invoice.invoice-payment .btn-success.convert-btn:hover, .invoice.invoice-payment .link-btn:hover, .invoice.invoice-payment .btn-success.more-btn:hover {
   color: #fff;
   background: #8ac450; }
 
-.btn-info.btn-outline:hover, .invoice.invoice-payment .btn-info[type=submit]:hover, .invoice.invoice-payment .btn-info.link-btn:hover, .invoice.invoice-payment .btn-info.more-btn:hover {
+.btn-info.btn-outline:hover, .invoice.invoice-payment .btn-info.convert-btn:hover, .invoice.invoice-payment .btn-info.link-btn:hover, .invoice.invoice-payment .btn-info.more-btn:hover {
   color: #fff;
   background: #8a51c4; }
 
-.btn-warning.btn-outline:hover, .invoice.invoice-payment .btn-warning[type=submit]:hover, .invoice.invoice-payment .btn-warning.link-btn:hover, .invoice.invoice-payment .btn-warning.more-btn:hover {
+.btn-warning.btn-outline:hover, .invoice.invoice-payment .btn-warning.convert-btn:hover, .invoice.invoice-payment .btn-warning.link-btn:hover, .invoice.invoice-payment .btn-warning.more-btn:hover {
   color: #fff;
   background: #E2D54A; }
 
-.btn-danger.btn-outline:hover, .invoice.invoice-payment .btn-danger[type=submit]:hover, .invoice.invoice-payment .btn-danger.link-btn:hover, .invoice.invoice-payment .btn-danger.more-btn:hover {
+.btn-danger.btn-outline:hover, .invoice.invoice-payment .btn-danger.convert-btn:hover, .invoice.invoice-payment .btn-danger.link-btn:hover, .invoice.invoice-payment .btn-danger.more-btn:hover {
   color: #fff;
   background: #c45151; }
 
@@ -6914,7 +6914,7 @@ button.close {
       .invoice.invoice-payment .next-item {
         float: left;
         width: 33.3333333333%; } }
-  .invoice.invoice-payment [type=submit] {
+  .invoice.invoice-payment .convert-btn {
     margin-top: 4rem;
     cursor: not-allowed; }
   .invoice.invoice-payment .link-btn {
@@ -7184,12 +7184,6 @@ footer {
       .repo-details .repo-details-header .repo-details-report-link input[type=text] {
         width: 200px;
         float: left; }
-      .repo-details .repo-details-header .repo-details-report-link .repo-details-print-report {
-        float: right;
-        width: 100px; }
-      .repo-details .repo-details-header .repo-details-report-link .repo-details-report-share {
-        float: right;
-        width: 100px; }
   .repo-details .repo-details-badge {
     margin-left: 0.5em;
     cursor: pointer; }

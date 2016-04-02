@@ -1,0 +1,32 @@
+<% title = "Waltz invoice" %>
+<% include header %>
+
+<div class="invoice invoice-container">
+  <%- contents %>
+</div>
+
+<!-- made with waltz -->
+<a href='/?ref=iv'>
+  <img
+  style='position:absolute;top:20px;left:20px;width:64px;z-index:999;background:#fff;padding:4px;'
+  src='/img/logo_made_with.svg' />
+</a>
+
+<!-- payment -->
+<% if (invoice_data.totalCost && tokened_user && tokened_user.email) { %>
+  <div class="invoice invoice-payment">
+    <h2>What next?</h2>
+    <div class="next-item">
+      <a href class="convert-btn disabled">Convert to invoice</a>
+    </div>
+    <div class="next-item">
+      <a href="mailto:<%= tokened_user.email ||
+      tokened_user.settings.payment_email %>" class="link-btn">Contact freelancer</a>
+    </div>
+    <div class="next-item">
+      <a href="//waltzapp.co?ref=iv2" class="more-btn">About this invoice</a>
+    </div>
+  </div>
+<% } %>
+
+<% include footer %>

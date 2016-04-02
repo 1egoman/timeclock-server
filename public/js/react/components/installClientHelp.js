@@ -37,6 +37,8 @@ export function InstallClientHelpComponent({client_help_dialog, hideModal}) {
         npm install -g waltz<br/>
         waltz --version
       </pre>
+      <h2>Learn more</h2>
+      <pre>waltz --help</pre>
     </Modal.Body>
   </Modal>;
 }
