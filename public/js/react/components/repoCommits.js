@@ -4,7 +4,7 @@ import {OverlayTrigger, Popover} from 'react-bootstrap';
 import _ from 'underscore';
 
 function getRepoCommitNodeType(message) {
-  if (message.indexOf("merge")) {
+  if (message.indexOf("merge") !== -1) {
     return "merge";
   } else {
     return false;
@@ -32,7 +32,11 @@ export function RepoCommitNode({
   </Popover>
   return <OverlayTrigger trigger="click" rootClose placement="left" overlay={tooltip}>
     <span
-      className={`repo-commit-node-handle ${breakInside ? 'repo-commit-node-should-break' : ''}`}
+      className={`
+        repo-commit-node-handle
+        repo-commit-node-type-${getRepoCommitNodeType(message) || 'none'}
+        ${breakInside ? 'repo-commit-node-should-break' : ''}
+      `.split('\n').join(' ')}
       style={{height: `${breakInside ? 'none' : length+'px'}`}}
     >
       {breakInside ? <span className="repo-commit-node-break"></span> : null}
@@ -47,7 +51,7 @@ function reduceLengthOfCommits(commits, ct=1) {
   let reduced = commits.map((i) => {
     return Object.assign(i, {
       length: i.length / (total - ct),
-      breakInside: i.length > (total * 5),
+      breakInside: i.length > (total * 100),
     });
   });
 
