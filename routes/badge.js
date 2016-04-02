@@ -29,13 +29,16 @@ function getAuthenticatedUser(req) {
 
 // get a badge for this repo
 function fetchBadge(req, res) {
-  getAuthenticatedUser(req)
-  .then((user) => {
+  Promise.all([
+    getAuthenticatedUser(req),
+    repo.getRepoDetails(req, req.params.username, req.params.repo),
+  ]).then((prom) => {
+    let user = prom[0], details = prom[1];
     return repo.getFileFromRepo(
       req.params.username,
       req.params.repo,
       null,
-      req.query.ref || "master",
+      req.query.ref || details.default_branch || "master",
       user
     );
   })

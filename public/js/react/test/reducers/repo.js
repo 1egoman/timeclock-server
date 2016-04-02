@@ -316,6 +316,7 @@ describe('reducers/repo.js', function() {
         _page: 0,
         _canpaginateforward: false,
         error: null,
+        commits: null,
         show_share_modal: true,
       });
     });
@@ -331,6 +332,7 @@ describe('reducers/repo.js', function() {
         _page: 0,
         _canpaginateforward: false,
         error: null,
+        commits: null,
         show_share_modal: false,
         waiting_for_share_modal_response: true,
       });
@@ -348,6 +350,7 @@ describe('reducers/repo.js', function() {
         _canpaginateforward: false,
         error: null,
         show_share_modal: false,
+        commits: null,
         waiting_for_share_modal_response: false,
       });
     });
