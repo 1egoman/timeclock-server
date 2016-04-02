@@ -19,7 +19,7 @@
     @include make-md-column(4);
   }
 
-  [type=submit] {
+  .convert-btn {
     @extend .btn;
     @extend .btn-xl;
     @extend .btn-block;

@@ -16,30 +16,12 @@
 <% if (invoice_data.totalCost && tokened_user && tokened_user.email) { %>
   <div class="invoice invoice-payment">
     <h2>What next?</h2>
-
     <div class="next-item">
-      <!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"> -->
-      <div>
-        <input type="hidden" name="cmd" value="_xclick">
-        <input type="hidden" name="business" value="<%= tokened_user.settings.payment_email || tokened_user.email %>">
-        <input type="hidden" name="lc" value="US">
-        <input type="hidden" name="item_name" value="Payment for <%= invoice_data.timecard.name || "work completed" %>">
-        <input type="hidden" name="amount" value="<%= invoice_data.totalCost %>">
-        <input type="hidden" name="currency_code" value="USD">
-        <input type="hidden" name="button_subtype" value="services">
-        <input type="hidden" name="no_note" value="0">
-        <input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynow_LG.gif:NonHostedGuest">
-        <input
-          type="submit" 
-          data-toggle="tooltip"
-          data-placement="top"
-          title="Coming soon!"
-          value="Pay with Paypal"
-        />
-      </div>
+      <a href class="convert-btn disabled">Convert to invoice</a>
     </div>
     <div class="next-item">
-      <a href="mailto:<%= tokened_user.email || tokened_user.settings.payment_email %>" class="link-btn">Email Client</a>
+      <a href="mailto:<%= tokened_user.email ||
+      tokened_user.settings.payment_email %>" class="link-btn">Contact freelancer</a>
     </div>
     <div class="next-item">
       <a href="//waltzapp.co?ref=iv2" class="more-btn">About this invoice</a>
