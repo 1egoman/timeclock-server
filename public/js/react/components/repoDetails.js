@@ -142,13 +142,13 @@ export const RepoDetailsComponent = ({
               className="btn btn-success"
               onClick={openShareModal.bind(this)}
             >Share</button>
-          </div>
 
-          {/* print a copy of the report */}
-          <button
-            className="btn btn-info repo-details-print-report"
-            onClick={printReport(repo, current_branch)}
-          >Print</button>
+            {/* print a copy of the report */}
+            <button
+              className="btn btn-info repo-details-print-report"
+              onClick={printReport(repo, current_branch)}
+            >Print</button>
+          </div>
         </div>
       </div>
 

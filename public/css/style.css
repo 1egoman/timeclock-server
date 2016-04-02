@@ -7184,12 +7184,6 @@ footer {
       .repo-details .repo-details-header .repo-details-report-link input[type=text] {
         width: 200px;
         float: left; }
-      .repo-details .repo-details-header .repo-details-report-link .repo-details-print-report {
-        float: right;
-        width: 100px; }
-      .repo-details .repo-details-header .repo-details-report-link .repo-details-report-share {
-        float: right;
-        width: 100px; }
   .repo-details .repo-details-badge {
     margin-left: 0.5em;
     cursor: pointer; }
