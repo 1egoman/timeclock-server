@@ -23,15 +23,20 @@ export function RepoCommitNode({
     breakInside,
   },
 }) {
-  let tooltip = <Popover
-    id={`${message} by ${committer.username}`}
-  >
+  let tooltip = <Popover id={`${message} by ${committer.username}`}>
     <img className="repo-commit-node-avatar" src={committer.avatar} />
     <span className="repo-commit-node-content">
       <span className="repo-commit-node-message">{message}</span>
       <span className="repo-commit-node-author">by {committer.username}</span>
     </span>
   </Popover>;
+
+  // set styles for this commit
+  let styles = {};
+  if (!breakInside) {
+    styles.height = length;
+  }
+
   return <OverlayTrigger trigger="click" rootClose placement="left" overlay={tooltip}>
     <span
       className={`
@@ -39,7 +44,7 @@ export function RepoCommitNode({
         repo-commit-node-type-${getRepoCommitNodeType(message) || 'none'}
         ${breakInside ? 'repo-commit-node-should-break' : ''}
       `.split('\n').join(' ')}
-      style={{height: `${length}px`}}
+      style={styles}
     >
       {breakInside ? <span className="repo-commit-node-break"></span> : null}
     </span>
@@ -53,8 +58,8 @@ function reduceLengthOfCommits(commits, maxBlockHeight=1000) {
   return commits.map((i) => {
     let length = i.length / maxLength * maxBlockHeight,
         breakInside = length > (maxBlockHeight / 6);
-    return Object.assign(i, {
-      length: breakInside ? null : length,
+    return Object.assign({}, i, {
+      length,
       breakInside,
     });
   });
@@ -66,7 +71,6 @@ export function repoCommitsComponent({
 }) {
   let commits;
   if (user && repoDetails && repoDetails.commits) {
-
     // for each commit, calculate its length by subtracting the previous
     // commit's time from the current commit's time.
     commits = repoDetails.commits.reduce((acc, i, ct) => {
@@ -93,7 +97,12 @@ export function repoCommitsComponent({
       return <RepoCommitNode key={ct} commit={i} />
     });
   }
-  return <div className="repo-commits">{commits}</div>;
+  return <div className="repo-commits">
+    {commits}
+    <div onClick={alert.bind(window)} className="repo-commit-node-handle repo-commit-node-type-more">
+      ...
+    </div>
+  </div>;
 }
 
 export function mapStateToProps(store, props) {

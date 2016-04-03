@@ -204,10 +204,5 @@ $details-left-margin: 20px;
 }
 
 .repo-details-tabs {
-  margin-top: -32px; // height of tabs
-
-  .nav-tabs {
-    float: right;
-    margin-right: 10px;
-  }
+  position: relative;
 }

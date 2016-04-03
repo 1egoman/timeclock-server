@@ -155,45 +155,39 @@ export const RepoDetailsComponent = ({
       </div>
 
       <div className="repo-details-tabs">
-        <Tabs defaultActiveKey={0}>
-          <Tab eventKey={0} title="Times">
-            {/* list of all times in the timecard */}
-            {timecard ? <div className="repo-details-report-table">
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>Date</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Duration</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {renderTimecardTable(timecard, timecard_users, user)}
-                </tbody>
-              </table>
+          <RepoCommits />
 
-              {/* if timecard is empty, let the user know */}
-              {timecard.card.length === 0 && emptyTimecard({helpInstallingWaltz})}
+          {/* list of all times in the timecard */}
+          {timecard ? <div className="repo-details-report-table">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Date</th>
+                  <th>From</th>
+                  <th>To</th>
+                  <th>Duration</th>
+                </tr>
+              </thead>
+              <tbody>
+                {renderTimecardTable(timecard, timecard_users, user)}
+              </tbody>
+            </table>
 
-              {/* Go to the next page of times */}
-              <button
-                onClick={getMoreTimes(repo, current_branch, ++current_page)}
-                className={`btn btn-default ${can_paginate_forward ? 'shown' : 'hidden'}`}
-              >More...</button>
-            </div> : <div className="repo-details repo-details-empty">
-              <Loading
-                title="Loading Timecard..."
-                spinner
-              />
-            </div>}
-          </Tab>
-          <Tab eventKey={1} title="Metrics">
-            {/* a list of commits */}
-            <RepoCommits />
-          </Tab>
-        </Tabs>
+            {/* if timecard is empty, let the user know */}
+            {timecard.card.length === 0 && emptyTimecard({helpInstallingWaltz})}
+
+            {/* Go to the next page of times */}
+            <button
+              onClick={getMoreTimes(repo, current_branch, ++current_page)}
+              className={`btn btn-default ${can_paginate_forward ? 'shown' : 'hidden'}`}
+            >More...</button>
+          </div> : <div className="repo-details repo-details-empty">
+            <Loading
+              title="Loading Timecard..."
+              spinner
+            />
+          </div>}
       </div>
     </div>;
 
