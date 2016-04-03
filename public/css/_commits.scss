@@ -22,7 +22,10 @@ $repo-commit-max-height: $repo-commit-width * 5;
   width: $repo-commit-width;
   margin-top: 37px;
   margin-left: -12px;
-  float: left;
+
+  &.repo-commits-disabled {
+    opacity: 0.35;
+  }
 }
 
 .repo-commit-node-handle {

@@ -157,7 +157,7 @@ export const RepoDetailsComponent = ({
       <div className="repo-details-tabs">
         {/* list of all times in the timecard */}
         {timecard ? <div className="repo-details-report-table">
-          <RepoCommits />
+          <RepoCommits disabled={!Boolean(Array.isArray(timecard.card) && timecard.card.length)} />
           <table className="table">
             <thead>
               <tr>

@@ -68,6 +68,7 @@ function reduceLengthOfCommits(commits, maxBlockHeight=1000) {
 export function repoCommitsComponent({
   user,
   repoDetails,
+  disabled,
 }) {
   let commits;
   if (user && repoDetails && repoDetails.commits) {
@@ -97,7 +98,7 @@ export function repoCommitsComponent({
       return <RepoCommitNode key={ct} commit={i} />
     });
   }
-  return <div className="repo-commits">
+  return <div className={`repo-commits ${disabled ? "repo-commits-disabled" : ''}`}>
     {commits}
     <div onClick={alert.bind(window)} className="repo-commit-node-handle repo-commit-node-type-more">
       ...
@@ -109,6 +110,7 @@ export function mapStateToProps(store, props) {
   return {
     user: store.user,
     repoDetails: store.repo_details,
+    disabled: props.disabled,
   };
 };
 
