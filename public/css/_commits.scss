@@ -13,30 +13,30 @@
 }
 
 // the commitInsidegraph
-$repo-commit-width: 24px;
+$repo-commit-width: 64px;
 $repo-commit-max-height: $repo-commit-width * 5;
-.repo-commits {
-  height: 100%;
-  float: left;
-  background: $gray-lighter;
-  width: $repo-commit-width;
-  margin-top: 37px;
-  margin-left: -12px;
+.repo-commits-container {
+  overflow-x: scroll;
+  padding-bottom: 64px;
+  padding-top: 32px;
+}
 
-  &.repo-commits-disabled {
-    opacity: 0.35;
-  }
+.repo-commits {
+  float: left;
+  display: inline-block;
+  white-space: nowrap;
+  height: $repo-commit-width;
 }
 
 .repo-commit-node-handle {
-  display: block;
-  width: $repo-commit-width;
-  height: 24px;
-  color: $brand-primary;
+  display: inline-block;
+  height: $repo-commit-width;
+  width: 24px;
   background: #efefef;
-  margin-bottom: 1.2px;
-  border-top: 8px solid rgba(0, 0, 0, 0.2);
+  margin-right: 1.2px;
+  border-left: 8px solid rgba(0, 0, 0, 0.2);
   cursor: pointer;
+  position: relative;
 
   &.repo-commit-node-type-waltzinit {
     border-color: lighten($brand-success, 24%);
@@ -53,19 +53,18 @@ $repo-commit-max-height: $repo-commit-width * 5;
 
   // for really large `.repo-commit-node`s, limit their height and put a break
   // in the middle.
-  $repo-commit-node-break-width: 36px;
+  $repo-commit-node-break-width: 78px;
   &.repo-commit-node-should-break {
-    position: relative;
-    height: 150px;
+    width: $repo-commit-max-height;
     .repo-commit-node-break {
       display: block;
-      width: $repo-commit-node-break-width;
-      height: 12px;
+      height: $repo-commit-node-break-width;
+      width: 32px;
 
       // center it in the center of the block
       position: absolute;
-      top: $repo-commit-max-height / 2 + 6px; 
-      left: -($repo-commit-node-break-width - $repo-commit-width) / 3;
+      left: $repo-commit-max-height / 2 - $repo-commit-node-break-width / 3;
+      top: -($repo-commit-node-break-width - $repo-commit-width) / 3;
       background-image: url(/img/commits/squiggle.png);
       background-repeat: no-repeat;
     }
@@ -74,6 +73,6 @@ $repo-commit-max-height: $repo-commit-width * 5;
   &:first-child {
     background-color: $brand-primary;
     border-bottom: 16px solid rgba(0, 0, 0, 0.1);
-    border-top: 4px solid transparent;
+    border-left: 4px solid transparent;
   }
 }

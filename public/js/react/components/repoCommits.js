@@ -35,7 +35,7 @@ export function RepoCommitNode({
   // set styles for this commit
   let styles = {};
   if (!breakInside) {
-    styles.height = length;
+    styles.width = length;
   }
 
   return <OverlayTrigger trigger="click" rootClose placement="left" overlay={tooltip}>
@@ -79,11 +79,10 @@ export function repoCommitsComponent({
       return <RepoCommitNode key={ct} commit={i} />
     });
   }
-  return <div className={`repo-commits ${disabled ? "repo-commits-disabled" : ''}`}>
-    {commits}
-    <div onClick={alert.bind(window)} className="repo-commit-node-handle repo-commit-node-type-more">
-      ...
-    </div>
+  return <div className="repo-commits-container">
+    <div
+      className={`repo-commits ${disabled ? "repo-commits-disabled" : ''}`}
+    >{commits}</div>
   </div>;
 }
 

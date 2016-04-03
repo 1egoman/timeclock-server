@@ -7217,9 +7217,6 @@ footer {
     margin-top: 20px;
     width: 100%;
     border: 0px; }
-    .repo-details .repo-details-report-table .table {
-      float: right;
-      width: 95%; }
     .repo-details .repo-details-report-table .disabled {
       background-color: #eeeeee; }
     .repo-details .repo-details-report-table .avatar-col, .repo-details .repo-details-report-table .avatar-img {
@@ -7278,25 +7275,26 @@ footer {
   display: block;
   color: #777777; }
 
+.repo-commits-container {
+  overflow-x: scroll;
+  padding-bottom: 64px;
+  padding-top: 32px; }
+
 .repo-commits {
-  height: 100%;
   float: left;
-  background: #eeeeee;
-  width: 24px;
-  margin-top: 37px;
-  margin-left: -12px; }
-  .repo-commits.repo-commits-disabled {
-    opacity: 0.35; }
+  display: inline-block;
+  white-space: nowrap;
+  height: 64px; }
 
 .repo-commit-node-handle {
-  display: block;
+  display: inline-block;
+  height: 64px;
   width: 24px;
-  height: 24px;
-  color: #51c4c4;
   background: #efefef;
-  margin-bottom: 1.2px;
-  border-top: 8px solid rgba(0, 0, 0, 0.2);
-  cursor: pointer; }
+  margin-right: 1.2px;
+  border-left: 8px solid rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  position: relative; }
   .repo-commit-node-handle.repo-commit-node-type-waltzinit {
     border-color: #c7e3ac; }
   .repo-commit-node-handle.repo-commit-node-type-merge {
@@ -7306,21 +7304,20 @@ footer {
     color: #333333;
     text-align: center; }
   .repo-commit-node-handle.repo-commit-node-should-break {
-    position: relative;
-    height: 150px; }
+    width: 320px; }
     .repo-commit-node-handle.repo-commit-node-should-break .repo-commit-node-break {
       display: block;
-      width: 36px;
-      height: 12px;
+      height: 78px;
+      width: 32px;
       position: absolute;
-      top: 66px;
-      left: -4px;
+      left: 134px;
+      top: -4.6666666667px;
       background-image: url(/img/commits/squiggle.png);
       background-repeat: no-repeat; }
   .repo-commit-node-handle:first-child {
     background-color: #51c4c4;
     border-bottom: 16px solid rgba(0, 0, 0, 0.1);
-    border-top: 4px solid transparent; }
+    border-left: 4px solid transparent; }
 
 .time-delta i {
   cursor: pointer;
