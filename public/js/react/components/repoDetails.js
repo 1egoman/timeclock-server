@@ -155,39 +155,38 @@ export const RepoDetailsComponent = ({
       </div>
 
       <div className="repo-details-tabs">
+        {/* list of all times in the timecard */}
+        {timecard ? <div className="repo-details-report-table">
           <RepoCommits />
+          <table className="table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Date</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              {renderTimecardTable(timecard, timecard_users, user)}
+            </tbody>
+          </table>
 
-          {/* list of all times in the timecard */}
-          {timecard ? <div className="repo-details-report-table">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Date</th>
-                  <th>From</th>
-                  <th>To</th>
-                  <th>Duration</th>
-                </tr>
-              </thead>
-              <tbody>
-                {renderTimecardTable(timecard, timecard_users, user)}
-              </tbody>
-            </table>
+          {/* if timecard is empty, let the user know */}
+          {timecard.card.length === 0 && emptyTimecard({helpInstallingWaltz})}
 
-            {/* if timecard is empty, let the user know */}
-            {timecard.card.length === 0 && emptyTimecard({helpInstallingWaltz})}
-
-            {/* Go to the next page of times */}
-            <button
-              onClick={getMoreTimes(repo, current_branch, ++current_page)}
-              className={`btn btn-default ${can_paginate_forward ? 'shown' : 'hidden'}`}
-            >More...</button>
-          </div> : <div className="repo-details repo-details-empty">
-            <Loading
-              title="Loading Timecard..."
-              spinner
-            />
-          </div>}
+          {/* Go to the next page of times */}
+          <button
+            onClick={getMoreTimes(repo, current_branch, ++current_page)}
+            className={`btn btn-default ${can_paginate_forward ? 'shown' : 'hidden'}`}
+          >More...</button>
+        </div> : <div className="repo-details repo-details-empty">
+          <Loading
+            title="Loading Timecard..."
+            spinner
+          />
+        </div>}
       </div>
     </div>;
 
