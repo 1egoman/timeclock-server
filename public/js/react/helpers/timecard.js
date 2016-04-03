@@ -2,6 +2,7 @@ import {strptime} from "micro-strptime";
 import strftime from "strftime";
 import React from 'react';
 import {OverlayTrigger, Tooltip} from 'react-bootstrap';
+import _ from 'underscore';
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000,
       MS_PER_MINUTE = 60 * 1000,
@@ -89,4 +90,36 @@ export function getAvatarFor(user_pool, username) {
       error: "No user found."
     };
   }
+}
+
+// get the scalefactor for the repo details page, given a list of all commits.
+// maxBlockHeight it the maximum height given to a single block.
+// Use like: myTime / getTimeScaleFactor(commits, 1000)
+export function getTimeScaleFactor(commits, timecard, maxBlockHeight) {
+  if (Array.isArray(commits)) {
+    return _.max(commits.map((i) => i.length)) / maxBlockHeight;
+  } else {
+    return null;
+  }
+}
+
+// for each commit, calculate its length by subtracting the previous
+// commit's time from the current commit's time.
+export function calculateLengthForCommits(commits) {
+  return commits.reduce((acc, i, ct) => {
+    let commitLength = 0;
+    if (acc.length === 0) { // is this the first commit?
+      commitLength = 100; // this will be a constant to never change
+    } else {
+      let last = _.last(acc);
+      commitLength = new Date(last.when).getTime() - new Date(i.when).getTime();
+    }
+
+    // add our new commit that has a length
+    acc.push(Object.assign({}, i, {
+      length: commitLength, // will change, the ratio of this block to the rest of them
+      timeLength: commitLength, // won't change, is an absolute length in time
+    }));
+    return acc;
+  }, []);
 }

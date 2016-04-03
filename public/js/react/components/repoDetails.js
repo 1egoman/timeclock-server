@@ -12,13 +12,20 @@ import {
 } from '../actions/modal';
 import ImportRepo from './importRepo';
 import {getCurrentBranch, getAllBranches} from '../helpers/branch';
-import {getTimeDelta, getAvatarFor} from '../helpers/timecard';
+import {
+  getTimeDelta,
+  getAvatarFor,
+  getTimeScaleFactor,
+  calculateLengthForCommits,
+} from '../helpers/timecard';
 import {getProviderBadgeForRepo} from '../helpers/provider_badge';
 import {getRepoByIndex} from '../helpers/get_repo';
 import Loading from './loading';
 import RepoCommits from './repoCommits';
 import {Tabs, Tab} from 'react-bootstrap';
 import ShareWithClient from './shareWithClient';
+
+const PX_PER_MIN = 3;
 
 function emptyTimecard({helpInstallingWaltz}) {
   return <div className="timecard timecard-is-empty">
@@ -29,12 +36,20 @@ function emptyTimecard({helpInstallingWaltz}) {
 }
 
 // render all of the time regions within the timecard as a table
-function renderTimecardTable(timecard, timecard_users, user) {
+function renderTimecardTable(timecard, timecard_users, user, scale) {
   return timecard.card.map((day, dct) => {
     return day.times.map((time, tct) => {
       let delta = getTimeDelta(time.start, time.end, day, null, user.settings.long_work_period);
-      return <tr key={`${dct}-${tct}`} className={day.disabled ? "disabled" : "enabled"}>
-        <td className="avatar-col">
+      let height = delta.duration * 60000 / getTimeScaleFactor(null, timecard, null);
+      // height = height > 150 ? 150 : height;
+      return <tr
+        key={`${dct}-${tct}`}
+        className={day.disabled ? "disabled" : "enabled"}
+        style={{height: `${height}px`}}
+      >
+        <td
+          className="avatar-col"
+        >
           <span
             data-toggle="tooltip"
             data-placement="left"
@@ -99,11 +114,12 @@ export const RepoDetailsComponent = ({
     </div>;
 
   // a repo was selected
-  } else if (repo) {
+  } else if (repo && repo_details.commits) {
     // get the branches that were fetched from the serverside
     let select_branches = getAllBranches({repo_details, repo}).map((i) => {
       return {value: i, label: i}
     });
+    let scale = getTimeScaleFactor(calculateLengthForCommits(repo_details.commits), timecard, 1000);
 
     return <div className="repo-details">
       {/* the header on top */}
@@ -169,7 +185,7 @@ export const RepoDetailsComponent = ({
               </tr>
             </thead>
             <tbody>
-              {renderTimecardTable(timecard, timecard_users, user)}
+              {renderTimecardTable(timecard, timecard_users, user, scale)}
             </tbody>
           </table>
 

@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {OverlayTrigger, Popover} from 'react-bootstrap';
 import _ from 'underscore';
+import {getTimeScaleFactor, calculateLengthForCommits} from '../helpers/timecard';
 
 function getRepoCommitNodeType(message) {
   if (message.indexOf("Created timecard for Waltz:") !== -1) {
@@ -53,10 +54,10 @@ export function RepoCommitNode({
 
 // given a list of commits, reduce their length to be reletively small ratios of
 // each other
-function reduceLengthOfCommits(commits, maxBlockHeight=1000) {
-  let maxLength = _.max(commits.map((i) => i.length));
+function reduceLengthOfCommits(commits, timecard, maxBlockHeight=1000) {
+  let scale = getTimeScaleFactor(commits, timecard, maxBlockHeight);
   return commits.map((i) => {
-    let length = i.length / maxLength * maxBlockHeight,
+    let length = i.length / scale,
         breakInside = length > (maxBlockHeight / 6);
     return Object.assign({}, i, {
       length,
@@ -72,28 +73,8 @@ export function repoCommitsComponent({
 }) {
   let commits;
   if (user && repoDetails && repoDetails.commits) {
-    // for each commit, calculate its length by subtracting the previous
-    // commit's time from the current commit's time.
-    commits = repoDetails.commits.reduce((acc, i, ct) => {
-      let commitLength = 0;
-      if (acc.length === 0) {
-        commitLength = 100; // this will be a constant to never change
-      } else {
-        let last = _.last(acc);
-        commitLength = new Date(last.when).getTime() - new Date(i.when).getTime();
-      }
-
-      // add our new commit that has a length
-      acc.push(Object.assign({}, i, {
-        length: commitLength, // will change, the ratio of this block to the rest of them
-        timeLength: commitLength, // won't change, is an absolute length in time
-      }));
-      return acc;
-    }, []);
-
     // minimize the lengths of each timeblock
-    commits = reduceLengthOfCommits(commits);
-    
+    commits = reduceLengthOfCommits(calculateLengthForCommits(repoDetails.commits), repoDetails.timecard);
     commits = commits.map((i, ct) => {
       return <RepoCommitNode key={ct} commit={i} />
     });
