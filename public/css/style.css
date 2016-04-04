@@ -7277,8 +7277,10 @@ footer {
 
 .repo-commits-container {
   overflow-x: scroll;
+  width: 98%;
   padding-bottom: 64px;
-  padding-top: 32px; }
+  padding-top: 32px;
+  margin: 1%; }
 
 .repo-commits {
   float: left;

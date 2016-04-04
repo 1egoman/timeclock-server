@@ -17,8 +17,10 @@ $repo-commit-width: 64px;
 $repo-commit-max-height: $repo-commit-width * 5;
 .repo-commits-container {
   overflow-x: scroll;
+  width: 98%;
   padding-bottom: 64px;
   padding-top: 32px;
+  margin: 1%;
 }
 
 .repo-commits {

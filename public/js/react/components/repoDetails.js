@@ -78,6 +78,7 @@ export const RepoDetailsComponent = ({
   repo_details,
   timecard,
   timecard_users,
+  view,
 
   current_branch,
   branches,
@@ -120,6 +121,52 @@ export const RepoDetailsComponent = ({
       return {value: i, label: i}
     });
     let scale = getTimeScaleFactor(calculateLengthForCommits(repo_details.commits), timecard, 1000);
+
+
+    let body = (function(view) {
+      if (timecard) {
+        switch (view) {
+          case "times":
+            /* list of all times in the timecard */
+            return <div className="repo-details-report-table">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Date</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Duration</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {renderTimecardTable(timecard, timecard_users, user, scale)}
+                </tbody>
+              </table>
+
+              {/* if timecard is empty, let the user know */}
+              {timecard.card.length === 0 && emptyTimecard({helpInstallingWaltz})}
+
+              {/* Go to the next page of times */}
+              <button
+                onClick={getMoreTimes(repo, current_branch, ++current_page)}
+                className={`btn btn-default ${can_paginate_forward ? 'shown' : 'hidden'}`}
+              >More...</button>
+            </div>
+          case "commits":
+            return <RepoCommits
+              disabled={!Boolean(Array.isArray(timecard.card) && timecard.card.length)}
+            />;
+        }
+      } else {
+        return <div className="repo-details repo-details-empty">
+          <Loading
+            title="Loading Timecard..."
+            spinner
+          />
+        </div>;
+      }
+    })(view);
 
     return <div className="repo-details">
       {/* the header on top */}
@@ -170,40 +217,7 @@ export const RepoDetailsComponent = ({
         </div>
       </div>
 
-      <div className="repo-details-tabs">
-        {/* list of all times in the timecard */}
-        {timecard ? <div className="repo-details-report-table">
-          <RepoCommits disabled={!Boolean(Array.isArray(timecard.card) && timecard.card.length)} />
-          <table className="table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Date</th>
-                <th>From</th>
-                <th>To</th>
-                <th>Duration</th>
-              </tr>
-            </thead>
-            <tbody>
-              {renderTimecardTable(timecard, timecard_users, user, scale)}
-            </tbody>
-          </table>
-
-          {/* if timecard is empty, let the user know */}
-          {timecard.card.length === 0 && emptyTimecard({helpInstallingWaltz})}
-
-          {/* Go to the next page of times */}
-          <button
-            onClick={getMoreTimes(repo, current_branch, ++current_page)}
-            className={`btn btn-default ${can_paginate_forward ? 'shown' : 'hidden'}`}
-          >More...</button>
-        </div> : <div className="repo-details repo-details-empty">
-          <Loading
-            title="Loading Timecard..."
-            spinner
-          />
-        </div>}
-      </div>
+      <div className="repo-details-tabs">{body}</div>
     </div>;
 
   } else {
@@ -230,6 +244,8 @@ export function mapStateToProps(store, props) {
 
     has_discovered_repos: store.discovered_repos && store.discovered_repos.length ? true : false,
     repo_import_page: store.discovered_repos_page,
+
+    view: props.view,
   };
 }
 
