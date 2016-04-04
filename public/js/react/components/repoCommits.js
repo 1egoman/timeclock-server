@@ -72,18 +72,33 @@ export function repoCommitsComponent({
   disabled,
 }) {
   let commits;
+
+  // graph all commits
   if (user && repoDetails && repoDetails.commits) {
-    // minimize the lengths of each timeblock
-    commits = reduceLengthOfCommits(calculateLengthForCommits(repoDetails.commits), repoDetails.timecard);
-    commits = commits.map((i, ct) => {
-      return <RepoCommitNode key={ct} commit={i} />
-    });
+    let scale = calculateLengthForCommits(repoDetails.commits),
+        commits = reduceLengthOfCommits(scale, repoDetails.timecard).map((i, ct) => {
+          return <RepoCommitNode key={ct} commit={i} />
+        });
+
+    if (
+      repoDetails.timecard &&
+      repoDetails.timecard.card &&
+      repoDetails.timecard.card.length > 0
+    ) {
+      console.log("We've got times!");
+    }
+
+    // render the component
+    return <div className="repo-commits-container">
+      <div
+        className={`repo-commits ${disabled ? "repo-commits-disabled" : ''}`}
+      >{commits}</div>
+    </div>;
+  } else {
+    return <div className="repo-commits-container">
+      No Commits.
+    </div>;
   }
-  return <div className="repo-commits-container">
-    <div
-      className={`repo-commits ${disabled ? "repo-commits-disabled" : ''}`}
-    >{commits}</div>
-  </div>;
 }
 
 export function mapStateToProps(store, props) {
