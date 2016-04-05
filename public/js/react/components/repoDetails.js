@@ -157,6 +157,8 @@ export const RepoDetailsComponent = ({
             return <RepoCommits
               disabled={!Boolean(Array.isArray(timecard.card) && timecard.card.length)}
             />;
+          default:
+            return null;
         }
       } else {
         return <div className="repo-details repo-details-empty">
@@ -186,33 +188,35 @@ export const RepoDetailsComponent = ({
         </h1>
 
         {/* choose a branch to start on */}
-        <div className="repo-details-branch-select">
-          <BranchPicker />
-        </div>
+        <div className="repo-details-secondary">
+          <div className="repo-details-branch-select">
+            <BranchPicker />
+          </div>
 
-        <div className="repo-details-report-link">
-          {/* a url to the repo */}
-          <input
-            type="text"
-            className="form-control repo-details-report-link-box"
-            value={`http://waltzapp.co/embed/${repo.user}/${repo.repo}/${current_branch}${repo.is_private ? '?token='+user.badge_token : ''}`}
-            readOnly={true}
-          />
+          <div className="repo-details-report-link">
+            {/* a url to the repo */}
+            <input
+              type="text"
+              className="form-control repo-details-report-link-box"
+              value={`http://waltzapp.co/embed/${repo.user}/${repo.repo}/${current_branch}${repo.is_private ? '?token='+user.badge_token : ''}`}
+              readOnly={true}
+            />
 
-          {/* open a share dialog so the user can share the timecard with clients or collaborators */}
-          <div className="repo-details-report-share">
-            <ShareWithClient />
-            {/* share the report */}
-            <button
-              className="btn btn-success"
-              onClick={openShareModal.bind(this)}
-            >Share</button>
+            {/* open a share dialog so the user can share the timecard with clients or collaborators */}
+            <div className="repo-details-report-share">
+              <ShareWithClient />
+              {/* share the report */}
+              <button
+                className="btn btn-success"
+                onClick={openShareModal.bind(this)}
+              >Share</button>
 
-            {/* print a copy of the report */}
-            <button
-              className="btn btn-info repo-details-print-report"
-              onClick={printReport(repo, current_branch)}
-            >Print</button>
+              {/* print a copy of the report */}
+              <button
+                className="btn btn-info repo-details-print-report"
+                onClick={printReport(repo, current_branch)}
+              >Print</button>
+            </div>
           </div>
         </div>
       </div>

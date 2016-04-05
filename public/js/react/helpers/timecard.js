@@ -58,7 +58,7 @@ export function getTimeDelta(start, end, day, parse_format, tooLongDuration=DEFA
       tooLong: duration > tooLongDuration,
       markup: <span className="time-delta">
         <strong>{Math.floor(duration)} min</strong>, {Math.ceil((duration % 1) * SECONDS_PER_MINUTE)} sec
-        <span className="pull-right">
+        <span className="repo-details-report-table-indicators">
           {tooLong}
           {isPaid}
         </span>
