@@ -82,7 +82,7 @@ function doReport(req, res) {
     ).then((timecard) => {
       if (card.assertIsCard(timecard)) {
         // make the report
-        card.getReportTemplate(timecard.reportFormat || "default").then((template) => {
+        card.getReportTemplate(timecard.reportFormat).then((template) => {
           // add the waltz badge on the top
           let ejs_data = card.getTimecardRenderDetails(timecard);
           let timesheet = ejs.render(template, ejs_data);
