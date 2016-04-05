@@ -41,11 +41,10 @@ function fetchBadge(req, res) {
       req.query.ref || details.default_branch || "master",
       user
     );
-  })
-  .then((timecard) => {
+  }).then((timecard) => {
     let total = card.totalDuration(timecard),
-        min = Math.abs(Math.floor(total / 60) % 60),
-        hour = Math.abs(Math.floor(total / 3600)),
+        min = Math.floor(total / 60) % 60,
+        hour = Math.floor(total / 3600),
         color = (function(total) {
           if (total < BADGE_WARNING_AMT) {
             return "blue"; // we're ok
