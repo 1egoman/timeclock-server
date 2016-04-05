@@ -25,7 +25,7 @@ describe('helpers/timecard.js', function() {
         tooLong: false,
         markup: <span className="time-delta">
           <strong>{30} min</strong>, {12} sec
-          <span className="pull-right">
+          <span className="repo-details-report-table-indicators">
             {undefined}
             {undefined}
           </span>
@@ -47,7 +47,7 @@ describe('helpers/timecard.js', function() {
         tooLong: true,
         markup: <span className="time-delta">
           <strong>{180} min</strong>, {0} sec
-          <span className="pull-right">
+          <span className="repo-details-report-table-indicators">
             <OverlayTrigger placement="left" overlay={
               <Tooltip id="long-work">
                 This work period was longer than {90} minutes.
@@ -66,7 +66,7 @@ describe('helpers/timecard.js', function() {
         tooLong: false,
         markup: <span className="time-delta">
           <strong>{10} min</strong>, {0} sec
-          <span className="pull-right">
+          <span className="repo-details-report-table-indicators">
             {undefined}
             <OverlayTrigger placement="left" overlay={
               <Tooltip id="already-paid">This time has been paid.</Tooltip>
