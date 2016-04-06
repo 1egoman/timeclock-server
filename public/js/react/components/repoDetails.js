@@ -94,11 +94,19 @@ export const RepoDetailsComponent = ({
 
 
     let body = (function(view) {
-      if (timecard) {
+      if (timecard && Array.isArray(timecard.card) && timecard.card.length) {
         switch (view) {
           case "times":
             /* list of all times in the timecard */
-            return <RepoTimesList scale={scale} />;
+            return <div>
+              <RepoTimesList
+                scale={scale}
+              />
+              <button
+                onClick={getMoreTimes(repo, current_branch, ++current_page)}
+                className={`btn btn-default ${can_paginate_forward ? 'shown' : 'hidden'}`}
+              >More...</button>
+            </div>;
           case "commits":
             return <RepoCommits
               disabled={!Boolean(Array.isArray(timecard.card) && timecard.card.length)}
@@ -106,6 +114,8 @@ export const RepoDetailsComponent = ({
           default:
             return null;
         }
+      } else if (timecard && Array.isArray(timecard.card) && timecard.card.length === 0) {
+        return emptyTimecard({helpInstallingWaltz});
       } else {
         return <div className="repo-details repo-details-empty">
           <Loading
