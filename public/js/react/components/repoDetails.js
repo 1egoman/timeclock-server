@@ -1,6 +1,8 @@
 import React from 'react';
-import BranchPicker from './branchPicker';
 import {connect} from 'react-redux';
+import {Tabs, Tab} from 'react-bootstrap';
+
+// actions
 import {
   openRepoImportDialog,
   changeBranch,
@@ -10,21 +12,23 @@ import {
   showWaltzInstallInstructions,
   showShareModal,
 } from '../actions/modal';
-import ImportRepo from './importRepo';
+
+// helpers
 import {getCurrentBranch, getAllBranches} from '../helpers/branch';
 import {
-  getTimeDelta,
-  getAvatarFor,
   getTimeScaleFactor,
   calculateLengthForCommits,
 } from '../helpers/timecard';
 import {getProviderBadgeForRepo} from '../helpers/provider_badge';
 import {getRepoByIndex} from '../helpers/get_repo';
+
+// components
 import Loading from './loading';
+import ImportRepo from './importRepo';
+import BranchPicker from './branchPicker';
+import ShareWithClient from './shareWithClient';
 import RepoCommits from './repoCommits';
 import RepoTimesList from './repoTimesList';
-import {Tabs, Tab} from 'react-bootstrap';
-import ShareWithClient from './shareWithClient';
 
 const PX_PER_MIN = 3;
 
