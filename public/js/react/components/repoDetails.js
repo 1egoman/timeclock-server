@@ -22,6 +22,7 @@ import {getProviderBadgeForRepo} from '../helpers/provider_badge';
 import {getRepoByIndex} from '../helpers/get_repo';
 import Loading from './loading';
 import RepoCommits from './repoCommits';
+import RepoTimesList from './repoTimesList';
 import {Tabs, Tab} from 'react-bootstrap';
 import ShareWithClient from './shareWithClient';
 
@@ -33,41 +34,6 @@ function emptyTimecard({helpInstallingWaltz}) {
     <p>To start adding times, run <code>waltz in</code> in a local copy of the repository.</p>
     <a onClick={helpInstallingWaltz}>How do I install waltz?</a>
   </div>;
-}
-
-// render all of the time regions within the timecard as a table
-function renderTimecardTable(timecard, timecard_users, user, scale) {
-  return timecard.card.map((day, dct) => {
-    return day.times.map((time, tct) => {
-      let delta = getTimeDelta(time.start, time.end, day, null, user.settings.long_work_period);
-      let height = delta.duration * 60000 / getTimeScaleFactor(null, timecard, null);
-      // height = height > 150 ? 150 : height;
-      return <tr
-        key={`${dct}-${tct}`}
-        className={day.disabled ? "disabled" : "enabled"}
-        style={{height: `${height}px`}}
-      >
-        <td
-          className="avatar-col"
-        >
-          <span
-            data-toggle="tooltip"
-            data-placement="left"
-            title={time.by}
-          >
-          {
-            getAvatarFor(timecard_users, time.by).avatar_img ||
-              <span className="fa fa-user avatar-col" ></span>
-          }
-          </span>
-        </td>
-        <td>{day.date}</td>
-        <td>{time.start}</td>
-        <td>{typeof time.end !== "undefined" ? time.end : "(no end)"}</td>
-        <td>{delta.markup}</td>
-      </tr>;
-    })
-  });
 }
 
 export const RepoDetailsComponent = ({
@@ -128,31 +94,7 @@ export const RepoDetailsComponent = ({
         switch (view) {
           case "times":
             /* list of all times in the timecard */
-            return <div className="repo-details-report-table">
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>Date</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Duration</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {renderTimecardTable(timecard, timecard_users, user, scale)}
-                </tbody>
-              </table>
-
-              {/* if timecard is empty, let the user know */}
-              {timecard.card.length === 0 && emptyTimecard({helpInstallingWaltz})}
-
-              {/* Go to the next page of times */}
-              <button
-                onClick={getMoreTimes(repo, current_branch, ++current_page)}
-                className={`btn btn-default ${can_paginate_forward ? 'shown' : 'hidden'}`}
-              >More...</button>
-            </div>
+            return <RepoTimesList scale={scale} />;
           case "commits":
             return <RepoCommits
               disabled={!Boolean(Array.isArray(timecard.card) && timecard.card.length)}
