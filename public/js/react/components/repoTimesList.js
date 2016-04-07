@@ -20,7 +20,7 @@ function renderTimecardTable(timecard, timecard_users, user, scale) {
         >
           <span
             data-toggle="tooltip"
-            data-placement="left"
+            data-placement="right"
             title={time.by}
           >
           {

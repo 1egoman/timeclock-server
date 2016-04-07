@@ -168,6 +168,23 @@ describe('reducers/repo.js', function() {
         error: null,
       });
     });
+    it('should switch repo tab on SWITCH_REPO_TAB', function() {
+      let new_state = repoDetails(old_state.repo_details, {
+        type: "SWITCH_REPO_TAB",
+        tab: "my-tab"
+      });
+      assert.deepEqual(new_state, {
+        branch: null,
+        branches: null,
+        commits: null,
+        timecard: null,
+        _comesfrom: [null, null],
+        _page: 0,
+        _canpaginateforward: false,
+        _tab: "my-tab",
+        error: null,
+      });
+    });
     it('should reset branch and close all modals on server/REPO_DELETED', function() {
       let new_state = repoDetails(old_state.repo_details, {
         type: "server/REPO_DELETED",

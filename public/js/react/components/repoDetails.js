@@ -1,6 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Tabs, Tab} from 'react-bootstrap';
+import {Link} from 'react-router';
+import {
+  Nav,
+  NavItem,
+} from 'react-bootstrap';
 
 // actions
 import {
@@ -176,6 +180,15 @@ export const RepoDetailsComponent = ({
           </div>
         </div>
       </div>
+
+      <Nav bsStyle="tabs" activeKey={1}>
+        <NavItem eventKey={1}>
+          <i className="fa fa-clock-o" />
+          Times
+        </NavItem>
+        <NavItem eventKey={2}>Breakdown</NavItem>
+        <NavItem eventKey={3}>Stats</NavItem>
+      </Nav>
 
       <div className="repo-details-tabs">{body}</div>
     </div>;

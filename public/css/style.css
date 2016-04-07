@@ -7476,5 +7476,8 @@ footer {
     background-size: 150px 50px;
     margin: 0px auto; }
 
+.repo-details .nav.nav-tabs li i.fa, .repo-details .feature-collapse ul li i.fa, .feature-collapse .repo-details ul li i.fa {
+  margin-right: 4px; }
+
 a {
   color: #00B7FF; }

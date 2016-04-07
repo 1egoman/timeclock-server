@@ -93,6 +93,13 @@ export function repoDetails(state = {branch: null}, action) {
       show_share_modal: false,
     });
 
+  // switch the active tab
+  } else if (action.type === "SWITCH_REPO_TAB") {
+    return Object.assign({}, state, {
+      error: null,
+      _tab: action.tab,
+    });
+
   // the current repo's branches
   } else if (action.type === "server/BRANCHES_FOR") {
     return Object.assign({}, state, {branches: action.branches, error: null});
