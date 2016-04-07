@@ -127,6 +127,17 @@
         margin: 0em 0.5em;
       }
 
+      // un-round the right button corners
+      input[type=text] {
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+      }
+      .btn-success { border-radius: 0px; }
+      .btn-info {
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+      }
+
       input[type=text] {
         width: 50%;
         float: left;
