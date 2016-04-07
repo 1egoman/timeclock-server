@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router';
+import { browserHistory } from 'react-router';
 import {
   Nav,
   NavItem,
@@ -11,6 +11,7 @@ import {
   openRepoImportDialog,
   changeBranch,
   getTimecard,
+  switchRepoTab,
 } from '../actions/repo';
 import {
   showWaltzInstallInstructions,
@@ -44,6 +45,7 @@ function emptyTimecard({helpInstallingWaltz}) {
   </div>;
 }
 
+
 export const RepoDetailsComponent = ({
   repo,
   has_discovered_repos,
@@ -52,7 +54,7 @@ export const RepoDetailsComponent = ({
   repo_details,
   timecard,
   timecard_users,
-  view,
+  startingView,
 
   current_branch,
   branches,
@@ -69,7 +71,12 @@ export const RepoDetailsComponent = ({
   toImportRepoPage,
   helpInstallingWaltz,
   openShareModal,
+  switchTab,
 }) => {
+
+  // return the view that we are currently in
+  function getCurrentView() { return repo_details._tab || startingView || "times"; }
+
   // import new repos
   if (repo_import_dialog_open && has_discovered_repos) {
     return <ImportRepo />;
@@ -84,7 +91,7 @@ export const RepoDetailsComponent = ({
   // a repo error
   } else if (repo_details.error) {
     return <div>
-      <h1>Uh, oh!</h1>
+        <h1>Uh, oh!</h1>
       <p>{repo_details.error}</p>
     </div>;
 
@@ -115,6 +122,8 @@ export const RepoDetailsComponent = ({
             return <RepoCommits
               disabled={!Boolean(Array.isArray(timecard.card) && timecard.card.length)}
             />;
+          case "stats":
+            return <span>Coming!!!!</span>;
           default:
             return null;
         }
@@ -128,7 +137,7 @@ export const RepoDetailsComponent = ({
           />
         </div>;
       }
-    })(view);
+    })(getCurrentView());
 
     return <div className="repo-details">
       {/* the header on top */}
@@ -181,13 +190,21 @@ export const RepoDetailsComponent = ({
         </div>
       </div>
 
-      <Nav bsStyle="tabs" activeKey={1}>
-        <NavItem eventKey={1}>
+      {/* Switch the tab of the repo */}
+      <Nav
+        bsStyle="tabs"
+        activeKey={getCurrentView()}
+        onSelect={switchTab.bind(this, repo.user, repo.repo)}
+      >
+        <NavItem eventKey="times">
           <i className="fa fa-clock-o" />
           Times
         </NavItem>
-        <NavItem eventKey={2}>Breakdown</NavItem>
-        <NavItem eventKey={3}>Stats</NavItem>
+        <NavItem eventKey="commits">
+          <i className="fa fa-area-chart" />
+          Breakdown
+        </NavItem>
+        <NavItem eventKey="stats">Stats</NavItem>
       </Nav>
 
       <div className="repo-details-tabs">{body}</div>
@@ -218,7 +235,7 @@ export function mapStateToProps(store, props) {
     has_discovered_repos: store.discovered_repos && store.discovered_repos.length ? true : false,
     repo_import_page: store.discovered_repos_page,
 
-    view: props.view,
+    startingView: props.startingView,
   };
 }
 
@@ -238,12 +255,11 @@ const RepoDetails = connect(mapStateToProps, (dispatch, props) => {
       return () => window.open(`/embed/${repo.user}/${repo.repo}/${current_branch}`).print();
     },
 
-    helpInstallingWaltz() {
-      dispatch(showWaltzInstallInstructions());
-    },
-
-    openShareModal() {
-      dispatch(showShareModal());
+    helpInstallingWaltz() { dispatch(showWaltzInstallInstructions()); },
+    openShareModal() { dispatch(showShareModal()); },
+    switchTab(user, repo, tab) {
+      dispatch(switchRepoTab(tab));
+      browserHistory.push(`/app/${user}/${repo}/${tab}`);
     },
   };
 })(RepoDetailsComponent);

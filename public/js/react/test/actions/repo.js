@@ -14,6 +14,7 @@ import {
   changeStagingTimecardData,
   deleteRepo,
   shareWithEmails,
+  switchRepoTab,
 } from '../../actions/repo';
 
 describe('actions/repo.js', function() {
@@ -180,6 +181,14 @@ describe('actions/repo.js', function() {
         message: "Lorem Ipsum.",
         user: "a-user",
         repo: "a-repo",
+      });
+    });
+  });
+  describe('switchRepoTab', function() {
+    it('should create the event', function() {
+      assert.deepEqual(switchRepoTab("tab"), {
+        type: "SWITCH_REPO_TAB",
+        tab: "tab",
       });
     });
   });

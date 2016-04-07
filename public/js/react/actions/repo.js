@@ -107,3 +107,10 @@ export function shareWithEmails(user, repo, emails, message) {
     repo,
   };
 };
+
+export function switchRepoTab(tab) {
+  return {
+    type: "SWITCH_REPO_TAB",
+    tab,
+  };
+}

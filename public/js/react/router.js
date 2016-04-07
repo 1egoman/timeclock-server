@@ -19,7 +19,7 @@ export function repoView(view) {
         <RepoDetails
           user={params.user}
           repo={params.repo}
-          view={view || "times"}
+          startingView={view || "times"}
         />
       </div>
     </div>;
