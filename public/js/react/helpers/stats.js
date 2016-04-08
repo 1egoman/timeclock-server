@@ -37,7 +37,7 @@ export function calculateAverageWorkPeriodLength(timecard) {
 
 // calculate the average time between consecutive commits
 export function calculateAverageCommitTime(commits) {
-  if (commits && commits.length > 1) {
+  if (commits && Array.isArray(commits) && commits.length > 1) {
     let totalTime = null,
         countedCommits = 0;
 
@@ -68,12 +68,10 @@ export function calculateAverageCommitTime(commits) {
 
 // the average amount of commits per work period. Not a strict measure of
 // productivity, but can show roughly the frequency of commits per day.
-// units: work time per average commit
+// units: "average" commits per "average" work period
 export function calculateAverageCommitsPerWorkPeriod(timecard, commits) {
   let workPeriodLength = calculateAverageWorkPeriodLength(timecard),
       commitLength = calculateAverageCommitTime(commits);
-
-  console.log(workPeriodLength, commitLength)
 
   if (commitLength && workPeriodLength) {
     return workPeriodLength / commitLength;

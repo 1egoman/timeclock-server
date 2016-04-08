@@ -281,10 +281,11 @@ describe("calculateAverageCommitTime", function() {
     assert.equal(calculateAverageCommitTime(null), null);
     assert.equal(calculateAverageCommitTime([]), null);
     assert.equal(calculateAverageCommitTime(123), null);
+    assert.equal(calculateAverageCommitTime("a string"), null);
   });
 });
 describe.only("calculateAverageCommitsPerWorkPeriod", function() {
-  it("should calculate the average ", function() {
+  it("should calculate the average", function() {
     assert.equal(
       calculateAverageCommitsPerWorkPeriod({
         card: [
@@ -331,7 +332,152 @@ describe.only("calculateAverageCommitsPerWorkPeriod", function() {
           "when": "2016-03-26T03:00:00Z"
         },
       ]),
-      0
+      7.2 // 7.2 "average" commits per "average" work period
+    );
+  });
+  it("should calculate the average, with one time", function() {
+    assert.equal(
+      calculateAverageCommitsPerWorkPeriod({
+        card: [
+          {
+            "date": "Sun Jan 17 2016",
+            "times": [
+              {start: "1:00:00", end: "5:00:00"},
+            ],
+          },
+        ]
+      }, [
+        {
+          "committer": {
+            "username": "1egoman",
+            "avatar": "https://avatars.githubusercontent.com/u/1704236?v=3",
+            "url": "https://github.com/1egoman",
+            "type": "user"
+          },
+          "message": "Commit message abc",
+          "sha": "e314554fb963b43ee14be08826284f143fe7ae6f",
+          "when": "2016-03-26T01:45:00Z"
+        },
+        {
+          "committer": {
+            "username": "1egoman",
+            "avatar": "https://avatars.githubusercontent.com/u/1704236?v=3",
+            "url": "https://github.com/1egoman",
+            "type": "user"
+          },
+          "message": "Commit message 1",
+          "sha": "2f019b63b2c26748538e1d7bf711522eb05fb96c",
+          "when": "2016-03-26T01:50:00Z"
+        },
+        {
+          "committer": {
+            "username": "1egoman",
+            "avatar": "https://avatars.githubusercontent.com/u/1704236?v=3",
+            "url": "https://github.com/1egoman",
+            "type": "user"
+          },
+          "message": "Commit message",
+          "sha": "2f019b63b2c26748538e1d7bf711522eb05fb96c",
+          "when": "2016-03-26T03:00:00Z"
+        },
+      ]),
+      6.4 // 6.4 "average" commits per "average" work period
+          // went down from the previous test (7.2) because there is less time
+          // on average per work period
+    );
+  });
+  it("should calculate the average, with one commit range (2 commits)", function() {
+    assert.equal(
+      calculateAverageCommitsPerWorkPeriod({
+        card: [
+          {
+            "date": "Sun Jan 17 2016",
+            "times": [
+              {start: "1:00:00", end: "5:00:00"},
+              {start: "5:00:00", end: "10:00:00"},
+            ],
+          },
+        ]
+      }, [
+        {
+          "committer": {
+            "username": "1egoman",
+            "avatar": "https://avatars.githubusercontent.com/u/1704236?v=3",
+            "url": "https://github.com/1egoman",
+            "type": "user"
+          },
+          "message": "Commit message abc",
+          "sha": "e314554fb963b43ee14be08826284f143fe7ae6f",
+          "when": "2016-03-26T01:45:00Z"
+        },
+        {
+          "committer": {
+            "username": "1egoman",
+            "avatar": "https://avatars.githubusercontent.com/u/1704236?v=3",
+            "url": "https://github.com/1egoman",
+            "type": "user"
+          },
+          "message": "Commit message",
+          "sha": "2f019b63b2c26748538e1d7bf711522eb05fb96c",
+          "when": "2016-03-26T03:00:00Z"
+        },
+      ]),
+      3.6 // 3.6 "average" commits per "average" work period
+          // again, this is lower, because fewer, longer commits increase the
+          // average commit time substantially (less to divide by).
+    );
+  });
+  it("should not work with bad timecard", function() {
+    assert.equal(
+      calculateAverageCommitsPerWorkPeriod({
+        iAm: "a bad timecard",
+      }, [
+        {
+          "committer": {
+            "username": "1egoman",
+            "avatar": "https://avatars.githubusercontent.com/u/1704236?v=3",
+            "url": "https://github.com/1egoman",
+            "type": "user"
+          },
+          "message": "Commit message abc",
+          "sha": "e314554fb963b43ee14be08826284f143fe7ae6f",
+          "when": "2016-03-26T01:45:00Z"
+        },
+        {
+          "committer": {
+            "username": "1egoman",
+            "avatar": "https://avatars.githubusercontent.com/u/1704236?v=3",
+            "url": "https://github.com/1egoman",
+            "type": "user"
+          },
+          "message": "Commit message",
+          "sha": "2f019b63b2c26748538e1d7bf711522eb05fb96c",
+          "when": "2016-03-26T03:00:00Z"
+        },
+      ]),
+      null
+    );
+  });
+  it("should not work with bad commits", function() {
+    assert.equal(
+      calculateAverageCommitsPerWorkPeriod({
+        card: [
+          {
+            "date": "Sun Jan 17 2016",
+            "times": [
+              {start: "1:00:00", end: "5:00:00"},
+              {start: "5:00:00", end: "10:00:00"},
+            ],
+          },
+        ]
+      }, "bad commits"),
+      null
+    );
+  });
+  it("should not work with bad timecard/commits", function() {
+    assert.equal(
+      calculateAverageCommitsPerWorkPeriod("bad timecard", "bad commits"),
+      null
     );
   });
 });
