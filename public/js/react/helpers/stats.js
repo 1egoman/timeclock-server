@@ -10,7 +10,6 @@ import moment from "moment";
 // (8 hours in length) then 1pm - 11am (10 hours in length) would also have an
 // average work period length of 9 hours.
 export function calculateAverageWorkPeriodLength(timecard) {
-  console.log(timecard)
   if (assertIsCard(timecard)) {
     let workPeriodCt = 0;
     let timeWorkedInProject = timecard.card.reduce((acc, day) => {
@@ -69,6 +68,7 @@ export function calculateAverageCommitTime(commits) {
 
 // the average amount of commits per work period. Not a strict measure of
 // productivity, but can show roughly the frequency of commits per day.
+// units: work time per average commit
 export function calculateAverageCommitsPerWorkPeriod(timecard, commits) {
   let workPeriodLength = calculateAverageWorkPeriodLength(timecard),
       commitLength = calculateAverageCommitTime(commits);

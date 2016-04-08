@@ -306,7 +306,7 @@ describe.only("calculateAverageCommitsPerWorkPeriod", function() {
           },
           "message": "Commit message abc",
           "sha": "e314554fb963b43ee14be08826284f143fe7ae6f",
-          "when": "2016-03-26T10:45:00Z"
+          "when": "2016-03-26T01:45:00Z"
         },
         {
           "committer": {
@@ -317,7 +317,7 @@ describe.only("calculateAverageCommitsPerWorkPeriod", function() {
           },
           "message": "Commit message 1",
           "sha": "2f019b63b2c26748538e1d7bf711522eb05fb96c",
-          "when": "2016-03-26T10:50:00Z"
+          "when": "2016-03-26T01:50:00Z"
         },
         {
           "committer": {
@@ -328,7 +328,7 @@ describe.only("calculateAverageCommitsPerWorkPeriod", function() {
           },
           "message": "Commit message",
           "sha": "2f019b63b2c26748538e1d7bf711522eb05fb96c",
-          "when": "2016-03-26T10:55:00Z"
+          "when": "2016-03-26T03:00:00Z"
         },
       ]),
       0
