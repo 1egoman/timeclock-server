@@ -106,6 +106,7 @@ export function repoCommitsComponent({
         >{commits}</div>
       </div> */}
      <br/>
+     <h2 className="text-center">Averages</h2>
      <br/>
 
       <Col xs={12} md={4}>
