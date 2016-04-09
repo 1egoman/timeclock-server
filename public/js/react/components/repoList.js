@@ -73,7 +73,7 @@ export const RepoListComponent = ({
     title={active_repo ? `${active_repo[0]}/${active_repo[1]}` : 'Choose Repo'}
     id="switch-repo"
   >
-    <ul className={`repos repos-list `}>
+    <ul className={`repos repos-list`}>
       <div className="repos-controls">
         <h4 className="repos-label">Repositories</h4>
         {importRepoButton({is_importing_repo, importNewRepo})}
