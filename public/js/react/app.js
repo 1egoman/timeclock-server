@@ -115,7 +115,7 @@ render(<Provider store={store}>
     <Router history={history}>
       <Route path="/app/" component={repoView()} />
       <Route path="/app/:user/:repo" component={repoView()} />
-      <Route path="/app/:user/:repo/commits" component={repoView("commits")} />
+      <Route path="/app/:user/:repo/metrics" component={repoView("commits")} />
       <Route path="/app/:user/:repo/times" component={repoView("times")} />
       <Route path="/app/:user/:repo/stats" component={repoView("stats")} />
 

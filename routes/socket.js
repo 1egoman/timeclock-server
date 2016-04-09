@@ -172,6 +172,7 @@ exports.emitInit = function(socket, path, branch) {
       branches: props.branches,
       commits: props.commits,
       users: props.users,
+      page: props.page,
 
       // the normal user, plus their allottments for paid services.
       user: Object.assign(
@@ -189,7 +190,13 @@ exports.emitInit = function(socket, path, branch) {
   // a path was sent instead
   } else if (match = path.match(/\/app\/([\w]+)\/([\w]+)/)) {
     active_repo = [match[1], match[2]];
-    getRepoInitializeDetails(socket, match[1], match[2], branch).then(serverInit);
+    getRepoInitializeDetails(
+      socket,
+      match[1], // the user name
+      match[2], // the repo name
+      branch, // the current branch
+      match[3] // the page we are on
+    ).then(serverInit);
   } else {
     // initalize without a repo
     serverInit();
@@ -198,7 +205,7 @@ exports.emitInit = function(socket, path, branch) {
 
 // fetch all the important info needed to rehydrate a repo when a new one is
 // selected.
-function getRepoInitializeDetails(socket, user, repo, branch) {
+function getRepoInitializeDetails(socket, user, repo, branch, page) {
   return Promise.all([
     getTimecard({user, repo, branch}, socket),
     getBranches({user, repo}, socket),
@@ -207,6 +214,7 @@ function getRepoInitializeDetails(socket, user, repo, branch) {
     return Object.assign(props[0], {
       branches: props[1],
       commits: props[2],
+      page,
     });
   });
 }

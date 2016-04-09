@@ -118,12 +118,10 @@ export const RepoDetailsComponent = ({
                 className={`btn btn-default ${can_paginate_forward ? 'shown' : 'hidden'}`}
               >More...</button>
             </div>;
-          case "commits":
+          case "metrics":
             return <RepoCommits
               disabled={!Boolean(Array.isArray(timecard.card) && timecard.card.length)}
             />;
-          case "stats":
-            return <span>Coming!!!!</span>;
           default:
             return null;
         }
@@ -200,7 +198,7 @@ export const RepoDetailsComponent = ({
           <i className="fa fa-clock-o" />
           Times
         </NavItem>
-        <NavItem eventKey="commits">
+        <NavItem eventKey="metrics">
           <i className="fa fa-area-chart" />
           Metrics
         </NavItem>
