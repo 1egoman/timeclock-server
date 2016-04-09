@@ -3,7 +3,13 @@ import Repo from './repo';
 import {connect} from 'react-redux';
 import {requestAllUserRepos, deleteRepo} from '../actions/repo';
 import { getRepoByIndex, getActiveRepoIndex } from '../helpers/get_repo';
-import {Button, Popover, OverlayTrigger} from 'react-bootstrap';
+import {
+  Button,
+  Popover,
+  OverlayTrigger,
+  DropdownButton,
+  MenuItem,
+} from 'react-bootstrap';
 import Loading from './loading';
 
 // import a new repo
@@ -37,22 +43,24 @@ export const RepoListComponent = ({
         <Button bsStyle="primary" onClick={deleteRepo(repo)}>Yes, do it</Button>
       </Popover>;
 
-      return <Repo
-      repo={repo}
-      key={ct}
-      index={ct}
-      selected={active_repo && active_repo[0] === repo.user && active_repo[1] === repo.repo}
-      >
-        {/* delete popover */}
-        <OverlayTrigger
-          trigger="click"
-          rootClose
-          placement="top"
-          overlay={delete_popover}
+      return <MenuItem eventKey={ct}>
+        <Repo
+        repo={repo}
+        key={ct}
+        index={ct}
+        selected={active_repo && active_repo[0] === repo.user && active_repo[1] === repo.repo}
         >
-          <i className="fa fa-trash pull-right repo-delete" />
-        </OverlayTrigger>
-      </Repo>;
+          {/* delete popover */}
+          <OverlayTrigger
+            trigger="click"
+            rootClose
+            placement="top"
+            overlay={delete_popover}
+          >
+            <i className="fa fa-trash pull-right repo-delete" />
+          </OverlayTrigger>
+        </Repo>
+      </MenuItem>;
     });
   } else {
     items = <Loading
@@ -61,13 +69,15 @@ export const RepoListComponent = ({
     />;
   }
 
-  return <ul className={`repos repos-list ${is_importing_repo ? "repos-disabled" : "repos-enabled"}`}>
-    <div className="repos-controls">
-      <h4 className="repos-label">Repositories</h4>
-      {importRepoButton({is_importing_repo, importNewRepo})}
-    </div>
-    {items}
-  </ul>;
+  return <DropdownButton bsSize="large" title={active_repo ? `${active_repo[0]}/${active_repo[1]}` : 'Choose Repo'}>
+    <ul className={`repos repos-list ${is_importing_repo ? "repos-disabled" : "repos-enabled"}`}>
+      <div className="repos-controls">
+        <h4 className="repos-label">Repositories</h4>
+        {importRepoButton({is_importing_repo, importNewRepo})}
+      </div>
+      {items}
+    </ul>
+  </DropdownButton>;
 };
 
 export function mapStateToProps(store, props) {

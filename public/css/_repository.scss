@@ -50,6 +50,7 @@
   @extend .list-group-item;
   cursor: pointer;
   position: relative;
+  color: $text-color;
 
   &.repo-selected {
     background: $select-color;
@@ -254,4 +255,8 @@
 .repo-details-tabs {
   position: relative;
   @include clearfix;
+}
+
+a[role=menuitem] {
+  &, &:focus, &:active, &:hover { text-decoration: none; }
 }

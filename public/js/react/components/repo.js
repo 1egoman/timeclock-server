@@ -13,7 +13,7 @@ import { getRepoByIndex } from '../helpers/get_repo';
 
 export const RepoComponent = ({repo, index, selected, onRepoClick, children}) => {
   // the component render
-  return <li className={`
+  return <div className={`
     repo
     ${repo.is_private ? "repo-private" : "repo-public"}
     repo-owner-${repo.owner_type}
@@ -33,7 +33,7 @@ export const RepoComponent = ({repo, index, selected, onRepoClick, children}) =>
     <p>{repo.desc}</p>
 
     {children}
-  </li>;
+  </div>;
 };
 
 const Repo = connect((store, ownProps) => {

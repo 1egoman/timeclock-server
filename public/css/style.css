@@ -7199,7 +7199,8 @@ footer {
 
 .repo {
   cursor: pointer;
-  position: relative; }
+  position: relative;
+  color: #333333; }
   .repo.repo-selected {
     background: #E4FFFF; }
   .repo .repo-lock {
@@ -7359,6 +7360,9 @@ footer {
     display: table; }
   .repo-details-tabs:after {
     clear: both; }
+
+a[role=menuitem], a[role=menuitem]:focus, a[role=menuitem]:active, a[role=menuitem]:hover {
+  text-decoration: none; }
 
 .repo-commit-node-avatar {
   width: 18px;
