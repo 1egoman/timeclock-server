@@ -292,8 +292,8 @@ describe.only("calculateAverageCommitsPerWorkPeriod", function() {
           {
             "date": "Sun Jan 17 2016",
             "times": [
-              {start: "1:00:00", end: "5:00:00"},
-              {start: "5:00:00", end: "10:00:00"},
+              {start: "1:00:00", end: "6:00:00"},
+              {start: "3:00:00", end: "8:00:00"},
             ],
           },
         ]
@@ -332,7 +332,58 @@ describe.only("calculateAverageCommitsPerWorkPeriod", function() {
           "when": "2016-03-26T03:00:00Z"
         },
       ]),
-      7.2 // 7.2 "average" commits per "average" work period
+      8 // "average" commits per "average" work period
+    );
+  });
+  it("should calculate the average using data that calculates to the same totals", function() {
+    assert.equal(
+      calculateAverageCommitsPerWorkPeriod({
+        card: [
+          {
+            "date": "Sun Jan 17 2016",
+            "times": [
+              {start: "1:00:00", end: "6:00:00"},
+              {start: "3:00:00", end: "8:00:00"},
+              {start: "5:00:00", end: "10:00:00"},
+            ],
+          },
+        ]
+      }, [
+        {
+          "committer": {
+            "username": "1egoman",
+            "avatar": "https://avatars.githubusercontent.com/u/1704236?v=3",
+            "url": "https://github.com/1egoman",
+            "type": "user"
+          },
+          "message": "Commit message abc",
+          "sha": "e314554fb963b43ee14be08826284f143fe7ae6f",
+          "when": "2016-03-26T01:00:00Z"
+        },
+        {
+          "committer": {
+            "username": "1egoman",
+            "avatar": "https://avatars.githubusercontent.com/u/1704236?v=3",
+            "url": "https://github.com/1egoman",
+            "type": "user"
+          },
+          "message": "Commit message 1",
+          "sha": "2f019b63b2c26748538e1d7bf711522eb05fb96c",
+          "when": "2016-03-26T01:45:00Z"
+        },
+        {
+          "committer": {
+            "username": "1egoman",
+            "avatar": "https://avatars.githubusercontent.com/u/1704236?v=3",
+            "url": "https://github.com/1egoman",
+            "type": "user"
+          },
+          "message": "Commit message",
+          "sha": "2f019b63b2c26748538e1d7bf711522eb05fb96c",
+          "when": "2016-03-26T02:15:00Z"
+        },
+      ]),
+      8 // "average" commits per "average" work period
     );
   });
   it("should calculate the average, with one time", function() {
