@@ -80,6 +80,11 @@ export function calculateAverageCommitsPerWorkPeriod(timecard, commits) {
   }
 }
 
+export function formatTime(epoch) {
+  let date = new Date(epoch);
+  return `${date.getHours()} hours and ${date.getMinutes()} minutes`;
+}
+
 
 
 

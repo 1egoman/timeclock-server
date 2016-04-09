@@ -1,10 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {OverlayTrigger, Popover} from 'react-bootstrap';
+import {OverlayTrigger, Popover, Panel, Col} from 'react-bootstrap';
 import _ from 'underscore';
 import {getTimeScaleFactor, calculateLengthForCommits} from '../helpers/timecard';
 import {
   calculateAverageCommitTime,
+  formatTime,
 } from "../helpers/stats";
 
 function getRepoCommitNodeType(message) {
@@ -93,11 +94,18 @@ export function repoCommitsComponent({
     }
 
     // render the component
-    return <div className="repo-commits-container">
-      <div
-        className={`repo-commits ${disabled ? "repo-commits-disabled" : ''}`}
-      >{commits}</div>
-      {averageCommitLength}
+    return <div>
+      <div className="repo-commits-container">
+        <div
+          className={`repo-commits ${disabled ? "repo-commits-disabled" : ''}`}
+        >{commits}</div>
+      </div>
+
+      <Col xs={12} md={4}>
+        <Panel header="Average Commit Length">
+          {formatTime(averageCommitLength)}
+        </Panel>
+      </Col>
     </div>;
   } else {
     return <div className="repo-commits-container">
