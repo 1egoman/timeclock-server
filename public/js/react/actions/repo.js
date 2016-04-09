@@ -114,3 +114,10 @@ export function switchRepoTab(tab) {
     tab,
   };
 }
+
+export function initializeRepo(user, repo) {
+  return {
+    type: "server/REINIT",
+    user, repo,
+  };
+}

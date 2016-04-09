@@ -6,6 +6,7 @@ import {
   getTimecard,
   getCommits,
   changeBranch,
+  initializeRepo,
 } from '../actions/repo';
 import { browserHistory } from 'react-router';
 import { getRepoByIndex } from '../helpers/get_repo';
@@ -48,10 +49,11 @@ const Repo = connect((store, ownProps) => {
     onRepoClick(repo) {
       return () => {
         dispatch(selectRepo(repo)); // select a new repo
-        dispatch(changeBranch(repo.default_branch || "master")); 
-        dispatch(getBranches(repo)); // also, pull in the branch data for this new repo 
-        dispatch(getCommits(repo)); // get commits for the repo and branch
-        dispatch(getTimecard(repo)); // lastly, pull in the timecard data too
+        dispatch(initializeRepo(repo.user, repo.repo));
+        // dispatch(changeBranch(repo.default_branch || "master")); 
+        // dispatch(getBranches(repo)); // also, pull in the branch data for this new repo 
+        // dispatch(getCommits(repo)); // get commits for the repo and branch
+        // dispatch(getTimecard(repo)); // lastly, pull in the timecard data too
         browserHistory.push(`/app/${repo.user}/${repo.repo}`); // change the router to reflect the change
       }
     },

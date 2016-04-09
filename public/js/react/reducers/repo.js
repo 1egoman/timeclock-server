@@ -52,9 +52,8 @@ export function activeRepo(state = null, action) {
   } else if (action.type === "server/DISCOVER_REPOS") {
     return null;
 
-  // when an external route change happens
-  // } else if (action.type === "@@router/LOCATION_CHANGE") {
-  //   return 0;
+  } else if (action.type === "server/INIT") {
+    return action.active_repo;
   } else {
     return state;
   }
@@ -75,7 +74,21 @@ export function discoveredRepos(state = [], action) {
 }
 
 export function repoDetails(state = {branch: null}, action) {
-  if (action.type === "CHANGE_BRANCH") {
+  if (action.type === "server/INIT" && action.active_repo) {
+    return Object.assign({}, state, {
+      timecard: Object.assign({}, action.timecard, {
+        card: action.timecard.card.reverse(),
+      }),
+      users: action.users,
+      branches: action.branches,
+      commits: action.commits,
+
+      show_share_modal: false,
+      _comesfrom: [...action.active_repo, action.branch],
+      _tab: "times",
+    });
+
+  } else if (action.type === "CHANGE_BRANCH") {
     return Object.assign({}, state, {
       branch: action.branch,
       timecard: null, // reset the timecard so the view reloads

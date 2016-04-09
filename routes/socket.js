@@ -150,43 +150,64 @@ exports.onSocketAction = function(socket) {
           repo: action.repo,
         });
       }, sendError(socket));
-    // when the page loads for the first time, update the state to reflect the
-    // initial url
-    } else if (action.type === '@@router/LOCATION_CHANGE' && action.payload && action.payload.action === "POP") {
-      let match;
-      if (match = action.payload.pathname.match(/\/app\/([\w]+)\/([\w]+)/)) {
-        exports.onSocketAction(socket)({
-          type: "server/GET_BRANCHES",
-          user: match[1],
-          repo: match[2],
-        });
-        exports.onSocketAction(socket)({
-          type: "server/GET_COMMITS",
-          user: match[1],
-          repo: match[2],
-        });
-        exports.onSocketAction(socket)({
-          type: "server/GET_TIMECARD",
-          user: match[1],
-          repo: match[2],
-          page: 0,
-        });
-        socket.emit("action", {type: "SELECT_REPO", index: [match[1], match[2]]});
-      }
+
+    } else if (action.type === 'server/REINIT') {
+      exports.emitInit(socket, {user: action.user, repo: action.repo}, null);
     }
   };
 }
 
-exports.emitInit = function(socket, path) {
-  socket.emit("action", {
-    type: "server/INIT",
-    repos: socket.request.user.repos,
-    active_repo: null,
+exports.emitInit = function(socket, path, branch) {
+  let match, active_repo = null;
 
-    // the normal user, plus their allottments for paid services.
-    user: Object.assign(
-      user_model.sanitize(socket.request.user),
-      {allotments: user_model.getAllotments(socket.request.user)}
-    ),
+  function serverInit(props) {
+    props = props || {}
+    socket.emit("action", {
+      type: "server/INIT",
+      repos: socket.request.user.repos,
+      active_repo,
+      branch,
+
+      timecard: props.timecard,
+      branches: props.branches,
+      commits: props.commits,
+      users: props.users,
+
+      // the normal user, plus their allottments for paid services.
+      user: Object.assign(
+        user_model.sanitize(socket.request.user),
+        {allotments: user_model.getAllotments(socket.request.user)}
+      ),
+    });
+  }
+
+  // passing user and repo manually
+  if (path.user && path.repo) {
+    active_repo = [path.user, path.repo];
+    getRepoInitializeDetails(socket, path.user, path.repo, branch).then(serverInit);
+
+  // a path was sent instead
+  } else if (match = path.match(/\/app\/([\w]+)\/([\w]+)/)) {
+    active_repo = [match[1], match[2]];
+    getRepoInitializeDetails(socket, match[1], match[2], branch).then(serverInit);
+  } else {
+    // initalize without a repo
+    serverInit();
+  }
+}
+
+// fetch all the important info needed to rehydrate a repo when a new one is
+// selected.
+function getRepoInitializeDetails(socket, user, repo, branch) {
+  return Promise.all([
+    getTimecard({user, repo, branch}, socket),
+    getBranches({user, repo}, socket),
+    getCommits({user, repo, ref: branch}, socket),
+  ]).then((props) => {
+    return Object.assign(props[0], {
+      branches: props[1],
+      commits: props[2],
+    });
   });
 }
+
