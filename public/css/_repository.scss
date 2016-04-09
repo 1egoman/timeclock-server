@@ -21,9 +21,10 @@
 .repos {
   @extend .list-group;
   @include clearfix;
+  padding: 0.5em;
 
   &.repos-disabled {
-    opacity: 0.5;
+    // opacity: 0.5;
   }
 
   .repos-controls {
@@ -51,6 +52,7 @@
   cursor: pointer;
   position: relative;
   color: $text-color;
+  padding: 1em;
 
   &.repo-selected {
     background: $select-color;
@@ -82,6 +84,7 @@
   background: #fff;
   position: relative;
   padding: 1em;
+  margin-top: 1.6em;
 
   .repo-details-header {
     background: #fff;

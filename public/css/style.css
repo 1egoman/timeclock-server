@@ -7172,35 +7172,32 @@ footer {
     font-size: 120%;
     color: #333333; }
 
-.repos:before, .repos:after {
-  content: " ";
-  display: table; }
-
-.repos:after {
-  clear: both; }
-
-.repos.repos-disabled {
-  opacity: 0.5; }
-
-.repos .repos-controls {
-  margin: 1em 0em;
-  height: 1.8em; }
-  .repos .repos-controls .repos-label {
+.repos {
+  padding: 0.5em; }
+  .repos:before, .repos:after {
+    content: " ";
+    display: table; }
+  .repos:after {
+    clear: both; }
+  .repos .repos-controls {
+    margin: 1em 0em;
+    height: 1.8em; }
+    .repos .repos-controls .repos-label {
+      color: #777777;
+      margin-top: 0.35em; }
+  .repos .repos-empty {
     color: #777777;
-    margin-top: 0.35em; }
-
-.repos .repos-empty {
-  color: #777777;
-  padding-top: 2em;
-  text-align: center;
-  background-color: transparent; }
-  .repos .repos-empty p .click {
-    cursor: pointer; }
+    padding-top: 2em;
+    text-align: center;
+    background-color: transparent; }
+    .repos .repos-empty p .click {
+      cursor: pointer; }
 
 .repo {
   cursor: pointer;
   position: relative;
-  color: #333333; }
+  color: #333333;
+  padding: 1em; }
   .repo.repo-selected {
     background: #E4FFFF; }
   .repo .repo-lock {
@@ -7223,7 +7220,8 @@ footer {
 .repo-details {
   background: #fff;
   position: relative;
-  padding: 1em; }
+  padding: 1em;
+  margin-top: 1.6em; }
   .repo-details .repo-details-header {
     background: #fff;
     z-index: 1000; }
