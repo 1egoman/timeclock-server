@@ -24,7 +24,7 @@ $(document).ready(function() {
 // the serverside
 import io from 'socket.io-client';
 import createSocketIoMiddleware from 'redux-socket.io';
-const socket = io();
+const socket = io({query: `path=${location.pathname}`});
 let socketIoMiddleware = createSocketIoMiddleware(socket, (type) => {
   return (
     type.indexOf("server/") === 0 || // events prefixed with "server/"

@@ -19,7 +19,7 @@ const mixpanelHelpers = require("./lib/mixpanel")(mixpanel);
 // routes
 const badges = require('./routes/badge');
 const repo = require('./routes/repository');
-const onSocketAction = require('./routes/socket');
+const socketRoute = require('./routes/socket');
 
 // auth serializer and stratigies
 const authStrategy = require("./lib/auth/strategy");
@@ -211,18 +211,7 @@ io.on('connection', function(socket) {
   mixpanelHelpers.trackNewConnection(socket);
 
   // first, initialize the state so we're all on the same page
-  socket.emit("action", {
-    type: "server/INIT",
-    repos: socket.request.user.repos,
-    active_repo: null,
-
-    // the normal user, plus their allottments for paid services.
-    user: Object.assign(
-      User.sanitize(socket.request.user),
-      {allotments: User.getAllotments(socket.request.user)}
-    ),
-  });
-
-  socket.on('action', onSocketAction(socket));
+  socketRoute.emitInit(socket, socket.request._query['path']);
+  socket.on('action', socketRoute.onSocketAction(socket));
 });
 module.exports = boundApp;

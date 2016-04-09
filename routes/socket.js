@@ -30,7 +30,7 @@ function sendError(socket) {
   };
 }
 
-module.exports = function(socket) {
+exports.onSocketAction = function(socket) {
   let repo = required_repo, User = user_model;
   return function(action) {
     console.log("New", action.type, "by", socket.request.user.username);
@@ -155,17 +155,17 @@ module.exports = function(socket) {
     } else if (action.type === '@@router/LOCATION_CHANGE' && action.payload && action.payload.action === "POP") {
       let match;
       if (match = action.payload.pathname.match(/\/app\/([\w]+)\/([\w]+)/)) {
-        module.exports(socket)({
+        exports.onSocketAction(socket)({
           type: "server/GET_BRANCHES",
           user: match[1],
           repo: match[2],
         });
-        module.exports(socket)({
+        exports.onSocketAction(socket)({
           type: "server/GET_COMMITS",
           user: match[1],
           repo: match[2],
         });
-        module.exports(socket)({
+        exports.onSocketAction(socket)({
           type: "server/GET_TIMECARD",
           user: match[1],
           repo: match[2],
@@ -175,4 +175,18 @@ module.exports = function(socket) {
       }
     }
   };
+}
+
+exports.emitInit = function(socket, path) {
+  socket.emit("action", {
+    type: "server/INIT",
+    repos: socket.request.user.repos,
+    active_repo: null,
+
+    // the normal user, plus their allottments for paid services.
+    user: Object.assign(
+      user_model.sanitize(socket.request.user),
+      {allotments: user_model.getAllotments(socket.request.user)}
+    ),
+  });
 }

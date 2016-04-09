@@ -3,6 +3,9 @@ import {connect} from 'react-redux';
 import {OverlayTrigger, Popover} from 'react-bootstrap';
 import _ from 'underscore';
 import {getTimeScaleFactor, calculateLengthForCommits} from '../helpers/timecard';
+import {
+  calculateAverageCommitTime,
+} from "../helpers/stats";
 
 function getRepoCommitNodeType(message) {
   if (message.indexOf("Created timecard for Waltz:") !== -1) {
@@ -80,6 +83,7 @@ export function repoCommitsComponent({
           return <RepoCommitNode key={ct} commit={i} />
         });
 
+    let averageCommitLength = calculateAverageCommitTime(repoDetails.commits);
     if (
       repoDetails.timecard &&
       repoDetails.timecard.card &&
@@ -93,6 +97,7 @@ export function repoCommitsComponent({
       <div
         className={`repo-commits ${disabled ? "repo-commits-disabled" : ''}`}
       >{commits}</div>
+      {averageCommitLength}
     </div>;
   } else {
     return <div className="repo-commits-container">

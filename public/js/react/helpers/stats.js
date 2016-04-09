@@ -49,7 +49,7 @@ export function calculateAverageCommitTime(commits) {
         c instanceof Date && !isNaN(c.getTime())
       ) {
         countedCommits++;
-        totalTime += getTimeBetween(lastCommitTime, c);
+        totalTime += Math.abs(getTimeBetween(lastCommitTime, c));
       }
       return c;
     });

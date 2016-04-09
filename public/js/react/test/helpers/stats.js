@@ -284,7 +284,7 @@ describe("calculateAverageCommitTime", function() {
     assert.equal(calculateAverageCommitTime("a string"), null);
   });
 });
-describe.only("calculateAverageCommitsPerWorkPeriod", function() {
+describe("calculateAverageCommitsPerWorkPeriod", function() {
   it("should calculate the average", function() {
     assert.equal(
       calculateAverageCommitsPerWorkPeriod({

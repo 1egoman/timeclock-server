@@ -304,6 +304,58 @@ describe('reducers/repo.js', function() {
         error: null,
       });
     });
+    it('should amend to timecard on server/TIMECARD, and assume current branch', function() {
+      // fetch an iterim page in the group (any page but last)
+      let new_state = repoDetails(Object.assign({}, old_state.repo_details, {
+        branch: "ref",
+        _comesfrom: ["username", "a-repository", null],
+        timecard: {card: []},
+        users: [],
+      }), {
+        type: "server/TIMECARD",
+        user: "username",
+        repo: "a-repository",
+        branch: "ref",
+        timecard: {card: [{foo: "bar"}]},
+        users: [{foo: "baz"}],
+        page: 0,
+        canpaginateforward: true,
+      });
+      assert.deepEqual(new_state, {
+        branch: "ref",
+        branches: null,
+        commits: null,
+        timecard: {card: [{foo: "bar"}]},
+        users: [{foo: "baz"}],
+        _comesfrom: ["username", "a-repository", "ref"],
+        _page: 0,
+        _canpaginateforward: true,
+        error: null,
+      });
+
+      // now, "fetch" the last page in the group
+      let second_new_state = repoDetails(new_state, {
+        type: "server/TIMECARD",
+        user: "username",
+        repo: "a-repository",
+        branch: "ref",
+        timecard: {card: [{hello: "world"}]},
+        users: [{second: "user"}],
+        page: 1,
+        canpaginateforward: false,
+      });
+      assert.deepEqual(second_new_state, {
+        branch: "ref",
+        branches: null,
+        commits: null,
+        timecard: {card: [{foo: "bar"}, {hello: "world"}]},
+        users: [{foo: "baz"}, {second: "user"}],
+        _comesfrom: ["username", "a-repository", "ref"],
+        _page: 1,
+        _canpaginateforward: false,
+        error: null,
+      });
+    });
     it('should add error on server/ERROR', function() {
       let new_state = repoDetails(old_state.repo_details, {
         type: "server/ERROR",

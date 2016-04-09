@@ -1,6 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {selectRepo, getBranches, getTimecard, getCommits} from '../actions/repo';
+import {
+  selectRepo,
+  getBranches,
+  getTimecard,
+  getCommits,
+  changeBranch,
+} from '../actions/repo';
 import { browserHistory } from 'react-router';
 import { getRepoByIndex } from '../helpers/get_repo';
 
@@ -42,6 +48,7 @@ const Repo = connect((store, ownProps) => {
     onRepoClick(repo) {
       return () => {
         dispatch(selectRepo(repo)); // select a new repo
+        dispatch(changeBranch(repo.default_branch || "master")); 
         dispatch(getBranches(repo)); // also, pull in the branch data for this new repo 
         dispatch(getCommits(repo)); // get commits for the repo and branch
         dispatch(getTimecard(repo)); // lastly, pull in the timecard data too

@@ -113,7 +113,13 @@ export function repoDetails(state = {branch: null}, action) {
     if (
       action.user === state._comesfrom[0] &&
       action.repo === state._comesfrom[1] &&
-      action.branch === state._comesfrom[2]
+
+      // also, check to be sure the currently-shown thing is on the current
+      // branch (ie, the user can switch branches which changes everything)
+      // also, when the timecard loads initially, the timecard may not be
+      // populated (because of the order of things). So, if not specified, just
+      // assume the current branch is the right one.
+      action.branch === (state._comesfrom[2] || state.branch)
     ) {
       // merge the new repo query and the old, since they belong to the same repo
       // or, if there wasn't a timecard to start with, just return the new card.
@@ -132,6 +138,7 @@ export function repoDetails(state = {branch: null}, action) {
         // the page we are on, and whether we can advance to the next page
         _page: action.page,
         _canpaginateforward: action.canpaginateforward,
+        _comesfrom: [action.user, action.repo, action.branch],
         error: null,
       });
     } else {
