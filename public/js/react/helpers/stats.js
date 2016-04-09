@@ -74,7 +74,7 @@ export function calculateAverageCommitsPerWorkPeriod(timecard, commits) {
       commitLength = calculateAverageCommitTime(commits);
 
   if (commitLength && workPeriodLength) {
-    return workPeriodLength / commitLength;
+    return commitLength / workPeriodLength;
   } else {
     return null;
   }

@@ -4,7 +4,9 @@ import {OverlayTrigger, Popover, Panel, Col} from 'react-bootstrap';
 import _ from 'underscore';
 import {getTimeScaleFactor, calculateLengthForCommits} from '../helpers/timecard';
 import {
+  calculateAverageWorkPeriodLength,
   calculateAverageCommitTime,
+  calculateAverageCommitsPerWorkPeriod,
   formatTime,
 } from "../helpers/stats";
 
@@ -84,26 +86,41 @@ export function repoCommitsComponent({
           return <RepoCommitNode key={ct} commit={i} />
         });
 
-    let averageCommitLength = calculateAverageCommitTime(repoDetails.commits);
+    let averageCommitLength = calculateAverageCommitTime(repoDetails.commits),
+        averageWorkPeriodLength = null,
+        averageCommitsPerAverageWorkPeriod = null;
     if (
       repoDetails.timecard &&
       repoDetails.timecard.card &&
       repoDetails.timecard.card.length > 0
     ) {
-      console.log("We've got times!");
+      averageWorkPeriodLength = calculateAverageWorkPeriodLength(repoDetails.timecard)
+      averageCommitsPerAverageWorkPeriod = calculateAverageCommitsPerWorkPeriod(repoDetails.timecard, repoDetails.commits);
     }
 
     // render the component
     return <div>
-      <div className="repo-commits-container">
+      {/* <div className="repo-commits-container">
         <div
           className={`repo-commits ${disabled ? "repo-commits-disabled" : ''}`}
         >{commits}</div>
-      </div>
+      </div> */}
+     <br/>
+     <br/>
 
       <Col xs={12} md={4}>
-        <Panel header="Average Commit Length">
+        <Panel header="Average time between commits">
           {formatTime(averageCommitLength)}
+        </Panel>
+      </Col>
+      <Col xs={12} md={4}>
+        <Panel header="Average work period length">
+          {formatTime(averageWorkPeriodLength)}
+        </Panel>
+      </Col>
+      <Col xs={12} md={4}>
+        <Panel header="Commits per average work period">
+          {Math.round(averageCommitsPerAverageWorkPeriod)}
         </Panel>
       </Col>
     </div>;

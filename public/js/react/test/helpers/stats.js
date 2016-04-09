@@ -332,7 +332,7 @@ describe("calculateAverageCommitsPerWorkPeriod", function() {
           "when": "2016-03-26T03:00:00Z"
         },
       ]),
-      8 // "average" commits per "average" work period
+      1/8 // "average" commits per "average" work period
     );
   });
   it("should calculate the average using data that calculates to the same totals", function() {
@@ -383,7 +383,7 @@ describe("calculateAverageCommitsPerWorkPeriod", function() {
           "when": "2016-03-26T02:15:00Z"
         },
       ]),
-      8 // "average" commits per "average" work period
+      1/8 // "average" commits per "average" work period
     );
   });
   it("should calculate the average, with one time", function() {
@@ -432,9 +432,9 @@ describe("calculateAverageCommitsPerWorkPeriod", function() {
           "when": "2016-03-26T03:00:00Z"
         },
       ]),
-      6.4 // 6.4 "average" commits per "average" work period
-          // went down from the previous test (7.2) because there is less time
-          // on average per work period
+      1/6.4 // 6.4 "average" commits per "average" work period
+            // went down from the previous test (7.2) because there is less time
+            // on average per work period
     );
   });
   it("should calculate the average, with one commit range (2 commits)", function() {
@@ -473,9 +473,9 @@ describe("calculateAverageCommitsPerWorkPeriod", function() {
           "when": "2016-03-26T03:00:00Z"
         },
       ]),
-      3.6 // 3.6 "average" commits per "average" work period
-          // again, this is lower, because fewer, longer commits increase the
-          // average commit time substantially (less to divide by).
+      1/3.6 // 3.6 "average" commits per "average" work period
+            // again, this is lower, because fewer, longer commits increase the
+            // average commit time substantially (less to divide by).
     );
   });
   it("should not work with bad timecard", function() {
