@@ -22,6 +22,7 @@
   @extend .list-group;
   @include clearfix;
   padding: 0.5em;
+  min-width: 375px;
 
   &.repos-disabled {
     // opacity: 0.5;

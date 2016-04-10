@@ -423,6 +423,48 @@ describe('reducers/repo.js', function() {
         waiting_for_share_modal_response: false,
       });
     });
+    it('should work with server/INIT', function() {
+      let new_state = repoDetails(old_state.repoDetails, {
+        type: "server/INIT",
+        active_repo: ["user", "repo"],
+        page: "i am not a page",
+        timecard: {
+          card: [{abc: "def"}],
+        },
+        users: [{username: "user"}],
+        repos: [{user: "user", repo: "bar"}, {user: "user", repo: "repo"}],
+        commits: [{message: "foo bar commit"}],
+        branches: ["abc", "master"],
+        branch: "master-current",
+      });
+      assert.deepEqual(new_state, {
+        timecard: {
+          card: [{abc: "def"}],
+        },
+        users: [{username: "user"}],
+        repos: [{user: "user", repo: "bar"}, {user: "user", repo: "repo"}],
+        commits: [{message: "foo bar commit"}],
+        branches: ["abc", "master"],
+        _comesfrom: ["user", "repo", "master-current"],
+        show_share_modal: false,
+        branch: null,
+        _tab: "times", // default to times
+      });
+    });
+    it('should work with server/INIT, and redirect to times with a bad page', function() {
+      let new_state = repoDetails(old_state.repoDetails, {
+        type: "server/INIT",
+        active_repo: ["user", "repo"],
+        page: "i am not a page",
+        timecard: {
+          card: [],
+        },
+        users: [],
+        repos: [],
+        commits: [],
+      });
+      assert.deepEqual(new_state._tab, "times");
+    });
     it('should not be effected by another event', function() {
       let new_state = repoDetails(old_state.repo_details, {
         type: "SOME_OTHER_EVENT",

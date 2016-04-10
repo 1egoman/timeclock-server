@@ -75,6 +75,17 @@ export function discoveredRepos(state = [], action) {
 
 export function repoDetails(state = {branch: null}, action) {
   if (action.type === "server/INIT" && action.active_repo) {
+    // validate a page, returning times by default
+    // if a user adds a route that makes no sense, lets catch and "redirect" to
+    // `/app/user/repo/times`.
+    function validatePage(page) {
+      if (page === "commits" || page === "times") {
+        return page;
+      } else {
+        return "times";
+      }
+    }
+
     return Object.assign({}, state, {
       timecard: Object.assign({}, action.timecard, {
         card: action.timecard.card.reverse(),
@@ -82,10 +93,11 @@ export function repoDetails(state = {branch: null}, action) {
       users: action.users,
       branches: action.branches,
       commits: action.commits,
+      repos: action.repos,
 
       show_share_modal: false,
       _comesfrom: [...action.active_repo, action.branch],
-      _tab: "times",
+      _tab: validatePage(action.page),
     });
 
   } else if (action.type === "CHANGE_BRANCH") {

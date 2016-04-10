@@ -7173,7 +7173,8 @@ footer {
     color: #333333; }
 
 .repos {
-  padding: 0.5em; }
+  padding: 0.5em;
+  min-width: 375px; }
   .repos:before, .repos:after {
     content: " ";
     display: table; }
