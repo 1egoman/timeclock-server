@@ -62,7 +62,6 @@ import {
 import { user } from './reducers/user';
 import { error } from './reducers/error';
 
-
 const waltzApp = combineReducers({
   repo_import_dialog_open: repoImportDialogOpen,
   active_repo: activeRepo,
