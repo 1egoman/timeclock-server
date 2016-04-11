@@ -7173,6 +7173,8 @@ footer {
   .navbar .fa.fa-bars {
     font-size: 120%;
     color: #333333; }
+  .navbar ul.pull-right .dropdown-menu, .navbar .feature.feature-right ul.content .dropdown-menu, .feature.feature-right .navbar ul.content .dropdown-menu, .navbar .repo-details.repo-details-import .repos ul.btn-pick-me .dropdown-menu, .repo-details.repo-details-import .repos .navbar ul.btn-pick-me .dropdown-menu {
+    margin-left: -30px; }
 
 .repo-container {
   padding: 0px; }

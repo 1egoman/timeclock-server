@@ -23,4 +23,9 @@
     font-size: 120%;
     color: $gray-dark;
   }
+
+  // offset login dropdown menu
+  ul.pull-right .dropdown-menu {
+    margin-left: -30px;
+  }
 }
