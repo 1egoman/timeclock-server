@@ -18,6 +18,12 @@
   background-color: transparent;
 }
 
+// the container around `repoDetails` and friends
+.repo-container {
+  @extend .container-fluid;
+  padding: 0px;
+}
+
 .repos {
   @extend .list-group;
   @include clearfix;
@@ -84,20 +90,41 @@
 .repo-details {
   background: #fff;
   position: relative;
-  padding: 1em;
   margin-top: 1.6em;
 
   .repo-details-header {
-    background: #fff;
+    background: crimson; // the user-specified color
+    padding: 3em 1em 1em 1em;
     z-index: 1000;
     @include clearfix;
 
-    h1 {
-      @include repo-title(2em);
-      display: inline-block;
-      float: left;
-      margin-bottom: 0px;
-      margin-right: 16px;
+    // the user/repo section and provider badge
+    .repo-details-name {
+      @extend .container;
+
+      h1 {
+        @include repo-title(2em);
+        display: inline-block;
+        float: left;
+        margin-bottom: 0px;
+        margin-right: 16px;
+        color: #fff;
+      }
+
+      // provider badge
+      .repo-provider-badge {
+        margin: 0.75rem;
+        font-size: 2.25rem;
+        float: right;
+        span { color: #fff; }
+      }
+
+      // readme badge
+      .repo-details-badge {
+        margin-left: 0.5em;
+        cursor: pointer;
+        float: right;
+      }
     }
 
     .repo-details-secondary {
@@ -157,11 +184,6 @@
         }
       }
     }
-  }
-
-  .repo-details-badge {
-    margin-left: 0.5em;
-    cursor: pointer;
   }
 
   // repo-details-badge popover
@@ -248,12 +270,6 @@
     margin: 0.5em auto;
     display: block;
   }
-}
-
-.repo-provider-badge {
-  margin: 0.75rem;
-  font-size: 2.25rem;
-  span { color: $text-color;  }
 }
 
 .repo-details-tabs {

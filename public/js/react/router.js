@@ -12,7 +12,7 @@ export function repoView(view) {
   return ({params}) => {
     return <div>
       <Nav />
-      <div className="container">
+      <div className="repo-container">
         <RepoList />
         <RepoDetails
           user={params.user}
@@ -36,10 +36,7 @@ export function settingsView({params}) {
 export function notFoundRoute({params}) {
   return <div>
     <Nav />
-    <div className="col-md-4 col-lg-3">
-      <RepoList />
-    </div>
-    <div className="col-md-8 col-lg-9 repo-details repo-details-empty">
+    <div className="container">
       <h2>That route doesn't exist.</h2>
       <Link to="/app/">Back to civilization</Link>
     </div>

@@ -141,18 +141,20 @@ export const RepoDetailsComponent = ({
       {/* the header on top */}
       <div className="repo-details-header">
         {/* Repo name and readme badge*/}
-        <h1>
-          {repo.user}/<span className="repo-name">{repo.repo}</span>
-          <span className="repo-details-provider-badge">{getProviderBadgeForRepo(repo)}</span>
-          <img
-            className="repo-details-badge"
-            src={`/${repo.user}/${repo.repo}.svg`}
-            data-toggle="popover"
-            data-placement="bottom"
-            title="Embeddable Badge"
-            data-content={`[![Waltz unpaid time](http://waltzapp.co/${repo.user}/${repo.repo}.svg${repo.is_private ? '?token='+user.badge_token : '' })](http://waltzapp.co/${repo.user}/${repo.repo})`}
-          />
-        </h1>
+        <div className="repo-details-name">
+          <h1>
+            {repo.user}/<span className="repo-name">{repo.repo}</span>
+            <span className="repo-details-provider-badge">{getProviderBadgeForRepo(repo)}</span>
+          </h1>
+            <img
+              className="repo-details-badge"
+              src={`/${repo.user}/${repo.repo}.svg`}
+              data-toggle="popover"
+              data-placement="bottom"
+              title="Embeddable Badge"
+              data-content={`[![Waltz unpaid time](http://waltzapp.co/${repo.user}/${repo.repo}.svg${repo.is_private ? '?token='+user.badge_token : '' })](http://waltzapp.co/${repo.user}/${repo.repo})`}
+            />
+        </div>
 
         {/* choose a branch to start on */}
         <div className="repo-details-secondary">
