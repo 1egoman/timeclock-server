@@ -206,7 +206,7 @@ export const RepoDetailsComponent = ({
               <i className="fa fa-area-chart" />
               Metrics
             </NavItem>
-            {/* <NavItem eventKey="stats">Stats</NavItem> */}
+            <NavItem eventKey="settings">Settings</NavItem>
           </Nav>
         </div>
       </div>

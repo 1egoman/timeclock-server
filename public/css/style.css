@@ -7308,13 +7308,19 @@ footer {
       margin-top: 0.5rem; }
       .repo-details .repo-details-break-bar .repo-details-tabswitcher i.fa {
         margin-right: 0.33rem; }
-      .repo-details .repo-details-break-bar .repo-details-tabswitcher li a {
-        background-color: transparent;
-        color: #777777;
-        font-weight: bold;
-        font-size: 1.6rem; }
-      .repo-details .repo-details-break-bar .repo-details-tabswitcher .active a {
-        color: #51c4c4; }
+      .repo-details .repo-details-break-bar .repo-details-tabswitcher li {
+        width: 100%; }
+        @media (min-width: 768px) {
+          .repo-details .repo-details-break-bar .repo-details-tabswitcher li {
+            width: auto; } }
+        .repo-details .repo-details-break-bar .repo-details-tabswitcher li a {
+          background-color: transparent;
+          color: #777777;
+          font-weight: bold;
+          font-size: 1.6rem;
+          padding-left: 0em; }
+        .repo-details .repo-details-break-bar .repo-details-tabswitcher li.active a {
+          color: #51c4c4; }
   .repo-details .repo-details-body {
     position: relative;
     background-color: #eeeeee; }
