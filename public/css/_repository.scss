@@ -94,7 +94,7 @@
   // the top themed section (based of timecard primary color theme)
   .repo-details-header {
     background: $brand-primary; // the user-specified color
-    padding: 3em 1em 1em 1em;
+    padding: 3em 1em;
     z-index: 1000;
     min-height: 3.6em;
     @include clearfix;
@@ -272,10 +272,12 @@
   // shown when the specified timecard is empty
   .timecard.timecard-is-empty {
     @include empty-pane;
-    padding-top: 0.2em;
+    padding-top: 0.2rem;
+    margin: 2rem;
     h1 {
-      font-size: 2em;
+      font-size: 2rem;
     }
+    a { cursor: pointer; }
   }
 }
 

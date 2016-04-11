@@ -7230,7 +7230,7 @@ footer {
   position: relative; }
   .repo-details .repo-details-header {
     background: #51c4c4;
-    padding: 3em 1em 1em 1em;
+    padding: 3em 1em;
     z-index: 1000;
     min-height: 3.6em; }
     .repo-details .repo-details-header:before, .repo-details .repo-details-header:after {
@@ -7362,9 +7362,12 @@ footer {
     padding-top: 2em;
     text-align: center;
     background-color: transparent;
-    padding-top: 0.2em; }
+    padding-top: 0.2rem;
+    margin: 2rem; }
     .repo-details .timecard.timecard-is-empty h1 {
-      font-size: 2em; }
+      font-size: 2rem; }
+    .repo-details .timecard.timecard-is-empty a {
+      cursor: pointer; }
 
 .repo-details.repo-details-import {
   padding-left: 20px;

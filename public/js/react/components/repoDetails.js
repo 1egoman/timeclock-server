@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 import {
   Nav,
   NavItem,
+  Panel,
 } from 'react-bootstrap';
 
 // actions
@@ -40,9 +41,11 @@ const PX_PER_MIN = 3;
 
 function emptyTimecard({helpInstallingWaltz}) {
   return <div className="timecard timecard-is-empty">
-    <h1>This timecard is empty.</h1>
-    <p>To start adding times, run <code>waltz in</code> in a local copy of the repository.</p>
-    <a onClick={helpInstallingWaltz}>How do I install waltz?</a>
+    <Panel>
+      <h1>This timecard is empty.</h1>
+      <p>To start adding times, run <code>waltz in</code> in a local copy of the repository.</p>
+      <a onClick={helpInstallingWaltz}>How do I install waltz?</a>
+    </Panel>
   </div>;
 }
 

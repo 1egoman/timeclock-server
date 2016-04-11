@@ -15,15 +15,29 @@ export function repoSettingsComponent({
         className="repo-details-badge"
         src={`/${repo.user}/${repo.repo}.svg`}
       />
+
       <p>
         This badge provides a simple way for both freelancers and clients to view
         payment status on a project.
         To embed, copy the below code into the respective embed location.
       </p>
+
+      {/* The embed formats: Markdown, RST, or raw */}
       <Tabs defaultActiveKey={0}>
         <Tab eventKey={0} title="Markdown">
           <pre>
             [![Waltz unpaid time](http://waltzapp.co/{repo.user}/{repo.repo}.svg{repo.is_private ? '?token='+user.badge_token : '' })](http://waltzapp.co/{repo.user}/{repo.repo})
+          </pre>
+        </Tab>
+        <Tab eventKey={1} title="RST">
+          <pre>
+            .. image:: http://waltzapp.co/{repo.user}/{repo.repo}.svg{repo.is_private ? '?token='+user.badge_token : '' }<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;:target: http://waltzapp.co/{repo.user}/{repo.repo}
+          </pre>
+        </Tab>
+        <Tab eventKey={2} title="Image URL">
+          <pre>
+            http://waltzapp.co/{repo.user}/{repo.repo}.svg{repo.is_private ? '?token='+user.badge_token : '' }
           </pre>
         </Tab>
       </Tabs>
