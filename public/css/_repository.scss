@@ -90,12 +90,13 @@
 .repo-details {
   background: #fff;
   position: relative;
-  margin-top: 1.6em;
 
+  // the top themed section (based of timecard primary color theme)
   .repo-details-header {
     background: crimson; // the user-specified color
     padding: 3em 1em 1em 1em;
     z-index: 1000;
+    min-height: 3.6em;
     @include clearfix;
 
     // the user/repo section and provider badge
@@ -126,63 +127,99 @@
         float: right;
       }
     }
+  }
 
+  // the white seperator bar between body and header
+  .repo-details-break-bar {
+    @extend .container;
+    padding-bottom: 1em;
+
+    // the branch box / share info
     .repo-details-secondary {
       float: left;
       margin-top: 20px;
       margin-left: 0px;
       width: 100%;
-      @media (min-width: $screen-sm-min) {
-        width: auto;
-      }
-    }
 
-    .repo-details-branch-select {
-      width: 100%;
-      margin-left: 2px;
-      margin-bottom: 8px;
-      float: left;
-      @media (min-width: $screen-sm-min) {
-        width: 200px;
-      }
-    }
-
-    // the box to get a link to the report
-    // and print it
-    .repo-details-report-link {
-      width: 100%;
-      float: left;
-      @include clearfix;
-
-      @media (min-width: $screen-sm-min) {
-        width: 350px;
-        margin: 0em 0.5em;
-      }
-
-      // un-round the right button corners
-      input[type=text] {
-        border-top-right-radius: 0px;
-        border-bottom-right-radius: 0px;
-      }
-      .btn-success { border-radius: 0px; }
-      .btn-info {
-        border-top-left-radius: 0px;
-        border-bottom-left-radius: 0px;
-      }
-
-      input[type=text] {
-        width: 50%;
+      // the box to switch branch
+      .repo-details-branch-select {
+        width: 100%;
+        margin-left: 2px;
+        margin-bottom: 8px;
         float: left;
         @media (min-width: $screen-sm-min) {
           width: 200px;
         }
       }
-      button {
-        width: 25%;
+
+      // the box to get a link to the report
+      // and print it
+      .repo-details-report-link {
+        width: 100%;
+        float: left;
+        @include clearfix;
+
         @media (min-width: $screen-sm-min) {
-          width: auto;
+          width: 350px;
+          margin: 0em 0.5em;
+        }
+
+        // un-round the right button corners
+        input[type=text] {
+          border-top-right-radius: 0px;
+          border-bottom-right-radius: 0px;
+        }
+        .btn-success { border-radius: 0px; }
+        .btn-info {
+          border-top-left-radius: 0px;
+          border-bottom-left-radius: 0px;
+        }
+
+        input[type=text] {
+          width: 50%;
+          float: left;
+          @media (min-width: $screen-sm-min) {
+            width: 200px;
+          }
+        }
+        button {
+          width: 25%;
+          @media (min-width: $screen-sm-min) {
+            width: auto;
+          }
         }
       }
+    }
+
+    // the tabs for switching context
+    .repo-details-tabswitcher {
+      float: left;
+      margin-top: 0.5rem;
+
+      // space icons from text
+      i.fa { margin-right: 0.33rem; }
+
+      // each of the items themselves
+      li a {
+        background-color: transparent;
+        color: $gray-light;
+        font-weight: bold;
+        font-size: 1.6rem;
+      }
+      .active a {
+        color: $brand-primary;
+      }
+    }
+  }
+
+  // the main body section
+  .repo-details-body {
+    position: relative;
+    background-color: $body-bg;
+    @include clearfix;
+
+    .repo-details-body-wrapper {
+      @extend .container;
     }
   }
 
@@ -270,11 +307,6 @@
     margin: 0.5em auto;
     display: block;
   }
-}
-
-.repo-details-tabs {
-  position: relative;
-  @include clearfix;
 }
 
 a[role=menuitem] {

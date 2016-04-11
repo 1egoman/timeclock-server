@@ -156,7 +156,9 @@ export const RepoDetailsComponent = ({
             />
         </div>
 
-        {/* choose a branch to start on */}
+      </div>
+
+      <div className="repo-details-break-bar">
         <div className="repo-details-secondary">
           <div className="repo-details-branch-select">
             <BranchPicker />
@@ -188,26 +190,32 @@ export const RepoDetailsComponent = ({
             </div>
           </div>
         </div>
+
+        {/* Tabs for switching context */}
+        <div className="repo-details-tabswitcher">
+          <Nav
+            bsStyle="pills"
+            activeKey={getCurrentView()}
+            onSelect={switchTab.bind(this, repo.user, repo.repo)}
+          >
+            <NavItem eventKey="times">
+              <i className="fa fa-clock-o" />
+              Times
+            </NavItem>
+            <NavItem eventKey="metrics">
+              <i className="fa fa-area-chart" />
+              Metrics
+            </NavItem>
+            {/* <NavItem eventKey="stats">Stats</NavItem> */}
+          </Nav>
+        </div>
       </div>
 
-      {/* Switch the tab of the repo */}
-      <Nav
-        bsStyle="tabs"
-        activeKey={getCurrentView()}
-        onSelect={switchTab.bind(this, repo.user, repo.repo)}
-      >
-        <NavItem eventKey="times">
-          <i className="fa fa-clock-o" />
-          Times
-        </NavItem>
-        <NavItem eventKey="metrics">
-          <i className="fa fa-area-chart" />
-          Metrics
-        </NavItem>
-        {/* <NavItem eventKey="stats">Stats</NavItem> */}
-      </Nav>
-
-      <div className="repo-details-tabs">{body}</div>
+      <div className="repo-details-body">
+        <div className="repo-details-body-wrapper">
+          {body}
+        </div>
+      </div>
     </div>;
 
   } else {

@@ -13,12 +13,12 @@ export function repoView(view) {
     return <div>
       <Nav />
       <div className="repo-container">
-        <RepoList />
         <RepoDetails
           user={params.user}
           repo={params.repo}
           startingView={view || "times"}
         />
+        <RepoList />
       </div>
     </div>;
   };
