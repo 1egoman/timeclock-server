@@ -29,7 +29,7 @@ function getAuthenticatedUser(req) {
 
 // get a badge for this repo
 function fetchBadge(req, res) {
-  Promise.all([
+  return Promise.all([
     getAuthenticatedUser(req),
     repo.getRepoDetails(req, req.params.username, req.params.repo),
   ]).then((prom) => {
