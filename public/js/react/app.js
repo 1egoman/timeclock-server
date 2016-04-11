@@ -116,7 +116,7 @@ render(<Provider store={store}>
       <Route path="/app/:user/:repo" component={repoView()} />
       <Route path="/app/:user/:repo/metrics" component={repoView("commits")} />
       <Route path="/app/:user/:repo/times" component={repoView("times")} />
-      <Route path="/app/:user/:repo/stats" component={repoView("stats")} />
+      <Route path="/app/:user/:repo/settings" component={repoView("settings")} />
 
       <Route path="/app/settings" component={settingsView} />
       <Route path="*" component={notFoundRoute} />

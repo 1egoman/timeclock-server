@@ -78,13 +78,6 @@ export function repoDetails(state = {branch: null}, action) {
     // validate a page, returning times by default
     // if a user adds a route that makes no sense, lets catch and "redirect" to
     // `/app/user/repo/times`.
-    function validatePage(page) {
-      if (page === "commits" || page === "times") {
-        return page;
-      } else {
-        return "times";
-      }
-    }
 
     return Object.assign({}, state, {
       timecard: Object.assign({}, action.timecard, {
@@ -97,7 +90,7 @@ export function repoDetails(state = {branch: null}, action) {
 
       show_share_modal: false,
       _comesfrom: [...action.active_repo, action.branch],
-      _tab: validatePage(action.page),
+      _tab: action.page,
     });
 
   } else if (action.type === "CHANGE_BRANCH") {

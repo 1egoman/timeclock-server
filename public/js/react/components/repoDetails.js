@@ -34,6 +34,7 @@ import BranchPicker from './branchPicker';
 import ShareWithClient from './shareWithClient';
 import RepoCommits from './repoCommits';
 import RepoTimesList from './repoTimesList';
+import RepoSettings from './repoSettings';
 
 const PX_PER_MIN = 3;
 
@@ -44,7 +45,6 @@ function emptyTimecard({helpInstallingWaltz}) {
     <a onClick={helpInstallingWaltz}>How do I install waltz?</a>
   </div>;
 }
-
 
 export const RepoDetailsComponent = ({
   repo,
@@ -73,9 +73,19 @@ export const RepoDetailsComponent = ({
   openShareModal,
   switchTab,
 }) => {
-
   // return the view that we are currently in
-  function getCurrentView() { return repo_details._tab || startingView || "times"; }
+  function validateView(page) {
+    if (
+      page === "times" ||
+      page === "metrics" ||
+      page === "settings"
+    ) {
+      return page;
+    } else {
+      return "times";
+    }
+  }
+  function getCurrentView() { return validateView(repo_details._tab || startingView || "times"); }
 
   // import new repos
   if (repo_import_dialog_open && has_discovered_repos) {
@@ -101,8 +111,12 @@ export const RepoDetailsComponent = ({
     let select_branches = getAllBranches({repo_details, repo}).map((i) => {
       return {value: i, label: i}
     });
+
+    // scale factor for commit graph
     let scale = getTimeScaleFactor(calculateLengthForCommits(repo_details.commits), timecard, 1000);
 
+    // primary color / secondary color for styling ui
+    let primaryColor = repo_details.timecard && repo_details.timecard.primaryColor;
 
     let body = (function(view) {
       if (timecard && Array.isArray(timecard.card) && timecard.card.length) {
@@ -118,10 +132,17 @@ export const RepoDetailsComponent = ({
                 className={`btn btn-default ${can_paginate_forward ? 'shown' : 'hidden'}`}
               >More...</button>
             </div>;
+
           case "metrics":
             return <RepoCommits
               disabled={!Boolean(Array.isArray(timecard.card) && timecard.card.length)}
             />;
+
+          case "settings":
+            return <RepoSettings
+              color={primaryColor}
+            />;
+
           default:
             return null;
         }
@@ -139,23 +160,14 @@ export const RepoDetailsComponent = ({
 
     return <div className="repo-details">
       {/* the header on top */}
-      <div className="repo-details-header">
+      <div className="repo-details-header" style={{backgroundColor: primaryColor}}>
         {/* Repo name and readme badge*/}
         <div className="repo-details-name">
           <h1>
             {repo.user}/<span className="repo-name">{repo.repo}</span>
             <span className="repo-details-provider-badge">{getProviderBadgeForRepo(repo)}</span>
           </h1>
-            <img
-              className="repo-details-badge"
-              src={`/${repo.user}/${repo.repo}.svg`}
-              data-toggle="popover"
-              data-placement="bottom"
-              title="Embeddable Badge"
-              data-content={`[![Waltz unpaid time](http://waltzapp.co/${repo.user}/${repo.repo}.svg${repo.is_private ? '?token='+user.badge_token : '' })](http://waltzapp.co/${repo.user}/${repo.repo})`}
-            />
         </div>
-
       </div>
 
       <div className="repo-details-break-bar">
@@ -206,7 +218,10 @@ export const RepoDetailsComponent = ({
               <i className="fa fa-area-chart" />
               Metrics
             </NavItem>
-            <NavItem eventKey="settings">Settings</NavItem>
+            <NavItem eventKey="settings">
+              <i className="fa fa-cog" />
+              Settings
+            </NavItem>
           </Nav>
         </div>
       </div>

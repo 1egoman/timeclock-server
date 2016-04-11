@@ -7229,7 +7229,7 @@ footer {
   background: #fff;
   position: relative; }
   .repo-details .repo-details-header {
-    background: crimson;
+    background: #51c4c4;
     padding: 3em 1em 1em 1em;
     z-index: 1000;
     min-height: 3.6em; }
@@ -7250,15 +7250,12 @@ footer {
       .repo-details .repo-details-header .repo-details-name h1 .repo-name {
         font-weight: bold; }
     .repo-details .repo-details-header .repo-details-name .repo-provider-badge {
-      margin: 0.75rem;
+      margin: 0.25rem;
+      margin-left: 0.75rem;
       font-size: 2.25rem;
       float: right; }
       .repo-details .repo-details-header .repo-details-name .repo-provider-badge span {
         color: #fff; }
-    .repo-details .repo-details-header .repo-details-name .repo-details-badge {
-      margin-left: 0.5em;
-      cursor: pointer;
-      float: right; }
   .repo-details .repo-details-break-bar {
     padding-bottom: 1em; }
     .repo-details .repo-details-break-bar .repo-details-secondary {
@@ -7344,8 +7341,6 @@ footer {
     margin-top: 20px;
     width: 100%;
     border: 0px; }
-    .repo-details .repo-details-report-table .disabled {
-      background-color: #eeeeee; }
     .repo-details .repo-details-report-table .repo-details-report-table-indicators {
       min-width: 100px;
       float: right;
@@ -7515,6 +7510,12 @@ a[role=menuitem], a[role=menuitem]:focus, a[role=menuitem]:active, a[role=menuit
 
 .repo-details .nav.nav-tabs li i.fa, .repo-details .feature-collapse ul li i.fa, .feature-collapse .repo-details ul li i.fa {
   margin-right: 4px; }
+
+.repo-settings {
+  padding: 2rem 0rem; }
+  .repo-settings .repo-details-badge {
+    padding-bottom: 1rem;
+    margin-left: 0.5em; }
 
 a {
   color: #00B7FF; }
