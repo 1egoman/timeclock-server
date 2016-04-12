@@ -7229,7 +7229,8 @@ footer {
   background: #fff;
   position: relative; }
   .repo-details .repo-details-header {
-    background: #51c4c4;
+    background-color: #51c4c4;
+    transition: 0.25s ease all;
     padding: 3em 1em;
     z-index: 1000;
     min-height: 3.6em; }

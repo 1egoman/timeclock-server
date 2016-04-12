@@ -93,7 +93,8 @@
 
   // the top themed section (based of timecard primary color theme)
   .repo-details-header {
-    background: $brand-primary; // the user-specified color
+    background-color: $brand-primary; // the user-specified color
+    transition: 0.25s ease all; // fade in the new color
     padding: 3em 1em;
     z-index: 1000;
     min-height: 3.6em;
