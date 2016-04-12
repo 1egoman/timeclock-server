@@ -7304,22 +7304,23 @@ footer {
               width: auto; } }
     .repo-details .repo-details-break-bar .repo-details-tabswitcher {
       float: left;
-      margin-top: 0.5rem;
-      width: 100%; }
+      margin-top: 0.5rem; }
       .repo-details .repo-details-break-bar .repo-details-tabswitcher i.fa {
         margin-right: 0.33rem; }
-      @media (min-width: 768px) {
-        .repo-details .repo-details-break-bar .repo-details-tabswitcher {
-          width: auto; } }
-      .repo-details .repo-details-break-bar .repo-details-tabswitcher li.active a {
-        color: #51c4c4 !important; }
-      .repo-details .repo-details-break-bar .repo-details-tabswitcher li:first-child a {
-        padding-left: 0em; }
-      .repo-details .repo-details-break-bar .repo-details-tabswitcher li a {
-        background-color: transparent !important;
-        color: #777777 !important;
-        font-weight: bold;
-        font-size: 1.6rem; }
+      .repo-details .repo-details-break-bar .repo-details-tabswitcher li {
+        width: 100%; }
+        @media (min-width: 768px) {
+          .repo-details .repo-details-break-bar .repo-details-tabswitcher li {
+            width: auto; }
+            .repo-details .repo-details-break-bar .repo-details-tabswitcher li:first-child a {
+              padding-left: 0em; } }
+        .repo-details .repo-details-break-bar .repo-details-tabswitcher li.active a {
+          color: #51c4c4 !important; }
+        .repo-details .repo-details-break-bar .repo-details-tabswitcher li a {
+          background-color: transparent !important;
+          color: #777777 !important;
+          font-weight: bold;
+          font-size: 1.6rem; }
   .repo-details .repo-details-body {
     position: relative;
     background-color: #eeeeee; }
@@ -7519,20 +7520,24 @@ a[role=menuitem], a[role=menuitem]:focus, a[role=menuitem]:active, a[role=menuit
   .repo-settings .repo-details-badge {
     padding-bottom: 1rem;
     margin-left: 0.5em; }
-  .repo-settings .nav-pills {
+  .repo-settings .nav-pills li {
     width: 100%; }
     @media (min-width: 768px) {
-      .repo-settings .nav-pills {
-        width: auto; } }
+      .repo-settings .nav-pills li {
+        width: auto; }
+        .repo-settings .nav-pills li:first-child a {
+          padding-left: 0em; } }
     .repo-settings .nav-pills li.active a {
       color: #51c4c4 !important; }
-    .repo-settings .nav-pills li:first-child a {
-      padding-left: 0em; }
     .repo-settings .nav-pills li a {
       background-color: transparent !important;
       color: #777777 !important;
       font-weight: bold;
       font-size: 1.6rem; }
+  .repo-settings pre {
+    white-space: normal;
+    min-height: 1.8em;
+    margin-top: 0.33em; }
 
 a {
   color: #00B7FF; }

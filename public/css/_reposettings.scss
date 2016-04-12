@@ -9,4 +9,9 @@
   .nav-pills {
     @include nav-pills-bolded;
   }
+  pre {
+    white-space: normal;
+    min-height: 1.8em;
+    margin-top: 0.33em;
+  }
 }

@@ -3,7 +3,7 @@ import { Router, Route, Link } from 'react-router';
 
 // "Components"
 import RepoList from './components/repoList';
-import RepoDetails from './components/repoDetails';
+import RepoDetails from './components/details/repoDetails';
 import SettingsList from './components/settingsList';
 import Nav from './components/nav';
 

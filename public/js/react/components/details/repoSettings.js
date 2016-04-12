@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {OverlayTrigger, Popover, Panel, Tabs, Tab} from 'react-bootstrap';
 import _ from 'underscore';
-import {getRepoByIndex} from '../helpers/get_repo';
+import {getRepoByIndex} from '../../helpers/get_repo';
 
 function embeddableBadge(repo, user) {
   return <Panel header="Embeddable Badge">

@@ -2,13 +2,13 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {OverlayTrigger, Popover, Panel, Col} from 'react-bootstrap';
 import _ from 'underscore';
-import {getTimeScaleFactor, calculateLengthForCommits} from '../helpers/timecard';
+import {getTimeScaleFactor, calculateLengthForCommits} from '../../helpers/timecard';
 import {
   calculateAverageWorkPeriodLength,
   calculateAverageCommitTime,
   calculateAverageCommitsPerWorkPeriod,
   formatTime,
-} from "../helpers/stats";
+} from "../../helpers/stats";
 
 function getRepoCommitNodeType(message) {
   if (message.indexOf("Created timecard for Waltz:") !== -1) {

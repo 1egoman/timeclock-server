@@ -4,7 +4,7 @@ import _ from 'underscore';
 import {
   getTimeDelta,
   getAvatarFor,
-} from '../helpers/timecard';
+} from '../../helpers/timecard';
 
 // render all of the time regions within the timecard as a table
 function renderTimecardTable(timecard, timecard_users, user, scale) {

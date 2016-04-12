@@ -13,24 +13,24 @@ import {
   changeBranch,
   getTimecard,
   switchRepoTab,
-} from '../actions/repo';
+} from '../../actions/repo';
 import {
   showWaltzInstallInstructions,
   showShareModal,
-} from '../actions/modal';
+} from '../../actions/modal';
 
 // helpers
-import {getCurrentBranch, getAllBranches} from '../helpers/branch';
+import {getCurrentBranch, getAllBranches} from '../../helpers/branch';
 import {
   getTimeScaleFactor,
   calculateLengthForCommits,
-} from '../helpers/timecard';
-import {getProviderBadgeForRepo} from '../helpers/provider_badge';
-import {getRepoByIndex} from '../helpers/get_repo';
+} from '../../helpers/timecard';
+import {getProviderBadgeForRepo} from '../../helpers/provider_badge';
+import {getRepoByIndex} from '../../helpers/get_repo';
 
 // components
-import Loading from './loading';
-import ImportRepo from './importRepo';
+import Loading from '../loading';
+import ImportRepo from '../importRepo';
 import BranchPicker from './branchPicker';
 import ShareWithClient from './shareWithClient';
 import RepoCommits from './repoCommits';

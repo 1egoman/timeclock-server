@@ -1,10 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { changeBranch, getTimecard, getCommits } from '../actions/repo';
-import {getCurrentBranch, getAllBranches} from '../helpers/branch';
+import { changeBranch, getTimecard, getCommits } from '../../actions/repo';
+import {getCurrentBranch, getAllBranches} from '../../helpers/branch';
 import _ from "underscore";
 import Select from 'react-select';
-import { getRepoByIndex } from '../helpers/get_repo';
+import { getRepoByIndex } from '../../helpers/get_repo';
 
 export const BranchPickerComponent = ({
   current_branch,
