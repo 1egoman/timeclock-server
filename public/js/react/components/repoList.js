@@ -20,7 +20,7 @@ export function importRepoButton({
   if (!is_importing_repo) {
     return <button
       className="btn btn-sm btn-primary pull-right"
-      onClick={importNewRepo(true)}
+      onClick={importNewRepo}
     >Import a new repository</button>
   } else {
     return null;
@@ -64,23 +64,17 @@ export const RepoListComponent = ({
   } else {
     items = <Loading
       title="No Repositories"
-      message={<span>Why not <span className="click" onClick={importNewRepo(true)}>import a new one?</span></span>}
+      message={<span>Why not <span className="click" onClick={importNewRepo}>import a new one?</span></span>}
     />;
   }
 
-  return <DropdownButton
-    bsSize="large"
-    title={active_repo ? `${active_repo[0]}/${active_repo[1]}` : 'Choose Repo'}
-    id="switch-repo"
-  >
-    <ul className={`repos repos-list`}>
-      <div className="repos-controls">
-        <h4 className="repos-label">Repositories</h4>
-        {importRepoButton({is_importing_repo, importNewRepo})}
-      </div>
-      {items}
-    </ul>
-  </DropdownButton>;
+  return <ul className={`repos repos-list`}>
+    <div className="repos-controls">
+      <h4 className="repos-label">Repositories</h4>
+      {importRepoButton({is_importing_repo, importNewRepo})}
+    </div>
+    {items}
+  </ul>;
 };
 
 export function mapStateToProps(store, props) {
@@ -93,10 +87,8 @@ export function mapStateToProps(store, props) {
 
 const RepoList = connect(mapStateToProps, (dispatch, ownProps) => {
   return {
-    importNewRepo(state) {
-      return () => {
-        dispatch(requestAllUserRepos(0));
-      };
+    importNewRepo() {
+      dispatch(requestAllUserRepos(0));
     },
     deleteRepo(repo) {
       return () => dispatch(deleteRepo(repo.user, repo.repo));

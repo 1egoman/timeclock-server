@@ -2,6 +2,7 @@ import React from 'react';
 import { Router, Route, Link } from 'react-router';
 
 // "Components"
+import ImportRepo from './components/importRepo';
 import RepoList from './components/repoList';
 import RepoDetails from './components/details/repoDetails';
 import SettingsList from './components/settingsList';
@@ -18,11 +19,29 @@ export function repoView(view) {
           repo={params.repo}
           startingView={view || "times"}
         />
-        <RepoList />
       </div>
     </div>;
   };
 }
+
+export function listView({params}) {
+  return <div>
+    <Nav />
+    <div className="container">
+      <RepoList />
+    </div>
+  </div>;
+}
+
+export function importView({params}) {
+  return <div>
+    <Nav />
+    <div className="container">
+      <ImportRepo />
+    </div>
+  </div>;
+}
+
 export function settingsView({params}) {
   return <div>
     <Nav />

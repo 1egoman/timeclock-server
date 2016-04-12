@@ -6,7 +6,13 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import {reducer as formReducer} from 'redux-form';
-import {repoView, settingsView, notFoundRoute} from './router';
+import {
+  repoView,
+  listView,
+  importView,
+  settingsView,
+  notFoundRoute,
+} from './router';
 import InstallClientHelp from './components/installClientHelp';
 import ErrorModal from './components/errorModal';
 
@@ -112,7 +118,8 @@ render(<Provider store={store}>
     <InstallClientHelp />
 
     <Router history={history}>
-      <Route path="/app/" component={repoView()} />
+      <Route path="/app/" component={listView} />
+      <Route path="/app/import" component={importView} />
       <Route path="/app/:user/:repo" component={repoView()} />
       <Route path="/app/:user/:repo/metrics" component={repoView("commits")} />
       <Route path="/app/:user/:repo/times" component={repoView("times")} />

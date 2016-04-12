@@ -30,7 +30,6 @@ import {getRepoByIndex} from '../../helpers/get_repo';
 
 // components
 import Loading from '../loading';
-import ImportRepo from '../importRepo';
 import BranchPicker from './branchPicker';
 import ShareWithClient from './shareWithClient';
 import RepoCommits from './repoCommits';
@@ -90,19 +89,8 @@ export const RepoDetailsComponent = ({
   }
   function getCurrentView() { return validateView(repo_details._tab || startingView || "times"); }
 
-  // import new repos
-  if (repo_import_dialog_open && has_discovered_repos) {
-    return <ImportRepo />;
-
-  // loading message for the above reop import dialog
-  } else if (repo_import_dialog_open) {
-    return <Loading
-      title="Fetching Repositories"
-      spinner
-    />;
-
   // a repo error
-  } else if (repo_details.error) {
+  if (repo_details.error) {
     return <div>
         <h1>Uh, oh!</h1>
       <p>{repo_details.error}</p>
@@ -237,9 +225,10 @@ export const RepoDetailsComponent = ({
     </div>;
 
   } else {
-    return <div className="repo-details repo-details-empty">
-      <h2>Nothing selected.</h2>
-    </div>;
+    return <Loading
+      title="Loading Repository"
+      spinner
+    />;
   }
 };
 
