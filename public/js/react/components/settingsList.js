@@ -25,7 +25,7 @@ export function userInfo({settings, user, changePaymentEmail, validateEmail}) {
       <div className="setting-list-payment-email">
         <Input
           type="text"
-          label="Payment email"
+          label="Payment email (defaults to account email)"
           placeholder={user.email}
           value={settings.payment_email}
           onChange={changePaymentEmail}

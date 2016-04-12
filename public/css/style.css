@@ -7455,33 +7455,31 @@ a[role=menuitem], a[role=menuitem]:focus, a[role=menuitem]:active, a[role=menuit
   .time-delta i.success {
     color: #8ac450; }
 
-.settings-list .avatar-img {
-  width: 128px;
-  height: 128px;
-  margin: 1em auto;
-  display: block; }
-  @media (min-width: 768px) {
-    .settings-list .avatar-img {
-      float: left;
-      margin-right: 2em; } }
-
-.settings-list .setting-list-payment-email {
-  width: 400px;
-  display: block;
-  float: left; }
-
-.settings-list .setting-list-provider-badge .user-provider-badge {
-  color: #333333;
-  margin-left: 0.3em; }
-
-.settings-list .panel-half-height {
-  min-height: 200px; }
-
-.settings-list .badge-token-box {
-  max-width: 0em;
-  margin: 0.5em auto; }
-  .settings-list .badge-token-box p {
-    margin-bottom: 0.5em; }
+.settings-list {
+  margin-top: 4rem; }
+  .settings-list .avatar-img {
+    width: 128px;
+    height: 128px;
+    margin: 1em auto;
+    display: block; }
+    @media (min-width: 768px) {
+      .settings-list .avatar-img {
+        float: left;
+        margin-right: 2em; } }
+  .settings-list .setting-list-payment-email {
+    width: 400px;
+    display: block;
+    float: left; }
+  .settings-list .setting-list-provider-badge .user-provider-badge {
+    color: #333333;
+    margin-left: 0.3em; }
+  .settings-list .panel-half-height {
+    min-height: 200px; }
+  .settings-list .badge-token-box {
+    max-width: 0em;
+    margin: 0.5em auto; }
+    .settings-list .badge-token-box p {
+      margin-bottom: 0.5em; }
 
 .modal-new-timecard p {
   margin-top: 1em; }
