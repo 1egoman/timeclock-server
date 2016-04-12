@@ -6,6 +6,10 @@
   border-top: 2px solid $gray-lighter;
   margin-bottom: 2.4em;
 
+  @media print {
+    display: none;
+  }
+
   h2 {
     font-size: 1.4rem;
     text-align: center;

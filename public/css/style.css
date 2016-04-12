@@ -6965,6 +6965,9 @@ button.close {
 .invoice.invoice-payment {
   border-top: 2px solid #eeeeee;
   margin-bottom: 2.4em; }
+  @media print {
+    .invoice.invoice-payment {
+      display: none; } }
   .invoice.invoice-payment h2 {
     font-size: 1.4rem;
     text-align: center;
