@@ -16,24 +16,12 @@ import Loading from '../../components/loading';
 describe('components/repoList.js', function() {
   describe('import repo button', function() {
     it('should render the repo import button', function() {
-      let importNewRepoSpy = sinon.spy();
       assert.deepEqual(importRepoButton({
-        is_importing_repo: false,
-        importNewRepo: importNewRepoSpy,
+        importNewRepo: "importRepo",
       }), <button
         className="btn btn-sm btn-primary pull-right"
-        onClick={undefined}
+        onClick={"importRepo"}
       >Import a new repository</button>);
-      assert(importNewRepoSpy.calledOnce);
-      assert(importNewRepoSpy.calledWith(true));
-    });
-    it('should not render the repo import button when the import dialog is open', function() {
-      let importNewRepoSpy = sinon.spy();
-      assert.deepEqual(importRepoButton({
-        is_importing_repo: true,
-        importNewRepo: importNewRepoSpy,
-      }), null);
-      assert.equal(importNewRepoSpy.callCount, 0);
     });
   });
   // describe('bare component', function() {

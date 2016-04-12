@@ -427,7 +427,7 @@ describe('reducers/repo.js', function() {
       let new_state = repoDetails(old_state.repoDetails, {
         type: "server/INIT",
         active_repo: ["user", "repo"],
-        page: "i am not a page",
+        page: "times",
         timecard: {
           card: [{abc: "def"}],
         },
@@ -450,20 +450,6 @@ describe('reducers/repo.js', function() {
         branch: null,
         _tab: "times", // default to times
       });
-    });
-    it('should work with server/INIT, and redirect to times with a bad page', function() {
-      let new_state = repoDetails(old_state.repoDetails, {
-        type: "server/INIT",
-        active_repo: ["user", "repo"],
-        page: "i am not a page",
-        timecard: {
-          card: [],
-        },
-        users: [],
-        repos: [],
-        commits: [],
-      });
-      assert.deepEqual(new_state._tab, "times");
     });
     it('should not be effected by another event', function() {
       let new_state = repoDetails(old_state.repo_details, {

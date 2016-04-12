@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "mocha public/js/react/test/**/*.js --compilers js:babel-register",
+    "test": "mocha public/js/react/test/**/*.js --compilers js:babel-register -R spec",
     "testserver": "NODE_ENV=test mocha --recursive --compilers js:sinon-as-promised"
   },
   "dependencies": {

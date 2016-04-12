@@ -13,18 +13,11 @@ import {
 import Loading from './loading';
 
 // import a new repo
-export function importRepoButton({
-  is_importing_repo,
-  importNewRepo,
-}) {
-  if (!is_importing_repo) {
-    return <button
-      className="btn btn-sm btn-primary pull-right"
-      onClick={importNewRepo}
-    >Import a new repository</button>
-  } else {
-    return null;
-  }
+export function importRepoButton({importNewRepo}) {
+  return <button
+    className="btn btn-sm btn-primary pull-right"
+    onClick={importNewRepo}
+  >Import a new repository</button>;
 }
 
 export const RepoListComponent = ({

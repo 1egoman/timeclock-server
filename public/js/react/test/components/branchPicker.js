@@ -7,7 +7,7 @@ import sinon from 'sinon';
 import {
   BranchPickerComponent,
   mapPropsToStore,
-} from '../../components/branchPicker';
+} from '../../components/details/branchPicker';
 
 describe('components/branchPicker.js', function() {
   describe('bare component', function() {
