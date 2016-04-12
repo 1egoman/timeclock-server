@@ -194,21 +194,7 @@
       i.fa { margin-right: 0.33rem; }
 
       // each of the items themselves
-      li {
-        width: 100%;
-        @media (min-width: $screen-sm-min) {
-          width: auto;
-        }
-
-        a {
-          background-color: transparent;
-          color: $gray-light;
-          font-weight: bold;
-          font-size: 1.6rem;
-          padding-left: 0em;
-        }
-        &.active a { color: $brand-primary; }
-      }
+      @include nav-pills-bolded;
     }
   }
 
