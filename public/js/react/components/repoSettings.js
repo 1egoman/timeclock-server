@@ -18,7 +18,7 @@ function embeddableBadge(repo, user) {
     </p>
 
     {/* The embed formats: Markdown, RST, or raw */}
-    <Tabs defaultActiveKey={0} bsStyle="pills">
+    <Tabs defaultActiveKey={0} bsStyle="pills" animation={false}>
       <Tab eventKey={0} title="Markdown">
         <pre>
           [![Waltz unpaid time](http://waltzapp.co/{repo.user}/{repo.repo}.svg{repo.is_private ? '?token='+user.badge_token : '' })](http://waltzapp.co/{repo.user}/{repo.repo})
