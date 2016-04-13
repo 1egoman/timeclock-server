@@ -47,7 +47,7 @@ describe('components/settingsList.js', function() {
           <div className="setting-list-payment-email">
             <Input
               type="text"
-              label="Payment email"
+              label="Payment email (defaults to account email)"
               placeholder="regularemail@example.com"
               value="email@example.com"
               onChange="change-payment-email"
@@ -193,7 +193,7 @@ describe('components/settingsList.js', function() {
                 <div className="setting-list-payment-email">
                   <Input
                     type="text"
-                    label="Payment email"
+                    label="Payment email (defaults to account email)"
                     placeholder="regularemail@example.com"
                     value="email@example.com"
                     onChange={changePaymentEmail}
