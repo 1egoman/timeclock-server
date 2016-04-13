@@ -28,14 +28,18 @@ import {
 import {getProviderBadgeForRepo} from '../../helpers/provider_badge';
 import {getRepoByIndex} from '../../helpers/get_repo';
 
-// components
+// components needed to render the view
 import Loading from '../loading';
 import BranchPicker from './branchPicker';
 import ShareWithClient from './shareWithClient';
+import RepoSummary from '../repoSummary/repoSummary';
+
+// pages within the details view
 import RepoCommits from './repoCommits';
 import RepoTimesList from './repoTimesList';
 import RepoSettings from './repoSettings';
 
+// for commit graph
 const PX_PER_MIN = 3;
 
 function emptyTimecard({helpInstallingWaltz}) {
@@ -191,6 +195,14 @@ export const RepoDetailsComponent = ({
                 onClick={printReport(repo, current_branch)}
               >Print</button>
             </div>
+          </div>
+
+          <div className="repo-details-repo-summary">
+            <RepoSummary
+              repo={repo}
+              color={primaryColor}
+              timecard={timecard}
+            />
           </div>
         </div>
 

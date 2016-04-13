@@ -7267,6 +7267,9 @@ footer {
       margin-top: 20px;
       margin-left: 0px;
       width: 100%; }
+      @media (min-width: 992px) {
+        .repo-details .repo-details-break-bar .repo-details-secondary {
+          height: 4.8rem; } }
       .repo-details .repo-details-break-bar .repo-details-secondary .repo-details-branch-select {
         width: 100%;
         margin-left: 2px;
@@ -7306,6 +7309,16 @@ footer {
           @media (min-width: 768px) {
             .repo-details .repo-details-break-bar .repo-details-secondary .repo-details-report-link button {
               width: auto; } }
+      .repo-details .repo-details-break-bar .repo-details-secondary .repo-details-repo-summary {
+        float: right;
+        width: 100%;
+        margin-top: 0.8rem; }
+        @media (min-width: 768px) {
+          .repo-details .repo-details-break-bar .repo-details-secondary .repo-details-repo-summary {
+            margin-top: 0rem; } }
+        @media (min-width: 992px) {
+          .repo-details .repo-details-break-bar .repo-details-secondary .repo-details-repo-summary {
+            width: auto; } }
     .repo-details .repo-details-break-bar .repo-details-tabswitcher {
       float: left;
       margin-top: 0.5rem; }
@@ -7540,6 +7553,66 @@ a[role=menuitem], a[role=menuitem]:focus, a[role=menuitem]:active, a[role=menuit
     white-space: normal;
     min-height: 1.8em;
     margin-top: 0.33em; }
+
+.repo-summary {
+  min-width: 256px;
+  height: 96px;
+  background: #eeeeee;
+  border-radius: 4px; }
+  .repo-summary .repo-summary-client-info {
+    padding-left: 0.75rem;
+    padding-top: 0.5rem;
+    width: 60%;
+    height: 50%;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    float: left; }
+    .repo-summary .repo-summary-client-info h1 {
+      font-size: 1.6rem;
+      margin-bottom: 0rem;
+      margin-top: 0.48rem; }
+    .repo-summary .repo-summary-client-info small, .repo-summary .repo-summary-client-info .repo-commit-node-author {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%;
+      display: inline-block;
+      overflow: hidden;
+      font-weight: lighter;
+      margin-top: 0.18rem; }
+      .repo-summary .repo-summary-client-info small .repo-summary-balance::after, .repo-summary .repo-summary-client-info .repo-commit-node-author .repo-summary-balance::after {
+        content: " outstanding."; }
+  .repo-summary .repo-summary-committer-info {
+    padding: 0.25rem;
+    height: 50%;
+    width: 60%;
+    border-bottom-left-radius: 4px;
+    color: #fff;
+    float: left; }
+    .repo-summary .repo-summary-committer-info img {
+      width: 36px;
+      height: 36px;
+      float: left;
+      margin-right: 0.5rem;
+      margin-top: 0.25rem; }
+    .repo-summary .repo-summary-committer-info h2 {
+      font-size: 1.4rem;
+      margin-top: 0.5rem; }
+    .repo-summary .repo-summary-committer-info small, .repo-summary .repo-summary-committer-info .repo-commit-node-author {
+      margin-top: -0.8rem;
+      display: block;
+      font-weight: lighter; }
+  .repo-summary .repo-summary-graph {
+    width: 40%;
+    height: 100%;
+    background-color: #eeeeee;
+    float: right;
+    margin-top: -4.8rem;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px; }
+    .repo-summary .repo-summary-graph .repo-summary-no-graph {
+      color: #333333;
+      text-align: center;
+      margin-top: 2rem; }
 
 a {
   color: #00B7FF; }
