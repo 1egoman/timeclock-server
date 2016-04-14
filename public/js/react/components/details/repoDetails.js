@@ -111,7 +111,7 @@ export const RepoDetailsComponent = ({
     let scale = getTimeScaleFactor(calculateLengthForCommits(repo_details.commits), timecard, 1000);
 
     // primary color / secondary color for styling ui
-    let primaryColor = repo_details.timecard && repo_details.timecard.primaryColor;
+    let primaryColor = repo.primary_color || (repo_details.timecard && repo_details.timecard.primaryColor);
 
     let body = (function(view) {
       if (timecard && Array.isArray(timecard.card) && timecard.card.length) {
