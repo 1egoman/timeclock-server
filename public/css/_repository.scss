@@ -281,6 +281,12 @@
       margin-left: 20px;
       position: relative;
       left: -20px;
+
+      i {
+        background: #fff;
+        padding: 0.4rem;
+        border-radius: $border-radius-base;
+      }
     }
 
     .avatar-col, .avatar-img {

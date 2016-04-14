@@ -7389,6 +7389,10 @@ footer {
       margin-left: 20px;
       position: relative;
       left: -20px; }
+      .repo-details .repo-details-report-table .repo-details-report-table-indicators i {
+        background: #fff;
+        padding: 0.4rem;
+        border-radius: 4px; }
     .repo-details .repo-details-report-table .avatar-col, .repo-details .repo-details-report-table .avatar-img {
       width: 20px;
       font-size: 20px;
