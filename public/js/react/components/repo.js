@@ -37,7 +37,7 @@ export const RepoComponent = ({repo, index, selected, onRepoClick, children}) =>
     {repo.has_timecard ? <div className="repo-summary-container">
       <RepoSummary
         repo={repo}
-        color={"red"}
+        color={repo.primary_color}
         light
       />
     </div> : null}

@@ -7183,8 +7183,7 @@ footer {
   padding: 0px; }
 
 .repos {
-  padding: 0.5em;
-  min-width: 375px; }
+  padding: 0.5em; }
   .repos:before, .repos:after {
     content: " ";
     display: table; }
@@ -7216,6 +7215,8 @@ footer {
     display: table; }
   .repo:after {
     clear: both; }
+  .repo:last-child {
+    margin-bottom: 0.25rem; }
   .repo .repo-lock {
     display: none; }
   .repo.repo-private .repo-lock {
@@ -7224,8 +7225,11 @@ footer {
     margin-left: 0.4em; }
   .repo .repo-delete {
     position: absolute;
-    bottom: 0.75em;
-    left: 0.75em; }
+    top: 0.75em;
+    right: 8px; }
+    @media (min-width: 992px) {
+      .repo .repo-delete {
+        right: 264px; } }
   .repo h1 {
     font-size: 1.6em;
     overflow: hidden;
@@ -7234,7 +7238,12 @@ footer {
       font-weight: bold; }
   .repo .repo-text-container {
     float: left;
-    padding-left: 1em; }
+    padding-left: 1em;
+    padding-right: 1em;
+    width: 100%; }
+    @media (min-width: 992px) {
+      .repo .repo-text-container {
+        width: auto; } }
   .repo .repo-summary-container {
     width: 100%; }
     @media (min-width: 992px) {
