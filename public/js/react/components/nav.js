@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
+import {requestAllUserRepos} from '../actions/repo';
 
-export const NavComponent = ({title, logged_in_user}) => {
+export const NavComponent = ({title, logged_in_user, importNewRepo}) => {
   let login_controls = logged_in_user ? <ul className="nav navbar-nav pull-right">
     <li className="dropdown">
       <a
@@ -50,7 +51,7 @@ export const NavComponent = ({title, logged_in_user}) => {
         <ul className="nav navbar-nav">
           <li><a href="/">Home</a></li>
            <li><Link to="/app/">Repo List</Link></li>
-          {/* <li><a href="/pricing">Pricing</a></li> */}
+           <li><Link to="/app/import" onClick={importNewRepo}>Import Repo</Link></li>
         </ul>
         {login_controls}
       </div>
@@ -64,7 +65,11 @@ const Nav = connect((store, props) => {
     logged_in_user: store.user,
   };
 }, (dispatch, props) => {
-  return {};
+  return {
+    importNewRepo() {
+      dispatch(requestAllUserRepos());
+    },
+  };
 })(NavComponent);
 
 export default Nav;

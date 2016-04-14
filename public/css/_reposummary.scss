@@ -9,7 +9,7 @@
 .repo-summary {
   min-width: 256px;
   height: 96px;
-  background: $gray-lighter;
+  background-color: $gray-lighter;
   border-radius: $border-radius-base;
 
   // client name and payment info section
@@ -82,5 +82,13 @@
       text-align: center;
       margin-top: 2rem;
     }
+  }
+}
+
+// lighter repo summary theme
+.repo-summary.repo-summary-light {
+  background-color: #fff;
+  .repo-summary-graph {
+    background-color: #fff;
   }
 }

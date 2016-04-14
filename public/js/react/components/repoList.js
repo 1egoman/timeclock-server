@@ -12,14 +12,6 @@ import {
 } from 'react-bootstrap';
 import Loading from './loading';
 
-// import a new repo
-export function importRepoButton({importNewRepo}) {
-  return <button
-    className="btn btn-sm btn-primary pull-right"
-    onClick={importNewRepo}
-  >Import a new repository</button>;
-}
-
 export const RepoListComponent = ({
   repos,
   active_repo,
@@ -64,7 +56,6 @@ export const RepoListComponent = ({
   return <ul className={`repos repos-list`}>
     <div className="repos-controls">
       <h4 className="repos-label">Repositories</h4>
-      {importRepoButton({is_importing_repo, importNewRepo})}
     </div>
     {items}
   </ul>;
@@ -81,7 +72,7 @@ export function mapStateToProps(store, props) {
 const RepoList = connect(mapStateToProps, (dispatch, ownProps) => {
   return {
     importNewRepo() {
-      dispatch(requestAllUserRepos(0));
+      dispatch(requestAllUserRepos());
     },
     deleteRepo(repo) {
       return () => dispatch(deleteRepo(repo.user, repo.repo));

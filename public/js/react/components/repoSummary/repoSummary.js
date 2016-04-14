@@ -5,8 +5,9 @@ export default ({
   timecard,
   repo,
   color,
+  light,
 }) => {
-  return <div className="repo-summary">
+  return <div className={`repo-summary ${light ? 'repo-summary-light' : ''}`}>
     <div className="repo-summary-client-info">
       <h1>John Smith</h1>
       <small>

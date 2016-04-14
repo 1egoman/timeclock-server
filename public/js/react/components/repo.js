@@ -10,6 +10,7 @@ import {
 } from '../actions/repo';
 import { browserHistory } from 'react-router';
 import { getRepoByIndex } from '../helpers/get_repo';
+import RepoSummary from './repoSummary/repoSummary';
 
 export const RepoComponent = ({repo, index, selected, onRepoClick, children}) => {
   // the component render
@@ -18,19 +19,28 @@ export const RepoComponent = ({repo, index, selected, onRepoClick, children}) =>
     ${repo.is_private ? "repo-private" : "repo-public"}
     repo-owner-${repo.owner_type}
     ${repo.has_timecard ? "repo-timecard" : "repo-notimecard"}
-    ${selected ? "repo-selected" : "repo-inactive"}
-  `} onClick={onRepoClick ? onRepoClick(repo) : f => f}>
-    <h1>
+  `}>
+    <span className="repo-text-container" onClick={onRepoClick ? onRepoClick(repo) : f => f}>
       {/* Repo name */}
-      {repo.user}/<span className="repo-name">{repo.repo}</span>
+      <h1>
+        {repo.user}/<span className="repo-name">{repo.repo}</span>
 
-      {/* Private Repo badge */}
-      <span
-        className="repo-lock fa fa-lock"
-        title="Private repo"
-      ></span>
-    </h1>
-    <p>{repo.desc}</p>
+        {/* Private Repo badge */}
+        <span
+          className="repo-lock fa fa-lock"
+          title="Private repo"
+        ></span>
+      </h1>
+      <p>{repo.desc}</p>
+    </span>
+
+    {repo.has_timecard ? <div className="repo-summary-container">
+      <RepoSummary
+        repo={repo}
+        color={"red"}
+        light
+      />
+    </div> : null}
 
     {children}
   </div>;

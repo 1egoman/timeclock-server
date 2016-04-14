@@ -7203,14 +7203,19 @@ footer {
     background-color: transparent; }
     .repos .repos-empty p .click {
       cursor: pointer; }
+  .repos li {
+    list-style-type: none; }
 
 .repo {
   cursor: pointer;
   position: relative;
   color: #333333;
-  padding: 1em; }
-  .repo.repo-selected {
-    background: #E4FFFF; }
+  padding: 0rem; }
+  .repo:before, .repo:after {
+    content: " ";
+    display: table; }
+  .repo:after {
+    clear: both; }
   .repo .repo-lock {
     display: none; }
   .repo.repo-private .repo-lock {
@@ -7220,13 +7225,22 @@ footer {
   .repo .repo-delete {
     position: absolute;
     bottom: 0.75em;
-    right: 0.75em; }
+    left: 0.75em; }
   .repo h1 {
     font-size: 1.6em;
     overflow: hidden;
     text-overflow: ellipsis; }
     .repo h1 .repo-name {
       font-weight: bold; }
+  .repo .repo-text-container {
+    float: left;
+    padding-left: 1em; }
+  .repo .repo-summary-container {
+    width: 100%; }
+    @media (min-width: 992px) {
+      .repo .repo-summary-container {
+        width: 256px;
+        float: right; } }
 
 .repo-details {
   background: #fff;
@@ -7557,7 +7571,7 @@ a[role=menuitem], a[role=menuitem]:focus, a[role=menuitem]:active, a[role=menuit
 .repo-summary {
   min-width: 256px;
   height: 96px;
-  background: #eeeeee;
+  background-color: #eeeeee;
   border-radius: 4px; }
   .repo-summary .repo-summary-client-info {
     padding-left: 0.75rem;
@@ -7613,6 +7627,11 @@ a[role=menuitem], a[role=menuitem]:focus, a[role=menuitem]:active, a[role=menuit
       color: #333333;
       text-align: center;
       margin-top: 2rem; }
+
+.repo-summary.repo-summary-light {
+  background-color: #fff; }
+  .repo-summary.repo-summary-light .repo-summary-graph {
+    background-color: #fff; }
 
 a {
   color: #00B7FF; }

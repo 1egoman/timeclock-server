@@ -52,18 +52,19 @@
     @include empty-pane;
     p .click { cursor: pointer; }
   }
+
+  li {
+    list-style-type: none;
+  }
 }
 
 .repo {
   @extend .list-group-item;
+  @include clearfix;
   cursor: pointer;
   position: relative;
   color: $text-color;
-  padding: 1em;
-
-  &.repo-selected {
-    background: $select-color;
-  }
+  padding: 0rem;
 
   // private repo badge
   .repo-lock { display: none; }
@@ -78,12 +79,25 @@
   .repo-delete {
     position: absolute;
     bottom: 0.75em;
-    right: 0.75em;
+    left: 0.75em;
     @extend .text-danger;
   }
 
   h1 {
     @include repo-title;
+  }
+
+  .repo-text-container {
+    float: left;
+    padding-left: 1em;
+  }
+
+  .repo-summary-container {
+    width: 100%;
+    @media (min-width: $screen-md-min) {
+      width: 256px;
+      float: right;
+    }
   }
 }
 
