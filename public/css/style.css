@@ -7226,8 +7226,12 @@ footer {
     margin-left: 0.4em; }
   .repo .repo-delete {
     position: absolute;
-    bottom: 0.75em;
-    right: 8px; }
+    right: 1em;
+    top: 1em; }
+    @media (min-width: 992px) {
+      .repo .repo-delete {
+        top: initial;
+        bottom: 1em; } }
   .repo h1 {
     font-size: 1.6em;
     overflow: hidden;

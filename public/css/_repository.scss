@@ -79,9 +79,13 @@
 
   .repo-delete {
     position: absolute;
-    bottom: 0.75em;
-    right: 8px;
+    right: 1em;
+    top: 1em;
     @extend .text-danger;
+    @media (min-width: $screen-md-min) {
+      top: initial;
+      bottom: 1em;
+    }
   }
 
   h1 {
