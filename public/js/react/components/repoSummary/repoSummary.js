@@ -72,12 +72,13 @@ export function lastWorker({timecard, color, users}) {
         {/* if there are commits, then show the last one. Otherwise, forget about it. */}
         {lastCommitter ? <small>
           <span className="start-time">
-            {formatTime(lastCommitter.start, undefined, "%I:%M %P")}
+          {lastCommitter.start}
           </span>
-          {formatTime(lastCommitter.end, undefined, "%I:%M %P")}
+          {lastCommitter.end}
         </small> : null}
       </div>;
     } else {
+      // no last committer specified
       return <div className="repo-summary-committer-info" style={{backgroundColor: color}}>
         <div className="avatar-spacer"></div>
         <h2>Last Contributed</h2>
@@ -126,11 +127,13 @@ export const repoSummaryComponent = ({
   }
 };
 
-const repoSummary = connect((state, props) => {
+export function mapStateToProps(state, props) {
   return Object.assign({}, props, {
     users: state.repo_details && state.repo_details.users || [],
   });
-}, (dispatch, props) => {
+}
+
+const repoSummary = connect(mapStateToProps, (dispatch, props) => {
   return {};
 })(repoSummaryComponent);
 export default repoSummary;

@@ -9,6 +9,7 @@ import {
   repoSummaryComponent,
   clientInfo,
   lastWorker,
+  mapStateToProps,
 } from '../../components/repoSummary/repoSummary';
 
 describe('components/repoSummary', function() {
@@ -124,7 +125,7 @@ describe('components/repoSummary', function() {
       );
     });
   });
-  describe.only('lastWorker', function() {
+  describe('lastWorker', function() {
     it('should show last committer and the time they worked when both are given', function() {
       assert.deepEqual(
         lastWorker({
@@ -142,8 +143,8 @@ describe('components/repoSummary', function() {
           <img className="avatar-img" src="http://example.com/avatar.png" />
           <h2>user</h2>
           <small>
-            <span className="start-time">08:00 pm</span>
-            09:10 pm
+            <span className="start-time">1:00:00</span>
+            2:10:00
           </small>
         </div>
       );
@@ -165,8 +166,8 @@ describe('components/repoSummary', function() {
           <div className="avatar-spacer"></div>
           <h2>Last Contributed</h2>
           <small>
-            <span className="start-time">08:00 pm</span>
-            09:10 pm
+            <span className="start-time">1:00:00</span>
+            2:10:00
           </small>
         </div>
       );
@@ -207,40 +208,40 @@ describe('components/repoSummary', function() {
           <div className="avatar-spacer"></div>
           <h2>user</h2>
           <small>
-            <span className="start-time">08:00 pm</span>
-            09:10 pm
+            <span className="start-time">1:00:00</span>
+            2:10:00
           </small>
         </div>
       );
     });
+    it('should show loading msg without a timecard', function() {
+      assert.deepEqual(
+        lastWorker({
+          color: "#ff0000",
+          timecard: null,
+        }),
+        <div className="repo-summary-committer-info" style={{backgroundColor: "#ff0000"}}>
+          <h2>Loading last committer</h2>
+        </div>
+      );
+    });
   });
-  // describe('mapStateToProps', function() {
-  //   it('should correctly resolve props with settings', function() {
-  //     let state = Object.assign({}, helpers.initialState, {
-  //       user: {foo: "bar", settings: {foo: "baz"}},
-  //     });
-  //     assert.deepEqual(mapStateToProps(state, {}), {
-  //       user: {foo: "bar", settings: {foo: "baz"}},
-  //       settings: {foo: "baz"},
-  //     });
-  //   });
-  //   it('should correctly resolve props without settings', function() {
-  //     let state = Object.assign({}, helpers.initialState, {
-  //       user: {foo: "bar"},
-  //     });
-  //     assert.deepEqual(mapStateToProps(state, {}), {
-  //       user: {foo: "bar"},
-  //       settings: null,
-  //     });
-  //   });
-  //   it('should correctly resolve props without user', function() {
-  //     let state = Object.assign({}, helpers.initialState, {
-  //       user: null,
-  //     });
-  //     assert.deepEqual(mapStateToProps(state, {}), {
-  //       user: null,
-  //       settings: null,
-  //     });
-  //   });
-  // });
+  describe('mapStateToProps', function() {
+    it('should inherit from props', function() {
+      assert.deepEqual(mapStateToProps({}, {foo: "bar"}), {
+        foo: "bar",
+        users: [],
+      });
+    });
+    it('should inherit from props, and add state users', function() {
+      assert.deepEqual(mapStateToProps({
+        repo_details: {
+          users: ["usera", "userb"],
+        },
+      }, {foo: "bar"}), {
+        foo: "bar",
+        users: ["usera", "userb"],
+      });
+    });
+  });
 });
