@@ -9,6 +9,7 @@ function embeddableBadge(repo, user) {
     <img
       className="repo-details-badge"
       src={`/${repo.user}/${repo.repo}.svg`}
+      alt="Embeddable Badge"
     />
 
     <p>
