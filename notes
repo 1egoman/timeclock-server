@@ -1,0 +1,13 @@
+REPO SUMMARY
+- repo && timecard && timecard.card.length > 0 -> show summary (1egoman/clockmaker)
+  - timecard.card[0].avatar -> (use it) else "avatar-spacer"
+- repo && timecard && timecard.card.length == 0 -> hide summarry, show "empty card msg"
+- repo && timecard && timecard == null -> hide summary
+
+- timecard.clientName -> (use it) else "Client"
+
+- also, try differing branches
+
+REPO LIST
+- repos with a `repo.client_name` / repos without
+- repos with / without a `repo.primary_color`
