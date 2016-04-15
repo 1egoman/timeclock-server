@@ -81,13 +81,13 @@ export function getAvatarFor(user_pool, username) {
   if (user) {
     return {
       user: user,
-      avatar_img: <img className="avatar-img" src={user.avatar} />
+      avatar_img: <img className="avatar-img" src={user.avatar} />,
     }
   } else {
     return {
       avatar_img: null,
       user: null,
-      error: "No user found."
+      error: "No user found.",
     };
   }
 }

@@ -7629,6 +7629,8 @@ a[role=menuitem], a[role=menuitem]:focus, a[role=menuitem]:active, a[role=menuit
       margin-top: -0.8rem;
       display: block;
       font-weight: lighter; }
+      .repo-summary .repo-summary-committer-info small .start-time::after, .repo-summary .repo-summary-committer-info .repo-commit-node-author .start-time::after {
+        content: " - "; }
   .repo-summary .repo-summary-graph {
     width: 40%;
     height: 100%;

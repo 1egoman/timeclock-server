@@ -65,6 +65,10 @@
       margin-top: -0.8rem;
       display: block;
       font-weight: lighter;
+
+      .start-time::after {
+        content: " - ";
+      }
     }
   }
 
