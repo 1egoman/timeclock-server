@@ -60,10 +60,11 @@
 .repo {
   @extend .list-group-item;
   @include clearfix;
-  cursor: pointer;
+  cursor: default;
   position: relative;
   color: $text-color;
   padding: 0rem;
+  min-height: 8rem;
   &:last-child { margin-bottom: 0.25rem; }
 
   // private repo badge
@@ -78,12 +79,9 @@
 
   .repo-delete {
     position: absolute;
-    top: 0.75em;
+    bottom: 0.75em;
     right: 8px;
     @extend .text-danger;
-    @media (min-width: $screen-md-min) {
-      right: 256px + 8px;
-    }
   }
 
   h1 {
@@ -95,16 +93,30 @@
     padding-left: 1em;
     padding-right: 1em;
     width: 100%;
+    cursor: pointer;
     @media (min-width: $screen-md-min) {
       width: auto;
     }
   }
 
-  .repo-summary-container {
+  // a colored summary of the client name
+  .repo-quick-summary-container {
     width: 100%;
+    padding: 0.5rem;
+    float: left;
+    text-align: left;
+    padding-left: 1.5rem;
+
+    border-bottom-left-radius: $border-radius-base;
+    border-bottom-right-radius: $border-radius-base;
+    @include text-ellipsis;
+
+    // full-width: pin to right
     @media (min-width: $screen-md-min) {
-      width: 256px;
+      width: 12rem;
       float: right;
+      height: 3rem;
+      border-bottom-right-radius: 0rem;
     }
   }
 }

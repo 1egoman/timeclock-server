@@ -144,7 +144,7 @@ export const RepoDetailsComponent = ({
           default:
             return null;
         }
-      } else if (!hasTimes) {
+      } else if (timecard && Array.isArray(timecard.card) && timecard.card.length === 0) {
         return emptyTimecard({helpInstallingWaltz});
       } else {
         return <div className="repo-details repo-details-empty">

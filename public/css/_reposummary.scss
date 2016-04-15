@@ -1,11 +1,3 @@
-@mixin text-ellipsis {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 100%;
-  display: inline-block;
-  overflow: hidden;
-}
-
 .repo-summary {
   min-width: 256px;
   height: 96px;

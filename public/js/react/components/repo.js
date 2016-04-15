@@ -34,13 +34,12 @@ export const RepoComponent = ({repo, index, selected, onRepoClick, children}) =>
       <p>{repo.desc}</p>
     </span>
 
-    {repo.has_timecard ? <div className="repo-summary-container">
-      <RepoSummary
-        repo={repo}
-        color={repo.primary_color}
-        light
-      />
-    </div> : null}
+    {/* quick summary - client name and color */}
+    {repo.has_timecard ?
+      <div className="repo-quick-summary-container" style={{backgroundColor: repo.primary_color}}>
+        {repo.client_name}
+      </div>
+    : null}
 
     {children}
   </div>;
