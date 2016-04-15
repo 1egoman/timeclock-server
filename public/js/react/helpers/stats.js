@@ -126,6 +126,20 @@ function totalDuration(data) {
   }, 0) / 1000 || 0;
 }
 
+// given a timecard, calculate the total amount of time and money spent
+// on the project that is owed
+export function totalUnpaidDuration(data) {
+  return data.card.reduce((acc, day) => {
+    return acc + day.times.reduce((acc, time) => {
+      if (!day.disabled) {
+        return acc + getDurationFor(day, time);
+      } else {
+        return acc;
+      }
+    }, 0);
+  }, 0) / 1000 || 0;
+}
+
 // the time representations to use internally
 const TIME_REPR = "%H:%M:%S", DAY_REPR = "%a %b %d %Y";
 function getDurationFor(day, time, use_now_as_end=false) {

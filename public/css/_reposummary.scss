@@ -32,6 +32,7 @@
     // price / date
     small {
       @include text-ellipsis;
+      .repo-summary-balance::before { content: "$"; }
       .repo-summary-balance::after { content: " outstanding."; }
       font-weight: lighter;
       margin-top: 0.18rem;
@@ -48,12 +49,17 @@
     float: left;
     background-color: $brand-primary;
 
-    img {
+    .avatar-img, .avatar-spacer {
       width: 36px;
       height: 36px;
       float: left;
       margin-right: 0.5rem;
       margin-top: 0.25rem;
+    }
+
+    // when there isn't an avatar for a contributor, add some space
+    .avatar-spacer {
+      width: 0rem;
     }
 
     h2 {

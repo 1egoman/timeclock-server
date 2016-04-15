@@ -113,6 +113,9 @@ export const RepoDetailsComponent = ({
     // primary color / secondary color for styling ui
     let primaryColor = repo.primary_color || (repo_details.timecard && repo_details.timecard.primaryColor);
 
+    // is the timecard
+    let hasTimes = repo_details.timecard && repo_details.timecard.card && repo_details.timecard.card.length;
+
     let body = (function(view) {
       if (timecard && Array.isArray(timecard.card) && timecard.card.length) {
         switch (view) {
@@ -141,7 +144,7 @@ export const RepoDetailsComponent = ({
           default:
             return null;
         }
-      } else if (timecard && Array.isArray(timecard.card) && timecard.card.length === 0) {
+      } else if (!hasTimes) {
         return emptyTimecard({helpInstallingWaltz});
       } else {
         return <div className="repo-details repo-details-empty">
@@ -197,13 +200,14 @@ export const RepoDetailsComponent = ({
             </div>
           </div>
 
-          <div className="repo-details-repo-summary">
+          {/* A summary of the repo's characteristics */}
+          {hasTimes ? <div className="repo-details-repo-summary">
             <RepoSummary
               repo={repo}
               color={primaryColor}
               timecard={timecard}
             />
-          </div>
+          </div> : null}
         </div>
 
         {/* Tabs for switching context */}

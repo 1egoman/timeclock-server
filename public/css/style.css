@@ -7606,6 +7606,8 @@ a[role=menuitem], a[role=menuitem]:focus, a[role=menuitem]:active, a[role=menuit
       overflow: hidden;
       font-weight: lighter;
       margin-top: 0.18rem; }
+      .repo-summary .repo-summary-client-info small .repo-summary-balance::before, .repo-summary .repo-summary-client-info .repo-commit-node-author .repo-summary-balance::before {
+        content: "$"; }
       .repo-summary .repo-summary-client-info small .repo-summary-balance::after, .repo-summary .repo-summary-client-info .repo-commit-node-author .repo-summary-balance::after {
         content: " outstanding."; }
   .repo-summary .repo-summary-committer-info {
@@ -7616,12 +7618,14 @@ a[role=menuitem], a[role=menuitem]:focus, a[role=menuitem]:active, a[role=menuit
     color: #fff;
     float: left;
     background-color: #51c4c4; }
-    .repo-summary .repo-summary-committer-info img {
+    .repo-summary .repo-summary-committer-info .avatar-img, .repo-summary .repo-summary-committer-info .avatar-spacer {
       width: 36px;
       height: 36px;
       float: left;
       margin-right: 0.5rem;
       margin-top: 0.25rem; }
+    .repo-summary .repo-summary-committer-info .avatar-spacer {
+      width: 0rem; }
     .repo-summary .repo-summary-committer-info h2 {
       font-size: 1.4rem;
       margin-top: 0.5rem; }
