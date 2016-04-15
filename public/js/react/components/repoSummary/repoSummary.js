@@ -17,10 +17,10 @@ export function getLastCommitter(timecard) {
     if (time = _.first(card.times)) {
       return time;
     } else {
-      return "No committer";
+      return null;
     }
   } else {
-    return "No committer";
+    return null;
   }
 }
 
@@ -53,29 +53,36 @@ export function clientInfo({repo, timecard}) {
       {outstanding}
     </div>;
   } else {
-    return null;
+    return <div className="repo-summary-client-info"></div>;
   }
 }
 
 export function lastWorker({timecard, color, users}) {
   if (timecard) {
     let lastCommitter = getLastCommitter(timecard);
-    return <div className="repo-summary-committer-info" style={{backgroundColor: color}}>
-      {/* contributor avatar */}
-      {
-        getAvatarFor(users, lastCommitter.by).avatar_img ||
-        <div className="avatar-spacer"></div>
-      }
-      <h2>{lastCommitter.by || "Last Contributed"}</h2>
+    if (lastCommitter) {
+      return <div className="repo-summary-committer-info" style={{backgroundColor: color}}>
+        {/* contributor avatar */}
+        {
+          getAvatarFor(users, lastCommitter.by).avatar_img ||
+          <div className="avatar-spacer"></div>
+        }
+        <h2>{lastCommitter.by || "Last Contributed"}</h2>
 
-      {/* if there are commits, then show the last one. Otherwise, forget about it. */}
-      {lastCommitter ? <small>
-        <span className="start-time">
-          {formatTime(lastCommitter.start, undefined, "%I:%M %P")}
-        </span>
-        {formatTime(lastCommitter.end, undefined, "%I:%M %P")}
-      </small> : null}
-    </div>;
+        {/* if there are commits, then show the last one. Otherwise, forget about it. */}
+        {lastCommitter ? <small>
+          <span className="start-time">
+            {formatTime(lastCommitter.start, undefined, "%I:%M %P")}
+          </span>
+          {formatTime(lastCommitter.end, undefined, "%I:%M %P")}
+        </small> : null}
+      </div>;
+    } else {
+      return <div className="repo-summary-committer-info" style={{backgroundColor: color}}>
+        <div className="avatar-spacer"></div>
+        <h2>Last Contributed</h2>
+      </div>;
+    }
   } else {
     return <div className="repo-summary-committer-info" style={{backgroundColor: color}}>
       <h2>Loading last committer</h2>
