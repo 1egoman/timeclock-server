@@ -4,7 +4,15 @@ import {OverlayTrigger, Popover, Panel, Tabs, Tab} from 'react-bootstrap';
 import _ from 'underscore';
 import {getRepoByIndex} from '../../helpers/get_repo';
 
-function embeddableBadge(repo, user) {
+export function embeddableBadgeCopy() {
+  return `
+    This badge provides a simple way for both freelancers and clients to view
+    payment status on a project.
+    To embed, copy the below code into the respective embed location.
+  `;
+}
+
+export function embeddableBadge(repo, user) {
   return <Panel header="Embeddable Badge">
     <img
       className="repo-details-badge"
@@ -12,11 +20,7 @@ function embeddableBadge(repo, user) {
       alt="Embeddable Badge"
     />
 
-    <p>
-      This badge provides a simple way for both freelancers and clients to view
-      payment status on a project.
-      To embed, copy the below code into the respective embed location.
-    </p>
+    <p>{embeddableBadgeCopy()}</p>
 
     {/* The embed formats: Markdown, RST, or raw */}
     <Tabs defaultActiveKey={0} bsStyle="pills" animation={false}>
