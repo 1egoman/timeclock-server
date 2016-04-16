@@ -10,7 +10,7 @@ import {
   totalUnpaidDuration,
   generateChartTimeDataForEachWorkDay,
 } from '../../helpers/stats';
-import {Bar as BarChart, Line as LineChart} from 'react-chartjs';
+import {Line as LineChart} from 'react-chartjs';
 
 // get the most frequemt committer for a repo
 export function getLastCommitter(timecard) {
