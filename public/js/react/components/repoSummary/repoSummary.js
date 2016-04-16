@@ -8,7 +8,9 @@ import {
 } from '../../helpers/timecard';
 import {
   totalUnpaidDuration,
+  generateChartTimeDataForEachWorkDay,
 } from '../../helpers/stats';
+import {Bar as BarChart, Line as LineChart} from 'react-chartjs';
 
 // get the most frequemt committer for a repo
 export function getLastCommitter(timecard) {
@@ -94,19 +96,41 @@ export function lastWorker({timecard, color, users}) {
 export const repoSummaryComponent = ({
   timecard,
   repo,
-  color,
+  primaryColor,
+  secondaryColor,
   light,
 
   users,
 }) => {
+  let chartData = generateChartTimeDataForEachWorkDay(
+    timecard,
+    6, // for the last 6 work periods
+    secondaryColor || "#AAA" // the line fill color
+  );
   if (repo) {
     return <div className={`repo-summary ${light ? 'repo-summary-light' : ''}`}>
       {clientInfo({repo, timecard})}
-      {lastWorker({timecard, color, users})}
+      {lastWorker({timecard, users, color: primaryColor})}
       <div className="repo-summary-graph">
-        <div className="repo-summary-no-graph">
-          No graph
-        </div>
+        <LineChart
+          data={chartData}
+          options={{
+            // hide axes and labels
+            scaleShowHorizontalLines: false,
+            scaleShowVerticalLines: false,
+            scaleShowLabels: false,
+
+            // hide the specific points on each value
+            pointDot: false,
+            pointHitDetectionRadius: 0,
+
+            // scale the graph correctly across resizes
+            responsive: true,
+            bezierCurveTension: 0.2,
+            scaleFontSize: -2,
+            tooltipTemplate: () => "",
+          }}
+        />
       </div>
     </div>;
   } else {

@@ -112,6 +112,7 @@ export const RepoDetailsComponent = ({
 
     // primary color / secondary color for styling ui
     let primaryColor = repo.primary_color || (repo_details.timecard && repo_details.timecard.primaryColor);
+    let secondaryColor = repo.secondary_color || (repo_details.timecard && repo_details.timecard.secondaryColor);
 
     // is the timecard
     let hasTimes = repo_details.timecard && repo_details.timecard.card && repo_details.timecard.card.length;
@@ -204,7 +205,8 @@ export const RepoDetailsComponent = ({
           {hasTimes ? <div className="repo-details-repo-summary">
             <RepoSummary
               repo={repo}
-              color={primaryColor}
+              primaryColor={primaryColor}
+              secondaryColor={secondaryColor}
               timecard={timecard}
             />
           </div> : null}

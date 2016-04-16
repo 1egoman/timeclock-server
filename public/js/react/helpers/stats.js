@@ -80,6 +80,44 @@ export function calculateAverageCommitsPerWorkPeriod(timecard, commits) {
   }
 }
 
+export function generateChartTimeDataForEachWorkDay(timecard, count=-1, fillColor) {
+  if (assertIsCard(timecard)) {
+    let data = timecard.card.map((day) => {
+      let enabled = 0, disabled = 0;
+      day.times.forEach((time) => {
+        if (day.disabled) {
+          disabled += getDurationFor(day, time);
+        } else {
+          enabled += getDurationFor(day, time);
+        }
+      }, 0);
+      return {enabled, disabled, label: ""};
+    });
+
+    // remove the excess data if it was generated
+    if (count !== -1) {
+      data = data.slice(0, count);
+    }
+
+    // extract the enabled and disabled data for each day
+    let enabledData = data.reduce((acc, i) => acc.concat(2 + convertMillisecondsToHours(i.enabled)), []);
+    let disabledData = data.reduce((acc, i) => acc.concat(2 + convertMillisecondsToHours(i.disabled)), []);
+    let labels = data.map(({label}) => label);
+
+    return {
+      labels,
+      datasets: [
+        {
+          label: "Unpaid time",
+          fillColor,
+          strokeColor: "rgba(220,220,220,0.8)",
+          data: enabledData,
+        },
+      ],
+    };
+  }
+}
+
 export function formatTime(epoch) {
   let date = new Date(epoch);
   return `${date.getHours()} hours and ${date.getMinutes()} minutes`;
@@ -163,4 +201,10 @@ function getTimeBetween(start, end) {
   } else {
     return end - start;
   }
+}
+
+
+// convenience functions for generating graphs
+function convertMillisecondsToHours(ms) {
+  return Math.floor(ms / (60 * 60 * 1000));
 }

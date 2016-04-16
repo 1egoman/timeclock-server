@@ -77,8 +77,26 @@
     background-color: $gray-lighter;
     float: right;
     margin-top: -4.8rem;
+    overflow: hidden;
+    position: relative;
+
     border-top-right-radius: $border-radius-base;
     border-bottom-right-radius: $border-radius-base;
+    border-left: 1px solid $gray-light;
+
+    canvas {
+      position: absolute;
+      bottom: -0.32rem;
+      left: 0rem;
+
+      width: 110% !important;
+      height: 96px !important;
+      margin-left: auto;
+      margin-top: 3.6%;
+
+      border-top-right-radius: $border-radius-base;
+      border-bottom-right-radius: $border-radius-base;
+    }
 
     .repo-summary-no-graph {
       color: $gray-dark;
