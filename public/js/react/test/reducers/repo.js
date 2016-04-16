@@ -148,6 +148,7 @@ describe('reducers/repo.js', function() {
         _comesfrom: [null, null],
         _page: 0,
         _canpaginateforward: false,
+        sections_visible: [],
         error: null,
       });
     });
@@ -165,6 +166,7 @@ describe('reducers/repo.js', function() {
         _page: 0,
         _canpaginateforward: false,
         show_share_modal: false,
+        sections_visible: [],
         error: null,
       });
     });
@@ -182,6 +184,7 @@ describe('reducers/repo.js', function() {
         _page: 0,
         _canpaginateforward: false,
         _tab: "my-tab",
+        sections_visible: [],
         error: null,
       });
     });
@@ -200,6 +203,7 @@ describe('reducers/repo.js', function() {
         _page: 0,
         _canpaginateforward: false,
         show_share_modal: false,
+        sections_visible: [],
         error: null,
       });
     });
@@ -216,6 +220,7 @@ describe('reducers/repo.js', function() {
         _comesfrom: [null, null],
         _page: 0,
         _canpaginateforward: false,
+        sections_visible: [],
         error: null,
       });
     });
@@ -232,6 +237,7 @@ describe('reducers/repo.js', function() {
         _comesfrom: [null, null],
         _page: 0,
         _canpaginateforward: false,
+        sections_visible: [],
         error: null,
       });
     });
@@ -254,6 +260,7 @@ describe('reducers/repo.js', function() {
         _comesfrom: ["username", "a-repository", null],
         _page: 0,
         _canpaginateforward: false,
+        sections_visible: [],
         error: null,
       });
     });
@@ -278,6 +285,7 @@ describe('reducers/repo.js', function() {
         _comesfrom: ["username", "a-repository", "ref"],
         _page: 0,
         _canpaginateforward: true,
+        sections_visible: [],
         error: null,
       });
 
@@ -300,6 +308,7 @@ describe('reducers/repo.js', function() {
         users: [{foo: "baz"}, {second: "user"}],
         _comesfrom: ["username", "a-repository", "ref"],
         _page: 1,
+        sections_visible: [],
         _canpaginateforward: false,
         error: null,
       });
@@ -330,6 +339,7 @@ describe('reducers/repo.js', function() {
         _comesfrom: ["username", "a-repository", "ref"],
         _page: 0,
         _canpaginateforward: true,
+        sections_visible: [],
         error: null,
       });
 
@@ -353,6 +363,7 @@ describe('reducers/repo.js', function() {
         _comesfrom: ["username", "a-repository", "ref"],
         _page: 1,
         _canpaginateforward: false,
+        sections_visible: [],
         error: null,
       });
     });
@@ -369,6 +380,7 @@ describe('reducers/repo.js', function() {
         _comesfrom: [null, null], // the repo behind the current timecard
         _page: 0,
         _canpaginateforward: false,
+        sections_visible: [],
         error: "There isn't a timecard in this repo. Please add one by running waltz init locally,\n              or if you have, push up your changes\n              .",
       });
     });
@@ -386,6 +398,7 @@ describe('reducers/repo.js', function() {
         _canpaginateforward: false,
         error: null,
         commits: null,
+        sections_visible: [],
         show_share_modal: true,
       });
     });
@@ -403,6 +416,7 @@ describe('reducers/repo.js', function() {
         error: null,
         commits: null,
         show_share_modal: false,
+        sections_visible: [],
         waiting_for_share_modal_response: true,
       });
     });
@@ -420,6 +434,7 @@ describe('reducers/repo.js', function() {
         error: null,
         show_share_modal: false,
         commits: null,
+        sections_visible: [],
         waiting_for_share_modal_response: false,
       });
     });
@@ -448,7 +463,58 @@ describe('reducers/repo.js', function() {
         _comesfrom: ["user", "repo", "master-current"],
         show_share_modal: false,
         branch: null,
+        sections_visible: [],
         _tab: "times", // default to times
+      });
+    });
+    describe("expand/collapse timecard", function() {
+      it('should expand a timecard section', function() {
+        let new_state = repoDetails(old_state.repoDetails, {
+          type: "EXPAND_COLLAPSE_TIMECARD",
+          day: 0,
+          state: true,
+        });
+        assert.deepEqual(new_state.sections_visible, [0]);
+      });
+      it('should expand a timecard section, with previously expanded sections', function() {
+        let new_state = repoDetails(Object.assign({}, old_state.repoDetails, {sections_visible: [0]}), {
+          type: "EXPAND_COLLAPSE_TIMECARD",
+          day: 1,
+          state: true,
+        });
+        assert.deepEqual(new_state.sections_visible, [0, 1]);
+      });
+      it('should expand a timecard section already expanded', function() {
+        let new_state = repoDetails(Object.assign({}, old_state.repoDetails, {sections_visible: [0]}), {
+          type: "EXPAND_COLLAPSE_TIMECARD",
+          day: 0,
+          state: true,
+        });
+        assert.deepEqual(new_state.sections_visible, [0]);
+      });
+      it('should collapse a timecard section', function() {
+        let new_state = repoDetails(Object.assign({}, old_state.repoDetails, {sections_visible: [0]}), {
+          type: "EXPAND_COLLAPSE_TIMECARD",
+          day: 0,
+          state: false,
+        });
+        assert.deepEqual(new_state.sections_visible, []);
+      });
+      it('should collapse a timecard section with others present', function() {
+        let new_state = repoDetails(Object.assign({}, old_state.repoDetails, {sections_visible: [0, 1, 2]}), {
+          type: "EXPAND_COLLAPSE_TIMECARD",
+          day: 0,
+          state: false,
+        });
+        assert.deepEqual(new_state.sections_visible, [1, 2]);
+      });
+      it('should collapse a timecard section that isnt open', function() {
+        let new_state = repoDetails(Object.assign({}, old_state.repoDetails, {sections_visible: []}), {
+          type: "EXPAND_COLLAPSE_TIMECARD",
+          day: 0,
+          state: false,
+        });
+        assert.deepEqual(new_state.sections_visible, []);
       });
     });
     it('should not be effected by another event', function() {

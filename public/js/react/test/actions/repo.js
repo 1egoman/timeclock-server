@@ -15,6 +15,7 @@ import {
   deleteRepo,
   shareWithEmails,
   switchRepoTab,
+  expandCollapseTimecardSection,
 } from '../../actions/repo';
 
 describe('actions/repo.js', function() {
@@ -189,6 +190,22 @@ describe('actions/repo.js', function() {
       assert.deepEqual(switchRepoTab("tab"), {
         type: "SWITCH_REPO_TAB",
         tab: "tab",
+      });
+    });
+  });
+  describe('expandCollapseTimecardSection', function() {
+    it('should create an expanding event', function() {
+      assert.deepEqual(expandCollapseTimecardSection(4, true), {
+        type: "EXPAND_COLLAPSE_TIMECARD",
+        day: 4,
+        state: true,
+      });
+    });
+    it('should create a collapsing event', function() {
+      assert.deepEqual(expandCollapseTimecardSection(4, false), {
+        type: "EXPAND_COLLAPSE_TIMECARD",
+        day: 4,
+        state: false,
       });
     });
   });

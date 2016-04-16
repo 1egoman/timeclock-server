@@ -10,6 +10,7 @@ exports.initialState = {
     branches: null,
     commits: null,
     timecard: null,
+    sections_visible: [],
     _comesfrom: [null, null], // the repo behind the current timecard
     _page: 0,
     _canpaginateforward: false,

@@ -121,3 +121,11 @@ export function initializeRepo(user, repo) {
     user, repo,
   };
 }
+
+export function expandCollapseTimecardSection(day, state) {
+  return {
+    type: "EXPAND_COLLAPSE_TIMECARD",
+    day,
+    state,
+  };
+}

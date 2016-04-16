@@ -87,6 +87,7 @@ export function repoDetails(state = {branch: null}, action) {
       branches: action.branches,
       commits: action.commits,
       repos: action.repos,
+      sections_visible: [],
 
       show_share_modal: false,
       _comesfrom: [...action.active_repo, action.branch],
@@ -194,6 +195,29 @@ export function repoDetails(state = {branch: null}, action) {
       waiting_for_share_modal_response: false,
       error: null,
     });
+
+  } else if (action.type === "EXPAND_COLLAPSE_TIMECARD") {
+    if (action.state && !state.sections_visible) {
+      // expand the timecard and we don't have any expanded already
+      return Object.assign({}, state, {
+        sections_visible: [action.day],
+        error: null,
+      });
+    } else if (action.state && state.sections_visible.indexOf(action.day) === -1) {
+      // expand the timecard section when we haven't already expanded the section
+      return Object.assign({}, state, {
+        sections_visible: state.sections_visible.concat([action.day]),
+        error: null,
+      });
+    } else if (!action.state) {
+      // close the section
+      return Object.assign({}, state, {
+        sections_visible: state.sections_visible.filter((i) => i !== action.day),
+        error: null,
+      });
+    } else {
+      return state;
+    }
 
 
   // No timecard in the repo?

@@ -80,6 +80,8 @@ export function calculateAverageCommitsPerWorkPeriod(timecard, commits) {
   }
 }
 
+// generate the chart data for the specified number of work periods.
+// x: work day; y: hours worked
 export function generateChartTimeDataForEachWorkDay(timecard, count=-1, fillColor) {
   if (assertIsCard(timecard)) {
     let data = timecard.card.map((day) => {

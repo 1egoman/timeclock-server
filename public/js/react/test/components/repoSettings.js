@@ -13,7 +13,7 @@ import {
 
 import {generateUser} from "../helpers/generators";
 
-describe.only('components/details/repoSettings', function() {
+describe('components/details/repoSettings', function() {
   describe('embeddableBadge', function() {
     it('should allow user to pick badge embed code', function() {
       let user = generateUser();
