@@ -115,6 +115,8 @@ export function generateChartTimeDataForEachWorkDay(timecard, count=-1, fillColo
         },
       ],
     };
+  } else {
+    return null;
   }
 }
 

@@ -93,6 +93,43 @@ export function lastWorker({timecard, color, users}) {
   }
 }
 
+export function activityGraph({timecard, color}) {
+  let chartData = generateChartTimeDataForEachWorkDay(
+    timecard,
+    6, // for the last 6 work periods
+    color || "#AAA" // the line fill color
+  );
+  if (chartData) {
+    return <div className="repo-summary-graph">
+      <LineChart
+        data={chartData}
+        options={{
+          // hide axes and labels
+          scaleShowHorizontalLines: false,
+          scaleShowVerticalLines: false,
+          scaleShowLabels: false,
+
+          // hide the specific points on each value
+          pointDot: false,
+          pointHitDetectionRadius: 0,
+
+          // scale the graph correctly across resizes
+          responsive: true,
+          bezierCurveTension: 0.2,
+          scaleFontSize: -2,
+          tooltipTemplate: () => "",
+        }}
+      />
+    </div>;
+  } else {
+    return <div className="repo-summary-graph">
+      <div className="repo-summary-no-graph">
+        No graph
+      </div>
+    </div>;
+  }
+}
+
 export const repoSummaryComponent = ({
   timecard,
   repo,
@@ -102,36 +139,11 @@ export const repoSummaryComponent = ({
 
   users,
 }) => {
-  let chartData = generateChartTimeDataForEachWorkDay(
-    timecard,
-    6, // for the last 6 work periods
-    secondaryColor || "#AAA" // the line fill color
-  );
   if (repo) {
     return <div className={`repo-summary ${light ? 'repo-summary-light' : ''}`}>
       {clientInfo({repo, timecard})}
       {lastWorker({timecard, users, color: primaryColor})}
-      <div className="repo-summary-graph">
-        <LineChart
-          data={chartData}
-          options={{
-            // hide axes and labels
-            scaleShowHorizontalLines: false,
-            scaleShowVerticalLines: false,
-            scaleShowLabels: false,
-
-            // hide the specific points on each value
-            pointDot: false,
-            pointHitDetectionRadius: 0,
-
-            // scale the graph correctly across resizes
-            responsive: true,
-            bezierCurveTension: 0.2,
-            scaleFontSize: -2,
-            tooltipTemplate: () => "",
-          }}
-        />
-      </div>
+      {activityGraph({timecard, color: secondaryColor})}
     </div>;
   } else {
     // no data
