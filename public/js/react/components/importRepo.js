@@ -71,10 +71,6 @@ const ImportRepoComponent = ({
   user,
   organisations,
 
-  // from redux-form
-  fields: {organisation},
-  handleSubmit,
-
   importNewRepo,
   toImportRepoPage,
   confirmNewTimecard,
@@ -108,38 +104,26 @@ const ImportRepoComponent = ({
     body = <div>
       <img className="header" src="/img/import_repo_header.svg" />
 
-      <select {...organisation} value={organisation.value || user.username}>
-        <option value={user.username}>{user.username}</option>
-        {organisations.map((i) => {
-          return <option value={i}>{i}</option>;
-        })}
-      </select>
-
       <ul className="repos">
-        {Object.keys(discovered_repos).map((key, ct) => {
-          return <div key={ct}>
-            <h4>{key}</h4>
-            {discovered_repos[key].map((repo, ct) => {
-              return <RepoComponent
-                key={ct}
-                repo={repo}
-                selected={false}
+        {discovered_repos.map((repo, ct) => {
+          return <RepoComponent
+            key={ct}
+            repo={repo}
+            selected={false}
+          >
+            {
+              repo.has_timecard ? 
+              <button className="btn btn-success btn-pick-me" onClick={importNewRepo(repo)}>
+                <i className="fa fa-plus-square" />
+              </button> :
+              <button
+                className="btn btn-info btn-pick-me"
+                onClick={confirmNewTimecard(repo.user, repo.repo)}
               >
-                {
-                  repo.has_timecard ? 
-                  <button className="btn btn-success btn-pick-me" onClick={importNewRepo(repo)}>
-                    <i className="fa fa-plus-square" />
-                  </button> :
-                  <button
-                    className="btn btn-info btn-pick-me"
-                    onClick={confirmNewTimecard(repo.user, repo.repo)}
-                  >
-                    <i className="fa fa-upload" />
-                  </button>
-                }
-              </RepoComponent>
-            })}
-          </div>;
+                <i className="fa fa-upload" />
+              </button>
+            }
+          </RepoComponent>;
         })}
       </ul>
       <button
@@ -165,9 +149,8 @@ let ImportRepo  = connect((store, ownProps) => {
 
   return {
     // group the discovered repos by their respective user
-    discovered_repos: _.groupBy(filtered_discovered_repos, (repo) => repo.user),
+    discovered_repos: filtered_discovered_repos,
     repo_import_page: store.discovered_repos_page,
-    organisations: ["foo", "bar"],
 
     // for repos that don't already have a timecard, give the user an option to
     // add one.
@@ -197,11 +180,5 @@ let ImportRepo  = connect((store, ownProps) => {
     },
   };
 })(ImportRepoComponent);
-
-// add redux-form for the email and message data
-ImportRepo = reduxForm({
-  fields: ["organisation"],
-  form: "import_repo",
-})(ImportRepo);
 
 export default ImportRepo;

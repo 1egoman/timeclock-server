@@ -41,7 +41,7 @@ exports.onSocketAction = function(socket) {
       (action.type === '@@router/LOCATION_CHANGE' && action.payload.pathname === "/app/import")
     ) {
       process.env.NODE_ENV !== "test" && console.log(`Discovering all repos for ${socket.request.user.username}`);
-      repo.getUserRepos({user: socket.request.user}, action.page || 0).then((repos) => {
+      repo.getUserRepos({user: socket.request.user}, action.page || 0, action.org).then((repos) => {
         socket.emit("action", {
           type: "server/REPOS_DISCOVERED",
           repos: repos.map((r) => {
