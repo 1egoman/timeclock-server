@@ -332,31 +332,6 @@
   }
 }
 
-.repo-details.repo-details-import {
-  padding-left: 20px;
-  padding-right: 20px;
-
-  & > h2 {
-    text-align: center;
-    padding-top: 0.75em;
-  }
-
-  .repos {
-    cursor: default;
-
-    .btn-pick-me {
-      @extend .pull-right;
-      margin-top: -38px;
-    }
-  }
-
-  .btn-load-more {
-    width: 16em;
-    margin: 0.5em auto;
-    display: block;
-  }
-}
-
 a[role=menuitem] {
   &, &:focus, &:active, &:hover { text-decoration: none; }
 }

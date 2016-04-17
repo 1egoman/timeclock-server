@@ -1438,8 +1438,7 @@ blockquote {
 
 .blockquote-reverse,
 blockquote.pull-right,
-.feature.feature-right blockquote.content,
-.repo-details.repo-details-import .repos blockquote.btn-pick-me {
+.feature.feature-right blockquote.content {
   padding-right: 15px;
   padding-left: 0;
   border-right: 5px solid #eeeeee;
@@ -1449,19 +1448,19 @@ blockquote.pull-right,
   .blockquote-reverse small:before,
   .blockquote-reverse .repo-commit-node-author:before,
   .blockquote-reverse .small:before,
-  blockquote.pull-right footer:before, .feature.feature-right blockquote.content footer:before, .repo-details.repo-details-import .repos blockquote.btn-pick-me footer:before,
-  blockquote.pull-right small:before, .feature.feature-right blockquote.content small:before, .repo-details.repo-details-import .repos blockquote.btn-pick-me small:before,
-  blockquote.pull-right .repo-commit-node-author:before, .feature.feature-right blockquote.content .repo-commit-node-author:before, .repo-details.repo-details-import .repos blockquote.btn-pick-me .repo-commit-node-author:before,
-  blockquote.pull-right .small:before, .feature.feature-right blockquote.content .small:before, .repo-details.repo-details-import .repos blockquote.btn-pick-me .small:before {
+  blockquote.pull-right footer:before, .feature.feature-right blockquote.content footer:before,
+  blockquote.pull-right small:before, .feature.feature-right blockquote.content small:before,
+  blockquote.pull-right .repo-commit-node-author:before, .feature.feature-right blockquote.content .repo-commit-node-author:before,
+  blockquote.pull-right .small:before, .feature.feature-right blockquote.content .small:before {
     content: ''; }
   .blockquote-reverse footer:after,
   .blockquote-reverse small:after,
   .blockquote-reverse .repo-commit-node-author:after,
   .blockquote-reverse .small:after,
-  blockquote.pull-right footer:after, .feature.feature-right blockquote.content footer:after, .repo-details.repo-details-import .repos blockquote.btn-pick-me footer:after,
-  blockquote.pull-right small:after, .feature.feature-right blockquote.content small:after, .repo-details.repo-details-import .repos blockquote.btn-pick-me small:after,
-  blockquote.pull-right .repo-commit-node-author:after, .feature.feature-right blockquote.content .repo-commit-node-author:after, .repo-details.repo-details-import .repos blockquote.btn-pick-me .repo-commit-node-author:after,
-  blockquote.pull-right .small:after, .feature.feature-right blockquote.content .small:after, .repo-details.repo-details-import .repos blockquote.btn-pick-me .small:after {
+  blockquote.pull-right footer:after, .feature.feature-right blockquote.content footer:after,
+  blockquote.pull-right small:after, .feature.feature-right blockquote.content small:after,
+  blockquote.pull-right .repo-commit-node-author:after, .feature.feature-right blockquote.content .repo-commit-node-author:after,
+  blockquote.pull-right .small:after, .feature.feature-right blockquote.content .small:after {
     content: '\00A0 \2014'; }
 
 address {
@@ -3536,7 +3535,7 @@ tbody.collapse.in {
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box; }
-  .dropdown-menu.pull-right, .feature.feature-right .dropdown-menu.content, .sample-invoice .total-cost span.dropdown-menu.value, .repo-details.repo-details-import .repos .dropdown-menu.btn-pick-me {
+  .dropdown-menu.pull-right, .feature.feature-right .dropdown-menu.content, .sample-invoice .total-cost span.dropdown-menu.value {
     right: 0;
     left: auto; }
   .dropdown-menu .divider {
@@ -3604,7 +3603,7 @@ tbody.collapse.in {
   top: 0;
   z-index: 990; }
 
-.pull-right > .dropdown-menu, .feature.feature-right .content > .dropdown-menu, .sample-invoice .total-cost span.value > .dropdown-menu, .repo-details.repo-details-import .repos .btn-pick-me > .dropdown-menu {
+.pull-right > .dropdown-menu, .feature.feature-right .content > .dropdown-menu, .sample-invoice .total-cost span.value > .dropdown-menu {
   right: 0;
   left: auto; }
 
@@ -5010,8 +5009,7 @@ a.thumbnail.active {
 .media-right,
 .media > .pull-right, .feature.feature-right
 .media > .content, .sample-invoice .total-cost
-.media > span.value, .repo-details.repo-details-import .repos
-.media > .btn-pick-me {
+.media > span.value {
   padding-left: 10px; }
 
 .media-left,
@@ -6193,7 +6191,7 @@ button.close {
   margin-left: auto;
   margin-right: auto; }
 
-.pull-right, .feature.feature-right .content, .sample-invoice .total-cost span.value, .repo-details.repo-details-import .repos .btn-pick-me {
+.pull-right, .feature.feature-right .content, .sample-invoice .total-cost span.value {
   float: right !important; }
 
 .pull-left, .feature.feature-left .content, .repos .repos-controls .repos-label {
@@ -7176,7 +7174,7 @@ footer {
   .navbar .fa.fa-bars {
     font-size: 120%;
     color: #333333; }
-  .navbar ul.pull-right .dropdown-menu, .navbar .feature.feature-right ul.content .dropdown-menu, .feature.feature-right .navbar ul.content .dropdown-menu, .navbar .repo-details.repo-details-import .repos ul.btn-pick-me .dropdown-menu, .repo-details.repo-details-import .repos .navbar ul.btn-pick-me .dropdown-menu {
+  .navbar ul.pull-right .dropdown-menu, .navbar .feature.feature-right ul.content .dropdown-menu, .feature.feature-right .navbar ul.content .dropdown-menu {
     margin-left: -30px; }
 
 .repo-container {
@@ -7431,21 +7429,6 @@ footer {
     .repo-details .timecard.timecard-is-empty a {
       cursor: pointer; }
 
-.repo-details.repo-details-import {
-  padding-left: 20px;
-  padding-right: 20px; }
-  .repo-details.repo-details-import > h2 {
-    text-align: center;
-    padding-top: 0.75em; }
-  .repo-details.repo-details-import .repos {
-    cursor: default; }
-    .repo-details.repo-details-import .repos .btn-pick-me {
-      margin-top: -38px; }
-  .repo-details.repo-details-import .btn-load-more {
-    width: 16em;
-    margin: 0.5em auto;
-    display: block; }
-
 a[role=menuitem], a[role=menuitem]:focus, a[role=menuitem]:active, a[role=menuitem]:hover {
   text-decoration: none; }
 
@@ -7540,6 +7523,33 @@ a[role=menuitem], a[role=menuitem]:focus, a[role=menuitem]:active, a[role=menuit
 
 .modal-new-timecard p {
   margin-top: 1em; }
+
+.repo-details.repo-details-import {
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: transparent; }
+  .repo-details.repo-details-import img.header {
+    width: 100%;
+    max-width: 600px;
+    margin: 2rem auto;
+    display: block; }
+  .repo-details.repo-details-import > h2 {
+    text-align: center;
+    padding-top: 0.75em; }
+  .repo-details.repo-details-import .repo {
+    height: 8.6rem; }
+  .repo-details.repo-details-import .btn-pick-me {
+    float: right;
+    height: 100%;
+    width: 5.6rem;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px; }
+    .repo-details.repo-details-import .btn-pick-me i {
+      font-size: 1.8em; }
+  .repo-details.repo-details-import .btn-load-more {
+    width: 16em;
+    margin: 0.5em auto;
+    display: block; }
 
 .loading {
   color: #777777;

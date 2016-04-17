@@ -3,3 +3,43 @@
     margin-top: 1em;
   }
 }
+
+.repo-details.repo-details-import {
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: transparent;
+
+  img.header {
+    width: 100%;
+    max-width: 600px;
+    margin: 2rem auto;
+    display: block;
+  }
+
+  & > h2 {
+    text-align: center;
+    padding-top: 0.75em;
+  }
+
+  .repo {
+    height: 8.6rem;
+  }
+
+  .btn-pick-me {
+    float: right;
+    height: 100%;
+    width: 5.6rem;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+
+    i {
+      font-size: 1.8em;
+    }
+  }
+
+  .btn-load-more {
+    width: 16em;
+    margin: 0.5em auto;
+    display: block;
+  }
+}

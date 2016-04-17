@@ -9,6 +9,8 @@ import {
   changeStagingTimecardData,
 } from '../actions/repo';
 import {Modal, Button, Input} from 'react-bootstrap';
+import Loading from './loading';
+import {reduxForm} from 'redux-form';
 
 export function createNewTimecardModal({
   confirm_timecard_for,
@@ -66,6 +68,12 @@ const ImportRepoComponent = ({
   confirm_timecard_for,
   repo_import_page,
   new_timecard_staging,
+  user,
+  organisations,
+
+  // from redux-form
+  fields: {organisation},
+  handleSubmit,
 
   importNewRepo,
   toImportRepoPage,
@@ -93,42 +101,61 @@ const ImportRepoComponent = ({
     })
   }
 
+  let body;
+  if (_.isEmpty(discovered_repos)) {
+    body = <Loading spinner />
+  } else {
+    body = <div>
+      <img className="header" src="/img/import_repo_header.svg" />
+
+      <select {...organisation} value={organisation.value || user.username}>
+        <option value={user.username}>{user.username}</option>
+        {organisations.map((i) => {
+          return <option value={i}>{i}</option>;
+        })}
+      </select>
+
+      <ul className="repos">
+        {Object.keys(discovered_repos).map((key, ct) => {
+          return <div key={ct}>
+            <h4>{key}</h4>
+            {discovered_repos[key].map((repo, ct) => {
+              return <RepoComponent
+                key={ct}
+                repo={repo}
+                selected={false}
+              >
+                {
+                  repo.has_timecard ? 
+                  <button className="btn btn-success btn-pick-me" onClick={importNewRepo(repo)}>
+                    <i className="fa fa-plus-square" />
+                  </button> :
+                  <button
+                    className="btn btn-info btn-pick-me"
+                    onClick={confirmNewTimecard(repo.user, repo.repo)}
+                  >
+                    <i className="fa fa-upload" />
+                  </button>
+                }
+              </RepoComponent>
+            })}
+          </div>;
+        })}
+      </ul>
+      <button
+        className="btn btn-primary btn-load-more"
+        onClick={toImportRepoPage(_.isEmpty(discovered_repos) ? 0 : ++repo_import_page)}
+      >Load More Repositories</button>
+    </div>;
+  }
+
   return <div className="repo-details repo-details-import">
-    <h2>Import a new Repository</h2>
     {newTimecardModal}
-
-    <ul className="repos">
-      {Object.keys(discovered_repos).map((key, ct) => {
-        return <div key={ct}>
-          <h4>{key}</h4>
-          {discovered_repos[key].map((repo, ct) => {
-            return <RepoComponent
-              key={ct}
-              repo={repo}
-              selected={false}
-            >
-              {
-                repo.has_timecard ? 
-                <button className="btn btn-success btn-pick-me" onClick={importNewRepo(repo)}>Import</button> :
-                <button
-                  className="btn btn-info btn-pick-me"
-                  onClick={confirmNewTimecard(repo.user, repo.repo)}
-                >Create new Timecard</button>
-              }
-            </RepoComponent>
-          })}
-        </div>;
-      })}
-    </ul>
-
-    <button
-      className="btn btn-primary btn-load-more"
-      onClick={toImportRepoPage(++repo_import_page)}
-    >Load More Repositories</button>
+    {body}
   </div>;
 }
 
-const ImportRepo  = connect((store, ownProps) => {
+let ImportRepo  = connect((store, ownProps) => {
   // first, filter out all ther repos that already are added
   let filtered_discovered_repos = store.discovered_repos.filter((repo) => {
     return !store.repos.some((i) => {
@@ -140,6 +167,7 @@ const ImportRepo  = connect((store, ownProps) => {
     // group the discovered repos by their respective user
     discovered_repos: _.groupBy(filtered_discovered_repos, (repo) => repo.user),
     repo_import_page: store.discovered_repos_page,
+    organisations: ["foo", "bar"],
 
     // for repos that don't already have a timecard, give the user an option to
     // add one.
@@ -151,6 +179,7 @@ const ImportRepo  = connect((store, ownProps) => {
       );
     }),
     new_timecard_staging: store.new_timecard_staging,
+    user: store.user,
   };
 }, (dispatch, ownProps) => {
   return {
@@ -168,5 +197,11 @@ const ImportRepo  = connect((store, ownProps) => {
     },
   };
 })(ImportRepoComponent);
+
+// add redux-form for the email and message data
+ImportRepo = reduxForm({
+  fields: ["organisation"],
+  form: "import_repo",
+})(ImportRepo);
 
 export default ImportRepo;
