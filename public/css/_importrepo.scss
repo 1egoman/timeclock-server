@@ -2,6 +2,12 @@
   p {
     margin-top: 1em;
   }
+
+  .color-picker {
+    label { white-space: nowrap; }
+    width: 0px;
+    margin-bottom: 1rem;
+  }
 }
 
 .repo-details.repo-details-import {

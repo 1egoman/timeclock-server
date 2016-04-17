@@ -7531,6 +7531,12 @@ a[role=menuitem], a[role=menuitem]:focus, a[role=menuitem]:active, a[role=menuit
 .modal-new-timecard p {
   margin-top: 1em; }
 
+.modal-new-timecard .color-picker {
+  width: 0px;
+  margin-bottom: 1rem; }
+  .modal-new-timecard .color-picker label {
+    white-space: nowrap; }
+
 .repo-details.repo-details-import {
   background-color: transparent; }
   .repo-details.repo-details-import img.header {

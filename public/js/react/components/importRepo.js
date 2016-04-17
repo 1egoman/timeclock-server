@@ -11,6 +11,7 @@ import {
 import {Modal, Button, Input} from 'react-bootstrap';
 import Loading from './loading';
 import {reduxForm} from 'redux-form';
+import {CompactPicker as ColorPicker} from 'react-color';
 
 export function createNewTimecardModal({
   confirm_timecard_for,
@@ -54,6 +55,15 @@ export function createNewTimecardModal({
             onChange={changeStagingTimecardData("tagline")}
           />
 
+          {/* Primary and Secondary Colors */}
+          <div className="color-picker">
+            <label>Primary Color</label>
+            <ColorPicker
+              color={timecard_template.primaryColor}
+              onChangeComplete={changeStagingTimecardData("primaryColor")}
+            />
+          </div>
+
           {/* Create a timecard on the default branch */}
           <Button bsStyle="primary" onClick={importNewRepo(confirm_timecard_for, true, timecard_template)}>
             Create new timecard
@@ -89,19 +99,20 @@ const ImportRepoComponent = ({
       timecard_template: {
         name: new_timecard_staging.name || confirm_timecard_for.repo,
         tagline: new_timecard_staging.tagline || confirm_timecard_for.desc,
+        primaryColor: new_timecard_staging.primaryColor || confirm_timecard_for.primaryColor || "#51c4c4",
+        secondaryColor: new_timecard_staging.secondaryColor || confirm_timecard_for.secondaryColor,
       },
 
       changeStagingTimecardData,
       importNewRepo,
       confirmNewTimecard,
-    })
+    });
   }
 
   let body;
   if (_.isEmpty(discovered_repos)) {
     body = <Loading spinner />
   } else {
-    console.log(discovered_repos)
     body = <div>
       <img className="header" src="/img/import_repo_header.svg" />
 
@@ -181,7 +192,15 @@ let ImportRepo = connect((store, ownProps) => {
       return () => dispatch(askUserToCreateNewTimecard(user, repo));
     },
     changeStagingTimecardData(name) {
-      return (event) => dispatch(changeStagingTimecardData(name, event.target.value));
+      return (event) => {
+        if (event.target && event.target.value) { // text inputs
+          dispatch(changeStagingTimecardData(name, event.target.value));
+        } else if (event.hex) { // color pickers
+          dispatch(changeStagingTimecardData(name, `#${event.hex}`));
+        } else {
+          dispatch(changeStagingTimecardData(name, event));
+        }
+      };
     },
   };
 })(ImportRepoComponent);
