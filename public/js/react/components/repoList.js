@@ -28,27 +28,23 @@ export const RepoListComponent = ({
         <Button bsStyle="primary" onClick={deleteRepo(repo)}>Yes, do it</Button>
       </Popover>;
 
-      if (repo) {
-        return <MenuItem eventKey={ct} key={ct}>
-          <Repo
-          repo={repo}
-          index={ct}
-          selected={active_repo && active_repo[0] === repo.user && active_repo[1] === repo.repo}
+      return <MenuItem eventKey={ct} key={ct}>
+        <Repo
+        repo={repo}
+        index={ct}
+        selected={active_repo && active_repo[0] === repo.user && active_repo[1] === repo.repo}
+        >
+          {/* delete popover */}
+          <OverlayTrigger
+            trigger="click"
+            rootClose
+            placement="top"
+            overlay={delete_popover}
           >
-            {/* delete popover */}
-            <OverlayTrigger
-              trigger="click"
-              rootClose
-              placement="top"
-              overlay={delete_popover}
-            >
-              <i className="fa fa-trash pull-right repo-delete" />
-            </OverlayTrigger>
-          </Repo>
-        </MenuItem>;
-      } else {
-        return null;
-      }
+            <i className="fa fa-trash pull-right repo-delete" />
+          </OverlayTrigger>
+        </Repo>
+      </MenuItem>;
     });
   } else {
     items = <Loading

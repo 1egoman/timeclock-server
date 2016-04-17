@@ -101,6 +101,7 @@ const ImportRepoComponent = ({
   if (_.isEmpty(discovered_repos)) {
     body = <Loading spinner />
   } else {
+    console.log(discovered_repos)
     body = <div>
       <img className="header" src="/img/import_repo_header.svg" />
 
