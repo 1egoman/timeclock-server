@@ -113,15 +113,19 @@ const ImportRepoComponent = ({
           >
             {
               repo.has_timecard ? 
-              <button className="btn btn-success btn-pick-me" onClick={importNewRepo(repo)}>
-                <i className="fa fa-plus-square" />
-              </button> :
-              <button
-                className="btn btn-info btn-pick-me"
-                onClick={confirmNewTimecard(repo.user, repo.repo)}
-              >
-                <i className="fa fa-upload" />
-              </button>
+                <button
+                  className="btn btn-success btn-pick-me"
+                  onClick={importNewRepo(repo)}
+                >
+                  <i className="fa fa-plus-square" />
+                </button>
+              :
+                <button
+                  className="btn btn-info btn-pick-me"
+                  onClick={confirmNewTimecard(repo.user, repo.repo)}
+                >
+                  <i className="fa fa-upload" />
+                </button>
             }
           </RepoComponent>;
         })}
@@ -139,7 +143,7 @@ const ImportRepoComponent = ({
   </div>;
 }
 
-let ImportRepo  = connect((store, ownProps) => {
+let ImportRepo = connect((store, ownProps) => {
   // first, filter out all ther repos that already are added
   let filtered_discovered_repos = store.discovered_repos.filter((repo) => {
     return !store.repos.some((i) => {

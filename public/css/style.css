@@ -7245,6 +7245,13 @@ footer {
     @media (min-width: 992px) {
       .repo .repo-text-container {
         width: auto; } }
+    .repo .repo-text-container p {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%;
+      display: inline-block;
+      overflow: hidden;
+      display: block; }
   .repo .repo-quick-summary-container {
     width: 100%;
     padding: 0.5rem;
@@ -7525,8 +7532,6 @@ a[role=menuitem], a[role=menuitem]:focus, a[role=menuitem]:active, a[role=menuit
   margin-top: 1em; }
 
 .repo-details.repo-details-import {
-  padding-left: 20px;
-  padding-right: 20px;
   background-color: transparent; }
   .repo-details.repo-details-import img.header {
     width: 100%;
@@ -7537,9 +7542,17 @@ a[role=menuitem], a[role=menuitem]:focus, a[role=menuitem]:active, a[role=menuit
     text-align: center;
     padding-top: 0.75em; }
   .repo-details.repo-details-import .repo {
+    position: relative;
     height: 8.6rem; }
+    .repo-details.repo-details-import .repo .repo-quick-summary-container {
+      display: none; }
+    .repo-details.repo-details-import .repo .repo-text-container {
+      width: 80%;
+      white-space: nowrap; }
   .repo-details.repo-details-import .btn-pick-me {
-    float: right;
+    position: absolute;
+    top: 0rem;
+    right: 0rem;
     height: 100%;
     width: 5.6rem;
     border-bottom-left-radius: 0px;

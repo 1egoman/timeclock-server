@@ -5,8 +5,6 @@
 }
 
 .repo-details.repo-details-import {
-  padding-left: 20px;
-  padding-right: 20px;
   background-color: transparent;
 
   img.header {
@@ -22,11 +20,22 @@
   }
 
   .repo {
+    position: relative;
     height: 8.6rem;
+    .repo-quick-summary-container {
+      display: none;
+    }
+
+    .repo-text-container {
+      width: 80%;
+      white-space: nowrap;
+    }
   }
 
   .btn-pick-me {
-    float: right;
+    position: absolute;
+    top: 0rem;
+    right: 0rem;
     height: 100%;
     width: 5.6rem;
     border-bottom-left-radius: 0px;

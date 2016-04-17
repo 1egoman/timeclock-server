@@ -101,6 +101,10 @@
     @media (min-width: $screen-md-min) {
       width: auto;
     }
+    p {
+      @include text-ellipsis;
+      display: block;
+    }
   }
 
   // a colored summary of the client name
