@@ -34,7 +34,6 @@ export function createNewTimecardModal({
       </Modal.Header>
       <Modal.Body>
         <div className="modal-new-timecard">
-          <img src="/img/add_timecard_web.svg" className="center-block" />
           <p>
             We'll make a commit to this repository's <strong>
               {confirm_timecard_for.default_branch}
@@ -54,6 +53,12 @@ export function createNewTimecardModal({
             label="Project Tagline"
             onChange={changeStagingTimecardData("tagline")}
           />
+          <Input
+            type="text"
+            placeholder="John Smith"
+            label="Client Name"
+            onChange={changeStagingTimecardData("clientName")}
+          />
 
           {/* Primary and Secondary Colors */}
           <div className="color-picker">
@@ -65,7 +70,10 @@ export function createNewTimecardModal({
           </div>
 
           {/* Create a timecard on the default branch */}
-          <Button bsStyle="primary" onClick={importNewRepo(confirm_timecard_for, true, timecard_template)}>
+          <Button
+            bsStyle="primary"
+            onClick={importNewRepo(confirm_timecard_for, true, timecard_template)}
+          >
             Create new timecard
           </Button>
       </div>
@@ -99,7 +107,8 @@ const ImportRepoComponent = ({
       timecard_template: {
         name: new_timecard_staging.name || confirm_timecard_for.repo,
         tagline: new_timecard_staging.tagline || confirm_timecard_for.desc,
-        primaryColor: new_timecard_staging.primaryColor || confirm_timecard_for.primaryColor || "#51c4c4",
+        clientName: new_timecard_staging.clientName,
+        primaryColor: new_timecard_staging.primaryColor || "#51c4c4",
         secondaryColor: new_timecard_staging.secondaryColor || confirm_timecard_for.secondaryColor,
       },
 
