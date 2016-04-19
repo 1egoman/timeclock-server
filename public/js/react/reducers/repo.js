@@ -228,6 +228,10 @@ export function repoDetails(state = {branch: null}, action) {
               ${state.default_branch ? " to "+state.default_branch : ''}.`,
     });
 
+  // clear errors on route change
+  } else if (action.type === "@@router/LOCATION_CHANGE") {
+    return Object.assign({}, state, {error: null});
+
   } else {
     return state;
   }
