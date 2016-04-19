@@ -22,6 +22,13 @@ export function formatTime(raw, parse_format="%H:%M:%S", to_format) {
   }
 }
 
+// given a duration in minutes, generate minute / second jsx for rendering.
+export function generateTimeMarkup(duration) {
+  return <span>
+    <strong>{Math.floor(duration)} min</strong>, {Math.ceil((duration % 1) * SECONDS_PER_MINUTE)} sec
+  </span>;
+}
+
 // get the difference in time from the start to the end
 export function getTimeDelta(start, end, day, parse_format, tooLongDuration=DEFAULT_LONG_DURATION) {
   parse_format = parse_format || "%H:%M:%S";
@@ -57,7 +64,7 @@ export function getTimeDelta(start, end, day, parse_format, tooLongDuration=DEFA
       duration: duration,
       tooLong: duration > tooLongDuration,
       markup: <span className="time-delta">
-        <strong>{Math.floor(duration)} min</strong>, {Math.ceil((duration % 1) * SECONDS_PER_MINUTE)} sec
+        {generateTimeMarkup(duration)}
         <span className="repo-details-report-table-indicators">
           {tooLong}
           {isPaid}

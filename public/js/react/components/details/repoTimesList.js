@@ -4,6 +4,7 @@ import _ from 'underscore';
 import {
   getTimeDelta,
   getAvatarFor,
+  generateTimeMarkup,
 } from '../../helpers/timecard';
 import {expandCollapseTimecardSection} from '../../actions/repo';
 
@@ -26,8 +27,10 @@ function renderTimecardTable(
   }
 
   return timecard.card.map((day, dct) => {
+    let totalDuration = 0;
     let times = day.times.map((time, tct) => {
       let delta = getTimeDelta(time.start, time.end, day, null, user.settings.long_work_period);
+      totalDuration += delta.duration;
       return <tr
         key={`${dct}-${tct}`}
         className={isSectionVisible(dct) ? "enabled" : "hidden"}
@@ -67,7 +70,7 @@ function renderTimecardTable(
           <td>{day.date}</td>
           <td></td>
           <td></td>
-          <td>duration here</td>
+          <td>{generateTimeMarkup(totalDuration)}</td>
         </tr>,
         times
       ];

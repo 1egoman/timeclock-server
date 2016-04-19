@@ -5,6 +5,7 @@ import {
   formatTime,
   getTimeDelta,
   getAvatarFor,
+  generateTimeMarkup,
 } from '../../helpers/timecard';
 import React from 'react';
 import {OverlayTrigger, Tooltip} from 'react-bootstrap';
@@ -24,7 +25,7 @@ describe('helpers/timecard.js', function() {
         duration: 30.2,
         tooLong: false,
         markup: <span className="time-delta">
-          <strong>{30} min</strong>, {12} sec
+          <span><strong>{30} min</strong>, {12} sec</span>
           <span className="repo-details-report-table-indicators">
             {undefined}
             {undefined}
@@ -46,7 +47,7 @@ describe('helpers/timecard.js', function() {
         duration: 180,
         tooLong: true,
         markup: <span className="time-delta">
-          <strong>{180} min</strong>, {0} sec
+          <span><strong>{180} min</strong>, {0} sec</span>
           <span className="repo-details-report-table-indicators">
             <OverlayTrigger placement="left" overlay={
               <Tooltip id="long-work">
@@ -65,7 +66,7 @@ describe('helpers/timecard.js', function() {
         duration: 10,
         tooLong: false,
         markup: <span className="time-delta">
-          <strong>{10} min</strong>, {0} sec
+          <span><strong>{10} min</strong>, {0} sec</span>
           <span className="repo-details-report-table-indicators">
             {undefined}
             <OverlayTrigger placement="left" overlay={
@@ -78,6 +79,20 @@ describe('helpers/timecard.js', function() {
       });
     });
   });
+  describe.only('generateTimeMarkup', function() {
+    it('should generate markup for a time in minutes', function() {
+      assert.deepEqual(
+        generateTimeMarkup(10.00),
+        <span><strong>{10} min</strong>, {0} sec</span>
+      );
+    });
+    it('should generate markup for a time in minutes and seconds', function() {
+      assert.deepEqual(
+        generateTimeMarkup(10.50),
+        <span><strong>{10} min</strong>, {30} sec</span>
+      );
+    });
+  })
   describe('getAvatarFor', function() {
     let user_pool = [
       {username: "a-user-one", avatar: "sauce"},
