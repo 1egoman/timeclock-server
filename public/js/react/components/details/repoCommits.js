@@ -7,9 +7,13 @@ import {
   calculateAverageWorkPeriodLength,
   calculateAverageCommitTime,
   calculateAverageCommitsPerWorkPeriod,
+  calculateAverageCommitsPerContributorPerWorkPeriod,
+  calculateCommitStats,
+  calculateContributors,
   formatTime,
 } from "../../helpers/stats";
 import {Line as LineChart} from 'react-chartjs';
+import {Averages, Contributions} from './statsSections';
 
 function getRepoCommitNodeType(message) {
   if (message.indexOf("Created timecard for Waltz:") !== -1) {
@@ -88,15 +92,13 @@ export function repoCommitsComponent({
         });
 
     let averageCommitLength = calculateAverageCommitTime(repoDetails.commits),
+        commitStats = null,
+        contributors = null,
         averageWorkPeriodLength = null,
-        averageCommitsPerAverageWorkPeriod = null;
-    if (
-      repoDetails.timecard &&
-      repoDetails.timecard.card &&
-      repoDetails.timecard.card.length > 0
-    ) {
-      averageWorkPeriodLength = calculateAverageWorkPeriodLength(repoDetails.timecard)
-      averageCommitsPerAverageWorkPeriod = calculateAverageCommitsPerWorkPeriod(repoDetails.timecard, repoDetails.commits);
+        averageCommitsPerAverageWorkPeriod = null,
+        averageCommitsPerContributorPerAverageWorkPeriod = null;
+    if (commits) {
+      commitStats = calculateCommitStats(repoDetails.commits);
     }
 
     // render the component
@@ -106,6 +108,17 @@ export function repoCommitsComponent({
           className={`repo-commits ${disabled ? "repo-commits-disabled" : ''}`}
         >{commits}</div>
       </div> */}
+      <Averages
+        timecard={repoDetails.timecard}
+        commits={repoDetails.commits}
+        users={repoDetails.users}
+      />
+
+      <Contributions
+        timecard={repoDetails.timecard}
+        commits={repoDetails.commits}
+      />
+
      <br/>
       <Col xs={12} md={4}>
         <Panel header="Average time between commits">

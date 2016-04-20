@@ -148,6 +148,25 @@ export function generateChartTimeDataForEachWorkDay(timecard, count=-1, fillColo
   }
 }
 
+// expressed as a percentage, the increase/decrease in work over the
+// past `delta` time as compared to the `delta` time before the last `delta`.
+export function contributionIncreaseOverDelta(timecard, delta) {
+  return "make me do stuff";
+}
+
+// the total amount of commits made in the project, and the last commit's
+// completion time.
+export function calculateCommitStats(commits) {
+  if (Array.isArray(commits) && commits.length > 0) {
+    return {
+      commits: commits.length,
+      lastCommitTime: new Date(commits.slice(-1)[0].when),
+    };
+  } else {
+    return 0;
+  }
+}
+
 export function formatTime(epoch) {
   let date = new Date(epoch);
   return `${date.getHours()} hours and ${date.getMinutes()} minutes`;
@@ -167,7 +186,7 @@ export function formatTime(epoch) {
 // utility functions
 
 // returns true if the passes timecard follows the spec
-function assertIsCard(timecard) {
+export function assertIsCard(timecard) {
   if (typeof timecard === "object" && timecard.card) {
     if (timecard.card.length) {
       return timecard.card.every((date) => {
