@@ -9,6 +9,7 @@ import {
   calculateAverageCommitsPerWorkPeriod,
   formatTime,
 } from "../../helpers/stats";
+import {Line as LineChart} from 'react-chartjs';
 
 function getRepoCommitNodeType(message) {
   if (message.indexOf("Created timecard for Waltz:") !== -1) {
@@ -106,9 +107,6 @@ export function repoCommitsComponent({
         >{commits}</div>
       </div> */}
      <br/>
-     <h2 className="text-center">Averages</h2>
-     <br/>
-
       <Col xs={12} md={4}>
         <Panel header="Average time between commits">
           {formatTime(averageCommitLength)}
@@ -124,6 +122,7 @@ export function repoCommitsComponent({
           {Math.round(averageCommitsPerAverageWorkPeriod)}
         </Panel>
       </Col>
+
     </div>;
   } else {
     return <div className="repo-commits-container">

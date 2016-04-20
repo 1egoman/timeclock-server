@@ -79,7 +79,7 @@ describe('helpers/timecard.js', function() {
       });
     });
   });
-  describe.only('generateTimeMarkup', function() {
+  describe('generateTimeMarkup', function() {
     it('should generate markup for a time in minutes', function() {
       assert.deepEqual(
         generateTimeMarkup(10.00),

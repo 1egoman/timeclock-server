@@ -80,6 +80,32 @@ export function calculateAverageCommitsPerWorkPeriod(timecard, commits) {
   }
 }
 
+// calculate the contributors to the specified timecard
+export function calculateContributors(timecard) {
+  if (assertIsCard(timecard)) {
+    let authors = [];
+    timecard.card.forEach((day) => {
+      day.times.forEach((time) => {
+        if (time.by && authors.indexOf(time.by) === -1) {
+          authors.push(time.by);
+        }
+      });
+    });
+    return authors;
+  } else {
+    return false;
+  }
+}
+
+// The average work period duration divided by the total amount of contributors.
+export function calculateAverageCommitsPerContributorPerWorkPeriod(timecard, commits, users) {
+  if (assertIsCard(timecard) && Array.isArray(commits) && commits.length > 0) {
+    return calculateAverageCommitsPerWorkPeriod(timecard, commits) / calculateContributors(timecard).length;
+  } else {
+    return false;
+  }
+}
+
 // generate the chart data for the specified number of work periods.
 // x: work day; y: hours worked
 export function generateChartTimeDataForEachWorkDay(timecard, count=-1, fillColor) {
@@ -126,6 +152,11 @@ export function formatTime(epoch) {
   let date = new Date(epoch);
   return `${date.getHours()} hours and ${date.getMinutes()} minutes`;
 }
+
+/* contributors per time
+ * 
+ *
+ */
 
 
 

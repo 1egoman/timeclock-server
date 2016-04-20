@@ -6,6 +6,9 @@ import {
   calculateAverageWorkPeriodLength,
   calculateAverageCommitTime,
   calculateAverageCommitsPerWorkPeriod,
+  calculateContributors,
+  calculateAverageCommitsPerContributorPerWorkPeriod,
+  formatTime,
 } from '../../helpers/stats';
 
 const HOUR_IN_MS = 60 * 60 * 1000;
@@ -530,5 +533,251 @@ describe("calculateAverageCommitsPerWorkPeriod", function() {
       calculateAverageCommitsPerWorkPeriod("bad timecard", "bad commits"),
       null
     );
+  });
+});
+describe("calculateContributors", function() {
+  it("should calculate contributors with zero contributors", function() {
+    assert.deepEqual(
+      calculateContributors({
+        card: [
+          {
+            "date": "Sun Jan 17 2016",
+            "times": [],
+          },
+        ]
+      }),
+      []
+    );
+  });
+  it("should calculate contributors with only one", function() {
+    assert.deepEqual(
+      calculateContributors({
+        card: [
+          {
+            "date": "Sun Jan 17 2016",
+            "times": [
+              {start: "1:00:00", end: "6:00:00", by: "user"},
+              {start: "3:00:00", end: "8:00:00", by: "user"},
+            ],
+          },
+        ]
+      }),
+      ["user"]
+    );
+  });
+  it("should calculate contributors with two", function() {
+    assert.deepEqual(
+      calculateContributors({
+        card: [
+          {
+            "date": "Sun Jan 17 2016",
+            "times": [
+              {start: "1:00:00", end: "6:00:00", by: "user"},
+              {start: "3:00:00", end: "8:00:00", by: "user two"},
+            ],
+          },
+        ]
+      }),
+      ["user", "user two"]
+    );
+  });
+  it("should calculate contributors with greater than two", function() {
+    assert.deepEqual(
+      calculateContributors({
+        card: [
+          {
+            "date": "Sun Jan 17 2016",
+            "times": [
+              {start: "1:00:00", end: "6:00:00", by: "user"},
+              {start: "3:00:00", end: "8:00:00", by: "user two"},
+              {start: "5:00:00", end: "7:00:00", by: "user three"},
+            ],
+          },
+        ]
+      }),
+      ["user", "user two", "user three"]
+    );
+  });
+  it("should not calculate contributors with a bad timecard", function() {
+    assert.deepEqual(
+      calculateContributors({ i_am: "malformed"}),
+      false
+    );
+  });
+});
+describe("calculateAverageCommitsPerWorkPeriodPerWorkPeriod", function() {
+  it("should calculate the average with one user only", function() {
+    assert.equal(
+      calculateAverageCommitsPerContributorPerWorkPeriod({
+        card: [
+          {
+            "date": "Sun Jan 17 2016",
+            "times": [
+              {start: "1:00:00", end: "6:00:00", by: "user"},
+              {start: "3:00:00", end: "8:00:00", by: "user"},
+            ],
+          },
+        ]
+      }, [
+        {
+          "committer": {
+            "username": "1egoman",
+            "avatar": "https://avatars.githubusercontent.com/u/1704236?v=3",
+            "url": "https://github.com/1egoman",
+            "type": "user"
+          },
+          "message": "Commit message abc",
+          "sha": "e314554fb963b43ee14be08826284f143fe7ae6f",
+          "when": "2016-03-26T01:45:00Z"
+        },
+        {
+          "committer": {
+            "username": "1egoman",
+            "avatar": "https://avatars.githubusercontent.com/u/1704236?v=3",
+            "url": "https://github.com/1egoman",
+            "type": "user"
+          },
+          "message": "Commit message 1",
+          "sha": "2f019b63b2c26748538e1d7bf711522eb05fb96c",
+          "when": "2016-03-26T01:50:00Z"
+        },
+        {
+          "committer": {
+            "username": "1egoman",
+            "avatar": "https://avatars.githubusercontent.com/u/1704236?v=3",
+            "url": "https://github.com/1egoman",
+            "type": "user"
+          },
+          "message": "Commit message",
+          "sha": "2f019b63b2c26748538e1d7bf711522eb05fb96c",
+          "when": "2016-03-26T03:00:00Z"
+        },
+      ]),
+      1/8 // "average" commits per "average" work period
+    );
+  });
+  it("should calculate the average with two users", function() {
+    assert.equal(
+      calculateAverageCommitsPerContributorPerWorkPeriod({
+        card: [
+          {
+            "date": "Sun Jan 17 2016",
+            "times": [
+              {start: "1:00:00", end: "6:00:00", by: "user"},
+              {start: "3:00:00", end: "8:00:00", by: "user2"},
+            ],
+          },
+        ]
+      }, [
+        {
+          "committer": {
+            "username": "1egoman",
+            "avatar": "https://avatars.githubusercontent.com/u/1704236?v=3",
+            "url": "https://github.com/1egoman",
+            "type": "user"
+          },
+          "message": "Commit message abc",
+          "sha": "e314554fb963b43ee14be08826284f143fe7ae6f",
+          "when": "2016-03-26T01:45:00Z"
+        },
+        {
+          "committer": {
+            "username": "1egoman",
+            "avatar": "https://avatars.githubusercontent.com/u/1704236?v=3",
+            "url": "https://github.com/1egoman",
+            "type": "user"
+          },
+          "message": "Commit message 1",
+          "sha": "2f019b63b2c26748538e1d7bf711522eb05fb96c",
+          "when": "2016-03-26T01:50:00Z"
+        },
+        {
+          "committer": {
+            "username": "1egoman",
+            "avatar": "https://avatars.githubusercontent.com/u/1704236?v=3",
+            "url": "https://github.com/1egoman",
+            "type": "user"
+          },
+          "message": "Commit message",
+          "sha": "2f019b63b2c26748538e1d7bf711522eb05fb96c",
+          "when": "2016-03-26T03:00:00Z"
+        },
+      ]),
+      1/16 // "average" commits per "average" work period / 2 users
+    );
+  });
+  it("should not calculate the average with a bad timecard", function() {
+    assert.equal(
+      calculateAverageCommitsPerContributorPerWorkPeriod({i_am: "malformed"}, [
+        {
+          "committer": {
+            "username": "1egoman",
+            "avatar": "https://avatars.githubusercontent.com/u/1704236?v=3",
+            "url": "https://github.com/1egoman",
+            "type": "user"
+          },
+          "message": "Commit message abc",
+          "sha": "e314554fb963b43ee14be08826284f143fe7ae6f",
+          "when": "2016-03-26T01:45:00Z"
+        },
+        {
+          "committer": {
+            "username": "1egoman",
+            "avatar": "https://avatars.githubusercontent.com/u/1704236?v=3",
+            "url": "https://github.com/1egoman",
+            "type": "user"
+          },
+          "message": "Commit message 1",
+          "sha": "2f019b63b2c26748538e1d7bf711522eb05fb96c",
+          "when": "2016-03-26T01:50:00Z"
+        },
+        {
+          "committer": {
+            "username": "1egoman",
+            "avatar": "https://avatars.githubusercontent.com/u/1704236?v=3",
+            "url": "https://github.com/1egoman",
+            "type": "user"
+          },
+          "message": "Commit message",
+          "sha": "2f019b63b2c26748538e1d7bf711522eb05fb96c",
+          "when": "2016-03-26T03:00:00Z"
+        },
+      ]),
+      false
+    );
+  });
+  it("should not calculate average with no commits", function() {
+    assert.equal(
+      calculateAverageCommitsPerContributorPerWorkPeriod({
+        card: [
+          {
+            "date": "Sun Jan 17 2016",
+            "times": [
+              {start: "1:00:00", end: "6:00:00", by: "user"},
+              {start: "3:00:00", end: "8:00:00", by: "user2"},
+            ],
+          },
+        ]
+      }, []),
+      false
+    );
+  });
+});
+describe("formatTime", function() {
+  it("should format a time given an epoch", function() {
+    assert.equal(formatTime(new Date(0, 0, 0, 1, 0).getTime()), "1 hours and 0 minutes");
+    assert.equal(formatTime(new Date(0, 0, 0, 1, 30).getTime()), "1 hours and 30 minutes");
+    assert.equal(formatTime(new Date(0, 0, 0, 1, 40).getTime()), "1 hours and 40 minutes");
+    assert.equal(formatTime(new Date(0, 0, 0, 10, 0).getTime()), "10 hours and 0 minutes");
+    assert.equal(formatTime(new Date(0, 0, 0, 10, 30).getTime()), "10 hours and 30 minutes");
+    assert.equal(formatTime(new Date(0, 0, 0, 10, 40).getTime()), "10 hours and 40 minutes");
+  });
+  it("should format a time given a date", function() {
+    assert.equal(formatTime(new Date(0, 0, 0, 1, 0)), "1 hours and 0 minutes");
+    assert.equal(formatTime(new Date(0, 0, 0, 1, 30)), "1 hours and 30 minutes");
+    assert.equal(formatTime(new Date(0, 0, 0, 1, 40)), "1 hours and 40 minutes");
+    assert.equal(formatTime(new Date(0, 0, 0, 10, 0)), "10 hours and 0 minutes");
+    assert.equal(formatTime(new Date(0, 0, 0, 10, 30)), "10 hours and 30 minutes");
+    assert.equal(formatTime(new Date(0, 0, 0, 10, 40)), "10 hours and 40 minutes");
   });
 });
