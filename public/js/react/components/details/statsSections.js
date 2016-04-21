@@ -96,15 +96,6 @@ export function Contributions({
   timecard,
   commits,
 }) {
-  // display contributor info nicely
-  function formatContributors(contributors, max=5) {
-    if (contributors.length > max) {
-      return `${contributors.slice(max).join(", ")}, and more`
-    } else {
-      return contributors.join(", ");
-    }
-  }
-
   if (assertIsCard(timecard) && Array.isArray(commits)) {
     let contributors = calculateContributors(timecard),
         commitStats = calculateCommitStats(commits);
