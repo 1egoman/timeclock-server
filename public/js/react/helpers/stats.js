@@ -86,12 +86,12 @@ export function calculateContributors(timecard) {
     let authors = [];
     timecard.card.forEach((day) => {
       day.times.forEach((time) => {
-        if (time.by && authors.indexOf(time.by) === -1) {
+        if (time.by) {
           authors.push(time.by);
         }
       });
     });
-    return authors;
+    return _.countBy(authors, (i) => i);
   } else {
     return false;
   }
