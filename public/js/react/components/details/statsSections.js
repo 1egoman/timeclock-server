@@ -110,20 +110,20 @@ export function Contributions({
         commitStats = calculateCommitStats(commits);
 
     return <div>
-      <Panel header="Contributors">
+      <Panel header="Contributions">
         <ProgressBar>
           {contributorBarGraph(contributors)}
         </ProgressBar>
-      </Panel>
-    </div>;
 
-    return <div>
-     <h3>Contributions</h3>
-     <p>
-      Each of this project's {contributors.length} contributor(s) have pushed {commitStats.commits} commits
-      since {commitStats.lastCommitTime.toString()}. In the last week, contributions have
-      increased n% when compared to the previous week.
-     </p>
+        <ul>
+          <li>Contributor Count: {Object.keys(contributors).length}</li>
+          <li>Velocity: X commits per week</li>
+        </ul>
+
+        <small>
+          From a sample of the last {commitStats.commits} contributions since {commitStats.lastCommitTime.toString()}
+        </small>
+      </Panel>
     </div>;
   } else {
     return null;
