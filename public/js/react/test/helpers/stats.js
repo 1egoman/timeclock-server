@@ -546,7 +546,7 @@ describe("calculateContributors", function() {
           },
         ]
       }),
-      []
+      {}
     );
   });
   it("should calculate contributors with only one", function() {
@@ -562,7 +562,7 @@ describe("calculateContributors", function() {
           },
         ]
       }),
-      ["user"]
+      {user: 2}
     );
   });
   it("should calculate contributors with two", function() {
@@ -578,7 +578,7 @@ describe("calculateContributors", function() {
           },
         ]
       }),
-      ["user", "user two"]
+      {user: 1, "user two": 1}
     );
   });
   it("should calculate contributors with greater than two", function() {
@@ -595,7 +595,7 @@ describe("calculateContributors", function() {
           },
         ]
       }),
-      ["user", "user two", "user three"]
+      {user: 1, "user two": 1, "user three": 1}
     );
   });
   it("should not calculate contributors with a bad timecard", function() {
@@ -605,7 +605,7 @@ describe("calculateContributors", function() {
     );
   });
 });
-describe("calculateAverageCommitsPerWorkPeriodPerWorkPeriod", function() {
+describe("calculateAverageCommitsPerContributorPerWorkPeriod", function() {
   it("should calculate the average with one user only", function() {
     assert.equal(
       calculateAverageCommitsPerContributorPerWorkPeriod({

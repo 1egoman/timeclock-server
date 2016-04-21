@@ -100,7 +100,8 @@ export function calculateContributors(timecard) {
 // The average work period duration divided by the total amount of contributors.
 export function calculateAverageCommitsPerContributorPerWorkPeriod(timecard, commits, users) {
   if (assertIsCard(timecard) && Array.isArray(commits) && commits.length > 0) {
-    return calculateAverageCommitsPerWorkPeriod(timecard, commits) / calculateContributors(timecard).length;
+    let uniqueContributors = Object.keys(calculateContributors(timecard)).length;
+    return calculateAverageCommitsPerWorkPeriod(timecard, commits) / uniqueContributors;
   } else {
     return false;
   }
