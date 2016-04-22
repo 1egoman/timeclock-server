@@ -15,7 +15,7 @@ describe("lib/events/shareWith.js", function() {
     mail.send.restore();
   });
 
-  it.only("should send an email when given the correct action", function(done) {
+  it("should send an email when given the correct action", function(done) {
     let skt = socketHelpers.createMockSocketWith({
       repos: [{user: "a-user", repo: "a-repo"}],
     });

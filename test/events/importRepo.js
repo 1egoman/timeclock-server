@@ -10,17 +10,17 @@ const assert = require("assert"),
 
 describe("lib/events/importRepo.js", function() {
   beforeEach(() => {
-    sinon.stub(User, "update").callsArgWith(2, null);
     sinon.stub(repo, "createTimecardInRepo").resolves(true);
   });
   afterEach(() => {
-    User.update.restore();
     repo.createTimecardInRepo.restore();
   });
 
   it('should import a repo with valid info', function() {
+    let save = sinon.stub().resolves();
     let skt = socketHelpers.createMockSocketWith({
       repos: [],
+      save,
     });
 
     let response = importRepo({
@@ -28,15 +28,15 @@ describe("lib/events/importRepo.js", function() {
       repo: {user: "a-user", repo: "a-repo", foo: "bar", is_private: false},
     }, skt);
 
-    assert.deepEqual(User.update.firstCall.args.slice(0, 2), [{_id: skt.request.user}, {
-      $push: {
-        repos: {user: "a-user", repo: "a-repo", foo: "bar", is_private: false},
-      },
-    }]);
+    assert.deepEqual(skt.request.user.repos, [
+      {user: "a-user", repo: "a-repo", foo: "bar", is_private: false},
+    ]);
   });
   it('should import a repo with valid info, defaulting on is_private', function() {
+    let save = sinon.stub().resolves();
     let skt = socketHelpers.createMockSocketWith({
       repos: [],
+      save,
     });
 
     let response = importRepo({
@@ -44,15 +44,15 @@ describe("lib/events/importRepo.js", function() {
       repo: {user: "a-user", repo: "a-repo", foo: "bar"},
     }, skt);
 
-    assert.deepEqual(User.update.firstCall.args.slice(0, 2), [{_id: skt.request.user}, {
-      $push: {
-        repos: {user: "a-user", repo: "a-repo", foo: "bar", is_private: false},
-      },
-    }]);
+    assert.deepEqual(skt.request.user.repos, [
+      {user: "a-user", repo: "a-repo", foo: "bar", is_private: false},
+    ]);
   });
   it('should import a repo with valid info, and create a timecard', function(done) {
+    let save = sinon.stub().resolves();
     let skt = socketHelpers.createMockSocketWith({
       repos: [],
+      save,
     });
 
     let response = importRepo({
@@ -71,18 +71,18 @@ describe("lib/events/importRepo.js", function() {
       ]);
 
       // added the repo
-      assert.deepEqual(User.update.firstCall.args.slice(0, 2), [{_id: skt.request.user}, {
-        $push: {
-          repos: {user: "a-user", repo: "a-repo", foo: "bar", is_private: false},
-        },
-      }]);
+      assert.deepEqual(skt.request.user.repos, [
+        {user: "a-user", repo: "a-repo", foo: "bar", is_private: false},
+      ]);
 
       done();
     }).catch(done);
   });
   it('should import a repo with valid info, and create a timecard, falling back on default branch', function(done) {
+    let save = sinon.stub().resolves();
     let skt = socketHelpers.createMockSocketWith({
       repos: [],
+      save,
     });
 
     let response = importRepo({
@@ -90,7 +90,6 @@ describe("lib/events/importRepo.js", function() {
       repo: {user: "a-user", repo: "a-repo", foo: "bar", default_branch: "default-branch", is_private: false},
       createtimecard: true,
     }, skt).then(() => {
-
       // create a timecard in the right way
       assert.deepEqual(repo.createTimecardInRepo.firstCall.args, [
         "a-user",
@@ -101,24 +100,18 @@ describe("lib/events/importRepo.js", function() {
       ]);
 
       // added the repo
-      assert.deepEqual(User.update.firstCall.args.slice(0, 2), [{_id: skt.request.user}, {
-        $push: {
-          repos: {
-            user: "a-user",
-            repo: "a-repo",
-            foo: "bar",
-            is_private: false,
-            default_branch: "default-branch",
-          },
-        },
-      }]);
+      assert.deepEqual(skt.request.user.repos, [
+        {user: "a-user", default_branch: "default-branch", repo: "a-repo", foo: "bar", is_private: false},
+      ]);
 
       done();
     }).catch(done);
   });
   it('should import a repo with valid info, and create a timecard, including timecard data in action', function(done) {
+    let save = sinon.stub().resolves();
     let skt = socketHelpers.createMockSocketWith({
       repos: [],
+      save,
     });
 
     let response = importRepo({
@@ -127,7 +120,6 @@ describe("lib/events/importRepo.js", function() {
       createtimecard: "master",
       timecard: {foo: "bar"},
     }, skt).then(() => {
-
       // create a timecard in the right way
       assert.deepEqual(repo.createTimecardInRepo.firstCall.args, [
         "a-user",
@@ -138,11 +130,9 @@ describe("lib/events/importRepo.js", function() {
       ]);
 
       // added the repo
-      assert.deepEqual(User.update.firstCall.args.slice(0, 2), [{_id: skt.request.user}, {
-        $push: {
-          repos: {user: "a-user", repo: "a-repo", foo: "bar", is_private: false},
-        },
-      }]);
+      assert.deepEqual(skt.request.user.repos, [
+        {user: "a-user", repo: "a-repo", foo: "bar", is_private: false},
+      ]);
 
       done();
     }).catch(done);
@@ -150,20 +140,20 @@ describe("lib/events/importRepo.js", function() {
 
   describe("with a private repo", () => {
     it('should import a private repo with valid info', function(done) {
+      let save = sinon.stub().resolves();
       let skt = socketHelpers.createMockSocketWith({
         repos: [],
         plan: "disco",
+        save,
       });
 
       let response = importRepo({
         type: "server/IMPORT_REPO",
         repo: {user: "a-user", repo: "a-repo", foo: "bar", is_private: true},
       }, skt).then((data) => {
-        assert.deepEqual(User.update.firstCall.args.slice(0, 2), [{_id: skt.request.user}, {
-          $push: {
-            repos: {user: "a-user", repo: "a-repo", foo: "bar", is_private: true},
-          },
-        }]);
+        assert.deepEqual(skt.request.user.repos, [
+          {user: "a-user", repo: "a-repo", foo: "bar", is_private: true},
+        ]);
         done();
       });
     });
