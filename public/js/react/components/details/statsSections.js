@@ -129,8 +129,8 @@ export function Contributions({
                   className={`text-${CONTRIBUTOR_COLORS[ct % CONTRIBUTOR_COLORS.length] || "primary"}`}
                 >{i}</h3>
                 <span>
-                  {contributors[i]} contributions in total
-                  ({contributors[i] / totalContributions * 100}%)
+                  {contributors[i] === 1 ? "1 contribution " : `${contributors[i]} contributions `}
+                  ({Math.floor(contributors[i] / totalContributions * 1000) / 10}%)
                 </span>
               </li>;
             })}
