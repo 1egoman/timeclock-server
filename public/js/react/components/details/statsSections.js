@@ -9,6 +9,7 @@ import {
   formatTime,
   assertIsCard,
 } from "../../helpers/stats";
+import {getAvatarFor} from '../../helpers/timecard';
 import {
   Panel,
   Col,
@@ -41,21 +42,31 @@ export function Averages({
   }
 }
 
+// the color of a contributor based on their index
+const CONTRIBUTOR_COLORS = [
+  undefined,
+  "success",
+  "info",
+  "warning",
+  "danger"
+];
 
 
 
 
 
+// get total amount of times a user has contributed
+function getTotalContributions(contributors) {
+  let total = 0;
+  Object.keys(contributors).forEach((i) => total += contributors[i]);
+  return total
+}
 
 // show the 5 most prolific contributors, and lump all the rest into an "others"
 // category
 export function contributorBarGraph(contributors, useFirst=5) {
-  let total = 0,
-      left = 100,
-      colors = [undefined, "success", "info", "warning", "danger"];
-
-  // get total amount of times a user has contributed
-  Object.keys(contributors).forEach((i) => total += contributors[i]);
+  let total = getTotalContributions(contributors),
+      left = 100;
 
   // graph the first `useFirst` contributor's contributions
   let graphedContributors = _.unique(Object.keys(contributors))
@@ -65,7 +76,7 @@ export function contributorBarGraph(contributors, useFirst=5) {
     let percentage = contributors[i] / total * 100;
     left -= percentage; // remove this part from the remainder of the bar
     return <ProgressBar
-      bsStyle={colors[ct]}
+      bsStyle={CONTRIBUTOR_COLORS[ct]}
       now={percentage}
       label={i}
       key={ct}
@@ -95,25 +106,48 @@ export function contributorBarGraph(contributors, useFirst=5) {
 export function Contributions({
   timecard,
   commits,
+  users,
 }) {
   if (assertIsCard(timecard) && Array.isArray(commits)) {
     let contributors = calculateContributors(timecard),
-        commitStats = calculateCommitStats(commits);
+        commitStats = calculateCommitStats(commits),
+        totalContributions = getTotalContributions(contributors);
 
-    return <div>
+    return <div className="repo-metrics contributors-modal">
       <Panel header="Contributions">
         <ProgressBar>
           {contributorBarGraph(contributors)}
         </ProgressBar>
 
-        <ul>
-          <li>Contributor Count: {Object.keys(contributors).length}</li>
-          <li>Velocity: X commits per week</li>
-        </ul>
+        {/* A list of all contributors */}
+        <Col md={8} sm={12}>
+          <ul className="contributors">
+            {Object.keys(contributors).map((i, ct) => {
+              return <li className="contributor-item" key={ct}>
+                {getAvatarFor(users, i).avatar_img}
+                <h3
+                  className={`text-${CONTRIBUTOR_COLORS[ct % CONTRIBUTOR_COLORS.length] || "primary"}`}
+                >{i}</h3>
+                <span>
+                  {contributors[i]} contributions in total
+                  ({contributors[i] / totalContributions * 100}%)
+                </span>
+              </li>;
+            })}
+          </ul>
+        </Col>
 
-        <small>
+        {/* A list of contributor stats */}
+        <Col md={4} sm={12}>
+          <ul>
+            <li>Contributor Count: {Object.keys(contributors).length}</li>
+            <li>Velocity: X commits per week</li>
+          </ul>
+        </Col>
+
+        <footer>
           From a sample of the last {commitStats.commits} contributions since {commitStats.lastCommitTime.toString()}
-        </small>
+        </footer>
       </Panel>
     </div>;
   } else {

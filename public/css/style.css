@@ -7712,5 +7712,40 @@ a[role=menuitem], a[role=menuitem]:focus, a[role=menuitem]:active, a[role=menuit
   .repo-summary.repo-summary-light .repo-summary-graph {
     background-color: #fff; }
 
+.repo-metrics.contributors-modal .progress {
+  height: 40px; }
+
+.repo-metrics.contributors-modal .progress-bar {
+  font-size: 1.2em;
+  padding-top: 0.5em; }
+
+.repo-metrics.contributors-modal .contributors {
+  list-style-type: none;
+  padding-left: 0rem; }
+  .repo-metrics.contributors-modal .contributors .contributor-item {
+    font-size: 1rem;
+    padding-bottom: 0.2rem; }
+    .repo-metrics.contributors-modal .contributors .contributor-item:before, .repo-metrics.contributors-modal .contributors .contributor-item:after {
+      content: " ";
+      display: table; }
+    .repo-metrics.contributors-modal .contributors .contributor-item:after {
+      clear: both; }
+    .repo-metrics.contributors-modal .contributors .contributor-item h3 {
+      margin-top: 0.4em;
+      font-size: 1.6em; }
+    .repo-metrics.contributors-modal .contributors .contributor-item .avatar-img {
+      height: 5.4em;
+      float: left;
+      padding-right: 1em; }
+    .repo-metrics.contributors-modal .contributors .contributor-item span {
+      font-size: 1.1em; }
+
+.repo-metrics.contributors-modal footer {
+  float: left;
+  font-size: 0.8em;
+  height: auto;
+  display: inline-block;
+  color: #777777; }
+
 a {
   color: #00B7FF; }

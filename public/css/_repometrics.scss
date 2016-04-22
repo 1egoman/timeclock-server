@@ -1,0 +1,43 @@
+.repo-metrics.contributors-modal {
+
+  // conributor progress bars
+  .progress { height: 40px; }
+  .progress-bar {
+    font-size: 1.2em;
+    padding-top: 0.5em;
+  }
+
+  // a list of all contributors to the timecard
+  .contributors {
+    list-style-type: none;
+    padding-left: 0rem;
+
+    .contributor-item {
+      font-size: 1rem;
+      padding-bottom: 0.2rem;
+      @include clearfix;
+
+      h3 {
+        margin-top: 0.4em;
+        font-size: 1.6em;
+      }
+      .avatar-img {
+        height: 5.4em;
+        float: left;
+        padding-right: 1em;
+      }
+      span {
+        font-size: 1.1em;
+      }
+    }
+  }
+
+  // where the data is coming from
+  footer {
+    float: left;
+    font-size: 0.8em;
+    height: auto;
+    display: inline-block;
+    color: $gray-light;
+  }
+}
