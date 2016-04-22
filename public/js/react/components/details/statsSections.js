@@ -6,6 +6,7 @@ import {
   calculateAverageCommitsPerContributorPerWorkPeriod,
   calculateCommitStats,
   calculateContributors,
+  getLastContributor,
   formatTime,
   assertIsCard,
 } from "../../helpers/stats";
@@ -120,7 +121,7 @@ export function Contributions({
         </ProgressBar>
 
         {/* A list of all contributors */}
-        <Col md={8} sm={12}>
+        <Col md={7} sm={12}>
           <ul className="contributors">
             {Object.keys(contributors).map((i, ct) => {
               return <li className="contributor-item" key={ct}>
@@ -138,10 +139,10 @@ export function Contributions({
         </Col>
 
         {/* A list of contributor stats */}
-        <Col md={4} sm={12}>
+        <Col md={5} sm={12}>
           <ul>
-            <li>Contributor Count: {Object.keys(contributors).length}</li>
-            <li>Velocity: X commits per week</li>
+            <li>{Object.keys(contributors).length} Contributors</li>
+            {lastContribution({timecard})}
           </ul>
         </Col>
 
@@ -150,6 +151,20 @@ export function Contributions({
     // <footer>
     //   From a sample of the last {commitStats.commits} contributions since {commitStats.lastCommitTime.toString()}
     // </footer>
+  } else {
+    return null;
+  }
+}
+
+// "Last contribution made on date (by username)" label
+export function lastContribution({timecard}) {
+  let lastContribution = getLastContributor(timecard);
+  if (lastContribution) {
+    return <li>
+      Last contribution made on&nbsp;
+      {lastContribution.when.toDateString()}
+      {lastContribution.author ? `by ${lastContribution.author}` : null}
+    </li>;
   } else {
     return null;
   }

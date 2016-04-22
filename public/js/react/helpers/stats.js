@@ -149,6 +149,36 @@ export function generateChartTimeDataForEachWorkDay(timecard, count=-1, fillColo
   }
 }
 
+// get the last contribution
+export function getLastContributor(timecard) {
+  if (assertIsCard(timecard)) {
+    // pick the oldest day
+    let parsedDays = timecard.card.map((day) => {
+      return {
+        time: parseTime(day.day, 0),
+        data: day,
+      };
+    });
+    let oldestDay = _.max(parsedDays, (data) => data.time);
+
+    // pick the oldest time from that day
+    let parsedTimes = oldestDay.data.times.map((time) => {
+      return {
+        time: parseTime(oldestDay.data.date, time.start),
+        data: time,
+      };
+    });
+    let oldestTime = _.max(parsedTimes, (data) => data.time);
+
+    return {
+      when: new Date(oldestTime.time),
+      author: oldestTime.data.by || null,
+    };
+  } else {
+    return null;
+  }
+}
+
 // expressed as a percentage, the increase/decrease in work over the
 // past `delta` time as compared to the `delta` time before the last `delta`.
 export function contributionIncreaseOverDelta(timecard, delta) {
@@ -237,7 +267,7 @@ export function totalUnpaidDuration(data) {
 const TIME_REPR = "%H:%M:%S", DAY_REPR = "%a %b %d %Y";
 function getDurationFor(day, time, use_now_as_end=false) {
   if (time.start && time.end) {
-    return (new Date(`${day.date} ${time.end}`).getTime()) - (new Date(`${day.date} ${time.start}`).getTime())
+    return parseTime(day.date, time.end) - parseTime(day.date, time.start);
   } else if (use_now_as_end) {
     // if a currently running zone is going, then use the current time as the
     // end point.
@@ -248,6 +278,10 @@ function getDurationFor(day, time, use_now_as_end=false) {
   } else {
     return 0;
   }
+}
+
+function parseTime(day, time) {
+  return new Date(`${day} ${time}`).getTime();
 }
 
 function getTimeBetween(start, end) {
