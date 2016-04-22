@@ -7740,12 +7740,29 @@ a[role=menuitem], a[role=menuitem]:focus, a[role=menuitem]:active, a[role=menuit
     .repo-metrics.contributors-modal .contributors .contributor-item span {
       font-size: 1.1em; }
 
-.repo-metrics.contributors-modal footer {
-  float: left;
-  font-size: 0.8em;
-  height: auto;
-  display: inline-block;
-  color: #777777; }
+.repo-metrics {
+  margin: 3rem 0rem; }
+  .repo-metrics .average-modal:before, .repo-metrics .average-modal:after {
+    content: " ";
+    display: table; }
+  .repo-metrics .average-modal:after {
+    clear: both; }
+  .repo-metrics .average-modal .average-stat {
+    font-size: 3em;
+    text-align: center;
+    display: block; }
+    .repo-metrics .average-modal .average-stat .unit {
+      font-size: 0.7em;
+      margin-left: 0.3em; }
+  .repo-metrics .average-modal .average-stat.sm {
+    font-size: 1.4em; }
+  .repo-metrics footer {
+    font-size: 0.8em;
+    height: auto;
+    display: block;
+    color: #777777;
+    margin: 0rem;
+    text-align: center; }
 
 a {
   color: #00B7FF; }

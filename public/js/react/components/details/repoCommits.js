@@ -91,16 +91,6 @@ export function repoCommitsComponent({
           return <RepoCommitNode key={ct} commit={i} />
         });
 
-    let averageCommitLength = calculateAverageCommitTime(repoDetails.commits),
-        commitStats = null,
-        contributors = null,
-        averageWorkPeriodLength = null,
-        averageCommitsPerAverageWorkPeriod = null,
-        averageCommitsPerContributorPerAverageWorkPeriod = null;
-    if (commits) {
-      commitStats = calculateCommitStats(repoDetails.commits);
-    }
-
     // render the component
     return <div>
       {/* <div className="repo-commits-container">
@@ -119,23 +109,6 @@ export function repoCommitsComponent({
         commits={repoDetails.commits}
         users={repoDetails.users}
       />
-
-     <br/>
-      <Col xs={12} md={4}>
-        <Panel header="Average time between commits">
-          {formatTime(averageCommitLength)}
-        </Panel>
-      </Col>
-      <Col xs={12} md={4}>
-        <Panel header="Average work period length">
-          {formatTime(averageWorkPeriodLength)}
-        </Panel>
-      </Col>
-      <Col xs={12} md={4}>
-        <Panel header="Commits per average work period">
-          {Math.round(averageCommitsPerAverageWorkPeriod)}
-        </Panel>
-      </Col>
 
     </div>;
   } else {

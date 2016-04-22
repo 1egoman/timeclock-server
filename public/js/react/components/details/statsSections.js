@@ -26,17 +26,39 @@ export function Averages({
   if (assertIsCard(timecard) && Array.isArray(commits) && Array.isArray(users)) {
     let avgWorkPeriodLength = calculateAverageWorkPeriodLength(timecard),
         commitsPerWorkPeriod = calculateAverageCommitsPerWorkPeriod(timecard, commits),
+        commitStats = calculateCommitStats(commits),
         avgCommitsPerUserPerWorkPeriod = calculateAverageCommitsPerContributorPerWorkPeriod(timecard, commits, users);
 
-    return <div>
-      <h3>Averages</h3>
-      <p>
-        On average, a work period is {formatTime(avgWorkPeriodLength)} long,
-        with {formatTime(avgWorkPeriodLength)} spent between consecutive commits.
-        In an average work period, {Math.floor(commitsPerWorkPeriod)} commits
-        are made, with {Math.floor(avgCommitsPerUserPerWorkPeriod)} made by
-        each contributor.
-      </p>
+    return <div className="repo-metrics">
+      <div className="average-modal">
+        <Col xs={12} md={4}>
+          <Panel footer="Average commits per contributor">
+            <span className="average-stat sm">
+              {Math.floor(avgCommitsPerUserPerWorkPeriod)}
+              <span className="unit">commits per work period</span>
+            </span>
+          </Panel>
+        </Col>
+        <Col xs={12} md={4}>
+          <Panel footer="Commits per average work period">
+            <span className="average-stat">
+              {Math.round(commitsPerWorkPeriod)}
+              <span className="unit">commits</span>
+            </span>
+          </Panel>
+        </Col>
+        <Col xs={12} md={4}>
+          <Panel footer="Average work period length">
+            <span className="average-stat sm">
+              {formatTime(avgWorkPeriodLength)}
+            </span>
+          </Panel>
+        </Col>
+      </div>
+
+      <footer>
+        From a sample of the last {commitStats.commits} commits since {commitStats.lastCommitTime.toString()}
+      </footer>
     </div>;
   } else {
     return null;
@@ -111,7 +133,6 @@ export function Contributions({
 }) {
   if (assertIsCard(timecard) && Array.isArray(commits)) {
     let contributors = calculateContributors(timecard),
-        commitStats = calculateCommitStats(commits),
         totalContributions = getTotalContributions(contributors);
 
     return <div className="repo-metrics contributors-modal">
@@ -148,9 +169,6 @@ export function Contributions({
 
       </Panel>
     </div>;
-    // <footer>
-    //   From a sample of the last {commitStats.commits} contributions since {commitStats.lastCommitTime.toString()}
-    // </footer>
   } else {
     return null;
   }
@@ -163,7 +181,7 @@ export function lastContribution({timecard}) {
     return <li>
       Last contribution made on&nbsp;
       {lastContribution.when.toDateString()}
-      {lastContribution.author ? `by ${lastContribution.author}` : null}
+      {lastContribution.author ? ` by ${lastContribution.author}` : null}
     </li>;
   } else {
     return null;

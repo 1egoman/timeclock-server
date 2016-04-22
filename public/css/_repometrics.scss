@@ -1,6 +1,5 @@
 .repo-metrics.contributors-modal {
-
-  // conributor progress bars
+  // contributor progress bars
   .progress { height: 40px; }
   .progress-bar {
     font-size: 1.2em;
@@ -31,13 +30,36 @@
       }
     }
   }
+}
+
+.repo-metrics {
+  margin: 3rem 0rem;
+
+  .average-modal {
+    @include clearfix;
+
+    .average-stat {
+      font-size: 3em;
+      text-align: center;
+      display: block;
+
+      .unit {
+        font-size: 0.7em;
+        margin-left: 0.3em;
+      }
+    }
+    .average-stat.sm {
+      font-size: 1.4em;
+    }
+  }
 
   // where the data is coming from
   footer {
-    float: left;
     font-size: 0.8em;
     height: auto;
-    display: inline-block;
+    display: block;
     color: $gray-light;
+    margin: 0rem;
+    text-align: center;
   }
 }
