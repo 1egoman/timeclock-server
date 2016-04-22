@@ -145,11 +145,11 @@ export function Contributions({
           </ul>
         </Col>
 
-        <footer>
-          From a sample of the last {commitStats.commits} contributions since {commitStats.lastCommitTime.toString()}
-        </footer>
       </Panel>
     </div>;
+    // <footer>
+    //   From a sample of the last {commitStats.commits} contributions since {commitStats.lastCommitTime.toString()}
+    // </footer>
   } else {
     return null;
   }
