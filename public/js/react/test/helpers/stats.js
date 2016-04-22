@@ -8,6 +8,7 @@ import {
   calculateAverageCommitsPerWorkPeriod,
   calculateContributors,
   calculateAverageCommitsPerContributorPerWorkPeriod,
+  getLastContributor,
   formatTime,
 } from '../../helpers/stats';
 
@@ -761,6 +762,108 @@ describe("calculateAverageCommitsPerContributorPerWorkPeriod", function() {
       }, []),
       false
     );
+  });
+});
+describe("getLastContributor", function() {
+  it("should get the last contributor of a timecard", function() {
+    assert.deepEqual(
+      getLastContributor({
+        card: [
+          {
+            "date": "Sun Jan 17 2016",
+            "times": [
+              {start: "1:00:00", end: "6:00:00", by: "bad-user"},
+              {start: "3:00:00", end: "8:00:00", by: "user"},
+            ],
+          },
+        ]
+      }),
+      {
+        when: new Date("Sun Jan 17 2016 3:00:00"),
+        author: "user",
+      }
+    );
+  });
+  it("should get the last contributor of a timecard with mutiple days", function() {
+    assert.deepEqual(
+      getLastContributor({
+        card: [
+          {
+            "date": "Sat Jan 16 2016",
+            "times": [
+              {start: "1:30:00", end: "6:00:00", by: "bad-user"},
+              {start: "3:40:00", end: "8:00:00", by: "bad-user"},
+            ],
+          },
+          {
+            "date": "Sun Jan 17 2016",
+            "times": [
+              {start: "1:00:00", end: "6:00:00", by: "bad-user"},
+              {start: "3:00:00", end: "8:00:00", by: "user"},
+            ],
+          },
+        ]
+      }),
+      {
+        when: new Date("Sun Jan 17 2016 3:00:00"),
+        author: "user",
+      }
+    );
+  });
+  it("should not get last contributor from a badly formatted date", function() {
+    assert.deepEqual(
+      getLastContributor({
+        card: [
+          {
+            "date": "I am bogus!",
+            "times": [
+              {start: "1:30:00", end: "6:00:00", by: "bad-user"},
+              {start: "3:40:00", end: "8:00:00", by: "bad-user"},
+            ],
+          },
+          {
+            "date": "Sun Jan 17 2016",
+            "times": [
+              {start: "1:00:00", end: "6:00:00", by: "bad-user"},
+              {start: "3:00:00", end: "8:00:00", by: "user"},
+            ],
+          },
+        ]
+      }),
+      {
+        when: new Date("Sun Jan 17 2016 3:00:00"),
+        author: "user",
+      }
+    );
+  });
+  it("should not get last contributor from a badly formatted time", function() {
+    assert.deepEqual(
+      getLastContributor({
+        card: [
+          {
+            "date": "Sat Jan 16 2016",
+            "times": [
+              {start: "1:30:00", end: "6:00:00", by: "bad-user"},
+              {start: "3:40:00", end: "8:00:00", by: "bad-user"},
+            ],
+          },
+          {
+            "date": "Sun Jan 17 2016",
+            "times": [
+              {start: "bad format", end: "6:00:00", by: "bad-user"},
+              {start: "3:00:00", end: "8:00:00", by: "user"},
+            ],
+          },
+        ]
+      }),
+      {
+        when: new Date("Sun Jan 17 2016 3:00:00"),
+        author: "user",
+      }
+    );
+  });
+  it("should not get contributors with bad timecard", function() {
+    assert.deepEqual(getLastContributor({foo: "bar"}), null);
   });
 });
 describe("formatTime", function() {

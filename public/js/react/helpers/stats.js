@@ -155,7 +155,7 @@ export function getLastContributor(timecard) {
     // pick the oldest day
     let parsedDays = timecard.card.map((day) => {
       return {
-        time: parseTime(day.day, 0),
+        time: parseTime(day.date),
         data: day,
       };
     });
@@ -280,7 +280,7 @@ function getDurationFor(day, time, use_now_as_end=false) {
   }
 }
 
-function parseTime(day, time) {
+function parseTime(day, time="") {
   return new Date(`${day} ${time}`).getTime();
 }
 
