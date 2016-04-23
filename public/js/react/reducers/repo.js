@@ -87,7 +87,7 @@ export function repoDetails(state = {branch: null}, action) {
       branches: action.branches,
       commits: action.commits,
       repos: action.repos,
-      sections_visible: [],
+      sections_visible: state.sections_visible || [],
 
       show_share_modal: false,
       _comesfrom: [...action.active_repo, action.branch],
