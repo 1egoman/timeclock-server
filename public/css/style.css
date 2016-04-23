@@ -7208,7 +7208,8 @@ footer {
   position: relative;
   color: #333333;
   padding: 0rem;
-  min-height: 8rem; }
+  min-height: 8rem;
+  overflow-x: hidden; }
   .repo:before, .repo:after {
     content: " ";
     display: table; }
@@ -7233,7 +7234,8 @@ footer {
   .repo h1 {
     font-size: 1.6em;
     overflow: hidden;
-    text-overflow: ellipsis; }
+    text-overflow: ellipsis;
+    white-space: nowrap; }
     .repo h1 .repo-name {
       font-weight: bold; }
   .repo .repo-text-container {
@@ -7291,20 +7293,23 @@ footer {
       font-size: 2em;
       overflow: hidden;
       text-overflow: ellipsis;
-      display: inline-block;
-      float: left;
+      white-space: nowrap;
       margin-bottom: 0px;
       margin-right: 16px;
       color: #fff; }
       .repo-details .repo-details-header .repo-details-name h1 .repo-name {
         font-weight: bold; }
     .repo-details .repo-details-header .repo-details-name .repo-provider-badge {
-      margin: 0.25rem;
-      margin-left: 0.75rem;
-      font-size: 2.25rem;
+      position: absolute;
+      top: 0.2em;
+      right: 0.2em;
+      font-size: 1em;
       float: right; }
       .repo-details .repo-details-header .repo-details-name .repo-provider-badge span {
         color: #fff; }
+      @media (min-width: 768px) {
+        .repo-details .repo-details-header .repo-details-name .repo-provider-badge {
+          font-size: 2em; } }
   .repo-details .repo-details-break-bar {
     padding-bottom: 1em; }
     .repo-details .repo-details-break-bar .repo-details-secondary {

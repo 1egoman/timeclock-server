@@ -3,8 +3,7 @@
 // the title for a repo
 @mixin repo-title($size: 1.6em) {
   font-size: $size;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  @include text-overflow;
   .repo-name {
     font-weight: bold;
   }
@@ -65,6 +64,7 @@
   color: $text-color;
   padding: 0rem;
   min-height: 8rem;
+  overflow-x: hidden;
   &:last-child { margin-bottom: 0.25rem; }
 
   // private repo badge
@@ -149,8 +149,6 @@
 
       h1 {
         @include repo-title(2em);
-        display: inline-block;
-        float: left;
         margin-bottom: 0px;
         margin-right: 16px;
         color: #fff;
@@ -158,11 +156,15 @@
 
       // provider badge
       .repo-provider-badge {
-        margin: 0.25rem;
-        margin-left: 0.75rem;
-        font-size: 2.25rem;
+        position: absolute;
+        top: 0.2em;
+        right: 0.2em;
+        font-size: 1em;
         float: right;
         span { color: #fff; }
+        @media (min-width: $screen-sm-min) {
+          font-size: 2em;
+        }
       }
     }
   }
