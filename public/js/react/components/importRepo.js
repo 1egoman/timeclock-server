@@ -8,7 +8,7 @@ import {
   askUserToCreateNewTimecard,
   changeStagingTimecardData,
 } from '../actions/repo';
-import {Modal, Button, Input} from 'react-bootstrap';
+import {Modal, Button, Input, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import Loading from './loading';
 import {reduxForm} from 'redux-form';
 import {CompactPicker as ColorPicker} from 'react-color';
@@ -134,12 +134,16 @@ const ImportRepoComponent = ({
           >
             {
               repo.has_timecard ? 
-                <button
-                  className="btn btn-success btn-pick-me"
-                  onClick={importNewRepo(repo)}
-                >
-                  <i className="fa fa-plus-square" />
-                </button>
+                <OverlayTrigger overlay={
+                  <Tooltip id="timecard-in-project">A timecard is already in the project!</Tooltip>
+                }>
+                  <button
+                    className="btn btn-success btn-pick-me"
+                    onClick={importNewRepo(repo)}
+                  >
+                    <i className="fa fa-plus-square" />
+                  </button>
+                </OverlayTrigger>
               :
                 <button
                   className="btn btn-info btn-pick-me"
