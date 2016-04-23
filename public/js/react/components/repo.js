@@ -62,7 +62,7 @@ const Repo = connect((store, ownProps) => {
     onRepoClick(repo) {
       return () => {
         dispatch(selectRepo(repo)); // select a new repo
-        dispatch(initializeRepo(repo.user, repo.repo));
+        // dispatch(initializeRepo(repo.user, repo.repo)); // do a full special reinit
         // dispatch(changeBranch(repo.default_branch || "master")); 
         // dispatch(getBranches(repo)); // also, pull in the branch data for this new repo 
         // dispatch(getCommits(repo)); // get commits for the repo and branch

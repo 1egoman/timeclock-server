@@ -74,7 +74,7 @@ export function discoveredRepos(state = [], action) {
 }
 
 export function repoDetails(state = {branch: null}, action) {
-  if (action.type === "server/INIT" && action.active_repo) {
+  if (action.type === "server/INIT" && action.active_repo && !action.first_init) {
     // validate a page, returning times by default
     // if a user adds a route that makes no sense, lets catch and "redirect" to
     // `/app/user/repo/times`.

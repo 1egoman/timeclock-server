@@ -111,7 +111,6 @@ exports.onSocketAction = function(socket) {
         });
       }, sendError(socket));
 
-
     // get the timecard for the specified repo
     } else if (action.type === 'server/GET_TIMECARD') {
       getTimecard(action, socket).then((timecard) => {
@@ -159,8 +158,12 @@ exports.onSocketAction = function(socket) {
     } else if (action.type === 'server/REINIT') {
       exports.emitInit(socket, {user: action.user, repo: action.repo}, null);
 
-    // change the active repo depending on the page visited
-    } else if (action.type === '@@router/LOCATION_CHANGE' && action.payload) {
+    // change the active repo when a user is moving to a different page
+    // without using an "expected" state change.
+    } else if (
+      action.type === '@@router/LOCATION_CHANGE' &&
+      action.payload
+    ) {
       exports.emitInit(socket, action.payload.pathname, null);
     }
   };
@@ -169,8 +172,9 @@ exports.onSocketAction = function(socket) {
 exports.emitInit = function(socket, path, branch) {
   let match, active_repo = null;
 
-  function serverInit(props) {
+  function serverInit(props, opts) {
     props = props || {}
+    opts = opts || {}
     socket.emit("action", {
       type: "server/INIT",
       repos: socket.request.user.repos,
@@ -188,6 +192,8 @@ exports.emitInit = function(socket, path, branch) {
         user_model.sanitize(socket.request.user),
         {allotments: user_model.getAllotments(socket.request.user)}
       ),
+
+      first_init: opts.firstInit || false,
     });
   }
 
@@ -212,7 +218,7 @@ exports.emitInit = function(socket, path, branch) {
 
   // initalize without a repo when not given a path
   } else if (!path) {
-    serverInit();
+    serverInit(undefined, {firstInit: true});
   }
 }
 
