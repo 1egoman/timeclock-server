@@ -186,12 +186,14 @@ exports.emitInit = function(socket, path, branch) {
   }
 
   // passing user and repo manually
-  if (path.user && path.repo) {
+  if (path && path.user && path.repo) {
     active_repo = [path.user, path.repo];
-    getRepoInitializeDetails(socket, path.user, path.repo, branch).then(serverInit);
+    getRepoInitializeDetails(socket, path.user, path.repo, branch)
+    .then(serverInit)
+    .catch(sendError(socket));
 
   // a path was sent instead
-  } else if (match = path.match(/\/app\/(.+)\/(.+)(?:\/([\w]+))?/)) {
+  } else if (path && (match = path.match(/\/app\/([^\/]+)\/([^\/]+)(?:\/(\w+))?/))) {
     active_repo = [match[1], match[2]];
     getRepoInitializeDetails(
       socket,
@@ -199,7 +201,8 @@ exports.emitInit = function(socket, path, branch) {
       match[2], // the repo name
       branch, // the current branch
       match[3] // the page we are on
-    ).then(serverInit);
+    ).then(serverInit)
+    .catch(sendError(socket));
   } else {
     // initalize without a repo
     serverInit();

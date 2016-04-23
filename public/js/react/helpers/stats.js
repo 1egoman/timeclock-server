@@ -202,7 +202,7 @@ export function calculateCommitStats(commits) {
 
 export function formatTime(epoch) {
   let hours = Math.floor(epoch / 1000 / 3600);
-  let min = Math.floor(epoch / 1000 % 3600);
+  let min = Math.floor(epoch / 1000 % 60);
   return `${hours} hours and ${min} minutes`;
 }
 

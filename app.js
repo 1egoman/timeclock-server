@@ -211,6 +211,9 @@ io.on('connection', function(socket) {
   mixpanelHelpers.trackNewConnection(socket);
 
   // first, initialize the state so we're all on the same page
+  socketRoute.emitInit(socket);
+
+  // then, initialize it again with the path-specific stuff
   socketRoute.emitInit(socket, socket.request._query['path']);
   socket.on('action', socketRoute.onSocketAction(socket));
 });
