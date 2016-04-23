@@ -1,9 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
+import {Navbar, Nav as NavGroup, NavItem, NavDropdown} from 'react-bootstrap';
 
 export const NavComponent = ({title, logged_in_user, importNewRepo}) => {
   let login_controls = logged_in_user ? <ul className="nav navbar-nav pull-right">
+    <li><Link to="/app/import">Import Project</Link></li>
     <li className="dropdown">
       <a
         href="#"
@@ -26,36 +28,26 @@ export const NavComponent = ({title, logged_in_user, importNewRepo}) => {
     <li><a href="/login">Login</a></li>
   </ul>;
 
-  return <nav className="navbar">
+  return <Navbar>
     <div className="container-fluid">
-      <div className="navbar-header">
-        <button
-          type="button"
-          className="navbar-toggle collapsed"
-          data-toggle="collapse"
-          data-target="#bs-example-navbar-collapse-1"
-          aria-expanded="false"
-        >
-          <span className="sr-only">Toggle navigation</span>
-          <i className="fa fa-bars" />
-        </button>
-        <span className="navbar-brand">
+      <Navbar.Header>
+        <Navbar.Brand>
           <Link to="/app/">
             <img src="/img/logo.svg" />
           </Link>
-        </span>
-      </div>
+        </Navbar.Brand>
+        <Navbar.Toggle />
+      </Navbar.Header>
 
-      <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul className="nav navbar-nav">
+      <Navbar.Collapse>
+        <NavGroup>
           <li><a href="/">Home</a></li>
-           <li><Link to="/app/">Repo List</Link></li>
-           <li><Link to="/app/import">Import Repo</Link></li>
-        </ul>
+          <li><Link to="/app/">Projects</Link></li>
+        </NavGroup>
         {login_controls}
-      </div>
+      </Navbar.Collapse>
     </div>
-  </nav>;
+  </Navbar>;
 }
 
 const Nav = connect((store, props) => {
