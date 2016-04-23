@@ -7167,15 +7167,18 @@ footer {
     .navbar .navbar-brand img {
       height: 36px;
       margin-top: -8px; }
-    .navbar .navbar-brand #HW_badge_cont {
-      position: absolute;
-      top: 0px;
-      right: 0px; }
-  .navbar .fa.fa-bars {
-    font-size: 120%;
-    color: #333333; }
   .navbar ul.pull-right .dropdown-menu, .navbar .feature.feature-right ul.content .dropdown-menu, .feature.feature-right .navbar ul.content .dropdown-menu {
     margin-left: -30px; }
+  .navbar .whats-new {
+    position: relative; }
+    .navbar .whats-new #HW_badge_cont {
+      position: absolute;
+      top: 0px;
+      left: -4px;
+      right: 0px;
+      bottom: 0px;
+      width: 100%;
+      height: 100%; }
 
 .repo-container {
   padding: 0px; }

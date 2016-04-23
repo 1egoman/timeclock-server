@@ -43,6 +43,7 @@ export const NavComponent = ({title, logged_in_user, importNewRepo}) => {
         <NavGroup>
           <li><a href="/">Home</a></li>
           <li><Link to="/app/">Projects</Link></li>
+          <li><a className="whats-new">What's new?</a></li>
         </NavGroup>
         {login_controls}
       </Navbar.Collapse>

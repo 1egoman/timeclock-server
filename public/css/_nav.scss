@@ -10,22 +10,24 @@
       height: 36px;
       margin-top: -8px;
     }
-
-    // headway badge
-    #HW_badge_cont {
-      position: absolute;
-      top: 0px;
-      right: 0px;
-    }
-  }
-
-  .fa.fa-bars {
-    font-size: 120%;
-    color: $gray-dark;
   }
 
   // offset login dropdown menu
   ul.pull-right .dropdown-menu {
     margin-left: -30px;
+  }
+
+  .whats-new {
+    position: relative;
+    // headway badge
+    #HW_badge_cont {
+      position: absolute;
+      top: 0px;
+      left: -4px;
+      right: 0px;
+      bottom: 0px;
+      width: 100%;
+      height: 100%;
+    }
   }
 }
