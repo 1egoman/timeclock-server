@@ -467,6 +467,38 @@ describe('reducers/repo.js', function() {
         _tab: "times", // default to times
       });
     });
+    it('should work with server/INIT, and not override sections_visable', function() {
+      let new_state = repoDetails(Object.assign({}, old_state.repoDetails, {
+        sections_visible: [1, 2, 4],
+        branch: null,
+      }), {
+        type: "server/INIT",
+        active_repo: ["user", "repo"],
+        page: "times",
+        timecard: {
+          card: [{abc: "def"}],
+        },
+        users: [{username: "user"}],
+        repos: [{user: "user", repo: "bar"}, {user: "user", repo: "repo"}],
+        commits: [{message: "foo bar commit"}],
+        branches: ["abc", "master"],
+        branch: "master-current",
+      });
+      assert.deepEqual(new_state, {
+        timecard: {
+          card: [{abc: "def"}],
+        },
+        users: [{username: "user"}],
+        repos: [{user: "user", repo: "bar"}, {user: "user", repo: "repo"}],
+        commits: [{message: "foo bar commit"}],
+        branches: ["abc", "master"],
+        _comesfrom: ["user", "repo", "master-current"],
+        show_share_modal: false,
+        branch: null,
+        sections_visible: [1, 2, 4],
+        _tab: "times", // default to times
+      });
+    });
     describe("expand/collapse timecard", function() {
       it('should expand a timecard section', function() {
         let new_state = repoDetails(old_state.repoDetails, {
