@@ -23,7 +23,7 @@ export function createNewTimecardModal({
 }) {
   return <Modal
       show={confirm_timecard_for !== null}
-      onHide={confirmNewTimecard(false)}
+      onHide={confirmNewTimecard.bind(this, false)}
     >
       <Modal.Header closeButton>
         <Modal.Title>
@@ -72,7 +72,7 @@ export function createNewTimecardModal({
           {/* Create a timecard on the default branch */}
           <Button
             bsStyle="primary"
-            onClick={importNewRepo(confirm_timecard_for, true, timecard_template)}
+            onClick={importNewRepo.bind(this, confirm_timecard_for, true, timecard_template)}
           >
             Create new timecard
           </Button>
@@ -147,7 +147,7 @@ const ImportRepoComponent = ({
               :
                 <button
                   className="btn btn-info btn-pick-me"
-                  onClick={confirmNewTimecard(repo.user, repo.repo)}
+                  onClick={confirmNewTimecard.bind(this, repo.user, repo.repo)}
                 >
                   <i className="fa fa-upload" />
                 </button>
@@ -157,7 +157,7 @@ const ImportRepoComponent = ({
       </ul>
       <button
         className="btn btn-primary btn-load-more"
-        onClick={toImportRepoPage(_.isEmpty(discovered_repos) ? 0 : ++repo_import_page)}
+        onClick={toImportRepoPage.bind(this, _.isEmpty(discovered_repos) ? 0 : ++repo_import_page)}
       >Load More Repositories</button>
     </div>;
   }
@@ -196,13 +196,13 @@ let ImportRepo = connect((store, ownProps) => {
 }, (dispatch, ownProps) => {
   return {
     importNewRepo(repo, createTimecard, timecardTempl) {
-      return () => dispatch(importFromGithubRepo(repo, createTimecard, timecardTempl));
+      dispatch(importFromGithubRepo(repo, createTimecard, timecardTempl));
     },
     toImportRepoPage(page) {
-      return () => dispatch(requestAllUserRepos(page));
+      dispatch(requestAllUserRepos(page));
     },
     confirmNewTimecard(user, repo) {
-      return () => dispatch(askUserToCreateNewTimecard(user, repo));
+      dispatch(askUserToCreateNewTimecard(user, repo));
     },
     changeStagingTimecardData(name) {
       return (event) => {
