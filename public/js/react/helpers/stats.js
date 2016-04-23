@@ -201,8 +201,9 @@ export function calculateCommitStats(commits) {
 }
 
 export function formatTime(epoch) {
-  let date = new Date(epoch);
-  return `${date.getHours()} hours and ${date.getMinutes()} minutes`;
+  let hours = Math.floor(epoch / 1000 / 3600);
+  let min = Math.floor(epoch / 1000 % 3600);
+  return `${hours} hours and ${min} minutes`;
 }
 
 /* contributors per time

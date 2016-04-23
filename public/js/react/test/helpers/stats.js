@@ -868,19 +868,11 @@ describe("getLastContributor", function() {
 });
 describe("formatTime", function() {
   it("should format a time given an epoch", function() {
-    assert.equal(formatTime(new Date(0, 0, 0, 1, 0).getTime()), "1 hours and 0 minutes");
-    assert.equal(formatTime(new Date(0, 0, 0, 1, 30).getTime()), "1 hours and 30 minutes");
-    assert.equal(formatTime(new Date(0, 0, 0, 1, 40).getTime()), "1 hours and 40 minutes");
-    assert.equal(formatTime(new Date(0, 0, 0, 10, 0).getTime()), "10 hours and 0 minutes");
-    assert.equal(formatTime(new Date(0, 0, 0, 10, 30).getTime()), "10 hours and 30 minutes");
-    assert.equal(formatTime(new Date(0, 0, 0, 10, 40).getTime()), "10 hours and 40 minutes");
-  });
-  it("should format a time given a date", function() {
-    assert.equal(formatTime(new Date(0, 0, 0, 1, 0)), "1 hours and 0 minutes");
-    assert.equal(formatTime(new Date(0, 0, 0, 1, 30)), "1 hours and 30 minutes");
-    assert.equal(formatTime(new Date(0, 0, 0, 1, 40)), "1 hours and 40 minutes");
-    assert.equal(formatTime(new Date(0, 0, 0, 10, 0)), "10 hours and 0 minutes");
-    assert.equal(formatTime(new Date(0, 0, 0, 10, 30)), "10 hours and 30 minutes");
-    assert.equal(formatTime(new Date(0, 0, 0, 10, 40)), "10 hours and 40 minutes");
+    assert.equal(formatTime(3600000), "1 hours and 0 minutes");
+    assert.equal(formatTime(3630000), "1 hours and 30 minutes");
+    assert.equal(formatTime(3640000), "1 hours and 40 minutes");
+    assert.equal(formatTime(36000000), "10 hours and 0 minutes");
+    assert.equal(formatTime(36030000), "10 hours and 30 minutes");
+    assert.equal(formatTime(36040000), "10 hours and 40 minutes");
   });
 });
