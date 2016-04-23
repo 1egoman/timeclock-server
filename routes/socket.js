@@ -191,7 +191,7 @@ exports.emitInit = function(socket, path, branch) {
     getRepoInitializeDetails(socket, path.user, path.repo, branch).then(serverInit);
 
   // a path was sent instead
-  } else if (match = path.match(/\/app\/([\w]+)\/([\w]+)(?:\/([\w]+))?/)) {
+  } else if (match = path.match(/\/app\/(.+)\/(.+)(?:\/([\w]+))?/)) {
     active_repo = [match[1], match[2]];
     getRepoInitializeDetails(
       socket,
