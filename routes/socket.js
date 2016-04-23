@@ -33,7 +33,7 @@ function sendError(socket) {
 exports.onSocketAction = function(socket) {
   let repo = required_repo, User = user_model;
   return function(action) {
-    console.log("New", action.type, "by", socket.request.user.username);
+    console.log("... New", action.type, "by", socket.request.user.username);
 
     // discover all repos to import
     if (
@@ -209,6 +209,7 @@ exports.emitInit = function(socket, path, branch) {
 // fetch all the important info needed to rehydrate a repo when a new one is
 // selected.
 function getRepoInitializeDetails(socket, user, repo, branch, page) {
+  console.log(`... Loading repo details for ${user}/${repo}@${branch || "default"} (${page || "default"})`);
   return Promise.all([
     getTimecard({user, repo, branch}, socket),
     getBranches({user, repo}, socket),

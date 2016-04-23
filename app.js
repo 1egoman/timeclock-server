@@ -207,7 +207,7 @@ let socketMiddleware = passportSocketIo.authorize({
 io.use(socketMiddleware);
 
 io.on('connection', function(socket) {
-  console.log("Connected to new client.", socket.request.user);
+  console.log("... Connected to new client:", socket.request.user.username);
   mixpanelHelpers.trackNewConnection(socket);
 
   // first, initialize the state so we're all on the same page
