@@ -140,6 +140,7 @@ exports.onSocketAction = function(socket) {
         });
       }, sendError(socket));
 
+    // share a timecard with another via email
     } else if (action.type === 'server/SHARE_WITH') {
       shareWith(action, socket).then((data) => {
         mixpanel.track(socket, "user.share.with", {
