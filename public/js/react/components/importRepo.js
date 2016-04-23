@@ -202,7 +202,7 @@ let ImportRepo = connect((store, ownProps) => {
     },
     changeStagingTimecardData(name) {
       return (event) => {
-        if (event.target && event.target.value) { // text inputs
+        if (event.target && typeof event.target.value === "string") { // text inputs
           dispatch(changeStagingTimecardData(name, event.target.value));
         } else if (event.hex) { // color pickers
           dispatch(changeStagingTimecardData(name, `#${event.hex}`));
