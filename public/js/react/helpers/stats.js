@@ -1,8 +1,6 @@
 import _ from "underscore";
 import strftime from "strftime";
 import moment from "moment";
-import mathHelpersContructor from 'math-helpers';
-const mathHelpers = mathHelpersContructor();
 
 // All functions that return time return in milliseconds.
 
