@@ -48,14 +48,14 @@ export const RepoListComponent = ({
     });
   } else {
     items = <Loading
-      title="No Repositories"
+      title="No Projects"
       message={<span>Why not <span className="click" onClick={importNewRepo}>import a new one?</span></span>}
     />;
   }
 
   return <ul className={`repos repos-list`}>
     <div className="repos-controls">
-      <h4 className="repos-label">Repositories</h4>
+      <h4 className="repos-label">Projects</h4>
     </div>
     {items}
   </ul>;
