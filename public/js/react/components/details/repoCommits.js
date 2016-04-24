@@ -13,7 +13,7 @@ import {
   formatTime,
 } from "../../helpers/stats";
 import {Line as LineChart} from 'react-chartjs';
-import {Averages, Contributions} from './statsSections';
+import {Charts, Averages, Contributions} from './statsSections';
 
 function getRepoCommitNodeType(message) {
   if (message.indexOf("Created timecard for Waltz:") !== -1) {
@@ -98,6 +98,12 @@ export function repoCommitsComponent({
           className={`repo-commits ${disabled ? "repo-commits-disabled" : ''}`}
         >{commits}</div>
       </div> */}
+      <Charts
+        timecard={repoDetails.timecard}
+        commits={repoDetails.commits}
+        users={repoDetails.users}
+      />
+
       <Averages
         timecard={repoDetails.timecard}
         commits={repoDetails.commits}

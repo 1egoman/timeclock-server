@@ -7,6 +7,8 @@ import {
   calculateCommitStats,
   calculateContributors,
   getLastContributor,
+  generateChartTimeDataForEachWorkDay,
+  generateWorkActivityGraph,
   formatTime,
   assertIsCard,
 } from "../../helpers/stats";
@@ -17,6 +19,30 @@ import {
   ProgressBar,
 } from 'react-bootstrap';
 import _ from 'underscore';
+import {Line as LineChart} from 'react-chartjs';
+
+
+export function Charts({
+  timecard,
+  commits,
+  users,
+}) {
+  if (assertIsCard(timecard) && Array.isArray(commits) && Array.isArray(users)) {
+    let timeChartData = generateWorkActivityGraph(timecard);
+
+    return <div className="repo-metrics">
+      <div className="charts">
+        <LineChart
+          data={timeChartData}
+          options={{responsive: true}}
+        />
+      </div>
+    </div>;
+  } else {
+    return null;
+  }
+}
+
 
 export function Averages({
   timecard,
