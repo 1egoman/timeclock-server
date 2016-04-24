@@ -10,6 +10,7 @@ import {
   calculateAverageCommitsPerContributorPerWorkPeriod,
   getLastContributor,
   formatTime,
+  colorizeGraph,
 } from '../../helpers/stats';
 
 const HOUR_IN_MS = 60 * 60 * 1000;
@@ -874,5 +875,119 @@ describe("formatTime", function() {
     assert.equal(formatTime(36000000), "10 hours and 0 minutes");
     assert.equal(formatTime(36030000), "10 hours and 30 minutes");
     assert.equal(formatTime(36040000), "10 hours and 40 minutes");
+  });
+});
+describe.only("colorizeGraph", function() {
+  it("should add color to a section of a graph datastructure", function() {
+    assert.deepEqual(
+      colorizeGraph({
+        labels: ["a", "b", "c"],
+        datasets: [
+          {
+            label: "label a",
+            data: [1, 2, 3],
+          },
+          {
+            label: "label b",
+            data: [1, 2, 3],
+          }
+        ],
+      }, "label a", "red"),
+      {
+        labels: ["a", "b", "c"],
+        datasets: [
+          {
+            label: "label a",
+            data: [1, 2, 3],
+            fillColor: "red",
+            strokeColor: "red",
+            pointColor: "red",
+            pointHighlightFill: "red",
+          },
+          {
+            label: "label b",
+            data: [1, 2, 3],
+          }
+        ],
+      }
+    );
+  });
+  it("should add color to a section of a graph datastructure (with point color)", function() {
+    assert.deepEqual(
+      colorizeGraph({
+        labels: ["a", "b", "c"],
+        datasets: [
+          {
+            label: "label a",
+            data: [1, 2, 3],
+          },
+          {
+            label: "label b",
+            data: [1, 2, 3],
+          }
+        ],
+      }, "label a", "red", "green"),
+      {
+        labels: ["a", "b", "c"],
+        datasets: [
+          {
+            label: "label a",
+            data: [1, 2, 3],
+            fillColor: "red",
+            strokeColor: "red",
+            pointColor: "green",
+            pointHighlightFill: "green",
+          },
+          {
+            label: "label b",
+            data: [1, 2, 3],
+          }
+        ],
+      }
+    );
+  });
+  it("should add color to multiple sections of a graph datastructure", function() {
+    assert.deepEqual(
+      colorizeGraph({
+        labels: ["a", "b", "c"],
+        datasets: [
+          {
+            label: "label a",
+            data: [1, 2, 3],
+          },
+          {
+            label: "label a",
+            data: [1, 2, 3],
+          }
+        ],
+      }, "label a", "red", "green"),
+      {
+        labels: ["a", "b", "c"],
+        datasets: [
+          {
+            label: "label a",
+            data: [1, 2, 3],
+            fillColor: "red",
+            strokeColor: "red",
+            pointColor: "green",
+            pointHighlightFill: "green",
+          },
+          {
+            label: "label a",
+            data: [1, 2, 3],
+            fillColor: "red",
+            strokeColor: "red",
+            pointColor: "green",
+            pointHighlightFill: "green",
+          },
+        ],
+      }
+    );
+  });
+  it("should not work for bad data", function() {
+    assert.deepEqual(
+      colorizeGraph({bad: "data"}, "label a", "red", "green"),
+      {bad: "data"}
+    );
   });
 });

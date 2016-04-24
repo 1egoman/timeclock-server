@@ -211,22 +211,21 @@ export function formatTime(epoch) {
 
 
 
-export function colorizeGraph(origData, field, fillColor, pointColor) {
-  if (origData.datasets) {
-    let data = Object.assign({}, origData);
+export function colorizeGraph(data, field, fillColor, pointColor) {
+  if (data.datasets) {
     let datasets = data.datasets.filter((data) => {
       if (data.label === field) {
         data.fillColor = fillColor;
         data.strokeColor = fillColor;
-        data.pointColor = pointColor;
-        data.pointHighlightFill = pointColor;
+        data.pointColor = pointColor || fillColor;
+        data.pointHighlightFill = pointColor || fillColor;
       }
       return data;
     });
 
     return Object.assign(data, {datasets});
   } else {
-    return origData;
+    return data;
   }
 }
 
