@@ -450,6 +450,7 @@ describe('reducers/repo.js', function() {
         repos: [{user: "user", repo: "bar"}, {user: "user", repo: "repo"}],
         commits: [{message: "foo bar commit"}],
         branches: ["abc", "master"],
+        stats: {stats: "here"},
         branch: "master-current",
       });
       assert.deepEqual(new_state, {
@@ -460,6 +461,7 @@ describe('reducers/repo.js', function() {
         repos: [{user: "user", repo: "bar"}, {user: "user", repo: "repo"}],
         commits: [{message: "foo bar commit"}],
         branches: ["abc", "master"],
+        stats: {stats: "here"},
         _comesfrom: ["user", "repo", "master-current"],
         show_share_modal: false,
         branch: null,
@@ -482,6 +484,7 @@ describe('reducers/repo.js', function() {
         repos: [{user: "user", repo: "bar"}, {user: "user", repo: "repo"}],
         commits: [{message: "foo bar commit"}],
         branches: ["abc", "master"],
+        stats: {stats: "here"},
         branch: "master-current",
       });
       assert.deepEqual(new_state, {
@@ -492,6 +495,7 @@ describe('reducers/repo.js', function() {
         repos: [{user: "user", repo: "bar"}, {user: "user", repo: "repo"}],
         commits: [{message: "foo bar commit"}],
         branches: ["abc", "master"],
+        stats: {stats: "here"},
         _comesfrom: ["user", "repo", "master-current"],
         show_share_modal: false,
         branch: null,

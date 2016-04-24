@@ -26,14 +26,15 @@ export function Charts({
   timecard,
   commits,
   users,
+  stats: {
+    workActivityGraph,
+  },
 }) {
   if (assertIsCard(timecard) && Array.isArray(commits) && Array.isArray(users)) {
-    let timeChartData = generateWorkActivityGraph(timecard);
-
     return <div className="repo-metrics">
       <div className="charts">
         <LineChart
-          data={timeChartData}
+          data={workActivityGraph}
           options={{responsive: true}}
         />
       </div>

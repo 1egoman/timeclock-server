@@ -151,57 +151,6 @@ export function generateChartTimeDataForEachWorkDay(timecard, count=-1, fillColo
   }
 }
 
-export function generateWorkActivityGraph(timecard, backDays=30) {
-  if (assertIsCard(timecard)) {
-    let now = new Date(), datasets = [{
-      label: "Unpaid time",
-      data: [],
-    }, {
-      label: "Paid Time",
-      data: [],
-    }];
-
-    // Step 1: parse times to be more easily parsable
-    let times = timecard.card.map((day) => {
-      let enabled = 0, disabled = 0;
-      day.times.forEach((time) => {
-        if (day.disabled) {
-          disabled += getDurationFor(day, time);
-        } else {
-          enabled += getDurationFor(day, time);
-        }
-      }, 0);
-      return {enabled, disabled, label: day.date, when: new Date(parseTime(day.date))};
-    });
-
-    function getTimesForDay(date) {
-      return times.find((t) => {
-        return t.when.getDate() === date.getDate();
-      });
-    }
-
-    // Step 2: index the last `backDays` days into an array
-    let labels = Array.from(Array(backDays), (i, index) => {
-      return new Date(now.getYear(), now.getMonth(), now.getDate() - index);
-    }).map((when) => { // Step 3: for the given day, get the time specified.
-      let data = getTimesForDay(when), label = `${when.toLocaleString("en", {month:"long"})} ${when.getDate()}`;
-      if (data) {
-        return Object.assign({}, data, {label});
-      } else {
-        return {disabled: 0, enabled: 0, label};
-      }
-    }).map(({enabled, disabled, label}) => { // Step 4: make it into the format that is expected
-      datasets[0].data.push(convertMillisecondsToHours(enabled, 3));
-      datasets[1].data.push(convertMillisecondsToHours(disabled, 3));
-      return label;
-    });
-
-    return {labels, datasets};
-  } else {
-    return null;
-  }
-}
-
 // get the last contribution
 export function getLastContributor(timecard) {
   if (assertIsCard(timecard)) {

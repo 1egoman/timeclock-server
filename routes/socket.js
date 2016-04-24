@@ -14,6 +14,7 @@ const required_repo = require("../lib/repo"),
       resetToken = require("../lib/events/resetToken"),
       changeSetting = require("../lib/events/changeSetting"),
       shareWith = require("../lib/events/shareWith"),
+      getStats = require("../lib/events/getStats"),
 
       TIMECARD_PAGE_LENGTH = 20; // the amount of times that are returned per request,
 
@@ -154,6 +155,18 @@ exports.onSocketAction = function(socket) {
         });
       }, sendError(socket));
 
+    // get stats for a specified repo
+    // user, repo, branch
+    } else if (action.type === 'server/STATS_FOR') {
+      getTimecard(action, socket).then((state) => {
+        return getStats(state.timecard).then((stats) => {
+          socket.emit("action", {
+            type: "server/STATS",
+            stats,
+          });
+        })
+      }).catch(sendError(socket));
+
     // manual re-init
     } else if (action.type === 'server/REINIT') {
       exports.emitInit(socket, {user: action.user, repo: action.repo}, null);
@@ -184,6 +197,7 @@ exports.emitInit = function(socket, path, branch) {
       timecard: props.timecard,
       branches: props.branches,
       commits: props.commits,
+      stats: props.stats,
       users: props.users,
       page: props.page,
 
@@ -231,9 +245,14 @@ function getRepoInitializeDetails(socket, user, repo, branch, page) {
     getBranches({user, repo}, socket),
     getCommits({user, repo, ref: branch}, socket),
   ]).then((props) => {
+    return Promise.all(props.concat([
+      getStats(props[0].timecard)
+    ]));
+  }).then((props) => {
     return Object.assign(props[0], {
       branches: props[1],
       commits: props[2],
+      stats: props[3],
       page,
     });
   });
