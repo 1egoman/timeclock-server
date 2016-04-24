@@ -11,6 +11,7 @@ import {
   generateWorkActivityGraph,
   formatTime,
   assertIsCard,
+  colorizeGraph,
 } from "../../helpers/stats";
 import {getAvatarFor} from '../../helpers/timecard';
 import {
@@ -33,10 +34,6 @@ export function Charts({
   if (assertIsCard(timecard) && Array.isArray(commits) && Array.isArray(users)) {
     return <div className="repo-metrics">
       <div className="charts">
-        <LineChart
-          data={workActivityGraph}
-          options={{responsive: true}}
-        />
       </div>
     </div>;
   } else {
@@ -49,6 +46,9 @@ export function Averages({
   timecard,
   commits,
   users,
+  stats: {
+    workActivityGraph,
+  },
 }) {
   if (assertIsCard(timecard) && Array.isArray(commits) && Array.isArray(users)) {
     let avgWorkPeriodLength = calculateAverageWorkPeriodLength(timecard),
@@ -56,36 +56,50 @@ export function Averages({
         commitStats = calculateCommitStats(commits),
         avgCommitsPerUserPerWorkPeriod = calculateAverageCommitsPerContributorPerWorkPeriod(timecard, commits, users);
 
-    return <div className="repo-metrics">
-      <div className="average-modal">
-        <Col xs={12} md={4}>
-          <Panel footer="Average commits per contributor">
-            <span className="average-stat sm">
-              {Math.floor(avgCommitsPerUserPerWorkPeriod)}
-              <span className="unit">commits per work period</span>
-            </span>
-          </Panel>
-        </Col>
-        <Col xs={12} md={4}>
-          <Panel footer="Commits per average work period">
-            <span className="average-stat">
-              {Math.round(commitsPerWorkPeriod)}
-              <span className="unit">commits</span>
-            </span>
-          </Panel>
-        </Col>
-        <Col xs={12} md={4}>
-          <Panel footer="Average work period length">
-            <span className="average-stat sm">
-              {formatTime(avgWorkPeriodLength)}
-            </span>
-          </Panel>
-        </Col>
-      </div>
+    // add colors to the graph (red = unpaid, green = paid)
+    workActivityGraph = colorizeGraph(workActivityGraph, "Paid time", "#8ac450", "#73A443");
+    workActivityGraph = colorizeGraph(workActivityGraph, "Unpaid time", "#c45151", "#AC5B5B");
 
-      <footer>
-        From a sample of the last {commitStats.commits} commits since {commitStats.lastCommitTime.toString()}
-      </footer>
+    return <div className="repo-metrics">
+      <Panel header="Work Periods">
+        <LineChart
+          data={workActivityGraph}
+          options={{
+            responsive: true,
+            scaleLabel: "<%= value %> hours",
+          }}
+        />
+
+        <div className="average-modal">
+          <Col xs={12} md={4}>
+            <Panel footer="Average commits per contributor">
+              <span className="average-stat sm">
+                {Math.floor(avgCommitsPerUserPerWorkPeriod)}
+                <span className="unit">commits per work period</span>
+              </span>
+            </Panel>
+          </Col>
+          <Col xs={12} md={4}>
+            <Panel footer="Commits per average work period">
+              <span className="average-stat">
+                {Math.round(commitsPerWorkPeriod)}
+                <span className="unit">commits</span>
+              </span>
+            </Panel>
+          </Col>
+          <Col xs={12} md={4}>
+            <Panel footer="Average work period length">
+              <span className="average-stat sm">
+                {formatTime(avgWorkPeriodLength)}
+              </span>
+            </Panel>
+          </Col>
+        </div>
+
+        <footer>
+          From a sample of the last {commitStats.commits} commits since {commitStats.lastCommitTime.toString()}
+        </footer>
+      </Panel>
     </div>;
   } else {
     return null;

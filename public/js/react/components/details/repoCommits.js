@@ -109,6 +109,7 @@ export function repoCommitsComponent({
         timecard={repoDetails.timecard}
         commits={repoDetails.commits}
         users={repoDetails.users}
+        stats={repoDetails.stats}
       />
 
       <Contributions

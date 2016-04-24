@@ -211,6 +211,25 @@ export function formatTime(epoch) {
 
 
 
+export function colorizeGraph(origData, field, fillColor, pointColor) {
+  if (origData.datasets) {
+    let data = Object.assign({}, origData);
+    let datasets = data.datasets.filter((data) => {
+      if (data.label === field) {
+        data.fillColor = fillColor;
+        data.strokeColor = fillColor;
+        data.pointColor = pointColor;
+        data.pointHighlightFill = pointColor;
+      }
+      return data;
+    });
+
+    return Object.assign(data, {datasets});
+  } else {
+    return origData;
+  }
+}
+
 
 
 
