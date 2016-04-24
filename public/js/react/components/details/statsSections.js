@@ -23,7 +23,7 @@ import _ from 'underscore';
 import {Line as LineChart} from 'react-chartjs';
 
 
-export function Charts({
+export function Client({
   timecard,
   commits,
   users,
@@ -33,7 +33,7 @@ export function Charts({
 }) {
   if (assertIsCard(timecard) && Array.isArray(commits) && Array.isArray(users)) {
     return <div className="repo-metrics">
-      <div className="charts">
+      <div className="client-score">
       </div>
     </div>;
   } else {
