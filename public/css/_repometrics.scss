@@ -63,3 +63,96 @@
     text-align: center;
   }
 }
+
+.repo-metrics.repo-metrics-client {
+  width: 100%;
+
+  .client-score-disambiguation {
+    height: 5rem;
+
+    // how good is the client?
+    .client-score {
+      position: relative;
+      font-size: 3rem;
+      min-height: 5rem;
+      cursor: default;
+
+      // dividing line
+      &::before {
+        content: " ";
+        background-color: $brand-primary;
+        display: block;
+        height: 3.2px;
+        width: 11rem;
+        position: absolute;
+        top: 5.4rem;
+        left: 0.5rem;
+        transform: rotate(-45deg);
+      }
+      &.good::before { background-color: $brand-success; }
+      &.ok::before{ background-color: $brand-warning; }
+      &.bad::before{ background-color: $brand-danger; }
+
+      .numerator {
+        font-size: 1.6em;
+        font-weight: bold;
+      }
+      &.good .numerator { color: $brand-success; }
+      &.ok .numerator { color: $brand-warning; }
+      &.bad .numerator { color: $brand-danger; }
+
+      .denominator {
+        position: absolute;
+        top: 2em;
+        left: 2em;
+      }
+    }
+
+    // each client stat
+    ul {
+      padding: 1rem;
+      margin-top: 4.8rem;
+      @media (min-width: $screen-md-min) {
+        margin-top: 0rem;
+      }
+
+      li {
+        list-style-type: none;
+        font-size: 1.2em;
+        strong {
+          font-size: 0.8em;
+          margin-left: 0.6em;
+        }
+      }
+    }
+  }
+
+  // the chart showing how much a client pays
+  .client-score-payment-chart {
+    margin-top: 3rem;
+    padding-top: 1.4rem;
+    @media (min-width: $screen-md-min) {
+      float: left;
+      border-top: 2px solid $gray-lighter;
+    }
+
+    h4 {
+      text-align: center;
+      margin-bottom: 0.8em;
+      margin-top: 1.4em;
+      font-size: 2em;
+      @media (min-width: $screen-md-min) {
+        font-size: 1em;
+        margin-top: 0.8em;
+      }
+    }
+  }
+
+  // client info
+  .client-card {
+    // the amount the client paid
+    .client-card-payment-amount {
+      .percent { float: right; }
+    }
+  }
+}

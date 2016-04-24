@@ -7769,5 +7769,74 @@ a[role=menuitem], a[role=menuitem]:focus, a[role=menuitem]:active, a[role=menuit
     margin: 0rem;
     text-align: center; }
 
+.repo-metrics.repo-metrics-client {
+  width: 100%; }
+  .repo-metrics.repo-metrics-client .client-score-disambiguation {
+    height: 5rem; }
+    .repo-metrics.repo-metrics-client .client-score-disambiguation .client-score {
+      position: relative;
+      font-size: 3rem;
+      min-height: 5rem;
+      cursor: default; }
+      .repo-metrics.repo-metrics-client .client-score-disambiguation .client-score::before {
+        content: " ";
+        background-color: #51c4c4;
+        display: block;
+        height: 3.2px;
+        width: 11rem;
+        position: absolute;
+        top: 5.4rem;
+        left: 0.5rem;
+        transform: rotate(-45deg); }
+      .repo-metrics.repo-metrics-client .client-score-disambiguation .client-score.good::before {
+        background-color: #8ac450; }
+      .repo-metrics.repo-metrics-client .client-score-disambiguation .client-score.ok::before {
+        background-color: #E2D54A; }
+      .repo-metrics.repo-metrics-client .client-score-disambiguation .client-score.bad::before {
+        background-color: #c45151; }
+      .repo-metrics.repo-metrics-client .client-score-disambiguation .client-score .numerator {
+        font-size: 1.6em;
+        font-weight: bold; }
+      .repo-metrics.repo-metrics-client .client-score-disambiguation .client-score.good .numerator {
+        color: #8ac450; }
+      .repo-metrics.repo-metrics-client .client-score-disambiguation .client-score.ok .numerator {
+        color: #E2D54A; }
+      .repo-metrics.repo-metrics-client .client-score-disambiguation .client-score.bad .numerator {
+        color: #c45151; }
+      .repo-metrics.repo-metrics-client .client-score-disambiguation .client-score .denominator {
+        position: absolute;
+        top: 2em;
+        left: 2em; }
+    .repo-metrics.repo-metrics-client .client-score-disambiguation ul {
+      padding: 1rem;
+      margin-top: 4.8rem; }
+      @media (min-width: 992px) {
+        .repo-metrics.repo-metrics-client .client-score-disambiguation ul {
+          margin-top: 0rem; } }
+      .repo-metrics.repo-metrics-client .client-score-disambiguation ul li {
+        list-style-type: none;
+        font-size: 1.2em; }
+        .repo-metrics.repo-metrics-client .client-score-disambiguation ul li strong {
+          font-size: 0.8em;
+          margin-left: 0.6em; }
+  .repo-metrics.repo-metrics-client .client-score-payment-chart {
+    margin-top: 3rem;
+    padding-top: 1.4rem; }
+    @media (min-width: 992px) {
+      .repo-metrics.repo-metrics-client .client-score-payment-chart {
+        float: left;
+        border-top: 2px solid #eeeeee; } }
+    .repo-metrics.repo-metrics-client .client-score-payment-chart h4 {
+      text-align: center;
+      margin-bottom: 0.8em;
+      margin-top: 1.4em;
+      font-size: 2em; }
+      @media (min-width: 992px) {
+        .repo-metrics.repo-metrics-client .client-score-payment-chart h4 {
+          font-size: 1em;
+          margin-top: 0.8em; } }
+  .repo-metrics.repo-metrics-client .client-card .client-card-payment-amount .percent {
+    float: right; }
+
 a {
   color: #00B7FF; }

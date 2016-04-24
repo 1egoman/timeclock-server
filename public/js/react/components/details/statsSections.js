@@ -20,7 +20,11 @@ import {
   ProgressBar,
 } from 'react-bootstrap';
 import _ from 'underscore';
-import {Line as LineChart} from 'react-chartjs';
+import {
+  Line as LineChart,
+  Bar as BarChart,
+  Doughnut as PieChart,
+} from 'react-chartjs';
 
 
 export function Client({
@@ -32,9 +36,61 @@ export function Client({
   },
 }) {
   if (assertIsCard(timecard) && Array.isArray(commits) && Array.isArray(users)) {
-    return <div className="repo-metrics">
-      <div className="client-score">
-      </div>
+    return <div className="repo-metrics repo-metrics-client">
+      <Panel header="Client">
+
+        {/* Disambiguation of score */}
+        <Col xs={12} md={8}>
+          <div className="client-score-disambiguation">
+            <Col xs={4} xsOffset={4} md={4} mdOffset={0}>
+              <div className="client-score ok">
+                <div className="numerator">50</div>
+                <div className="denominator">100</div>
+              </div>
+            </Col>
+
+            {/* stats about the client */}
+            <Col xs={12} md={8}>
+              <ul>
+                <li>
+                  $20.00
+                  <strong>paid last month</strong>
+                </li>
+                <li>
+                  $10.00
+                  <strong>paid per month (on average)</strong>
+                </li>
+                <li>
+                  10 days
+                  <strong>to be paid for completed work (on average)</strong>
+                </li>
+              </ul>
+            </Col>
+
+            <div className="client-score-payment-chart">
+              <Col xs={12} md={6}>
+                <h4>How much am I paid?</h4>
+                <PieChart data={[{value: 10, color: "red", label: "$30.00"}]} options={{responsive: true}} />
+              </Col>
+              <Col xs={12} md={6}>
+                <h4>How soon am I paid?</h4>
+                <PieChart data={[{value: 10, color: "red", label: "$30.00"}]} options={{responsive: true}} />
+              </Col>
+            </div>
+          </div>
+        </Col>
+
+        {/* Client info */}
+        <Col xs={12} md={4}>
+          <div className="client-card">
+            <h3>John Smith</h3>
+            <span className="client-card-payment-amount">
+              Paid $200 of $2000.00
+              <span className="percent">10%</span>
+            </span>
+          </div>
+        </Col>
+      </Panel>
     </div>;
   } else {
     return null;
@@ -61,8 +117,8 @@ export function Averages({
     workActivityGraph = colorizeGraph(workActivityGraph, "Unpaid time", "#c45151", "#AC5B5B");
 
     return <div className="repo-metrics">
-      <Panel header="Work Periods">
-        <LineChart
+      <Panel header="Work Time">
+        <BarChart
           data={workActivityGraph}
           options={{
             responsive: true,
