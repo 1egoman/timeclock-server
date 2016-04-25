@@ -877,7 +877,7 @@ describe("formatTime", function() {
     assert.equal(formatTime(36040000), "10 hours and 40 minutes");
   });
 });
-describe.only("colorizeGraph", function() {
+describe("colorizeGraph", function() {
   it("should add color to a section of a graph datastructure", function() {
     assert.deepEqual(
       colorizeGraph({
