@@ -29,7 +29,7 @@ import {
 
 function ClientRating({part, whole}) {
   let quality = (function() {
-    let ratio = part / whole;
+    let ratio = part / (whole || 100);
     if (ratio > 0.6) {
       return "good";
     } else if (ratio > 0.4) {
@@ -51,6 +51,7 @@ export function Client({
   stats: {
     payAmountBreakdownCircle,
     payFrequencyBreakdownCircle,
+    payment,
   },
 }) {
   if (assertIsCard(timecard) && Array.isArray(commits) && Array.isArray(users)) {
@@ -66,19 +67,25 @@ export function Client({
             {/* stats about the client */}
             <Col xs={12} md={8}>
               <ul>
+                {
+                  payment.lastMonth ?
+                  <li>
+                    ${payment.lastMonth}
+                    <strong>paid last month</strong>
+                  </li> : null
+                }
                 <li>
-                  $20.00
-                  <strong>paid last month</strong>
+                  bla
+                  <strong>days between payments</strong>
                 </li>
-                <li>
-                  $10.00
-                  <strong>paid per month (on average)</strong>
-                </li>
-                <li>
-                  10 days
-                  <strong>to be paid for completed work (on average)</strong>
-                </li>
-              </ul>
+                {
+                  payment.paymentFrequencyHours ?
+                  <li>
+                    {Math.round(payment.paymentFrequencyHours / 24)}
+                    <strong>days between consecutive payments</strong>
+                  </li> : null
+                }
+              </ul> 
             </Col>
 
             <div className="client-score-payment-chart">
