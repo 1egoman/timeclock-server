@@ -32,7 +32,8 @@ export function Client({
   commits,
   users,
   stats: {
-    workActivityGraph,
+    payAmountBreakdownCircle,
+    payFrequencyBreakdownCircle,
   },
 }) {
   if (assertIsCard(timecard) && Array.isArray(commits) && Array.isArray(users)) {
@@ -70,11 +71,11 @@ export function Client({
             <div className="client-score-payment-chart">
               <Col xs={12} md={6}>
                 <h4>How much am I paid?</h4>
-                <PieChart data={[{value: 10, color: "red", label: "$30.00"}]} options={{responsive: true}} />
+                <PieChart data={payAmountBreakdownCircle} options={{responsive: true}} />
               </Col>
               <Col xs={12} md={6}>
                 <h4>How soon am I paid?</h4>
-                <PieChart data={[{value: 10, color: "red", label: "$30.00"}]} options={{responsive: true}} />
+                <PieChart data={payFrequencyBreakdownCircle} options={{responsive: true}} />
               </Col>
             </div>
           </div>
