@@ -18,6 +18,7 @@ import {
   Panel,
   Col,
   ProgressBar,
+  Well,
 } from 'react-bootstrap';
 import _ from 'underscore';
 import {
@@ -71,7 +72,11 @@ export function Client({
             <div className="client-score-payment-chart">
               <Col xs={12} md={6}>
                 <h4>How much am I paid?</h4>
-                <PieChart data={payAmountBreakdownCircle} options={{responsive: true}} />
+                {
+                  payAmountBreakdownCircle ?
+                  <PieChart data={payAmountBreakdownCircle} options={{responsive: true}} /> :
+                  <Well>Only available in for hourly payments.</Well>
+                }
               </Col>
               <Col xs={12} md={6}>
                 <h4>How soon am I paid?</h4>
