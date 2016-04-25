@@ -27,6 +27,22 @@ import {
   Doughnut as PieChart,
 } from 'react-chartjs';
 
+function ClientRating({part, whole}) {
+  let quality = (function() {
+    let ratio = part / whole;
+    if (ratio > 0.6) {
+      return "good";
+    } else if (ratio > 0.4) {
+      return "ok";
+    } else {
+      return "bad";
+    }
+  })();
+  return <div className={`client-score ${quality}`}>
+    <div className="numerator">{part}</div>
+    <div className="denominator">{whole || 100}</div>
+  </div>;
+}
 
 export function Client({
   timecard,
@@ -40,15 +56,11 @@ export function Client({
   if (assertIsCard(timecard) && Array.isArray(commits) && Array.isArray(users)) {
     return <div className="repo-metrics repo-metrics-client">
       <Panel header="Client">
-
         {/* Disambiguation of score */}
         <Col xs={12} md={8}>
           <div className="client-score-disambiguation">
             <Col xs={4} xsOffset={4} md={4} mdOffset={0}>
-              <div className="client-score ok">
-                <div className="numerator">50</div>
-                <div className="denominator">100</div>
-              </div>
+              <ClientRating part={50} />
             </Col>
 
             {/* stats about the client */}
