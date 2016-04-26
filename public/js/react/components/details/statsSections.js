@@ -166,12 +166,12 @@ export function Client({
               Paid for
               <span className="a-unit">
                 <FormatTime value={payment.timePaid} unit="days" />
-                {payment.amountEarned && `($${payment.amountEarned})`}
+                {payment.amountEarned && `($${payment.amountEarned.toFixed(2)})`}
               </span>
               out of
               <span className="a-unit">
                 <FormatTime value={payment.timeWorked} unit="days" />
-                {payment.amountValued && `($${payment.amountValued})`}
+                {payment.amountValued && `($${payment.amountValued.toFixed(2)})`}
               </span>
 
             </span>
