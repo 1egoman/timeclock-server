@@ -39,7 +39,7 @@ function ClientRating({part, whole}) {
     }
   })();
   return <div className={`client-score ${quality}`}>
-    <div className="numerator">{part}</div>
+    <div className="numerator">{Math.round(part)}</div>
     <div className="denominator">{whole || 100}</div>
   </div>;
 }
@@ -105,7 +105,7 @@ export function Client({
         <Col xs={12} md={8}>
           <div className="client-score-disambiguation">
             <Col xs={4} xsOffset={4} md={4} mdOffset={0}>
-              <ClientRating part={50} />
+              <ClientRating part={payment.score * 100} />
             </Col>
 
             {/* stats about the client */}
