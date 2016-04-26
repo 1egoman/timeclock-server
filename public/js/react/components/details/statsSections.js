@@ -81,7 +81,6 @@ export function FormatTime({unit, value}) {
     label = label.slice(0, -1);
   }
 
-  // console.log(dispValue, label)
   return <span className="formatted-time">
     <span className="value">{dispValue}</span>
     &nbsp;
@@ -116,21 +115,21 @@ export function Client({
                   payment.lastMonth ?
                   <li>
                     ${payment.lastMonth}
-                    <strong>paid last month</strong>
+                    <span className="label">paid last month</span>
                   </li> : null
                 }
                 {
                   payment.paymentFrequencyHours ?
                   <li>
-                    {Math.round(payment.paymentFrequencyHours / 24)}
-                    <strong>days between consecutive payments</strong>
+                    <FormatTime value={payment.paymentFrequencyHours} unit="days" />
+                    <span className="label">on average between consecutive payments</span>
                   </li> : null
                 }
                 {
                   payment.longestPaymentFrequencyHours ?
                   <li>
-                    <FormatTime value={payment.longestPaymentFrequencyHours} unit="h" />
-                    <strong>maximum days between consecutive payments</strong>
+                    <FormatTime value={payment.longestPaymentFrequencyHours} unit="days" />
+                    <span className="label">at maximum between consecutive payments</span>
                   </li> : null
                 }
               </ul> 
@@ -158,8 +157,16 @@ export function Client({
           <div className="client-card">
             <h3>John Smith</h3>
             <span className="client-card-payment-amount">
-              Paid $200 of $2000.00
-              <span className="percent">10%</span>
+              Paid for
+              <span className="a-unit">
+                <FormatTime value={payment.timePaid} unit="days" />
+                {payment.amountEarned && `($${payment.amountEarned})`}
+              </span>
+              out of
+              <span className="a-unit">
+                <FormatTime value={payment.timeWorked} unit="days" />
+                {payment.amountValued && `($${payment.amountValued})`}
+              </span>
             </span>
           </div>
         </Col>

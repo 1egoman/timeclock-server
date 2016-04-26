@@ -119,9 +119,11 @@
       li {
         list-style-type: none;
         font-size: 1.2em;
-        strong {
-          font-size: 0.8em;
-          margin-left: 0.6em;
+        font-weight: bold;
+        .label {
+          font-size: 0.85em;
+          color: $text-color;
+          font-weight: normal;
         }
       }
     }
@@ -162,6 +164,15 @@
     // the amount the client paid
     .client-card-payment-amount {
       .percent { float: right; }
+
+      .a-unit {
+        margin: 0.2em;
+
+        .formatted-time {
+          font-weight: bold;
+          margin-right: 0.2em;
+        }
+      }
     }
   }
 }
