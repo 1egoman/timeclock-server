@@ -7843,13 +7843,20 @@ a[role=menuitem], a[role=menuitem]:focus, a[role=menuitem]:active, a[role=menuit
       color: #555555;
       width: 70%;
       text-align: center; }
-  .repo-metrics.repo-metrics-client .client-card .client-card-payment-amount .percent {
-    float: right; }
-  .repo-metrics.repo-metrics-client .client-card .client-card-payment-amount .a-unit {
-    margin: 0.2em; }
-    .repo-metrics.repo-metrics-client .client-card .client-card-payment-amount .a-unit .formatted-time {
-      font-weight: bold;
-      margin-right: 0.2em; }
+  .repo-metrics.repo-metrics-client .client-card .percent {
+    font-size: 3em;
+    margin: 0.6em 0em;
+    display: block;
+    font-weight: bold; }
+    .repo-metrics.repo-metrics-client .client-card .percent::after {
+      content: "%"; }
+  .repo-metrics.repo-metrics-client .client-card .client-card-payment-amount {
+    float: left; }
+    .repo-metrics.repo-metrics-client .client-card .client-card-payment-amount .a-unit {
+      margin: 0.2em; }
+      .repo-metrics.repo-metrics-client .client-card .client-card-payment-amount .a-unit .formatted-time {
+        font-weight: bold;
+        margin-right: 0.2em; }
 
 a {
   color: #00B7FF; }

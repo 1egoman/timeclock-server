@@ -156,6 +156,12 @@ export function Client({
         <Col xs={12} md={4}>
           <div className="client-card">
             <h3>John Smith</h3>
+
+            {/* percentage of time owed that has already been paid */}
+            <div className="percent">
+              {Math.round(payment.timePaid / payment.timeWorked * 1000) / 10}
+            </div>
+
             <span className="client-card-payment-amount">
               Paid for
               <span className="a-unit">
@@ -167,6 +173,7 @@ export function Client({
                 <FormatTime value={payment.timeWorked} unit="days" />
                 {payment.amountValued && `($${payment.amountValued})`}
               </span>
+
             </span>
           </div>
         </Col>

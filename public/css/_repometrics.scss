@@ -161,10 +161,17 @@
 
   // client info
   .client-card {
+    .percent {
+      font-size: 3em;
+      margin: 0.6em 0em;
+      display: block;
+      font-weight: bold;
+      &::after { content: "%"; }
+    }
+
     // the amount the client paid
     .client-card-payment-amount {
-      .percent { float: right; }
-
+      float: left;
       .a-unit {
         margin: 0.2em;
 
