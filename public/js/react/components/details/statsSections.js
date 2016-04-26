@@ -44,6 +44,51 @@ function ClientRating({part, whole}) {
   </div>;
 }
 
+// format a time to the specified unit given a value in milliseconds
+export function FormatTime({unit, value}) {
+  // what to divide by to convert milliseconds to the given unit
+  let [label, multiplier] = (function() {
+    switch (unit.toLowerCase()) {
+      case "day":
+      case "days":
+      case "d":
+        return ["days", 60 * 60 * 1000 * 24];
+      case "hour":
+      case "hours":
+      case "h":
+        return ["hours", 60 * 60 * 1000];
+      case "minute":
+      case "minutes":
+      case "min":
+      case "m":
+        return ["minutes", 60 * 1000];
+      case "second":
+      case "seconds":
+      case "sec":
+      case "s":
+        return ["seconds", 1000];
+      case "millisecond":
+      case "milliseconds":
+      case "ms":
+        return ["ms", 1];
+    }
+  })();
+
+  let dispValue = Math.round(value / multiplier * 100) / 100;
+
+  // remove plural form for when the item is singular
+  if (dispValue === 1 && label !== "ms") {
+    label = label.slice(0, -1);
+  }
+
+  // console.log(dispValue, label)
+  return <span className="formatted-time">
+    <span className="value">{dispValue}</span>
+    &nbsp;
+    <span className="unit">{label}</span>
+  </span>;
+}
+
 export function Client({
   timecard,
   commits,
@@ -74,15 +119,18 @@ export function Client({
                     <strong>paid last month</strong>
                   </li> : null
                 }
-                <li>
-                  bla
-                  <strong>days between payments</strong>
-                </li>
                 {
                   payment.paymentFrequencyHours ?
                   <li>
                     {Math.round(payment.paymentFrequencyHours / 24)}
                     <strong>days between consecutive payments</strong>
+                  </li> : null
+                }
+                {
+                  payment.longestPaymentFrequencyHours ?
+                  <li>
+                    <FormatTime value={payment.longestPaymentFrequencyHours} unit="h" />
+                    <strong>maximum days between consecutive payments</strong>
                   </li> : null
                 }
               </ul> 
