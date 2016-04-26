@@ -19,6 +19,8 @@ import {
   Col,
   ProgressBar,
   Well,
+  OverlayTrigger,
+  Tooltip,
 } from 'react-bootstrap';
 import _ from 'underscore';
 import {
@@ -98,6 +100,15 @@ export function Client({
     payment,
   },
 }) {
+  const howMuchPaidTooltip = <Tooltip id="how-much-paid">
+          A diagram showing all instances that the client paid for work completed.
+          Higher numbers indicate a more-regular payment schedule.
+        </Tooltip>,
+        howSoonPaidTooltip = <Tooltip id="how-soon-paid">
+          A measure of the amount of time it takes for an hour of work done by
+          the freelancer to be paid by the client. Lower is better.
+        </Tooltip>;
+
   if (assertIsCard(timecard) && Array.isArray(commits) && Array.isArray(users)) {
     return <div className="repo-metrics repo-metrics-client">
       <Panel header="Client">
@@ -137,7 +148,9 @@ export function Client({
 
             <div className="client-score-payment-chart">
               <Col xs={12} md={6}>
-                <h4>How much am I paid?</h4>
+                <OverlayTrigger placement="bottom" overlay={howMuchPaidTooltip}>
+                  <h4>How much am I paid?</h4>
+                </OverlayTrigger>
                 {
                   payAmountBreakdownCircle ?
                   <PieChart data={payAmountBreakdownCircle} options={{responsive: true}} /> :
@@ -145,7 +158,9 @@ export function Client({
                 }
               </Col>
               <Col xs={12} md={6}>
-                <h4>How soon am I paid?</h4>
+                <OverlayTrigger placement="bottom" overlay={howSoonPaidTooltip}>
+                  <h4>How soon am I paid?</h4>
+                </OverlayTrigger>
                 <PieChart data={payFrequencyBreakdownCircle} options={{responsive: true}} />
               </Col>
             </div>
@@ -155,7 +170,7 @@ export function Client({
         {/* Client info */}
         <Col xs={12} md={4}>
           <div className="client-card">
-            <h3>John Smith</h3>
+            <h3>{timecard.clientName || "Client"}</h3>
 
             {/* percentage of time owed that has already been paid */}
             <div className="percent">
@@ -166,14 +181,13 @@ export function Client({
               Paid for
               <span className="a-unit">
                 <FormatTime value={payment.timePaid} unit="days" />
-                {payment.amountEarned && `($${payment.amountEarned.toFixed(2)})`}
+                {payment.amountEarned ? `($${payment.amountEarned.toFixed(2)})` : null}
               </span>
               out of
               <span className="a-unit">
                 <FormatTime value={payment.timeWorked} unit="days" />
-                {payment.amountValued && `($${payment.amountValued.toFixed(2)})`}
+                {payment.amountValued ? `($${payment.amountValued.toFixed(2)})` : null}
               </span>
-
             </span>
           </div>
         </Col>
