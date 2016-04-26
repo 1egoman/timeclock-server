@@ -35,6 +35,11 @@
 .repo-metrics {
   margin: 3rem 0rem;
 
+  &.repo-metrics-client-placeholder {
+    color: $gray-light;
+    font-size: 1.4em;
+  }
+
   .average-modal {
     @include clearfix;
 

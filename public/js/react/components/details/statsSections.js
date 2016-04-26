@@ -109,7 +109,12 @@ export function Client({
           the freelancer to be paid by the client. Lower is better.
         </Tooltip>;
 
-  if (assertIsCard(timecard) && Array.isArray(commits) && Array.isArray(users)) {
+  if (
+    assertIsCard(timecard) &&
+    Array.isArray(commits) &&
+    Array.isArray(users) &&
+    payFrequencyBreakdownCircle && payFrequencyBreakdownCircle.length > 0
+  ) {
     return <div className="repo-metrics repo-metrics-client">
       <Panel header="Client">
         {/* Disambiguation of score */}
@@ -194,7 +199,18 @@ export function Client({
       </Panel>
     </div>;
   } else {
-    return null;
+    return <div className="repo-metrics repo-metrics-client repo-metrics-client-placeholder">
+      <Panel header="Client">
+        <p>
+          There isn't enough information to provide client metrics. Once you've been
+          paid, we'll show data including payment history, payment frequency, and a
+          client score.
+        </p>
+        <p>
+          To track a payment, run <code>waltz paycheck</code> in the terminal.
+        </p>
+      </Panel>
+    </div>;
   }
 }
 

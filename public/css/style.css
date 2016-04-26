@@ -7747,6 +7747,9 @@ a[role=menuitem], a[role=menuitem]:focus, a[role=menuitem]:active, a[role=menuit
 
 .repo-metrics {
   margin: 3rem 0rem; }
+  .repo-metrics.repo-metrics-client-placeholder {
+    color: #777777;
+    font-size: 1.4em; }
   .repo-metrics .average-modal:before, .repo-metrics .average-modal:after {
     content: " ";
     display: table; }
