@@ -55,7 +55,17 @@ describe("lib/events/getStats.js", function() {
               label: "0 hours - 99 hours",
               value: 1,
             }
-          ]
+          ],
+          payment: {
+            amountEarned: undefined,
+            amountValued: undefined,
+            lastMonth: null,
+            longestPaymentFrequencyHours: 79200000,
+            paymentFrequencyHours: 165600000,
+            score: 1,
+            timePaid: 3600000,
+            timeWorked: 7200000,
+          },
         });
         done();
       }).catch(done);
@@ -94,7 +104,17 @@ describe("lib/events/getStats.js", function() {
               label: "0 hours - 99 hours",
               value: 1,
             },
-          ]
+          ],
+          payment: {
+            amountEarned: undefined,
+            amountValued: undefined,
+            lastMonth: null,
+            longestPaymentFrequencyHours: 79200000,
+            paymentFrequencyHours: 165600000,
+            score: 1,
+            timePaid: 3600000,
+            timeWorked: 7200000,
+          },
         });
         done();
       }).catch(done);
@@ -134,7 +154,17 @@ describe("lib/events/getStats.js", function() {
               label: "0 hours - 99 hours",
               value: 1,
             }
-          ]
+          ],
+          payment: {
+            amountEarned: undefined,
+            amountValued: undefined,
+            lastMonth: null,
+            longestPaymentFrequencyHours: 79200000,
+            paymentFrequencyHours: 154800000,
+            score: 1,
+            timePaid: 3600000,
+            timeWorked: 10800000,
+          },
         });
         done();
       }).catch(done);
@@ -183,7 +213,17 @@ describe("lib/events/getStats.js", function() {
               label: "100 hours - 199 hours",
               value: 1,
             }
-          ]
+          ],
+          payment: {
+            amountEarned: undefined,
+            amountValued: undefined,
+            lastMonth: null,
+            longestPaymentFrequencyHours: 237600000,
+            paymentFrequencyHours: 82800000,
+            score: 1,
+            timePaid: 21600000,
+            timeWorked: 25200000,
+          },
         });
         done();
       }).catch(done);
@@ -693,4 +733,5 @@ describe("lib/events/getStats.js", function() {
       });
     });
   });
+  it("calculateUserScore");
 });
