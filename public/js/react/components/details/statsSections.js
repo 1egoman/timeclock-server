@@ -201,14 +201,17 @@ export function Client({
   } else {
     return <div className="repo-metrics repo-metrics-client repo-metrics-client-placeholder">
       <Panel header="Client">
-        <p>
-          There isn't enough information to provide client metrics. Once you've been
-          paid, we'll show data including payment history, payment frequency, and a
-          client score.
-        </p>
-        <p>
-          To track a payment, run <code>waltz paycheck</code> in the terminal.
-        </p>
+        <div className="bg-img"></div>
+        <div className="text">
+          <p>
+            There isn't enough information to provide client metrics. Once you've been
+            paid, we'll show data including payment history, payment frequency, and a
+            client score.
+          </p>
+          <p>
+            To track a payment, run <code>waltz paycheck</code> in the terminal.
+          </p>
+        </div>
       </Panel>
     </div>;
   }

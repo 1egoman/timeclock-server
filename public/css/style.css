@@ -7747,9 +7747,31 @@ a[role=menuitem], a[role=menuitem]:focus, a[role=menuitem]:active, a[role=menuit
 
 .repo-metrics {
   margin: 3rem 0rem; }
-  .repo-metrics.repo-metrics-client-placeholder {
-    color: #777777;
+  .repo-metrics.repo-metrics-client-placeholder .panel-body {
+    position: relative;
+    min-height: 500px;
     font-size: 1.4em; }
+  .repo-metrics.repo-metrics-client-placeholder .bg-img, .repo-metrics.repo-metrics-client-placeholder .text {
+    position: absolute;
+    top: 0px;
+    left: 0px; }
+  .repo-metrics.repo-metrics-client-placeholder .bg-img {
+    background-image: url(/img/client_metrics_placeholder.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 76%;
+    width: 100%;
+    height: 100%;
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px); }
+  .repo-metrics.repo-metrics-client-placeholder .text {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    margin-top: 2em;
+    padding: 2em; }
   .repo-metrics .average-modal:before, .repo-metrics .average-modal:after {
     content: " ";
     display: table; }
