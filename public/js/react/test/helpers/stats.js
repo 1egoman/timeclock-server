@@ -9,8 +9,10 @@ import {
   calculateContributors,
   calculateAverageCommitsPerContributorPerWorkPeriod,
   getLastContributor,
+  calculateCommitStats,
   formatTime,
   colorizeGraph,
+  convertMillisecondsToHours,
 } from '../../helpers/stats';
 
 const HOUR_IN_MS = 60 * 60 * 1000;
@@ -811,6 +813,32 @@ describe("getLastContributor", function() {
       }
     );
   });
+  it("should get the last contributor of a timecard with mutiple days with no committer", function() {
+    assert.deepEqual(
+      getLastContributor({
+        card: [
+          {
+            "date": "Sat Jan 16 2016",
+            "times": [
+              {start: "1:30:00", end: "6:00:00", by: "bad-user"},
+              {start: "3:40:00", end: "8:00:00", by: "bad-user"},
+            ],
+          },
+          {
+            "date": "Sun Jan 17 2016",
+            "times": [
+              {start: "1:00:00", end: "6:00:00", by: "bad-user"},
+              {start: "3:00:00", end: "8:00:00"},
+            ],
+          },
+        ]
+      }),
+      {
+        when: new Date("Sun Jan 17 2016 3:00:00"),
+        author: null,
+      }
+    );
+  });
   it("should not get last contributor from a badly formatted date", function() {
     assert.deepEqual(
       getLastContributor({
@@ -989,5 +1017,94 @@ describe("colorizeGraph", function() {
       colorizeGraph({bad: "data"}, "label a", "red", "green"),
       {bad: "data"}
     );
+  });
+});
+describe("calculateCommitStats", function() {
+  it("should calculate commit stats for a commit", function() {
+    let data = calculateCommitStats([
+      {
+        "committer": {
+          "username": "1egoman",
+          "avatar": "https://avatars.githubusercontent.com/u/1704236?v=3",
+          "url": "https://github.com/1egoman",
+          "type": "user"
+        },
+        "message": "Commit message",
+        "sha": "2f019b63b2c26748538e1d7bf711522eb05fb96c",
+        "when": "2016-03-26T10:55:00Z"
+      },
+    ]);
+    assert.equal(data.commits, 1);
+    assert.deepEqual(data.lastCommitTime.toISOString(), "2016-03-26T10:55:00.000Z");
+  });
+  it("should calculate commit stats for commits", function() {
+    let data = calculateCommitStats([
+      {
+        "committer": {
+          "username": "1egoman",
+          "avatar": "https://avatars.githubusercontent.com/u/1704236?v=3",
+          "url": "https://github.com/1egoman",
+          "type": "user"
+        },
+        "message": "Commit message abc",
+        "sha": "e314554fb963b43ee14be08826284f143fe7ae6f",
+        "when": "2016-03-26T10:45:00Z"
+      },
+      {
+        "committer": {
+          "username": "1egoman",
+          "avatar": "https://avatars.githubusercontent.com/u/1704236?v=3",
+          "url": "https://github.com/1egoman",
+          "type": "user"
+        },
+        "message": "Commit message 1",
+        "sha": "2f019b63b2c26748538e1d7bf711522eb05fb96c",
+        "when": "2016-03-26T10:50:00Z"
+      },
+      {
+        "committer": {
+          "username": "1egoman",
+          "avatar": "https://avatars.githubusercontent.com/u/1704236?v=3",
+          "url": "https://github.com/1egoman",
+          "type": "user"
+        },
+        "message": "Commit message",
+        "sha": "2f019b63b2c26748538e1d7bf711522eb05fb96c",
+        "when": "2016-03-26T10:55:00Z"
+      },
+    ]);
+    assert.equal(data.commits, 3);
+    assert.deepEqual(data.lastCommitTime.toISOString(), "2016-03-26T10:55:00.000Z");
+  });
+  it("should not calculate commit stats for bad data", function() {
+    assert.deepEqual(calculateCommitStats(null), 0);
+    assert.deepEqual(calculateCommitStats([]), 0);
+    assert.deepEqual(calculateCommitStats(123), 0);
+    assert.deepEqual(calculateCommitStats("string"), 0);
+  });
+});
+describe("convertMillisecondsToHours", function() {
+  const HOURS = 3600 * 1000;
+  it("should convert ms to hours", function() {
+    assert.equal(convertMillisecondsToHours(0 * HOURS), 0);
+    assert.equal(convertMillisecondsToHours(1 * HOURS), 1);
+    assert.equal(convertMillisecondsToHours(2 * HOURS), 2);
+    assert.equal(convertMillisecondsToHours(1.5 * HOURS), 1.5);
+  });
+  it("should convert ms to hours, and round", function() {
+    assert.equal(convertMillisecondsToHours(0 * HOURS, 3), 0.000);
+    assert.equal(convertMillisecondsToHours(1 * HOURS, 3), 1.000);
+    assert.equal(convertMillisecondsToHours(2 * HOURS, 3), 2.000);
+    assert.equal(convertMillisecondsToHours(1.5 * HOURS, 3), 1.500);
+
+    assert.equal(convertMillisecondsToHours(1 * HOURS / 3, 1), 0.3);
+    assert.equal(convertMillisecondsToHours(1 * HOURS / 3, 2), 0.33);
+    assert.equal(convertMillisecondsToHours(1 * HOURS / 3, 3), 0.333);
+    assert.equal(convertMillisecondsToHours(1 * HOURS / 3, 4), 0.3333);
+
+    assert.equal(convertMillisecondsToHours(2 * HOURS / 3, 1), 0.7);
+    assert.equal(convertMillisecondsToHours(2 * HOURS / 3, 2), 0.67);
+    assert.equal(convertMillisecondsToHours(2 * HOURS / 3, 3), 0.667);
+    assert.equal(convertMillisecondsToHours(2 * HOURS / 3, 4), 0.6667);
   });
 });

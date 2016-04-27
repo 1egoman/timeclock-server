@@ -179,12 +179,6 @@ export function getLastContributor(timecard) {
   }
 }
 
-// expressed as a percentage, the increase/decrease in work over the
-// past `delta` time as compared to the `delta` time before the last `delta`.
-export function contributionIncreaseOverDelta(timecard, delta) {
-  return "make me do stuff";
-}
-
 // the total amount of commits made in the project, and the last commit's
 // completion time.
 export function calculateCommitStats(commits) {
@@ -313,7 +307,7 @@ function getTimeBetween(start, end) {
 
 
 // convenience functions for generating graphs
-function convertMillisecondsToHours(ms, round=1) {
+export function convertMillisecondsToHours(ms, round=1) {
   let factor = Math.pow(10, round);
   return Math.round((ms / (60 * 60 * 1000)) * factor) / factor;
 }
