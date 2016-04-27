@@ -112,21 +112,25 @@ export function getTimeScaleFactor(commits, timecard, maxBlockHeight) {
 
 // for each commit, calculate its length by subtracting the previous
 // commit's time from the current commit's time.
-export function calculateLengthForCommits(commits) {
-  return commits.reduce((acc, i, ct) => {
-    let commitLength = 0;
-    if (acc.length === 0) { // is this the first commit?
-      commitLength = 100; // this will be a constant to never change
-    } else {
-      let last = _.last(acc);
-      commitLength = new Date(last.when).getTime() - new Date(i.when).getTime();
-    }
+export function calculateLengthForCommits(commits, firstLength=100) {
+  if (Array.isArray(commits)) {
+    return commits.reduce((acc, i, ct) => {
+      let commitLength = 0;
+      if (acc.length === 0) { // is this the first commit?
+        commitLength = firstLength;
+      } else {
+        let last = _.last(acc);
+        commitLength = new Date(last.when).getTime() - new Date(i.when).getTime();
+      }
 
-    // add our new commit that has a length
-    acc.push(Object.assign({}, i, {
-      length: commitLength, // will change, the ratio of this block to the rest of them
-      timeLength: commitLength, // won't change, is an absolute length in time
-    }));
-    return acc;
-  }, []);
+      // add our new commit that has a length
+      acc.push(Object.assign({}, i, {
+        length: commitLength, // will change, the ratio of this block to the rest of them
+        timeLength: commitLength, // won't change, is an absolute length in time
+      }));
+      return acc;
+    }, []);
+  } else {
+    return null;
+  }
 }
