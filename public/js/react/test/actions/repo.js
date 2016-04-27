@@ -16,6 +16,7 @@ import {
   shareWithEmails,
   switchRepoTab,
   expandCollapseTimecardSection,
+  initializeRepo,
 } from '../../actions/repo';
 
 describe('actions/repo.js', function() {
@@ -190,6 +191,15 @@ describe('actions/repo.js', function() {
       assert.deepEqual(switchRepoTab("tab"), {
         type: "SWITCH_REPO_TAB",
         tab: "tab",
+      });
+    });
+  });
+  describe('initializeRepo', function() {
+    it('should create the event', function() {
+      assert.deepEqual(initializeRepo("user", "repo"), {
+        type: "server/REINIT",
+        user: "user",
+        repo: "repo",
       });
     });
   });
