@@ -4,7 +4,7 @@ import {Link} from 'react-router';
 import {Navbar, Nav as NavGroup, NavItem, NavDropdown} from 'react-bootstrap';
 
 export const NavComponent = ({title, logged_in_user, importNewRepo}) => {
-  let login_controls = logged_in_user ? <ul className="nav navbar-nav pull-right">
+  let login_controls = logged_in_user ? <ul className="nav navbar-nav right">
     <li><Link to="/app/import">Import Project</Link></li>
     <li className="dropdown">
       <a
@@ -24,7 +24,7 @@ export const NavComponent = ({title, logged_in_user, importNewRepo}) => {
         <li><a href="/auth/logout">Logout</a></li>
       </ul>
     </li>
-  </ul> : <ul className="nav navbar-nav pull-right">
+  </ul> : <ul className="nav navbar-nav right">
     <li><a href="/login">Login</a></li>
   </ul>;
 

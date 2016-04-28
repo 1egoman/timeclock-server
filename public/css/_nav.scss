@@ -13,18 +13,37 @@
   }
 
   // offset login dropdown menu
-  ul.pull-right .dropdown-menu {
-    margin-left: -30px;
+  ul.right, .dropdown-menu {
+    float: left;
+    @media (min-width: $screen-sm-min) {
+      float: right !important;
+      margin-left: -30px;
+    }
   }
 
   .whats-new {
     position: relative;
+
+    // "What's new" label
+    &::after { content: "What's New?"; }
+
     // headway badge
     #HW_badge_cont {
       position: absolute;
-      top: 50%;
-      left: 0px;
+      right: 0px;
       margin-top: -5px;
     }
+
+    @media (min-width: $screen-sm-min) {
+      &::after { content: ""; }
+
+      // headway badge
+      #HW_badge_cont {
+        top: 50%;
+        left: 0px;
+        right: initial;
+      }
+    }
+
   }
 }

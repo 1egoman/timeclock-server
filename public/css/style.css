@@ -7167,15 +7167,27 @@ footer {
     .navbar .navbar-brand img {
       height: 36px;
       margin-top: -8px; }
-  .navbar ul.pull-right .dropdown-menu, .navbar .feature.feature-right ul.content .dropdown-menu, .feature.feature-right .navbar ul.content .dropdown-menu {
-    margin-left: -30px; }
+  .navbar ul.right, .navbar .dropdown-menu {
+    float: left; }
+    @media (min-width: 768px) {
+      .navbar ul.right, .navbar .dropdown-menu {
+        float: right !important;
+        margin-left: -30px; } }
   .navbar .whats-new {
     position: relative; }
+    .navbar .whats-new::after {
+      content: "What's New?"; }
     .navbar .whats-new #HW_badge_cont {
       position: absolute;
-      top: 50%;
-      left: 0px;
+      right: 0px;
       margin-top: -5px; }
+    @media (min-width: 768px) {
+      .navbar .whats-new::after {
+        content: ""; }
+      .navbar .whats-new #HW_badge_cont {
+        top: 50%;
+        left: 0px;
+        right: initial; } }
 
 .repo-container {
   padding: 0px; }
