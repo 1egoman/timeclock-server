@@ -236,7 +236,10 @@ export function Averages({
     let avgWorkPeriodLength = calculateAverageWorkPeriodLength(timecard),
         commitsPerWorkPeriod = calculateAverageCommitsPerWorkPeriod(timecard, commits),
         commitStats = calculateCommitStats(commits),
-        avgCommitsPerUserPerWorkPeriod = calculateAverageCommitsPerContributorPerWorkPeriod(timecard, commits, users);
+        avgCommitsPerUserPerWorkPeriod = calculateAverageCommitsPerContributorPerWorkPeriod(timecard, commits, users),
+
+        // really small
+        statsOutOfBounds = avgCommitsPerUserPerWorkPeriod > 10000 || commitsPerWorkPeriod > 10000;
 
     // add colors to the graph (red = unpaid, green = paid)
     workActivityGraph = colorizeGraph(workActivityGraph, "Paid time", "#8ac450", "#73A443");
@@ -252,7 +255,7 @@ export function Averages({
           }}
         />
 
-        <div className="average-modal">
+        {statsOutOfBounds ? null : <div className="average-modal">
           <Col xs={12} md={4}>
             <Panel footer="Average commits per contributor">
               <span className="average-stat sm">
@@ -276,7 +279,7 @@ export function Averages({
               </span>
             </Panel>
           </Col>
-        </div>
+        </div>}
 
         <footer>
           From a sample of the last {commitStats.commits} commits since {commitStats.lastCommitTime.toString()}
@@ -356,7 +359,8 @@ export function Contributions({
 }) {
   if (assertIsCard(timecard) && Array.isArray(commits)) {
     let contributors = calculateContributors(timecard),
-        totalContributions = getTotalContributions(contributors);
+        totalContributions = getTotalContributions(contributors),
+        contibutionLength = Object.keys(contributors).length;
 
     return <div className="repo-metrics contributors-modal">
       <Panel header="Contributions">
@@ -385,11 +389,10 @@ export function Contributions({
         {/* A list of contributor stats */}
         <Col md={5} sm={12}>
           <ul>
-            <li>{Object.keys(contributors).length} Contributors</li>
+            <li>{contibutionLength === 1 ? "1 contributor" : `${contibutionLength} contributors`}</li>
             {lastContribution({timecard})}
           </ul>
         </Col>
-
       </Panel>
     </div>;
   } else {

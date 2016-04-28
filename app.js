@@ -214,7 +214,9 @@ io.on('connection', function(socket) {
   socketRoute.emitInit(socket);
 
   // then, initialize it again with the path-specific stuff
-  socketRoute.emitInit(socket, socket.request._query['path']);
+  socket.on('ready', function(data) {
+    socketRoute.emitInit(socket, data.path);
+  });
   socket.on('action', socketRoute.onSocketAction(socket));
 });
 module.exports = boundApp;

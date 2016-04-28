@@ -26,11 +26,17 @@ $(document).ready(function() {
   });
 });
 
-// socket.io middleware to proxy redux events prefixed with 'server/' back to
-// the serverside
+// init socket.io. On connection, send the current path so we can init the view
+// with the expected data.
 import io from 'socket.io-client';
 import createSocketIoMiddleware from 'redux-socket.io';
-const socket = io({query: `path=${location.pathname}`});
+const socket = io();
+socket.on("connect", function() {
+  socket.emit("ready", {path: location.pathname});
+});
+
+// socket.io middleware to proxy redux events prefixed with 'server/' back to
+// the serverside
 let socketIoMiddleware = createSocketIoMiddleware(socket, (type) => {
   return (
     type.indexOf("server/") === 0 || // events prefixed with "server/"
@@ -39,18 +45,10 @@ let socketIoMiddleware = createSocketIoMiddleware(socket, (type) => {
 });
 
 socket.on("error", (message) => {
-  // console.error("socket error", message)
   if (message === "User not authorized.") {
     location.href = "/login"; // login if not authorized
   };
 });
-
-// "Action constructors"
-// Given data, construct an action to be fed into the store
-import {
-  importFromGithubRepo,
-  selectRepo,
-} from './actions/repo';
 
 // "Reducers"
 // Take the previous state and an action, and return a new state.
