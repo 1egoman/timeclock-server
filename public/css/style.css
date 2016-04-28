@@ -7841,11 +7841,19 @@ a[role=menuitem], a[role=menuitem]:focus, a[role=menuitem]:active, a[role=menuit
       .repo-metrics.repo-metrics-client .client-score-disambiguation ul li {
         list-style-type: none;
         font-size: 1.2em;
-        font-weight: bold; }
+        font-weight: bold;
+        margin: 1em 0em; }
         .repo-metrics.repo-metrics-client .client-score-disambiguation ul li .label {
-          font-size: 0.85em;
+          font-size: 0.6em;
           color: #333333;
-          font-weight: normal; }
+          font-weight: normal;
+          text-align: left;
+          margin-left: 0em;
+          display: block; }
+          @media (min-width: 768px) {
+            .repo-metrics.repo-metrics-client .client-score-disambiguation ul li .label {
+              display: inline;
+              font-size: 0.85em; } }
   .repo-metrics.repo-metrics-client .client-score-payment-chart {
     margin-top: 3rem;
     padding-top: 1.4rem;
@@ -7858,16 +7866,22 @@ a[role=menuitem], a[role=menuitem]:focus, a[role=menuitem]:active, a[role=menuit
       text-align: center;
       margin-bottom: 0.8em;
       margin-top: 1.4em;
-      font-size: 2em; }
+      font-size: 2em;
+      cursor: default; }
       @media (min-width: 992px) {
         .repo-metrics.repo-metrics-client .client-score-payment-chart h4 {
           font-size: 1em;
           margin-top: 0.8em; } }
+      .repo-metrics.repo-metrics-client .client-score-payment-chart h4 i {
+        margin-left: 0.3em; }
     .repo-metrics.repo-metrics-client .client-score-payment-chart .well {
       margin: 2rem auto;
       color: #555555;
       width: 70%;
       text-align: center; }
+  @media (min-width: 992px) {
+    .repo-metrics.repo-metrics-client .client-card {
+      margin-left: 1em; } }
   .repo-metrics.repo-metrics-client .client-card .percent {
     font-size: 3em;
     margin: 0.6em 0em;
@@ -7876,9 +7890,19 @@ a[role=menuitem], a[role=menuitem]:focus, a[role=menuitem]:active, a[role=menuit
     .repo-metrics.repo-metrics-client .client-card .percent::after {
       content: "%"; }
   .repo-metrics.repo-metrics-client .client-card .client-card-payment-amount {
-    float: left; }
+    float: left;
+    font-size: 1.2em;
+    white-space: nowrap;
+    max-width: 0px; }
+    @media (min-width: 992px) {
+      .repo-metrics.repo-metrics-client .client-card .client-card-payment-amount {
+        font-size: 1.25em; } }
+    .repo-metrics.repo-metrics-client .client-card .client-card-payment-amount .static {
+      float: left; }
     .repo-metrics.repo-metrics-client .client-card .client-card-payment-amount .a-unit {
-      margin: 0.2em; }
+      margin: 0.2em;
+      float: left;
+      font-size: 1.4em; }
       .repo-metrics.repo-metrics-client .client-card .client-card-payment-amount .a-unit .formatted-time {
         font-weight: bold;
         margin-right: 0.2em; }

@@ -154,7 +154,10 @@ export function Client({
             <div className="client-score-payment-chart">
               <Col xs={12} md={6}>
                 <OverlayTrigger placement="bottom" overlay={howMuchPaidTooltip}>
-                  <h4>How much am I paid?</h4>
+                  <h4>
+                    How much am I paid?
+                    <i className="fa fa-question-circle" />
+                  </h4>
                 </OverlayTrigger>
                 {
                   payAmountBreakdownCircle ?
@@ -164,7 +167,10 @@ export function Client({
               </Col>
               <Col xs={12} md={6}>
                 <OverlayTrigger placement="bottom" overlay={howSoonPaidTooltip}>
-                  <h4>How soon am I paid?</h4>
+                  <h4>
+                    How soon am I paid?
+                    <i className="fa fa-question-circle" />
+                  </h4>
                 </OverlayTrigger>
                 <PieChart data={payFrequencyBreakdownCircle} options={{responsive: true}} />
               </Col>
@@ -183,12 +189,12 @@ export function Client({
             </div>
 
             <span className="client-card-payment-amount">
-              Paid for
+              <span className="static">Paid for</span>
               <span className="a-unit">
                 <FormatTime value={payment.timePaid} unit="days" />
                 {payment.amountEarned ? `($${payment.amountEarned.toFixed(2)})` : null}
               </span>
-              out of
+              <span className="static">out of</span>
               <span className="a-unit">
                 <FormatTime value={payment.timeWorked} unit="days" />
                 {payment.amountValued ? `($${payment.amountValued.toFixed(2)})` : null}

@@ -35,8 +35,8 @@
 .repo-metrics {
   margin: 3rem 0rem;
 
+  // the "hey we don't have enough data to give you decent data" view
   &.repo-metrics-client-placeholder {
-
     .panel-body {
       position: relative;
       min-height: 500px;
@@ -89,7 +89,7 @@
     }
   }
 
-  // where the data is coming from
+  // explain where the data is coming from
   footer {
     font-size: 0.8em;
     height: auto;
@@ -156,10 +156,22 @@
         list-style-type: none;
         font-size: 1.2em;
         font-weight: bold;
+        margin: 1em 0em;
+
+        // the units
         .label {
-          font-size: 0.85em;
+          font-size: 0.6em;
           color: $text-color;
           font-weight: normal;
+          text-align: left;
+          margin-left: 0em;
+          display: block;
+
+          // bring collapsed labels to right of units on big screens
+          @media (min-width: $screen-sm-min) {
+            display: inline;
+            font-size: 0.85em;
+          }
         }
       }
     }
@@ -180,10 +192,13 @@
       margin-bottom: 0.8em;
       margin-top: 1.4em;
       font-size: 2em;
+      cursor: default;
       @media (min-width: $screen-md-min) {
         font-size: 1em;
         margin-top: 0.8em;
       }
+
+      i { margin-left: 0.3em; }
     }
 
     // "Only availible for hourly payments"
@@ -197,6 +212,9 @@
 
   // client info
   .client-card {
+    // add some space when in a bigger view
+    @media (min-width: $screen-md-min) { margin-left: 1em; }
+
     .percent {
       font-size: 3em;
       margin: 0.6em 0em;
@@ -208,8 +226,18 @@
     // the amount the client paid
     .client-card-payment-amount {
       float: left;
+      font-size: 1.2em;
+      white-space: nowrap;
+      max-width: 0px;
+      @media (min-width: $screen-md-min) {
+        font-size: 1.25em;
+      }
+
+      .static { float: left; }
       .a-unit {
         margin: 0.2em;
+        float: left;
+        font-size: 1.4em;
 
         .formatted-time {
           font-weight: bold;
