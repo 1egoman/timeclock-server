@@ -6767,7 +6767,8 @@ button.close {
     position: relative;
     min-height: 1px;
     padding-left: 15px;
-    padding-right: 15px; }
+    padding-right: 15px;
+    min-height: 500px; }
     @media (min-width: 992px) {
       .features-group .glyph {
         right: 50%; } }
@@ -6827,6 +6828,27 @@ button.close {
   .glyph-invoice .invoice-items li.lg, .glyph-invoice .invoice-items li.lg + .price {
     color: #8ac450;
     background-color: #8ac450; }
+
+.features-group .glyph-versioned {
+  position: relative; }
+  .features-group .glyph-versioned .timecard-state {
+    width: 29%;
+    height: 164px;
+    background-color: #777777;
+    float: left;
+    margin: 2%;
+    padding-top: 1.4em;
+    opacity: 0;
+    text-align: center;
+    font-size: 1.4em;
+    color: #fff; }
+    .features-group .glyph-versioned .timecard-state.one {
+      opacity: 1;
+      transform: translate3d(50%, 0, 0);
+      width: 50%;
+      background-color: #51c4c4; }
+      .features-group .glyph-versioned .timecard-state.one .second {
+        opacity: 0; }
 
 .features.features-tools {
   background-color: #8ac450;

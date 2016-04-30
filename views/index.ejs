@@ -91,11 +91,11 @@
 
 <div class="features-group white first-section">
   <a name="learnmore"></a>
-  <div class="features feature-collapse">
+  <div class="features feature-collapse spreadsheet-section">
     <div class="text">
       <h2>Manage time without spreadsheets</h2>
       <p>
-        Spreadsheets can turn into an unmanageable behemoth that is a chore to
+        A spreadsheet can easily turn into an unmanageable behemoth that is a chore to
         use. Instead, Waltz will tell you how long you've worked and how much
         you've earned so you can spend less time managing and more time doing. 
       </p>
@@ -148,13 +148,18 @@
       </div>
     </div>
   </div>
-  <div class="features feature-collapse">
+  <div class="features feature-collapse versioned-section">
     <div class="text">
       <h2>Version controlled</h2>
       <p>
         Because timesheets are stored with your code, easily diff work times across branches to
         quickly determine the time spent on individual features.
       </p>
+    </div>
+    <div class="glyph glyph-versioned">
+      <div class="timecard-state one">Today</div>
+      <div class="timecard-state two">Yesterday</div>
+      <div class="timecard-state three">Last Week</div>
     </div>
   </div>
   <div class="features feature-collapse">
@@ -332,16 +337,35 @@ var myChart = new Chart(ctx, {
 <script type="text/javascript">
 var controller = new ScrollMagic.Controller();
 
+// spreadsheet
 var scene = new ScrollMagic.Scene({
   duration: 500,
   offset: -200,
-  triggerElement: ".first-section",
+  triggerElement: ".spreadsheet-section",
 })
 .setTween(".invoice", {
   transform: 'translate3d(0px, 0, 0)',
   opacity: 1,
 })
 .addTo(controller);
+
+// version controlled
+var version = new TimelineMax();
+version.add(TweenMax.to(".timecard-state.one", 3, {
+  transform: 'translate3d(0px, 0, 0)',
+  width: "29%",
+}));
+// fade in all time states
+version.add(TweenMax.to(".timecard-state", 1, {opacity: 1}));
+
+var scene = new ScrollMagic.Scene({
+  duration: 500,
+  offset: -200,
+  triggerElement: ".versioned-section",
+})
+.setTween(version)
+.addTo(controller);
+
 
 // terminal
 var scene = new ScrollMagic.Scene({
