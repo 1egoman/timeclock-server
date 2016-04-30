@@ -1,14 +1,14 @@
 <div class="features features-install">
-  <h1>Sold? Give Waltz a try:</h1>
+  <h1>Get started in 10 minutes</h1>
 
-  <pre>
-    $ npm install -g waltz
-    $ waltz init --commit
-    $ git push origin master
-  </pre>
   <% if (!user) { %>
-    <a class="btn btn-next-step" href="/login">Then, Sign in</a>
+    <a class="btn btn-next-step" href="/login">Try it for free</a>
   <% } else { %>
+    <pre>
+      $ npm install -g waltz
+      $ waltz init --commit
+      $ git push origin master
+    </pre>
     <a class="btn btn-next-step" href="/app">Then, open the app.</a>
   <% } %>
 

@@ -27,7 +27,11 @@
           <i class="fa fa-bars"></i>
         </button>
         <span class="navbar-brand">
-          <img src="/img/logo.svg" />
+          <% if (style === "light") { %>
+            <img src="/img/logo_grey.svg" />
+          <% } else { %>
+            <img src="/img/logo.svg" />
+          <% } %>
         </span>
       </div>
 

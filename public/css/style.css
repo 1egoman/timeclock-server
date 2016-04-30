@@ -1538,15 +1538,15 @@ pre {
     .container, .container-report .report-header .report-header-inner, .pricing-hero, .features.features-hero, .feature-collapse, .features.features-install, .feature, .features-getting-started-buttons, .presskit, .invoice.invoice-container, .invoice.invoice-payment, .sample-invoice, footer .wrapper, .repo-details .repo-details-header .repo-details-name, .repo-details .repo-details-break-bar, .repo-details .repo-details-body .repo-details-body-wrapper {
       width: 1170px; } }
 
-.container-fluid, .features.features-tools, .features.features-more, footer, .repo-container {
+.container-fluid, .features.features-tools, .features.features-metrics, .features.features-more, footer, .repo-container {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px; }
-  .container-fluid:before, .features.features-tools:before, .features.features-more:before, footer:before, .repo-container:before, .container-fluid:after, .features.features-tools:after, .features.features-more:after, footer:after, .repo-container:after {
+  .container-fluid:before, .features.features-tools:before, .features.features-metrics:before, .features.features-more:before, footer:before, .repo-container:before, .container-fluid:after, .features.features-tools:after, .features.features-metrics:after, .features.features-more:after, footer:after, .repo-container:after {
     content: " ";
     display: table; }
-  .container-fluid:after, .features.features-tools:after, .features.features-more:after, footer:after, .repo-container:after {
+  .container-fluid:after, .features.features-tools:after, .features.features-metrics:after, .features.features-more:after, footer:after, .repo-container:after {
     clear: both; }
 
 .row, .settings-list {
@@ -4213,15 +4213,15 @@ tbody.collapse.in {
 
 .container > .navbar-header, .container-report .report-header .report-header-inner > .navbar-header, .pricing-hero > .navbar-header, .features.features-hero > .navbar-header, .feature-collapse > .navbar-header, .features.features-install > .navbar-header, .feature > .navbar-header, .features-getting-started-buttons > .navbar-header, .presskit > .navbar-header, .invoice.invoice-container > .navbar-header, .invoice.invoice-payment > .navbar-header, .sample-invoice > .navbar-header, footer .wrapper > .navbar-header, .repo-details .repo-details-header .repo-details-name > .navbar-header, .repo-details .repo-details-break-bar > .navbar-header, .repo-details .repo-details-body .repo-details-body-wrapper > .navbar-header,
 .container > .navbar-collapse, .container-report .report-header .report-header-inner > .navbar-collapse, .pricing-hero > .navbar-collapse, .features.features-hero > .navbar-collapse, .feature-collapse > .navbar-collapse, .features.features-install > .navbar-collapse, .feature > .navbar-collapse, .features-getting-started-buttons > .navbar-collapse, .presskit > .navbar-collapse, .invoice.invoice-container > .navbar-collapse, .invoice.invoice-payment > .navbar-collapse, .sample-invoice > .navbar-collapse, footer .wrapper > .navbar-collapse, .repo-details .repo-details-header .repo-details-name > .navbar-collapse, .repo-details .repo-details-break-bar > .navbar-collapse, .repo-details .repo-details-body .repo-details-body-wrapper > .navbar-collapse,
-.container-fluid > .navbar-header, .features.features-tools > .navbar-header, .features.features-more > .navbar-header, footer > .navbar-header, .repo-container > .navbar-header,
-.container-fluid > .navbar-collapse, .features.features-tools > .navbar-collapse, .features.features-more > .navbar-collapse, footer > .navbar-collapse, .repo-container > .navbar-collapse {
+.container-fluid > .navbar-header, .features.features-tools > .navbar-header, .features.features-metrics > .navbar-header, .features.features-more > .navbar-header, footer > .navbar-header, .repo-container > .navbar-header,
+.container-fluid > .navbar-collapse, .features.features-tools > .navbar-collapse, .features.features-metrics > .navbar-collapse, .features.features-more > .navbar-collapse, footer > .navbar-collapse, .repo-container > .navbar-collapse {
   margin-right: -15px;
   margin-left: -15px; }
   @media (min-width: 768px) {
     .container > .navbar-header, .container-report .report-header .report-header-inner > .navbar-header, .pricing-hero > .navbar-header, .features.features-hero > .navbar-header, .feature-collapse > .navbar-header, .features.features-install > .navbar-header, .feature > .navbar-header, .features-getting-started-buttons > .navbar-header, .presskit > .navbar-header, .invoice.invoice-container > .navbar-header, .invoice.invoice-payment > .navbar-header, .sample-invoice > .navbar-header, footer .wrapper > .navbar-header, .repo-details .repo-details-header .repo-details-name > .navbar-header, .repo-details .repo-details-break-bar > .navbar-header, .repo-details .repo-details-body .repo-details-body-wrapper > .navbar-header,
     .container > .navbar-collapse, .container-report .report-header .report-header-inner > .navbar-collapse, .pricing-hero > .navbar-collapse, .features.features-hero > .navbar-collapse, .feature-collapse > .navbar-collapse, .features.features-install > .navbar-collapse, .feature > .navbar-collapse, .features-getting-started-buttons > .navbar-collapse, .presskit > .navbar-collapse, .invoice.invoice-container > .navbar-collapse, .invoice.invoice-payment > .navbar-collapse, .sample-invoice > .navbar-collapse, footer .wrapper > .navbar-collapse, .repo-details .repo-details-header .repo-details-name > .navbar-collapse, .repo-details .repo-details-break-bar > .navbar-collapse, .repo-details .repo-details-body .repo-details-body-wrapper > .navbar-collapse,
-    .container-fluid > .navbar-header, .features.features-tools > .navbar-header, .features.features-more > .navbar-header, footer > .navbar-header, .repo-container > .navbar-header,
-    .container-fluid > .navbar-collapse, .features.features-tools > .navbar-collapse, .features.features-more > .navbar-collapse, footer > .navbar-collapse, .repo-container > .navbar-collapse {
+    .container-fluid > .navbar-header, .features.features-tools > .navbar-header, .features.features-metrics > .navbar-header, .features.features-more > .navbar-header, footer > .navbar-header, .repo-container > .navbar-header,
+    .container-fluid > .navbar-collapse, .features.features-tools > .navbar-collapse, .features.features-metrics > .navbar-collapse, .features.features-more > .navbar-collapse, footer > .navbar-collapse, .repo-container > .navbar-collapse {
       margin-right: 0;
       margin-left: 0; } }
 
@@ -4266,6 +4266,7 @@ tbody.collapse.in {
     .navbar > .container .navbar-brand, .container-report .report-header .navbar > .report-header-inner .navbar-brand, .navbar > .pricing-hero .navbar-brand, .navbar > .features.features-hero .navbar-brand, .navbar > .feature-collapse .navbar-brand, .navbar > .features.features-install .navbar-brand, .navbar > .feature .navbar-brand, .navbar > .features-getting-started-buttons .navbar-brand, .navbar > .presskit .navbar-brand, .navbar > .invoice.invoice-container .navbar-brand, .navbar > .invoice.invoice-payment .navbar-brand, .navbar > .sample-invoice .navbar-brand, footer .navbar > .wrapper .navbar-brand, .repo-details .repo-details-header .navbar > .repo-details-name .navbar-brand, .repo-details .navbar > .repo-details-break-bar .navbar-brand, .repo-details .repo-details-body .navbar > .repo-details-body-wrapper .navbar-brand,
     .navbar > .container-fluid .navbar-brand,
     .navbar > .features.features-tools .navbar-brand,
+    .navbar > .features.features-metrics .navbar-brand,
     .navbar > .features.features-more .navbar-brand,
     .navbar > footer .navbar-brand,
     .navbar > .repo-container .navbar-brand {
@@ -4805,7 +4806,7 @@ a.badge:hover, a.badge:focus {
   .jumbotron > hr {
     border-top-color: #d5d5d5; }
   .container .jumbotron, .container-report .report-header .report-header-inner .jumbotron, .pricing-hero .jumbotron, .features.features-hero .jumbotron, .feature-collapse .jumbotron, .features.features-install .jumbotron, .feature .jumbotron, .features-getting-started-buttons .jumbotron, .presskit .jumbotron, .invoice.invoice-container .jumbotron, .invoice.invoice-payment .jumbotron, .sample-invoice .jumbotron, footer .wrapper .jumbotron, .repo-details .repo-details-header .repo-details-name .jumbotron, .repo-details .repo-details-break-bar .jumbotron, .repo-details .repo-details-body .repo-details-body-wrapper .jumbotron,
-  .container-fluid .jumbotron, .features.features-tools .jumbotron, .features.features-more .jumbotron, footer .jumbotron, .repo-container .jumbotron {
+  .container-fluid .jumbotron, .features.features-tools .jumbotron, .features.features-metrics .jumbotron, .features.features-more .jumbotron, footer .jumbotron, .repo-container .jumbotron {
     border-radius: 4px;
     padding-left: 15px;
     padding-right: 15px; }
@@ -4816,7 +4817,7 @@ a.badge:hover, a.badge:focus {
       padding-top: 48px;
       padding-bottom: 48px; }
       .container .jumbotron, .container-report .report-header .report-header-inner .jumbotron, .pricing-hero .jumbotron, .features.features-hero .jumbotron, .feature-collapse .jumbotron, .features.features-install .jumbotron, .feature .jumbotron, .features-getting-started-buttons .jumbotron, .presskit .jumbotron, .invoice.invoice-container .jumbotron, .invoice.invoice-payment .jumbotron, .sample-invoice .jumbotron, footer .wrapper .jumbotron, .repo-details .repo-details-header .repo-details-name .jumbotron, .repo-details .repo-details-break-bar .jumbotron, .repo-details .repo-details-body .repo-details-body-wrapper .jumbotron,
-      .container-fluid .jumbotron, .features.features-tools .jumbotron, .features.features-more .jumbotron, footer .jumbotron, .repo-container .jumbotron {
+      .container-fluid .jumbotron, .features.features-tools .jumbotron, .features.features-metrics .jumbotron, .features.features-more .jumbotron, footer .jumbotron, .repo-container .jumbotron {
         padding-left: 60px;
         padding-right: 60px; }
       .jumbotron h1,
@@ -6697,11 +6698,7 @@ button.close {
 
 .features.features-hero {
   background-color: #51c4c4;
-  color: #fff;
-  /* Firefox < 16 */
-  /* Safari, Chrome and Opera > 12.1 */
-  /* Internet Explorer */
-  /* Opera < 12.1 */ }
+  color: #fff; }
   .features.features-hero h1 {
     text-align: center;
     font-weight: bold;
@@ -6724,47 +6721,8 @@ button.close {
     @media (min-width: 768px) {
       .features.features-hero h3 {
         font-size: 3.2rem; } }
-
-@keyframes fadein {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
-
-@-moz-keyframes fadein {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
-
-@-webkit-keyframes fadein {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
-
-@-ms-keyframes fadein {
-  .features.features-hero from {
-    opacity: 0; }
-  .features.features-hero to {
-    opacity: 1; } }
-
-@-o-keyframes fadein {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
   .features.features-hero .sample-invoice {
     opacity: 1;
-    -webkit-animation: fadein 0.5s;
-    /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: fadein 0.5s;
-    /* Firefox < 16 */
-    -ms-animation: fadein 0.5s;
-    /* Internet Explorer */
-    -o-animation: fadein 0.5s;
-    /* Opera < 12.1 */
-    animation: fadein 0.5s;
     box-shadow: 8px 8px rgba(85, 85, 85, 0.25); }
 
 .features-group {
@@ -6800,7 +6758,10 @@ button.close {
     list-style-type: none;
     padding: 1em;
     background-color: #222222;
-    font-family: Menlo, Monaco, Consolas, "Courier New", monospace; }
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    height: 2.6em;
+    overflow: hidden;
+    margin-top: 1em; }
     @media (min-width: 992px) {
       .features.features-tools .terminal {
         right: 50%; } }
@@ -6810,6 +6771,10 @@ button.close {
         width: 50%; } }
     .features.features-tools .terminal li {
       color: #eeeeee; }
+      .features.features-tools .terminal li.command {
+        margin-top: 1em; }
+      .features.features-tools .terminal li.command:first-child {
+        margin-top: 0em; }
       .features.features-tools .terminal li.command::before {
         content: "/app $ ";
         color: #777777; }
@@ -6827,7 +6792,6 @@ button.close {
     min-height: 1px;
     padding-left: 15px;
     padding-right: 15px;
-    padding: 0em 2em;
     margin-bottom: 2em; }
     @media (min-width: 992px) {
       .features.features-tools .text {
@@ -6836,13 +6800,101 @@ button.close {
       .features.features-tools .text {
         float: left;
         width: 50%; } }
+    @media (min-width: 992px) {
+      .features.features-tools .text {
+        padding: 0em 2em;
+        margin-bottom: 0em; } }
     .features.features-tools .text h1 {
-      text-align: center;
+      font-size: 3.6rem; }
+
+.features.features-metrics {
+  background-color: #fff;
+  font-size: 1.2em;
+  padding: 2em; }
+  @media (min-width: 768px) {
+    .features.features-metrics {
+      font-size: 1.5em;
+      padding: 2em 4em; } }
+  .features.features-metrics .right, .features.features-metrics .text {
+    position: relative;
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px; }
+    @media (min-width: 992px) {
+      .features.features-metrics .right, .features.features-metrics .text {
+        float: left;
+        width: 50%; } }
+  .features.features-metrics .chart-one canvas {
+    width: 100%;
+    height: 800px; }
+  .features.features-metrics .img-tile {
+    margin: 2em 0em; }
+    .features.features-metrics .img-tile img {
+      width: 100%; }
+  .features.features-metrics .text {
+    margin-bottom: 2em; }
+    @media (min-width: 992px) {
+      .features.features-metrics .text {
+        padding: 0em 2em; } }
+    .features.features-metrics .text h1 {
       font-size: 3.6rem; }
 
 .features.features-more {
   background: #8a51c4;
   color: #fff; }
+  .features.features-more .subfeature {
+    position: relative;
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px; }
+    @media (min-width: 768px) {
+      .features.features-more .subfeature {
+        float: left;
+        width: 50%; } }
+    @media (min-width: 992px) {
+      .features.features-more .subfeature {
+        float: left;
+        width: 33.3333333333%; } }
+    .features.features-more .subfeature:last-child {
+      position: relative;
+      min-height: 1px;
+      padding-left: 15px;
+      padding-right: 15px;
+      position: relative;
+      min-height: 1px;
+      padding-left: 15px;
+      padding-right: 15px; }
+      @media (min-width: 768px) {
+        .features.features-more .subfeature:last-child {
+          float: left;
+          width: 100%; } }
+      @media (min-width: 992px) {
+        .features.features-more .subfeature:last-child {
+          float: left;
+          width: 33.3333333333%; } }
+    .features.features-more .subfeature img {
+      width: 100%; }
+    .features.features-more .subfeature .caption {
+      font-size: 1.4em; }
+      @media (min-width: 992px) {
+        .features.features-more .subfeature .caption {
+          margin-top: 220px; } }
   .features.features-more h1 {
     text-align: center;
     font-size: 4.8rem;
@@ -7226,6 +7278,16 @@ footer {
   margin-bottom: 0px; }
   .navbar a {
     color: #397979; }
+  .navbar.navbar-light {
+    background-color: #51c4c4;
+    border: 0px; }
+    .navbar.navbar-light a {
+      color: #fff; }
+      .navbar.navbar-light a:active {
+        background-color: rgba(0, 0, 0, 0.2); }
+      .navbar.navbar-light a:hover {
+        color: #eee;
+        background-color: transparent; }
   .navbar .navbar-brand {
     position: relative; }
     .navbar .navbar-brand img {

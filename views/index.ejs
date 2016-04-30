@@ -1,3 +1,4 @@
+<% style="light" %>
 <% include header %>
 
 <div class="features-group primary">
@@ -88,7 +89,7 @@
   </div>
 </div>
 
-<div class="features-group white">
+<div class="features-group white first-section">
   <a name="learnmore"></a>
   <div class="features feature-collapse">
     <ul role="tablist">
@@ -150,7 +151,7 @@
 </div>
 
 <div class="features features-tools">
-  <a name="tools"></a>
+  <a name="cli"></a>
   <div class="text">
     <h1>Command-line first</h1>
     <p>
@@ -184,50 +185,121 @@
   </ul>
 </div>
 
-<div class="features features-more">
-  <h1>And, that's not all...</h1>
-
-  <div class="feature feature-right">
-    <img src="/img/features/bandaid.svg" />
-    <div class="content content-large">
-    <h2>Limit long work periods</h2>
+<div class="features features-metrics">
+  <a name="metrics"></a>
+  <div class="text">
+    <h1>Metrics that matter</h1>
     <p>
-      Working for a long duration without a break can lead to adverse health effects.
-      Waltz can warn you when you work too long for one sitting, giving you metrics
-      to increase your daily well-being.
+      Other than a simple way to manage time, Waltz also gives you insight into
+      your work trends. When we give you data that easily summarizes the state of
+      a project and its clients, you get a clearer view into who contributed, what
+      has been completed, and when a task has been completed.
     </p>
-    </div>
   </div>
-
-  <div class="feature feature-right">
-    <img src="/img/features/readmebuttons.svg" />
-    <div class="content content-large">
-      <h2>Badges</h2>
-      <p>
-        At a glance, show the amount of unpaid time for any project, on any
-        branch, at any time on a project's <code>README.md</code>.
-      </p>
-    </div>
-  </div>
-
-  <div class="feature feature-right">
-    <img src="/img/features/heart.svg" />
-    <div class="content content-large">
-      <h2>We &lt;3 Open Source</h2>
-      <!-- <p>
-        As a thank you to the many open source projects behind Waltz, open source
-        projects get a free, all access pass. Private repos only cost a few
-        dollars a piece - for more information about private repositories, 
-        <a href="/pricing">take a look at our pricing details.</a>
-      </p> -->
-      <p>
-        As a thank you to the many open source projects behind Waltz, open source
-        projects get a free, all access pass. And, private projects, while we
-        are in beta, are free too!
-      </p>
+  
+  <div class="right">
+    <div class="chart-one">
+      <canvas id="chart-one" width="500" height="400"></canvas>
     </div>
   </div>
 </div>
+
+<div class="features features-more">
+  <h1>And, that's not all...</h1>
+
+  <div class="container">
+    <div class="feature subfeature">
+      <img src="/img/features/bandaid.svg" />
+      <div class="caption">
+        <h2>Limit long work periods</h2>
+        <p>
+          Working for a long duration without a break can lead to adverse health effects.
+          Waltz can warn you when you work too long for one sitting, giving you metrics
+          to increase your daily well-being.
+        </p>
+      </div>
+    </div>
+
+    <div class="feature subfeature">
+      <img src="/img/features/readmebuttons.svg" />
+      <div class="caption">
+        <h2>Badges</h2>
+        <p>
+          At a glance, show the amount of unpaid time for any project, on any
+          branch, at any time on a project's <code>README.md</code>.
+        </p>
+      </div>
+    </div>
+
+    <div class="feature subfeature">
+      <img src="/img/features/heart.svg" />
+      <div class="caption">
+        <h2>We &lt;3 Open Source</h2>
+        <!-- <p>
+          As a thank you to the many open source projects behind Waltz, open source
+          projects get a free, all access pass. Private repos only cost a few
+          dollars a piece - for more information about private repositories, 
+          <a href="/pricing">take a look at our pricing details.</a>
+        </p> -->
+        <p>
+          As a thank you to the many open source projects behind Waltz, open source
+          projects get a free, all access pass.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.0/Chart.js"></script>
+<script type="text/javascript">
+var ctx = document.getElementById("chart-one").getContext("2d");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        datasets: [{
+            label: 'Hours of work',
+            data: [5, 6, 8, 10, 7],
+            backgroundColor: "#51c4c4",
+            }, {
+              label: 'Commits',
+              data: [8, 10, 5, 15, 8],
+              backgroundColor: "#995fd4",
+            }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+
+<script type="text/javascript" src="/js/jquery-1.12.0.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.min.js"></script>
+<script type="text/javascript">
+var controller = new ScrollMagic.Controller();
+
+var scene = new ScrollMagic.Scene({
+  duration: 500,
+  offset: -50,
+  triggerElement: ".features-tools",
+})
+.setTween(".terminal", {
+  /* transform: 'translate3d(-500px, 0, 0)', */
+  height: "25em"
+})
+.addTo(controller);
+</script>
+
 
 <% include install_prompt %>
 <% include footer %>

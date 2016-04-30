@@ -4,6 +4,17 @@
   a { color: $brand-primary-dark; }
   margin-bottom: 0px;
 
+  // a primary colored navbar for the home page
+  &.navbar-light {
+    background-color: $brand-primary;
+    border: 0px;
+    a {
+      color: #fff;
+      &:active { background-color: rgba(0, 0, 0, 0.2); }
+      &:hover { color: #eee; background-color: transparent; }
+    }
+  }
+
   .navbar-brand {
     position: relative;
     img {
