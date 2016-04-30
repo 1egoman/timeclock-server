@@ -49,7 +49,7 @@ function animate() {
     triggerElement: ".features-tools",
   })
   .setTween(".terminal", {
-    height: "25em"
+    height: "28em"
   })
   .addTo(controller);
 }
