@@ -172,7 +172,7 @@
       </p>
     </div>
   </div>
-  <div class="features feature-collapse">
+  <div class="features feature-collapse owndata-section">
     <div class="text">
       <h2>Own your data</h2>
       <p>
@@ -181,7 +181,11 @@
         and versioned along with your code.
       </p>
     </div>
-    </ul>
+    <div class="glyph glyph-owndata">
+      <img src="/img/paw.svg" />
+      <i class="fa fa-lock"></i>
+    </div>
+
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane active" id="great-by-default">
         <img class="img-full" src="/img/features/great-by-default.svg" />
@@ -346,6 +350,7 @@ var scene = new ScrollMagic.Scene({
 .setTween(".invoice", {
   transform: 'translate3d(0px, 0, 0)',
   opacity: 1,
+  offset: -200,
 })
 .addTo(controller);
 
@@ -360,12 +365,22 @@ version.add(TweenMax.to(".timecard-state", 1, {opacity: 1}));
 
 var scene = new ScrollMagic.Scene({
   duration: 500,
-  offset: -200,
+  offset: -100,
   triggerElement: ".versioned-section",
 })
 .setTween(version)
 .addTo(controller);
 
+// own your data
+var scene = new ScrollMagic.Scene({
+  duration: 500,
+  offset: -50,
+  triggerElement: ".owndata-section",
+})
+.setTween(".glyph-owndata img", {
+  transform: 'translate3d(-55%, -20px, 0)',
+})
+.addTo(controller);
 
 // terminal
 var scene = new ScrollMagic.Scene({

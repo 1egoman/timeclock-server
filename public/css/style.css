@@ -6850,6 +6850,17 @@ button.close {
       .features-group .glyph-versioned .timecard-state.one .second {
         opacity: 0; }
 
+.features-group .glyph-owndata {
+  position: relative;
+  text-align: center; }
+  .features-group .glyph-owndata .fa-lock {
+    font-size: 14em;
+    color: #777777;
+    position: absolute; }
+  .features-group .glyph-owndata img {
+    position: absolute;
+    transform: translate3d(-200%, 100px, 0); }
+
 .features.features-tools {
   background-color: #8ac450;
   color: #fff;

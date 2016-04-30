@@ -138,6 +138,7 @@
   }
 }
 
+// version control animation
 .features-group .glyph-versioned {
   position: relative;
 
@@ -161,6 +162,21 @@
       background-color: $brand-primary;
       .second { opacity: 0; }
     }
+  }
+}
+
+// version control animation
+.features-group .glyph-owndata {
+  position: relative;
+  text-align: center;
+  .fa-lock {
+    font-size: 14em;
+    color: $gray-light;
+    position: absolute;
+  }
+  img {
+    position: absolute;
+    transform: translate3d(-200%, 100px, 0);
   }
 }
 
