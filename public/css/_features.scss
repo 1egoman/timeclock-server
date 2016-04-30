@@ -297,5 +297,6 @@
 .btn-50 + small {
   @include make-md-column(6);
   @include make-md-column-offset(6);
-  color: $gray-lighter;
+  color: #fff;
+  text-align: center;
 }

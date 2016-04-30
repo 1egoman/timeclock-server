@@ -7000,7 +7000,8 @@ button.close {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  color: #eeeeee; }
+  color: #fff;
+  text-align: center; }
   @media (min-width: 992px) {
     .btn-50 + small, .btn-50 + .repo-commit-node-author {
       float: left;
@@ -7278,16 +7279,18 @@ footer {
   margin-bottom: 0px; }
   .navbar a {
     color: #397979; }
-  .navbar.navbar-light {
+  .navbar.navbar-primary {
     background-color: #51c4c4;
     border: 0px; }
-    .navbar.navbar-light a {
+    .navbar.navbar-primary a {
       color: #fff; }
-      .navbar.navbar-light a:active {
+      .navbar.navbar-primary a:active {
         background-color: rgba(0, 0, 0, 0.2); }
-      .navbar.navbar-light a:hover {
+      .navbar.navbar-primary a:hover {
         color: #eee;
         background-color: transparent; }
+    .navbar.navbar-primary .fa-bars {
+      color: #fff; }
   .navbar .navbar-brand {
     position: relative; }
     .navbar .navbar-brand img {
