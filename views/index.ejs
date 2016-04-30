@@ -171,6 +171,9 @@
         contribute to a central timesheet.
       </p>
     </div>
+    <div class="glyph">
+      <img class="img-full" src="/img/features/collaborative.svg" />
+    </div>
   </div>
   <div class="features feature-collapse owndata-section">
     <div class="text">
@@ -184,21 +187,6 @@
     <div class="glyph glyph-owndata">
       <img src="/img/paw.svg" />
       <i class="fa fa-lock"></i>
-    </div>
-
-    <div class="tab-content">
-      <div role="tabpanel" class="tab-pane active" id="great-by-default">
-        <img class="img-full" src="/img/features/great-by-default.svg" />
-      </div>
-      <div role="tabpanel" class="tab-pane" id="version-controlled">
-        <img class="img-full" src="/img/features/version-controlled.svg" />
-      </div>
-      <div role="tabpanel" class="tab-pane" id="collaborative">
-        <img class="img-full" src="/img/features/collaborative.svg" />
-      </div>
-      <div role="tabpanel" class="tab-pane" id="own-your-data">
-        <img class="img-full" src="/img/features/own-your-data.svg" />
-      </div>
     </div>
   </div>
 </div>
@@ -389,7 +377,6 @@ var scene = new ScrollMagic.Scene({
   triggerElement: ".features-tools",
 })
 .setTween(".terminal", {
-  /* transform: 'translate3d(-500px, 0, 0)', */
   height: "25em"
 })
 .addTo(controller);
