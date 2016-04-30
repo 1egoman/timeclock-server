@@ -6768,7 +6768,7 @@ button.close {
     min-height: 1px;
     padding-left: 15px;
     padding-right: 15px;
-    min-height: 500px; }
+    min-height: 400px; }
     @media (min-width: 992px) {
       .features-group .glyph {
         right: 50%; } }
