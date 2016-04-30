@@ -92,46 +92,90 @@
 <div class="features-group white first-section">
   <a name="learnmore"></a>
   <div class="features feature-collapse">
-    <ul role="tablist">
-      <li role="presentation" class="active">
-        <a href="#great-by-default" aria-controls="great-by-default" role="tab" data-toggle="tab">
-          <h4>Great by default</h4>
-          <p>
-            Provide a name, a tagline, and a template, and Waltz will do the rest. Don't
-            like our templates? With minimal knowlege, design your own.
-            Beautiful timecards were never so easy!
-          </p>
-        </a>
-      </li>
-      <li role="presentation">
-        <a href="#version-controlled" aria-controls="version-controlled" role="tab" data-toggle="tab">
-          <h4>Version controlled</h4>
-          <p>
-            Because timesheets are stored with your code, easily diff work times across branches to
-            quickly determine the time spent on individual features.
-          </p>
-        </a>
-      </li>
-      <li role="presentation">
-        <a href="#collaborative" aria-controls="collaborative" role="tab" data-toggle="tab">
-          <h4>Collaborative</h4>
-          <p>
-            Because we integrate with pre-existing codebases, the collaborative workflow
-            one uses when working on a project lets multiple people each
-            contribute to a central timesheet.
-          </p>
-        </a>
-      </li>
-      <li role="presentation">
-        <a href="#own-your-data" aria-controls="own-your-data" role="tab" data-toggle="tab">
-          <h4>Own your data</h4>
-          <p>
-            When your data is in your hands, you can ensure what should stay private will.
-            Should you ever want to migrate data to another service, it's easily accessible
-            and versioned along with your code.
-          </p>
-        </a>
-      </li>
+    <div class="text">
+      <h2>Manage time without spreadsheets</h2>
+      <p>
+        Spreadsheets can turn into an unmanageable behemoth that is a chore to
+        use. Instead, Waltz will tell you how long you've worked and how much
+        you've earned so you can spend less time managing and more time doing. 
+      </p>
+    </div>
+    <div class="glyph glyph-invoice">
+      <div class="spreadsheet">
+        <table>
+          <tr>
+            <td>Paid for?</td>
+            <td>Date</td>
+            <td>Minutes</td>
+            <td>Task</td>
+          </tr>
+          <tr>
+            <td>Yes</td>
+            <td>5/4/16</td>
+            <td>20</td>
+            <td>Fixing a bug</td>
+          </tr>
+          <tr>
+            <td>No</td>
+            <td>5/4/16</td>
+            <td>50</td>
+            <td>Coordinating with others</td>
+          </tr>
+          <tr>
+            <td>No</td>
+            <td>5/4/16</td>
+            <td>150</td>
+            <td>Writing some new code</td>
+          </tr>
+        </table>
+      </div>
+      <div class="invoice">
+        <div class="invoice-header">
+          <h3>My Project</h3>
+        </div>
+        <ul class="invoice-items">
+          <li style="width: 40%;" class="sm"></li>
+          <li class="price"></li>
+          <li style="width: 50%;" class="md"></li>
+          <li class="price"></li>
+          <li style="width: 80%;" class="lg"></li>
+          <li class="price"></li>
+          <li style="width: 40%;" class="sm"></li>
+          <li class="price"></li>
+          <li style="width: 60%;" class="md"></li>
+          <li class="price"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="features feature-collapse">
+    <div class="text">
+      <h2>Version controlled</h2>
+      <p>
+        Because timesheets are stored with your code, easily diff work times across branches to
+        quickly determine the time spent on individual features.
+      </p>
+    </div>
+  </div>
+  <div class="features feature-collapse">
+    <div class="text">
+      <h2>Collaborative</h2>
+      <p>
+        Because we integrate with pre-existing codebases, the collaborative workflow
+        one uses when working on a project lets multiple people each
+        contribute to a central timesheet.
+      </p>
+    </div>
+  </div>
+  <div class="features feature-collapse">
+    <div class="text">
+      <h2>Own your data</h2>
+      <p>
+        When your data is in your hands, you can ensure what should stay private will.
+        Should you ever want to migrate data to another service, it's easily accessible
+        and versioned along with your code.
+      </p>
+    </div>
     </ul>
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane active" id="great-by-default">
@@ -288,6 +332,18 @@ var myChart = new Chart(ctx, {
 <script type="text/javascript">
 var controller = new ScrollMagic.Controller();
 
+var scene = new ScrollMagic.Scene({
+  duration: 500,
+  offset: -200,
+  triggerElement: ".first-section",
+})
+.setTween(".invoice", {
+  transform: 'translate3d(0px, 0, 0)',
+  opacity: 1,
+})
+.addTo(controller);
+
+// terminal
 var scene = new ScrollMagic.Scene({
   duration: 500,
   offset: -50,

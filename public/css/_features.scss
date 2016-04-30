@@ -48,6 +48,95 @@
   &.white { background-color: #fff; }
   &.gray { background-color: $gray-lighter; }
   &.primary { background-color: $brand-primary; }
+
+  .text {
+    @include make-xs-column(12);
+    @include make-md-column-push(6);
+    @include make-md-column(6);
+    font-size: 1.5em;
+    margin-bottom: 2em;
+    @media (min-width: $screen-md-min) {
+      padding: 0em 2em;
+      margin-bottom: 0em;
+    }
+  }
+  .glyph {
+    @include make-xs-column(12);
+    @include make-md-column-pull(6);
+    @include make-md-column(6);
+  }
+
+}
+
+.glyph-invoice {
+
+  .invoice {
+    position: absolute;
+    width: 100%;
+    transform: translate3d(-500%, 0, 0);
+    background-color: #fff;
+  }
+
+  .spreadsheet {
+    position: absolute;
+    width: 100%;
+    table {
+      width: 100%;
+      height: 200px;
+    }
+    td {
+      background-color: $gray-lighter;
+      border: 2px solid #fff;
+      padding: 0.5em;
+    }
+  }
+
+  .invoice-header {
+    background-color: $brand-danger;
+    color: #fff;
+    padding: 0.5em 1em;
+    margin-bottom: 0.5em;
+  }
+
+  // each item
+  .invoice-items {
+    padding: 0em;
+    width: 100%;
+    li {
+      width: 50%;
+      background-color: $gray;
+      height: 1em;
+      margin: 0.8em;
+      display: block;
+      float: left;
+    }
+
+    li.price {
+      width: 10%;
+      float: right;
+      color: $gray;
+      &::before {
+        content: "$";
+        margin-left: -2em;
+        margin-top: -0.2em;
+        display: block;
+      }
+    }
+
+    // color the larger bars
+    li.sm, li.sm + .price {
+      color: $brand-danger;
+      background-color: $brand-danger;
+    }
+    li.md, li.md + .price {
+      color: $brand-warning;
+      background-color: $brand-warning;
+    }
+    li.lg, li.lg + .price {
+      color: $brand-success;
+      background-color: $brand-success;
+    }
+  }
 }
 
 .features.features-tools {
