@@ -65,6 +65,10 @@
     @include make-md-column-pull(6);
     @include make-md-column(6);
     min-height: 400px;
+
+    .img-full {
+      width: 100%;
+    }
   }
 }
 

@@ -6776,6 +6776,8 @@ button.close {
       .features-group .glyph {
         float: left;
         width: 50%; } }
+    .features-group .glyph .img-full {
+      width: 100%; }
 
 .glyph-invoice .invoice {
   position: absolute;
