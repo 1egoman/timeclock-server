@@ -52,7 +52,7 @@ function doError(req, res, code, msg) {
 /* GET home page. */
 function index(req, res) {
   res.render('index', {
-    title: 'Waltz',
+    title: 'Waltz | Time Tracking and Metrics for Freelance Developers',
     user: req.user,
     ab: req.session.ab,
   });
