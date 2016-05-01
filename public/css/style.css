@@ -6699,6 +6699,8 @@ button.close {
 .features.features-hero {
   background-color: #51c4c4;
   color: #fff; }
+  .features.features-hero.info {
+    background-color: #8a51c4; }
   .features.features-hero h1 {
     text-align: center;
     font-weight: bold;
@@ -6733,6 +6735,8 @@ button.close {
     background-color: #eeeeee; }
   .features-group.primary {
     background-color: #51c4c4; }
+  .features-group.info {
+    background-color: #8a51c4; }
   .features-group .text {
     position: relative;
     float: left;
@@ -7421,6 +7425,18 @@ footer {
         color: #eee;
         background-color: transparent; }
     .navbar.navbar-primary .fa-bars {
+      color: #fff; }
+  .navbar.navbar-info {
+    background-color: #8a51c4;
+    border: 0px; }
+    .navbar.navbar-info a {
+      color: #fff; }
+      .navbar.navbar-info a:active {
+        background-color: rgba(0, 0, 0, 0.2); }
+      .navbar.navbar-info a:hover {
+        color: #eee;
+        background-color: transparent; }
+    .navbar.navbar-info .fa-bars {
       color: #fff; }
   .navbar .navbar-brand {
     position: relative; }

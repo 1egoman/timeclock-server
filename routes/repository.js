@@ -54,8 +54,10 @@ function index(req, res) {
   res.render('index', {
     title: 'Waltz',
     user: req.user,
+    ab: req.session.ab,
   });
 }
+
 function pricing(req, res) {
   res.render('pricing', {
     title: 'Waltz Pricing',

@@ -10,6 +10,10 @@
   background-color: $brand-primary;
   color: #fff;
 
+  &.info {
+    background-color: $brand-info;
+  }
+
   h1 {
     text-align: center;
     font-weight: bold;
@@ -48,6 +52,7 @@
   &.white { background-color: #fff; }
   &.gray { background-color: $gray-lighter; }
   &.primary { background-color: $brand-primary; }
+  &.info { background-color: $brand-info; }
 
   .text {
     @include make-xs-column(12);

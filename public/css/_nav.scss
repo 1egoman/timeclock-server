@@ -16,6 +16,18 @@
 
     .fa-bars { color: #fff; }
   }
+  // a info colored navbar for the home page
+  &.navbar-info {
+    background-color: $brand-info;
+    border: 0px;
+    a {
+      color: #fff;
+      &:active { background-color: rgba(0, 0, 0, 0.2); }
+      &:hover { color: #eee; background-color: transparent; }
+    }
+
+    .fa-bars { color: #fff; }
+  }
 
   .navbar-brand {
     position: relative;
