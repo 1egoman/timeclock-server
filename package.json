@@ -39,7 +39,7 @@
     "math-helpers": "^0.1.0",
     "micro-strptime": "^0.2.2",
     "mixpanel": "^0.4.0",
-    "mock-fs": "^3.7.0",
+    "mock-fs": "^3.9.0",
     "moment": "^2.12.0",
     "mongoose": "^4.4.4",
     "morgan": "^1.6.1",
