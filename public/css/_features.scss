@@ -163,9 +163,10 @@
       opacity: 1;
       transform: translate3d(50%, 0, 0);
       width: 50%;
-      background-color: $brand-primary;
-      .second { opacity: 0; }
+      background-color: $brand-danger;
     }
+    &.two { background-color: $brand-primary; }
+    &.three { background-color: $brand-success; }
   }
 }
 

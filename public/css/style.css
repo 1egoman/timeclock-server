@@ -6848,9 +6848,11 @@ button.close {
       opacity: 1;
       transform: translate3d(50%, 0, 0);
       width: 50%;
+      background-color: #c45151; }
+    .features-group .glyph-versioned .timecard-state.two {
       background-color: #51c4c4; }
-      .features-group .glyph-versioned .timecard-state.one .second {
-        opacity: 0; }
+    .features-group .glyph-versioned .timecard-state.three {
+      background-color: #8ac450; }
 
 .features-group .glyph-owndata {
   position: relative;
