@@ -85,6 +85,7 @@
     "load-grunt-tasks": "^3.2.0",
     "lolex": "^1.4.0",
     "node-mocks-http": "^1.5.1",
+    "node-sass": "^3.6.0",
     "sinon": "^1.17.3",
     "socket-io-mock": "^1.0.1",
     "time-grunt": "^1.2.1"
