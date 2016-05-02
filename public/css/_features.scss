@@ -372,10 +372,10 @@
       transform-origin: bottom center;
 
       &.start {
-        background-color: $brand-primary;
+        background-color: $brand-success;
       }
       &.end {
-        background-color: $brand-success;
+        background-color: $brand-primary;
       }
     }
     .center {

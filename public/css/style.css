@@ -7064,9 +7064,9 @@ button.close {
   transform: rotate(360deg);
   transform-origin: bottom center; }
   .features.features-watch .glyph .hand.start {
-    background-color: #51c4c4; }
-  .features.features-watch .glyph .hand.end {
     background-color: #8ac450; }
+  .features.features-watch .glyph .hand.end {
+    background-color: #51c4c4; }
 
 .features.features-watch .glyph .center {
   position: absolute;
