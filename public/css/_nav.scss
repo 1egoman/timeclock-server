@@ -13,6 +13,7 @@
       &:active { background-color: rgba(0, 0, 0, 0.2); }
       &:hover { color: #eee; background-color: transparent; }
     }
+    .dropdown li a { color: $text-color; }
 
     .fa-bars { color: #fff; }
   }
@@ -25,6 +26,7 @@
       &:active { background-color: rgba(0, 0, 0, 0.2); }
       &:hover { color: #eee; background-color: transparent; }
     }
+    .dropdown li a { color: $text-color; }
 
     .fa-bars { color: #fff; }
   }

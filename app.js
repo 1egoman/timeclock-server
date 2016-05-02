@@ -117,7 +117,7 @@ app.get('/auth/logout', (req, res) => {
 // Routes
 // ------------------------------------------------------------------------------
 app.get('/', mixpanelHelpers.trackPageView, repo.index);
-app.get('/features', mixpanelHelpers.trackPageView, (req, res) => res.redirect("/"));
+app.get('/features', mixpanelHelpers.trackPageView, repo.features);
 app.get('/pricing', mixpanelHelpers.trackPageView, repo.pricing);
 app.get('/press', mixpanelHelpers.trackPageView, repo.presskit);
 app.get('/sample-invoice', mixpanelHelpers.trackPageView, (req, res) => res.redirect("/"));

@@ -325,6 +325,72 @@
   }
 }
 
+// signup at bottom of features page
+.features.features-signup {
+  @extend .container;
+  text-align: center;
+  padding-bottom: 1em;
+
+  h2 {
+    margin-bottom: 1em;
+  }
+}
+
+// "no more 'i forgot to bill that'" on features page
+.features.features-watch {
+  .glyph i {
+    font-size: 10em;
+  }
+
+  // a clock that has hands that spin
+  $clock-size: 16em;
+  $hand-width: 8px;
+  $center-size: 8%;
+  .glyph {
+    .border {
+      border: $hand-width solid $gray-light;
+      border-radius: $clock-size / 2;
+      width: $clock-size;
+      height: $clock-size;
+
+      position: absolute;
+      left: 50%;
+      top: 2em;
+      margin-left: -8em;
+      overflow: hidden;
+    }
+    .hand {
+      position: absolute;
+      left: 50%;
+      width: $hand-width;
+      margin-left: -1 * $hand-width / 2;
+
+      height: 50%;
+
+      // rotate around the center of the clock
+      transform: rotate(360deg);
+      transform-origin: bottom center;
+
+      &.start {
+        background-color: $brand-primary;
+      }
+      &.end {
+        background-color: $brand-success;
+      }
+    }
+    .center {
+      position: absolute;
+      width: $center-size;
+      height: $center-size;
+      top: 50% - ($center-size / 2);
+      left: 50% - ($center-size / 2);
+      background-color: $brand-primary;
+      border-radius: 100%;
+      z-index: 100;
+    }
+  }
+}
+
 // the "collapsable" tab-esc feature organiser
 .feature-collapse {
   @extend .container;

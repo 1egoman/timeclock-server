@@ -57,6 +57,13 @@ function index(req, res) {
     ab: req.session.ab,
   });
 }
+function features(req, res) {
+  res.render('features', {
+    title: 'Waltz | Time Tracking and Metrics for Freelance Developers',
+    user: req.user,
+    ab: req.session.ab,
+  });
+}
 
 function pricing(req, res) {
   res.render('pricing', {
@@ -119,5 +126,6 @@ module.exports = {
   doReport,
   index,
   pricing,
+  features,
   presskit,
 }

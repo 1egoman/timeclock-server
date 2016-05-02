@@ -1,0 +1,96 @@
+<% style = ab.bgColor || 'primary' %>
+<% style = 'primary' %>
+<% include header %>
+
+<div class="features-group <%= style %>">
+  <div class="features features-hero <%= style %>">
+    <h1>Waltz makes</h1>
+    <h2>beautiful version-controlled timesheets</h2>
+    <h3>for freelance developers.</h3>
+
+    <div class="features-getting-started-buttons">
+      <% include get_started_buttons %>
+    </div>
+  </div>
+</div>
+
+<div class="features-group">
+  <div class="features">
+    <h1>By developers, for developers</h1>
+    <p>(cli stuff)</p>
+  </div>
+
+  <div class="features features-watch">
+    <div class="text">
+      <h1>No more "I forgot to bill that"</h1>
+      <p>
+        We know from personal experiences that forgetting to mark start and end time
+        can be costly. Waltz has that taken care of: run <code>waltz watch</code> in
+        your project directory. When you edit a file, we'll clock you in like magic
+        and when you get up to take a break we'll mark that too.
+      </p>
+    </div>
+
+    <div class="glyph">
+      <div class="border">
+        <div class="center"></div>
+        <div class="hand start"></div>
+        <div class="hand end" style="transform: rotate(120deg);"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <h1>Designed for teams</h1> (collaboration)
+  <h1>Stay healthy</h1> (limited work length)
+
+  <h1>Gain insight into productivity</h1>
+  <p>
+    Other than a simple way to manage time, Waltz also gives you insight into
+    your work trends. When we give you data that easily summarizes the state of
+    a project and its clients, you get a clearer view into who contributed, what
+    has been finished so far, and when a task has been completed. 
+  </p>
+  img: busts that fold out, one with a star
+  <h1>Learn which clients are the best</h1>
+  <p>
+    We understand that some clients aren't very fun to work for. That's why we've
+    not only tracked your work history but also the client's - helping you understand
+    which clients pay on time and how much a client owes you. Additionally, we
+    make data easy to understand you by summarizing a client's payment history
+    into one easy number to quickly and easily report changes in payment
+    history.
+  </p>
+
+
+  img: cat grabbing lock
+  <h1>Always own your data</h1>
+  <p>
+    When your data is in your hands, you can ensure what should stay private
+    will. Should you ever want to migrate data to another service, it's easily
+    accessible and versioned along with your code.
+  </p>
+
+  <h1>The best code is open</h1>
+  <p>
+    Because we believe in the mission of open source software, the waltz command
+    line app will always be open source and can be used independently of the
+    cloud.
+  </p>
+  <a href="//github.com/waltz-app/waltz-cli">Waltz CLI on Github</a>
+  <p>
+    We are extremely greatful to all the open source projects that power Waltz.
+    As a thank-you to the community, all open source projects on Waltz are free
+    for anyone, and will always be in the future. We can only hope that by giving
+    project maintainers the power to track time will give back to the community.
+  </p>
+
+</div>
+<div class="features-group white first-section">
+  <div class="features features-signup">
+    <h2>Waltz is free for all public projects.</h2>
+    <a class="btn btn-xl btn-success" href="/login">Create a new project</a>
+  </div>
+</div>
+
+<% include footer %>
