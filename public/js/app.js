@@ -52,6 +52,19 @@ function animate() {
     height: "28em"
   })
   .addTo(controller);
+
+  // features
+
+  // clock
+  var scene = new ScrollMagic.Scene({
+    duration: 500,
+    offset: -50,
+    triggerElement: ".features-watch",
+  })
+  .setTween(TweenMax.to(".features-watch .hand.end", 1, {
+    rotation: 360,
+  }))
+  .addTo(controller);
 }
 
 $(document).ready(function () {

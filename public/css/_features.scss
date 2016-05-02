@@ -348,7 +348,7 @@
   $center-size: 8%;
   .glyph {
     .border {
-      border: $hand-width solid $gray-light;
+      border: 1em solid $gray-light;
       border-radius: $clock-size / 2;
       width: $clock-size;
       height: $clock-size;
@@ -372,10 +372,10 @@
       transform-origin: bottom center;
 
       &.start {
-        background-color: $brand-primary;
+        background-color: $brand-success;
       }
       &.end {
-        background-color: $brand-success;
+        background-color: $brand-primary;
       }
     }
     .center {
