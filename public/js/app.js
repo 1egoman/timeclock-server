@@ -58,7 +58,7 @@ function animate() {
   // clock
   var scene = new ScrollMagic.Scene({
     duration: 500,
-    offset: -50,
+    offset: 300,
     triggerElement: ".features-watch",
   })
   .setTween(TweenMax.to(".features-watch .hand.end", 1, {
@@ -68,14 +68,6 @@ function animate() {
 
   // clients
   var clientTween = new TimelineMax();
-  clientTween.add(TweenMax.to(".features-clients .fa-user.three", 0.5, {
-    right: 0,
-    opacity: 1,
-  }));
-  clientTween.add(TweenMax.to(".features-clients .fa-user.one", 0.5, {
-    left: 0,
-    opacity: 1,
-  }));
   clientTween.add(TweenMax.to(".features-clients .fa-user.two, .features-clients .fa-user.three", 0.5, {
     opacity: 0.5,
   }));
@@ -86,6 +78,34 @@ function animate() {
     triggerElement: ".features-clients",
   })
   .setTween(clientTween)
+  .addTo(controller);
+
+  // open source code
+  var openSourceTween = new TimelineMax();
+  openSourceTween.add(TweenMax.to(".features-opencode .binary.one", 0.5, {
+    rotation: 20,
+    left: -30,
+    opacity: 1,
+  }), 0);
+  openSourceTween.add(TweenMax.to(".features-opencode .binary.two", 0.5, {
+    rotation: -15,
+    left: 150,
+    top: 20,
+    opacity: 1,
+  }), 0);
+  openSourceTween.add(TweenMax.to(".features-opencode .binary.three", 0.5, {
+    rotation: 35,
+    left: 160,
+    top: 220,
+    opacity: 1,
+  }), 0);
+
+  var scene = new ScrollMagic.Scene({
+    duration: 400,
+    offset: -200,
+    triggerElement: ".features-opencode",
+  })
+  .setTween(openSourceTween)
   .addTo(controller);
 }
 
