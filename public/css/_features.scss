@@ -338,17 +338,18 @@
 
 // "no more 'i forgot to bill that'" on features page
 .features.features-watch {
+  @extend .container;
   .glyph i {
     font-size: 10em;
   }
 
   // a clock that has hands that spin
   $clock-size: 16em;
-  $hand-width: 8px;
-  $center-size: 8%;
+  $hand-width: 12px;
+  $center-size: 10%;
   .glyph {
     .border {
-      border: 1em solid $gray-light;
+      border: 1em solid $brand-primary;
       border-radius: $clock-size / 2;
       width: $clock-size;
       height: $clock-size;
@@ -362,10 +363,11 @@
     .hand {
       position: absolute;
       left: 50%;
+      top: 5%;
       width: $hand-width;
       margin-left: -1 * $hand-width / 2;
 
-      height: 50%;
+      height: 45%;
 
       // rotate around the center of the clock
       transform: rotate(360deg);
@@ -387,6 +389,44 @@
       background-color: $brand-primary;
       border-radius: 100%;
       z-index: 100;
+    }
+  }
+}
+
+// "Learn which clients are the best" on the features page
+.features.features-clients {
+  @extend .container;
+  .glyph {
+    text-align: center;
+    .fa-user {
+      position: relative;
+      font-size: 132px;
+      top: 0.5em;
+
+      &.one {
+        left: 127px;
+        color: $brand-primary;
+        padding-right: 20px;
+        opacity: 0;
+
+        .star {
+          width: 0.35em;
+          height: 0.35em;
+          display: block;
+          background-image: url(/img/star.png);
+          background-repeat: no-repeat;
+          background-size: 0.35em;
+
+          position: absolute;
+          top: 50px;
+        }
+      }
+      &.three {
+        right: 127px;
+        padding-left: 20px;
+        opacity: 0;
+        color: $brand-info;
+      }
     }
   }
 }

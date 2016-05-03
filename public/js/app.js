@@ -65,6 +65,28 @@ function animate() {
     rotation: 360,
   }))
   .addTo(controller);
+
+  // clients
+  var clientTween = new TimelineMax();
+  clientTween.add(TweenMax.to(".features-clients .fa-user.three", 0.5, {
+    right: 0,
+    opacity: 1,
+  }));
+  clientTween.add(TweenMax.to(".features-clients .fa-user.one", 0.5, {
+    left: 0,
+    opacity: 1,
+  }));
+  clientTween.add(TweenMax.to(".features-clients .fa-user.two, .features-clients .fa-user.three", 0.5, {
+    opacity: 0.5,
+  }));
+
+  var scene = new ScrollMagic.Scene({
+    duration: 400,
+    offset: -200,
+    triggerElement: ".features-clients",
+  })
+  .setTween(clientTween)
+  .addTo(controller);
 }
 
 $(document).ready(function () {
