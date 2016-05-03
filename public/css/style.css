@@ -6696,6 +6696,9 @@ button.close {
 .features p, .features h1, .features h2, .features h3 {
   font-weight: lighter; }
 
+.features.white {
+  color: #fff; }
+
 .features.features-hero {
   background-color: #51c4c4;
   color: #fff; }
@@ -6737,6 +6740,8 @@ button.close {
     background-color: #51c4c4; }
   .features-group.info {
     background-color: #8a51c4; }
+  .features-group.success {
+    background-color: #8ac450; }
   .features-group .text {
     position: relative;
     float: left;
@@ -6761,6 +6766,21 @@ button.close {
       .features-group .text {
         padding: 0em 2em;
         margin-bottom: 0em; } }
+    .features-group .text.full {
+      position: relative;
+      min-height: 1px;
+      padding-left: 15px;
+      padding-right: 15px; }
+      @media (min-width: 992px) {
+        .features-group .text.full {
+          float: left;
+          width: 100%; } }
+      @media (min-width: 992px) {
+        .features-group .text.full {
+          left: 0%; } }
+      .features-group .text.full h1 {
+        font-size: 2.4em;
+        margin-bottom: 0.5em; }
   .features-group .glyph {
     position: relative;
     float: left;
@@ -6782,6 +6802,21 @@ button.close {
         width: 50%; } }
     .features-group .glyph .img-full {
       width: 100%; }
+  @media (min-width: 992px) {
+    .features-group.flipped .text {
+      right: -50%; } }
+  @media (min-width: 992px) {
+    .features-group.flipped .text {
+      left: -50%; } }
+  @media (min-width: 992px) {
+    .features-group.flipped .text.full {
+      left: 0%; } }
+  @media (min-width: 992px) {
+    .features-group.flipped .glyph {
+      right: 0%; } }
+  @media (min-width: 992px) {
+    .features-group.flipped .glyph {
+      left: 50%; } }
 
 .glyph-invoice .invoice {
   position: absolute;
@@ -6867,10 +6902,10 @@ button.close {
     position: absolute; }
   .features-group .glyph-owndata img {
     position: absolute;
-    transform: translate3d(-200%, 100px, 0); }
+    transform: translate3d(-300%, 100px, 0); }
 
 .features.features-tools {
-  background-color: #8ac450;
+  background-color: #8a51c4;
   color: #fff;
   font-size: 1.2em;
   padding: 2em; }
@@ -7083,25 +7118,19 @@ button.close {
   text-align: center; }
   .features.features-clients .glyph .fa-user {
     position: relative;
-    font-size: 132px;
-    top: 0.5em; }
-    .features.features-clients .glyph .fa-user.one {
-      left: 0px;
-      color: #51c4c4;
-      padding-right: 20px; }
-      .features.features-clients .glyph .fa-user.one .star {
-        width: 0.35em;
-        height: 0.35em;
-        display: block;
-        background-image: url(/img/star.png);
-        background-repeat: no-repeat;
-        background-size: 0.35em;
-        position: absolute;
-        top: 50px; }
-    .features.features-clients .glyph .fa-user.three {
-      right: 0px;
-      padding-left: 20px;
-      color: #8a51c4; }
+    font-size: 12em;
+    top: 0.5em;
+    color: #fff;
+    color: #51c4c4; }
+    .features.features-clients .glyph .fa-user .star {
+      width: 0.35em;
+      height: 0.35em;
+      display: block;
+      background-image: url(/img/star.png);
+      background-repeat: no-repeat;
+      background-size: 0.35em;
+      position: absolute;
+      top: 0.4em; }
 
 .features.features-opencode {
   margin: 3.2rem auto; }

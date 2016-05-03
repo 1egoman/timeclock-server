@@ -2,6 +2,8 @@
   p, h1, h2, h3 {
     font-weight: lighter;
   }
+
+  &.white { color: #fff; }
 }
 
 // bold, intro text
@@ -53,6 +55,7 @@
   &.gray { background-color: $gray-lighter; }
   &.primary { background-color: $brand-primary; }
   &.info { background-color: $brand-info; }
+  &.success { background-color: $brand-success; }
 
   .text {
     @include make-xs-column(12);
@@ -64,6 +67,17 @@
       padding: 0em 2em;
       margin-bottom: 0em;
     }
+
+    // full-width div
+    &.full {
+      @include make-md-column(12);
+      @include make-md-column-push(0);
+
+      h1 {
+        font-size: 2.4em;
+        margin-bottom: 0.5em;
+      }
+    }
   }
   .glyph {
     @include make-xs-column(12);
@@ -73,6 +87,20 @@
 
     .img-full {
       width: 100%;
+    }
+  }
+
+  &.flipped {
+    .text {
+      @include make-md-column-pull(-6);
+      @include make-md-column-push(-6);
+      &.full {
+        @include make-md-column-push(0);
+      }
+    }
+    .glyph {
+      @include make-md-column-pull(0);
+      @include make-md-column-push(6);
     }
   }
 }
@@ -186,13 +214,13 @@
   }
   img {
     position: absolute;
-    transform: translate3d(-200%, 100px, 0);
+    transform: translate3d(-300%, 100px, 0);
   }
 }
 
 .features.features-tools {
   @extend .container-fluid;
-  background-color: $brand-success;
+  background-color: $brand-info;
   color: #fff;
 
   // make the font-size / padding greater on bigger screens
@@ -400,30 +428,20 @@
     text-align: center;
     .fa-user {
       position: relative;
-      font-size: 132px;
+      font-size: 12em;
       top: 0.5em;
+      color: #fff;
+      color: $brand-primary;
+      .star {
+        width: 0.35em;
+        height: 0.35em;
+        display: block;
+        background-image: url(/img/star.png);
+        background-repeat: no-repeat;
+        background-size: 0.35em;
 
-      &.one {
-        left: 0px;
-        color: $brand-primary;
-        padding-right: 20px;
-
-        .star {
-          width: 0.35em;
-          height: 0.35em;
-          display: block;
-          background-image: url(/img/star.png);
-          background-repeat: no-repeat;
-          background-size: 0.35em;
-
-          position: absolute;
-          top: 50px;
-        }
-      }
-      &.three {
-        right: 0px;
-        padding-left: 20px;
-        color: $brand-info;
+        position: absolute;
+        top: 0.4em;
       }
     }
   }

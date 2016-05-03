@@ -232,48 +232,11 @@
   </div>
 </div>
 
-<div class="features features-more">
-  <h1>And, that's not all...</h1>
-
-  <div class="container">
-    <div class="feature subfeature">
-      <img src="/img/features/bandaid.svg" />
-      <div class="caption">
-        <h2>Limit long work periods</h2>
-        <p>
-          Working for a long duration without a break can lead to adverse health effects.
-          Waltz can warn you when you work too long for one sitting, giving you metrics
-          to increase your daily well-being.
-        </p>
-      </div>
-    </div>
-
-    <div class="feature subfeature">
-      <img src="/img/features/readmebuttons.svg" />
-      <div class="caption">
-        <h2>Badges</h2>
-        <p>
-          At a glance, show the amount of unpaid time for any project, on any
-          branch, at any time on a project's <code>README.md</code>.
-        </p>
-      </div>
-    </div>
-
-    <div class="feature subfeature">
-      <img src="/img/features/heart.svg" />
-      <div class="caption">
-        <h2>We &lt;3 Open Source</h2>
-        <!-- <p>
-          As a thank you to the many open source projects behind Waltz, open source
-          projects get a free, all access pass. Private repos only cost a few
-          dollars a piece - for more information about private repositories, 
-          <a href="/pricing">take a look at our pricing details.</a>
-        </p> -->
-        <p>
-          As a thank you to the many open source projects behind Waltz, open source
-          projects get a free, all access pass.
-        </p>
-      </div>
+<div class="features-group success flipped">
+  <div class="features feature-collapse white">
+    <div class="text full">
+      <h1 class="text-center">Get started in 10 minutes.</h1>
+      <% include get_started_buttons %>
     </div>
   </div>
 </div>
@@ -310,5 +273,4 @@ var myChart = new Chart(ctx, {
 
 
 <% includeGSAP = true %>
-<% include install_prompt %>
 <% include footer %>
