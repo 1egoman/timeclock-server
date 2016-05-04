@@ -139,6 +139,7 @@ $(document).ready(function () {
   $("[ref=learnmore]").on("click", function() { mixpanel.track("click-learnmore") });
   $("[ref=signin]").on("click", function() { mixpanel.track("click-login", {from: "gettingstarted"}) });
   $("[ref=loginnav]").on("click", function() { mixpanel.track("click-login", {from: "nav"}) });
+  $("[ref=ghcli]").on("click", function() { mixpanel.track("click-github-cli") });
 
   // animations for home page
   if (typeof ScrollMagic !== "undefined") animate();

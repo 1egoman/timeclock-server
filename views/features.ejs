@@ -14,17 +14,6 @@
 </div>
 
 <div class="features-group">
-  <div class="features">
-    <div class="text">
-      <h1>By developers, for developers</h1>
-      <p>(cli stuff)</p>
-    </div>
-    <div class="glyph">
-    </div>
-  </div>
-
-
-
   <div class="features features-watch">
     <div class="text">
       <h1>No more "I forgot to bill that"</h1>
@@ -57,6 +46,41 @@
     <div class="glyph">
       <img class="img-full" src="/img/features/collaborative.svg" />
     </div>
+  </div>
+
+  <div class="features features-tools">
+    <a name="cli"></a>
+    <div class="text">
+      <h1>Command-line first</h1>
+      <p>
+        Programmers spend most of their time in a terminal. With one command,
+        quickly clock in and out, preview time worked, or generate a report.
+        Plus, version control with git is baked in from the start to manage
+        how time is tracked to provide a simple way to store and access time data
+        from anywhere.
+      </p>
+    </div>
+    <ul class="terminal">
+      <li class="command">waltz init</li>
+      <li>
+        We're all set! Start work with
+        <span class="text-primary">waltz in</span> !
+      </li>
+      <li class="command">waltz in</li>
+      <li>Checked in. GO!</li>
+      <li class="command">waltz out</li>
+      <li>Checked out.</li>
+      <li class="command">waltz ls</li>
+      <li>Hours Worked:</li>
+      <li>
+        Fri May 10
+        <span class="tab"></span>
+        <span class="text-warning">9:00:00 - 10:00:00</span>
+      </li> 
+      <li>About 1 hour and 0 minutes of work</li>
+      <li class="command">waltz online</li>
+      <li>Opening <span class="text-primary">waltzapp.co/example/app</span> ...</li>
+    </ul>
   </div>
 </div>
 
@@ -132,10 +156,12 @@
         cloud.
       </p>
       <a
-        class="btn btn-info btn-block"
+        class="btn btn-info btn-block btn-lg"
+        style="width: 50%; margin: 2em auto;"
         href="//github.com/waltz-app/waltz-cli"
+        ref="ghcli"
       >Waltz CLI on Github</a>
-      <p>
+      <p class="small">
         We are extremely greatful to all the open source projects that power Waltz.
         As a thank-you to the community, all open source projects on Waltz are free
         for anyone, and will always be in the future. We can only hope that by giving
