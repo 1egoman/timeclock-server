@@ -1,5 +1,6 @@
 {
   "name": "waltz-server",
+  "description": "The serverside for an app for managing timesheets for developers",
   "version": "0.0.1",
   "private": true,
   "scripts": {
