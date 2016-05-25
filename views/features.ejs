@@ -1,0 +1,190 @@
+<% style = ab.bgColor || 'primary' %>
+<% style = 'primary' %>
+<% include header %>
+
+<div class="features-group <%= style %>">
+  <div class="features features-hero <%= style %>">
+    <h1>Waltz makes</h1>
+    <h2>beautiful version-controlled timesheets</h2>
+    <h3>for freelance developers.</h3>
+
+    <div class="features-getting-started-buttons">
+    </div>
+  </div>
+</div>
+
+<div class="features-group">
+  <div class="features features-watch">
+    <div class="text">
+      <h1>No more "I forgot to bill that"</h1>
+      <p>
+        We know from personal experiences that forgetting to mark start and end time
+        can be costly. Waltz has that taken care of: run <code>waltz watch</code> in
+        your project directory. When you edit a file, we'll clock you in like magic
+        and when you get up to take a break we'll mark that too.
+      </p>
+    </div>
+
+    <div class="glyph">
+      <div class="border">
+        <div class="center"></div>
+        <div class="hand start"></div>
+        <div class="hand end"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="features feature-collapse">
+    <div class="text">
+      <h1>Designed for teams</h1>
+      <p>
+        Because we integrate with pre-existing codebases, the collaborative workflow
+        one uses when working on a project lets multiple people each
+        contribute to a central timesheet.
+      </p>
+    </div>
+    <div class="glyph">
+      <img class="img-full" src="/img/features/collaborative.svg" />
+    </div>
+  </div>
+
+  <div class="features features-tools">
+    <a name="cli"></a>
+    <div class="text">
+      <h1>Command-line first</h1>
+      <p>
+        Programmers spend most of their time in a terminal. With one command,
+        quickly clock in and out, preview time worked, or generate a report.
+        Plus, version control with git is baked in from the start to manage
+        how time is tracked to provide a simple way to store and access time data
+        from anywhere.
+      </p>
+    </div>
+    <ul class="terminal">
+      <li class="command">waltz init</li>
+      <li>
+        We're all set! Start work with
+        <span class="text-primary">waltz in</span> !
+      </li>
+      <li class="command">waltz in</li>
+      <li>Checked in. GO!</li>
+      <li class="command">waltz out</li>
+      <li>Checked out.</li>
+      <li class="command">waltz ls</li>
+      <li>Hours Worked:</li>
+      <li>
+        Fri May 10
+        <span class="tab"></span>
+        <span class="text-warning">9:00:00 - 10:00:00</span>
+      </li> 
+      <li>About 1 hour and 0 minutes of work</li>
+      <li class="command">waltz online</li>
+      <li>Opening <span class="text-primary">waltzapp.co/example/app</span> ...</li>
+    </ul>
+  </div>
+</div>
+
+<div class="features-group info flipped">
+  <div class="features feature-collapse white">
+    <div class="text full">
+      <h1>Gain insight into your productivity</h1>
+      <p>
+        Other than a simple way to manage time, Waltz also gives you insight into
+        your work trends. When we give you data that easily summarizes the state of
+        a project and its clients, you get a clearer view into who contributed, what
+        has been finished so far, and when a task has been completed. 
+      </p>
+    </div>
+  </div>
+
+  <div class="features features-clients white">
+    <div class="glyph">
+      <i class="fa fa-user" aria-hidden="true">
+        <span class="star"></span>
+      </i>
+    </div>
+    <div class="text">
+      <h1>Learn which clients are the best</h1>
+      <p>
+        We understand that some clients aren't very fun to work for. That's why we've
+        not only tracked your work history but also the client's - helping you understand
+        which clients pay on time and how much a client owes you. Additionally, we
+        make data easy to understand you by summarizing a client's payment history
+        into one easy number to quickly and easily report changes in payment
+        history.
+      </p>
+    </div>
+  </div>
+
+  <div class="features feature-collapse white">
+    <div class="glyph">
+      <img src="/img/features/bandaid.svg" class="img-full" />
+    </div>
+    <div class="text">
+      <h1>Stay healthy</h1>
+      <p>
+        Working for a long duration without a break can lead to adverse health
+        effects. Waltz can casually warn you when you work too long for one
+        sitting to increase your daily well-being.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="features-group">
+  <div class="features feature-collapse owndata-section">
+    <div class="text">
+      <h1>Always own your data</h1>
+      <p>
+        When your data is in your hands, you can ensure what should stay private
+        will. Should you ever want to migrate data to another service, it's easily
+        accessible and versioned along with your code.
+      </p>
+    </div>
+    <div class="glyph glyph-owndata">
+      <img src="/img/paw.svg" />
+      <i class="fa fa-lock"></i>
+    </div>
+  </div>
+
+  <div class="features features-opencode">
+    <div class="text">
+      <h1>The best code is open</h1>
+      <p>
+        Because we believe in the mission of open source software, the waltz command
+        line app will always be open source and can be used independently of the
+        cloud.
+      </p>
+      <a
+        class="btn btn-info btn-block btn-lg"
+        style="width: 50%; margin: 2em auto;"
+        href="//github.com/waltz-app/waltz-cli"
+        ref="ghcli"
+      >Waltz CLI on Github</a>
+      <p class="small">
+        We are extremely greatful to all the open source projects that power Waltz.
+        As a thank-you to the community, all open source projects on Waltz are free
+        for anyone, and will always be in the future. We can only hope that by giving
+        project maintainers the power to track time will give back to the community.
+      </p>
+    </div>
+    <div class="glyph">
+      <div class="hole">
+        <span class="binary one">10110101</span>
+        <span class="binary two">10101010</span>
+        <span class="binary three">11010100</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+<div class="features-group white first-section">
+  <div class="features features-signup">
+    <h2>Waltz is free for all public projects.</h2>
+    <a class="btn btn-xl btn-success" href="/login">Create a new project</a>
+  </div>
+</div>
+
+<% includeGSAP = true %>
+<% include footer %>

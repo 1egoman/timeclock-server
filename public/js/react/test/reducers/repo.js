@@ -144,9 +144,11 @@ describe('reducers/repo.js', function() {
         branch: "another-branch",
         branches: null,
         timecard: null,
+        commits: null,
         _comesfrom: [null, null],
         _page: 0,
         _canpaginateforward: false,
+        sections_visible: [],
         error: null,
       });
     });
@@ -158,11 +160,31 @@ describe('reducers/repo.js', function() {
       assert.deepEqual(new_state, {
         branch: null,
         branches: null,
+        commits: null,
         timecard: null,
         _comesfrom: [null, null],
         _page: 0,
         _canpaginateforward: false,
         show_share_modal: false,
+        sections_visible: [],
+        error: null,
+      });
+    });
+    it('should switch repo tab on SWITCH_REPO_TAB', function() {
+      let new_state = repoDetails(old_state.repo_details, {
+        type: "SWITCH_REPO_TAB",
+        tab: "my-tab"
+      });
+      assert.deepEqual(new_state, {
+        branch: null,
+        branches: null,
+        commits: null,
+        timecard: null,
+        _comesfrom: [null, null],
+        _page: 0,
+        _canpaginateforward: false,
+        _tab: "my-tab",
+        sections_visible: [],
         error: null,
       });
     });
@@ -175,11 +197,13 @@ describe('reducers/repo.js', function() {
       assert.deepEqual(new_state, {
         branch: null,
         branches: null,
+        commits: null,
         timecard: null,
         _comesfrom: [null, null],
         _page: 0,
         _canpaginateforward: false,
         show_share_modal: false,
+        sections_visible: [],
         error: null,
       });
     });
@@ -191,10 +215,29 @@ describe('reducers/repo.js', function() {
       assert.deepEqual(new_state, {
         branch: null,
         branches: ["master", "dev", "a-branch"],
+        commits: null,
         timecard: null,
         _comesfrom: [null, null],
         _page: 0,
         _canpaginateforward: false,
+        sections_visible: [],
+        error: null,
+      });
+    });
+    it('should update commits on server/COMMITS_FOR', function() {
+      let new_state = repoDetails(old_state.repo_details, {
+        type: "server/COMMITS_FOR",
+        commits: [{committer: {username: "a-user"}, message: "abc", sha: "my-sha"}],
+      });
+      assert.deepEqual(new_state, {
+        branch: null,
+        branches: null,
+        commits: [{committer: {username: "a-user"}, message: "abc", sha: "my-sha"}],
+        timecard: null,
+        _comesfrom: [null, null],
+        _page: 0,
+        _canpaginateforward: false,
+        sections_visible: [],
         error: null,
       });
     });
@@ -211,11 +254,13 @@ describe('reducers/repo.js', function() {
       assert.deepEqual(new_state, {
         branch: null,
         branches: null,
+        commits: null,
         timecard: {foo: "bar"},
         users: [{foo: "baz"}],
         _comesfrom: ["username", "a-repository", null],
         _page: 0,
         _canpaginateforward: false,
+        sections_visible: [],
         error: null,
       });
     });
@@ -234,11 +279,13 @@ describe('reducers/repo.js', function() {
       assert.deepEqual(new_state, {
         branch: null,
         branches: null,
+        commits: null,
         timecard: {card: [{foo: "bar"}]},
         users: [{foo: "baz"}],
         _comesfrom: ["username", "a-repository", "ref"],
         _page: 0,
         _canpaginateforward: true,
+        sections_visible: [],
         error: null,
       });
 
@@ -256,11 +303,67 @@ describe('reducers/repo.js', function() {
       assert.deepEqual(second_new_state, {
         branch: null,
         branches: null,
+        commits: null,
+        timecard: {card: [{foo: "bar"}, {hello: "world"}]},
+        users: [{foo: "baz"}, {second: "user"}],
+        _comesfrom: ["username", "a-repository", "ref"],
+        _page: 1,
+        sections_visible: [],
+        _canpaginateforward: false,
+        error: null,
+      });
+    });
+    it('should amend to timecard on server/TIMECARD, and assume current branch', function() {
+      // fetch an iterim page in the group (any page but last)
+      let new_state = repoDetails(Object.assign({}, old_state.repo_details, {
+        branch: "ref",
+        _comesfrom: ["username", "a-repository", null],
+        timecard: {card: []},
+        users: [],
+      }), {
+        type: "server/TIMECARD",
+        user: "username",
+        repo: "a-repository",
+        branch: "ref",
+        timecard: {card: [{foo: "bar"}]},
+        users: [{foo: "baz"}],
+        page: 0,
+        canpaginateforward: true,
+      });
+      assert.deepEqual(new_state, {
+        branch: "ref",
+        branches: null,
+        commits: null,
+        timecard: {card: [{foo: "bar"}]},
+        users: [{foo: "baz"}],
+        _comesfrom: ["username", "a-repository", "ref"],
+        _page: 0,
+        _canpaginateforward: true,
+        sections_visible: [],
+        error: null,
+      });
+
+      // now, "fetch" the last page in the group
+      let second_new_state = repoDetails(new_state, {
+        type: "server/TIMECARD",
+        user: "username",
+        repo: "a-repository",
+        branch: "ref",
+        timecard: {card: [{hello: "world"}]},
+        users: [{second: "user"}],
+        page: 1,
+        canpaginateforward: false,
+      });
+      assert.deepEqual(second_new_state, {
+        branch: "ref",
+        branches: null,
+        commits: null,
         timecard: {card: [{foo: "bar"}, {hello: "world"}]},
         users: [{foo: "baz"}, {second: "user"}],
         _comesfrom: ["username", "a-repository", "ref"],
         _page: 1,
         _canpaginateforward: false,
+        sections_visible: [],
         error: null,
       });
     });
@@ -272,10 +375,12 @@ describe('reducers/repo.js', function() {
       assert.deepEqual(new_state, {
         branch: null,
         branches: null,
+        commits: null,
         timecard: null,
         _comesfrom: [null, null], // the repo behind the current timecard
         _page: 0,
         _canpaginateforward: false,
+        sections_visible: [],
         error: "There isn't a timecard in this repo. Please add one by running waltz init locally,\n              or if you have, push up your changes\n              .",
       });
     });
@@ -292,6 +397,8 @@ describe('reducers/repo.js', function() {
         _page: 0,
         _canpaginateforward: false,
         error: null,
+        commits: null,
+        sections_visible: [],
         show_share_modal: true,
       });
     });
@@ -307,7 +414,9 @@ describe('reducers/repo.js', function() {
         _page: 0,
         _canpaginateforward: false,
         error: null,
+        commits: null,
         show_share_modal: false,
+        sections_visible: [],
         waiting_for_share_modal_response: true,
       });
     });
@@ -324,7 +433,124 @@ describe('reducers/repo.js', function() {
         _canpaginateforward: false,
         error: null,
         show_share_modal: false,
+        commits: null,
+        sections_visible: [],
         waiting_for_share_modal_response: false,
+      });
+    });
+    it('should work with server/INIT', function() {
+      let new_state = repoDetails(old_state.repoDetails, {
+        type: "server/INIT",
+        active_repo: ["user", "repo"],
+        page: "times",
+        timecard: {
+          card: [{abc: "def"}],
+        },
+        users: [{username: "user"}],
+        repos: [{user: "user", repo: "bar"}, {user: "user", repo: "repo"}],
+        commits: [{message: "foo bar commit"}],
+        branches: ["abc", "master"],
+        stats: {stats: "here"},
+        branch: "master-current",
+      });
+      assert.deepEqual(new_state, {
+        timecard: {
+          card: [{abc: "def"}],
+        },
+        users: [{username: "user"}],
+        repos: [{user: "user", repo: "bar"}, {user: "user", repo: "repo"}],
+        commits: [{message: "foo bar commit"}],
+        branches: ["abc", "master"],
+        stats: {stats: "here"},
+        _comesfrom: ["user", "repo", "master-current"],
+        show_share_modal: false,
+        branch: null,
+        sections_visible: [],
+        _tab: "times", // default to times
+      });
+    });
+    it('should work with server/INIT, and not override sections_visable', function() {
+      let new_state = repoDetails(Object.assign({}, old_state.repoDetails, {
+        sections_visible: [1, 2, 4],
+        branch: null,
+      }), {
+        type: "server/INIT",
+        active_repo: ["user", "repo"],
+        page: "times",
+        timecard: {
+          card: [{abc: "def"}],
+        },
+        users: [{username: "user"}],
+        repos: [{user: "user", repo: "bar"}, {user: "user", repo: "repo"}],
+        commits: [{message: "foo bar commit"}],
+        branches: ["abc", "master"],
+        stats: {stats: "here"},
+        branch: "master-current",
+      });
+      assert.deepEqual(new_state, {
+        timecard: {
+          card: [{abc: "def"}],
+        },
+        users: [{username: "user"}],
+        repos: [{user: "user", repo: "bar"}, {user: "user", repo: "repo"}],
+        commits: [{message: "foo bar commit"}],
+        branches: ["abc", "master"],
+        stats: {stats: "here"},
+        _comesfrom: ["user", "repo", "master-current"],
+        show_share_modal: false,
+        branch: null,
+        sections_visible: [1, 2, 4],
+        _tab: "times", // default to times
+      });
+    });
+    describe("expand/collapse timecard", function() {
+      it('should expand a timecard section', function() {
+        let new_state = repoDetails(old_state.repoDetails, {
+          type: "EXPAND_COLLAPSE_TIMECARD",
+          day: 0,
+          state: true,
+        });
+        assert.deepEqual(new_state.sections_visible, [0]);
+      });
+      it('should expand a timecard section, with previously expanded sections', function() {
+        let new_state = repoDetails(Object.assign({}, old_state.repoDetails, {sections_visible: [0]}), {
+          type: "EXPAND_COLLAPSE_TIMECARD",
+          day: 1,
+          state: true,
+        });
+        assert.deepEqual(new_state.sections_visible, [0, 1]);
+      });
+      it('should expand a timecard section already expanded', function() {
+        let new_state = repoDetails(Object.assign({}, old_state.repoDetails, {sections_visible: [0]}), {
+          type: "EXPAND_COLLAPSE_TIMECARD",
+          day: 0,
+          state: true,
+        });
+        assert.deepEqual(new_state.sections_visible, [0]);
+      });
+      it('should collapse a timecard section', function() {
+        let new_state = repoDetails(Object.assign({}, old_state.repoDetails, {sections_visible: [0]}), {
+          type: "EXPAND_COLLAPSE_TIMECARD",
+          day: 0,
+          state: false,
+        });
+        assert.deepEqual(new_state.sections_visible, []);
+      });
+      it('should collapse a timecard section with others present', function() {
+        let new_state = repoDetails(Object.assign({}, old_state.repoDetails, {sections_visible: [0, 1, 2]}), {
+          type: "EXPAND_COLLAPSE_TIMECARD",
+          day: 0,
+          state: false,
+        });
+        assert.deepEqual(new_state.sections_visible, [1, 2]);
+      });
+      it('should collapse a timecard section that isnt open', function() {
+        let new_state = repoDetails(Object.assign({}, old_state.repoDetails, {sections_visible: []}), {
+          type: "EXPAND_COLLAPSE_TIMECARD",
+          day: 0,
+          state: false,
+        });
+        assert.deepEqual(new_state.sections_visible, []);
       });
     });
     it('should not be effected by another event', function() {

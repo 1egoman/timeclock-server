@@ -1,0 +1,115 @@
+.repo-summary {
+  min-width: 256px;
+  height: 96px;
+  background-color: $gray-lighter;
+  border-radius: $border-radius-base;
+
+  // client name and payment info section
+  .repo-summary-client-info {
+    padding-left: 0.75rem;
+    padding-top: 0.5rem;
+    width: 60%;
+    height: 50%;
+    border-top-right-radius: $border-radius-base;
+    border-top-left-radius: $border-radius-base;
+    float: left;
+
+    // Client Name
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 0rem;
+      margin-top: 0.48rem;
+    }
+
+    // price / date
+    small {
+      @include text-ellipsis;
+      .repo-summary-balance::before { content: "$"; }
+      .repo-summary-balance::after { content: " outstanding."; }
+      font-weight: lighter;
+      margin-top: 0.18rem;
+    }
+  }
+
+  // freelancer name, pic, and last work period
+  .repo-summary-committer-info {
+    padding: 0.25rem;
+    height: 50%;
+    width: 60%;
+    border-bottom-left-radius: $border-radius-base;
+    color: #fff;
+    float: left;
+    background-color: $brand-primary;
+
+    .avatar-img, .avatar-spacer {
+      width: 36px;
+      height: 36px;
+      float: left;
+      margin-right: 0.5rem;
+      margin-top: 0.25rem;
+    }
+
+    // when there isn't an avatar for a contributor, add some space
+    .avatar-spacer {
+      width: 0rem;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 0.5rem;
+    }
+
+    small {
+      margin-top: -0.8rem;
+      display: block;
+      font-weight: lighter;
+
+      .start-time::after {
+        content: " - ";
+      }
+    }
+  }
+
+  // the summary graph
+  .repo-summary-graph {
+    width: 40%;
+    height: 100%;
+    background-color: $gray-lighter;
+    float: right;
+    margin-top: -4.8rem;
+    overflow: hidden;
+    position: relative;
+
+    border-top-right-radius: $border-radius-base;
+    border-bottom-right-radius: $border-radius-base;
+    border-left: 1px solid $gray-light;
+
+    canvas {
+      position: absolute;
+      bottom: -0.32rem;
+      left: 0rem;
+
+      width: 110% !important;
+      height: 96px !important;
+      margin-left: auto;
+      margin-top: 3.6%;
+
+      border-top-right-radius: $border-radius-base;
+      border-bottom-right-radius: $border-radius-base;
+    }
+
+    .repo-summary-no-graph {
+      color: $gray-dark;
+      text-align: center;
+      margin-top: 2rem;
+    }
+  }
+}
+
+// lighter repo summary theme
+.repo-summary.repo-summary-light {
+  background-color: #fff;
+  .repo-summary-graph {
+    background-color: #fff;
+  }
+}

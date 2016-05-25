@@ -16,6 +16,13 @@ describe('reducers/error.js', function() {
         from: "backend",
       });
     });
+    it('should not show an error modal with an error code', function() {
+      let new_state = error(null, {
+        type: "server/ERROR",
+        error: "AN_ERROR_CODE",
+      });
+      assert.deepEqual(new_state, null);
+    });
     it('should hide the error modal', function() {
       let new_state = error(null, {
         type: "HIDE_ERROR_MODAL",

@@ -10,6 +10,17 @@ const assert = require("assert"),
       User = require("../../lib/models/user");
 
 describe("lib/events/getTimecard.js", function() {
+
+  // saveRepoMetaToDatabase is for caching and gets in the way when testing
+  before(() => {
+    sinon.stub(repo, "saveRepoMetaToDatabase", function(user, whichrepo, timecard) {
+      return new Promise((resolve) => resolve(timecard));
+    });
+  });
+  after(() => {
+    repo.saveRepoMetaToDatabase.restore();
+  });
+
   describe("with valid empty timecard and users", function() {
     beforeEach(() => {
       sinon.stub(repo, "getFileFromRepo").resolves({card: [], foo: "bar"});
@@ -78,6 +89,56 @@ describe("lib/events/getTimecard.js", function() {
         disabled: false,
         times: [
           {start: "1:00:00", end: "2:00:00", by: "a-user"},
+          {start: "3:00:00", end: "4:00:00", by: "a-user"},
+        ],
+      };
+    });
+
+    beforeEach(() => {
+      sinon.stub(repo, "getFileFromRepo").resolves({card: timecard, foo: "bar"});
+      sinon.stub(repo, "getUserMetaFor") .resolves({username: "a-user", some: "metadata"});
+    });
+    afterEach(() => {
+      repo.getFileFromRepo.restore();
+      repo.getUserMetaFor.restore();
+    });
+
+    it('should get a timecard for a repo, with users', function(done) {
+      let skt = socketHelpers.createMockSocketWith({
+        repos: [{user: "a-user", repo: "a-repo"}],
+      });
+
+      let response = getTimecard({
+        type: "server/GET_TIMECARD",
+        user: "a-user",
+        repo: "a-repo",
+        branch: "master",
+        page: 0,
+      }, skt).then((data) => {
+        assert.deepEqual(data, {
+          type: "server/TIMECARD",
+          user: "a-user",
+          repo: "a-repo",
+          branch: "master",
+          users: [{
+            some: "metadata",
+            username: "a-user",
+          }],
+          timecard: {card: timecard, foo: "bar"},
+          page: 0,
+          canpaginateforward: false,
+        });
+        done();
+      }).catch(done);
+    });
+  });
+  describe("with valid 10-entry timecard and users of mixed case", function() {
+    let timecard = _.range(0, 10).map((i) => {
+      return {
+        date: "Sun Jan 17 2016",
+        disabled: false,
+        times: [
+          {start: "1:00:00", end: "2:00:00", by: "A-User"},
           {start: "3:00:00", end: "4:00:00", by: "a-user"},
         ],
       };

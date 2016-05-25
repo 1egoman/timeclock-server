@@ -19,7 +19,7 @@ const mixpanelHelpers = require("./lib/mixpanel")(mixpanel);
 // routes
 const badges = require('./routes/badge');
 const repo = require('./routes/repository');
-const onSocketAction = require('./routes/socket');
+const socketRoute = require('./routes/socket');
 
 // auth serializer and stratigies
 const authStrategy = require("./lib/auth/strategy");
@@ -117,7 +117,7 @@ app.get('/auth/logout', (req, res) => {
 // Routes
 // ------------------------------------------------------------------------------
 app.get('/', mixpanelHelpers.trackPageView, repo.index);
-app.get('/features', mixpanelHelpers.trackPageView, (req, res) => res.redirect("/"));
+app.get('/features', mixpanelHelpers.trackPageView, repo.features);
 app.get('/pricing', mixpanelHelpers.trackPageView, repo.pricing);
 app.get('/press', mixpanelHelpers.trackPageView, repo.presskit);
 app.get('/sample-invoice', mixpanelHelpers.trackPageView, (req, res) => res.redirect("/"));
@@ -207,22 +207,16 @@ let socketMiddleware = passportSocketIo.authorize({
 io.use(socketMiddleware);
 
 io.on('connection', function(socket) {
-  console.log("Connected to new client.", socket.request.user);
+  console.log("... Connected to new client:", socket.request.user.username);
   mixpanelHelpers.trackNewConnection(socket);
 
   // first, initialize the state so we're all on the same page
-  socket.emit("action", {
-    type: "server/INIT",
-    repos: socket.request.user.repos,
-    active_repo: null,
+  socketRoute.emitInit(socket);
 
-    // the normal user, plus their allottments for paid services.
-    user: Object.assign(
-      User.sanitize(socket.request.user),
-      {allotments: User.getAllotments(socket.request.user)}
-    ),
+  // then, initialize it again with the path-specific stuff
+  socket.on('ready', function(data) {
+    socketRoute.emitInit(socket, data.path);
   });
-
-  socket.on('action', onSocketAction(socket));
+  socket.on('action', socketRoute.onSocketAction(socket));
 });
 module.exports = boundApp;

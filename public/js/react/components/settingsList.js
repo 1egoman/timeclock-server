@@ -25,7 +25,7 @@ export function userInfo({settings, user, changePaymentEmail, validateEmail}) {
       <div className="setting-list-payment-email">
         <Input
           type="text"
-          label="Payment email"
+          label="Payment email (defaults to account email)"
           placeholder={user.email}
           value={settings.payment_email}
           onChange={changePaymentEmail}
@@ -43,7 +43,7 @@ export function badgeToken({user, resetToken}) {
         This token is used to provide authentication on your behalf to private
         embedded badges and reports that are sent to others who may not be logged in.
         Resetting this token will <strong>break all existing private badges and and links to private
-        invoices.</strong>
+        timecards.</strong>
       </p>
       <div className="badge-token-box">
         <div className="token-box">

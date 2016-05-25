@@ -1,0 +1,80 @@
+
+// the repo commit dialog
+.repo-commit-node-avatar {
+  width: 18px;
+  float: left;
+  margin-right: 1em;
+}
+
+.repo-commit-node-author {
+  @extend small;
+  display: block;
+  color: $gray-light;
+}
+
+// the commitInsidegraph
+$repo-commit-width: 64px;
+$repo-commit-max-height: $repo-commit-width * 5;
+.repo-commits-container {
+  overflow-x: scroll;
+  width: 98%;
+  padding-bottom: 64px;
+  padding-top: 32px;
+  margin: 1%;
+}
+
+.repo-commits {
+  float: left;
+  display: inline-block;
+  white-space: nowrap;
+  height: $repo-commit-width;
+}
+
+.repo-commit-node-handle {
+  display: inline-block;
+  height: $repo-commit-width;
+  width: 24px;
+  background: #efefef;
+  margin-right: 1.2px;
+  border-left: 8px solid rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  position: relative;
+
+  &.repo-commit-node-type-waltzinit {
+    border-color: lighten($brand-success, 24%);
+  }
+  &.repo-commit-node-type-merge {
+    border-color: lighten($brand-info, 24%);
+  }
+
+  &.repo-commit-node-type-more {
+    border: 0px;
+    color: $text-color;
+    text-align: center;
+  }
+
+  // for really large `.repo-commit-node`s, limit their height and put a break
+  // in the middle.
+  $repo-commit-node-break-width: 78px;
+  &.repo-commit-node-should-break {
+    width: $repo-commit-max-height;
+    .repo-commit-node-break {
+      display: block;
+      height: $repo-commit-node-break-width;
+      width: 32px;
+
+      // center it in the center of the block
+      position: absolute;
+      left: $repo-commit-max-height / 2 - $repo-commit-node-break-width / 3;
+      top: -($repo-commit-node-break-width - $repo-commit-width) / 3;
+      background-image: url(/img/commits/squiggle.png);
+      background-repeat: no-repeat;
+    }
+  }
+
+  &:first-child {
+    background-color: $brand-primary;
+    border-bottom: 16px solid rgba(0, 0, 0, 0.1);
+    border-left: 4px solid transparent;
+  }
+}

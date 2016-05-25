@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { showShareModal } from '../actions/modal';
-import { shareWithEmails } from '../actions/repo';
+import { showShareModal } from '../../actions/modal';
+import { shareWithEmails } from '../../actions/repo';
 import {
   Modal,
   Input,
@@ -21,33 +21,37 @@ export const shareWithClientComponent = ({
   hideModal,
   submitShare,
 }) => {
-  return <Modal show={show} onHide={hideModal}>
-    <Modal.Header closeButton>
-      <Modal.Title>Share {active_repo[0]}/{active_repo[1]} with...</Modal.Title>
-    </Modal.Header>
-    <Modal.Body>
-      <Input
-        type="text"
-        placeholder="email@example.com"
-        label="Who should we share with?"
-        {...email}
-      />
-      <Input
-        type="textarea"
-        label="Add an optional message"
-        placeholder="Take a look at my groovy invoice!"
-        style={{resize: "vertical"}}
-        {...message}
-      />
-    </Modal.Body>
-    <Modal.Footer>
-      <Button
-        className="pull-right"
-        bsStyle="primary"
-        onClick={handleSubmit(submitShare.bind(this, active_repo))}
-      >Share</Button>
-    </Modal.Footer>
-  </Modal>;
+  if (active_repo) {
+    return <Modal show={show} onHide={hideModal}>
+      <Modal.Header closeButton>
+        <Modal.Title>Share {active_repo[0]}/{active_repo[1]} with...</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Input
+          type="text"
+          placeholder="email@example.com"
+          label="Who should we share with?"
+          {...email}
+        />
+        <Input
+          type="textarea"
+          label="Add an optional message"
+          placeholder="Take a look at my timesheet!"
+          style={{resize: "vertical"}}
+          {...message}
+        />
+      </Modal.Body>
+      <Modal.Footer>
+        <Button
+          className="pull-right"
+          bsStyle="primary"
+          onClick={handleSubmit(submitShare.bind(this, active_repo))}
+        >Share</Button>
+      </Modal.Footer>
+    </Modal>;
+  } else {
+    return null;
+  }
 };
 
 let shareWithClient = connect((store, props) => {

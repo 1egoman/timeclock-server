@@ -29,17 +29,19 @@ function getAuthenticatedUser(req) {
 
 // get a badge for this repo
 function fetchBadge(req, res) {
-  getAuthenticatedUser(req)
-  .then((user) => {
+  return Promise.all([
+    getAuthenticatedUser(req),
+    repo.getRepoDetails(req, req.params.username, req.params.repo),
+  ]).then((prom) => {
+    let user = prom[0], details = prom[1];
     return repo.getFileFromRepo(
       req.params.username,
       req.params.repo,
       null,
-      req.query.ref || "master",
+      req.query.ref || details.default_branch || "master",
       user
     );
-  })
-  .then((timecard) => {
+  }).then((timecard) => {
     let total = card.totalDuration(timecard),
         min = Math.floor(total / 60) % 60,
         hour = Math.floor(total / 3600),

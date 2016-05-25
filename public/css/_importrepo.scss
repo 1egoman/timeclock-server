@@ -2,4 +2,59 @@
   p {
     margin-top: 1em;
   }
+
+  .color-picker {
+    label { white-space: nowrap; }
+    width: 0px;
+    margin-bottom: 1rem;
+  }
+}
+
+.repo-details.repo-details-import {
+  background-color: transparent;
+
+  img.header {
+    width: 100%;
+    max-width: 600px;
+    margin: 2rem auto;
+    display: block;
+  }
+
+  & > h2 {
+    text-align: center;
+    padding-top: 0.75em;
+  }
+
+  .repo {
+    position: relative;
+    height: 8.6rem;
+    .repo-quick-summary-container {
+      display: none;
+    }
+
+    .repo-text-container {
+      width: 80%;
+      white-space: nowrap;
+    }
+  }
+
+  .btn-pick-me {
+    position: absolute;
+    top: 0rem;
+    right: 0rem;
+    height: 100%;
+    width: 5.6rem;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+
+    i {
+      font-size: 1.8em;
+    }
+  }
+
+  .btn-load-more {
+    width: 16em;
+    margin: 0.5em auto;
+    display: block;
+  }
 }

@@ -3,23 +3,14 @@ import Repo from './repo';
 import {connect} from 'react-redux';
 import {requestAllUserRepos, deleteRepo} from '../actions/repo';
 import { getRepoByIndex, getActiveRepoIndex } from '../helpers/get_repo';
-import {Button, Popover, OverlayTrigger} from 'react-bootstrap';
+import {
+  Button,
+  Popover,
+  OverlayTrigger,
+  DropdownButton,
+  MenuItem,
+} from 'react-bootstrap';
 import Loading from './loading';
-
-// import a new repo
-export function importRepoButton({
-  is_importing_repo,
-  importNewRepo,
-}) {
-  if (!is_importing_repo) {
-    return <button
-      className="btn btn-sm btn-primary pull-right"
-      onClick={importNewRepo(true)}
-    >Import a new repository</button>
-  } else {
-    return null;
-  }
-}
 
 export const RepoListComponent = ({
   repos,
@@ -37,34 +28,34 @@ export const RepoListComponent = ({
         <Button bsStyle="primary" onClick={deleteRepo(repo)}>Yes, do it</Button>
       </Popover>;
 
-      return <Repo
-      repo={repo}
-      key={ct}
-      index={ct}
-      selected={active_repo && active_repo[0] === repo.user && active_repo[1] === repo.repo}
-      >
-        {/* delete popover */}
-        <OverlayTrigger
-          trigger="click"
-          rootClose
-          placement="top"
-          overlay={delete_popover}
+      return <MenuItem eventKey={ct} key={ct}>
+        <Repo
+        repo={repo}
+        index={ct}
+        selected={active_repo && active_repo[0] === repo.user && active_repo[1] === repo.repo}
         >
-          <i className="fa fa-trash pull-right repo-delete" />
-        </OverlayTrigger>
-      </Repo>;
+          {/* delete popover */}
+          <OverlayTrigger
+            trigger="click"
+            rootClose
+            placement="top"
+            overlay={delete_popover}
+          >
+            <i className="fa fa-trash pull-right repo-delete" />
+          </OverlayTrigger>
+        </Repo>
+      </MenuItem>;
     });
   } else {
     items = <Loading
-      title="No Repositories"
-      message={<span>Why not <span className="click" onClick={importNewRepo(true)}>import a new one?</span></span>}
+      title="No Projects"
+      message={<span>Why not <span className="click" onClick={importNewRepo}>import a new one?</span></span>}
     />;
   }
 
-  return <ul className={`repos repos-list ${is_importing_repo ? "repos-disabled" : "repos-enabled"}`}>
+  return <ul className={`repos repos-list`}>
     <div className="repos-controls">
-      <h4 className="repos-label">Repositories</h4>
-      {importRepoButton({is_importing_repo, importNewRepo})}
+      <h4 className="repos-label">Projects</h4>
     </div>
     {items}
   </ul>;
@@ -80,10 +71,8 @@ export function mapStateToProps(store, props) {
 
 const RepoList = connect(mapStateToProps, (dispatch, ownProps) => {
   return {
-    importNewRepo(state) {
-      return () => {
-        dispatch(requestAllUserRepos(0));
-      };
+    importNewRepo() {
+      dispatch(requestAllUserRepos());
     },
     deleteRepo(repo) {
       return () => dispatch(deleteRepo(repo.user, repo.repo));

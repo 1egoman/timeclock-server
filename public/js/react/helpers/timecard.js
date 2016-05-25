@@ -2,6 +2,7 @@ import {strptime} from "micro-strptime";
 import strftime from "strftime";
 import React from 'react';
 import {OverlayTrigger, Tooltip} from 'react-bootstrap';
+import _ from 'underscore';
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000,
       MS_PER_MINUTE = 60 * 1000,
@@ -19,6 +20,13 @@ export function formatTime(raw, parse_format="%H:%M:%S", to_format) {
   } else {
     return null;
   }
+}
+
+// given a duration in minutes, generate minute / second jsx for rendering.
+export function generateTimeMarkup(duration) {
+  return <span>
+    <strong>{Math.floor(duration)} min</strong>, {Math.ceil((duration % 1) * SECONDS_PER_MINUTE)} sec
+  </span>;
 }
 
 // get the difference in time from the start to the end
@@ -56,8 +64,8 @@ export function getTimeDelta(start, end, day, parse_format, tooLongDuration=DEFA
       duration: duration,
       tooLong: duration > tooLongDuration,
       markup: <span className="time-delta">
-        <strong>{Math.floor(duration)} min</strong>, {Math.ceil((duration % 1) * SECONDS_PER_MINUTE)} sec
-        <span className="pull-right">
+        {generateTimeMarkup(duration)}
+        <span className="repo-details-report-table-indicators">
           {tooLong}
           {isPaid}
         </span>
@@ -80,13 +88,49 @@ export function getAvatarFor(user_pool, username) {
   if (user) {
     return {
       user: user,
-      avatar_img: <img className="avatar-img" src={user.avatar} />
+      avatar_img: <img className="avatar-img" src={user.avatar} />,
     }
   } else {
     return {
       avatar_img: null,
       user: null,
-      error: "No user found."
+      error: "No user found.",
     };
+  }
+}
+
+// get the scalefactor for the repo details page, given a list of all commits.
+// maxBlockHeight it the maximum height given to a single block.
+// Use like: myTime / getTimeScaleFactor(commits, 1000)
+export function getTimeScaleFactor(commits, timecard, maxBlockHeight) {
+  if (Array.isArray(commits)) {
+    return _.max(commits.map((i) => i.length)) / maxBlockHeight;
+  } else {
+    return null;
+  }
+}
+
+// for each commit, calculate its length by subtracting the previous
+// commit's time from the current commit's time.
+export function calculateLengthForCommits(commits, firstLength=100) {
+  if (Array.isArray(commits)) {
+    return commits.reduce((acc, i, ct) => {
+      let commitLength = 0;
+      if (acc.length === 0) { // is this the first commit?
+        commitLength = firstLength;
+      } else {
+        let last = _.last(acc);
+        commitLength = new Date(last.when).getTime() - new Date(i.when).getTime();
+      }
+
+      // add our new commit that has a length
+      acc.push(Object.assign({}, i, {
+        length: commitLength, // will change, the ratio of this block to the rest of them
+        timeLength: commitLength, // won't change, is an absolute length in time
+      }));
+      return acc;
+    }, []);
+  } else {
+    return null;
   }
 }

@@ -52,10 +52,19 @@ function doError(req, res, code, msg) {
 /* GET home page. */
 function index(req, res) {
   res.render('index', {
-    title: 'Waltz',
+    title: 'Waltz | Time Tracking and Metrics for Freelance Developers',
     user: req.user,
+    ab: req.session.ab,
   });
 }
+function features(req, res) {
+  res.render('features', {
+    title: 'Waltz | Time Tracking and Metrics for Freelance Developers',
+    user: req.user,
+    ab: req.session.ab,
+  });
+}
+
 function pricing(req, res) {
   res.render('pricing', {
     title: 'Waltz Pricing',
@@ -82,23 +91,23 @@ function doReport(req, res) {
     ).then((timecard) => {
       if (card.assertIsCard(timecard)) {
         // make the report
-        card.getReportTemplate(timecard.reportFormat || "default").then((template) => {
+        card.getReportTemplate(timecard.reportFormat).then((template) => {
           // add the waltz badge on the top
           let ejs_data = card.getTimecardRenderDetails(timecard);
-          let invoice = ejs.render(template, ejs_data);
-          ejs.renderFile(path.join(__dirname, '..', 'views', 'invoice.ejs'), {
-            contents: invoice,
+          let timesheet = ejs.render(template, ejs_data);
+          ejs.renderFile(path.join(__dirname, '..', 'views', 'timesheet.ejs'), {
+            contents: timesheet,
             invoice_data: ejs_data,
             no_nav: true,
             no_footer: true,
             ENV_DEVELOPMENT: (process.env.NODE_ENV || "development") === "development",
             user: req.user,
             tokened_user: user,
-          }, function(err, full_invoice) {
+          }, function(err, full_timesheet) {
             if (err) {
               throw new Error(err);
             } else {
-              res.send(full_invoice);
+              res.send(full_timesheet);
             }
           });
         }).catch(doError(req, res, 400, {show_errors: true}));
@@ -117,5 +126,6 @@ module.exports = {
   doReport,
   index,
   pricing,
+  features,
   presskit,
 }

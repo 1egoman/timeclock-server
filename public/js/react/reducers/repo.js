@@ -52,9 +52,8 @@ export function activeRepo(state = null, action) {
   } else if (action.type === "server/DISCOVER_REPOS") {
     return null;
 
-  // when an external route change happens
-  // } else if (action.type === "@@router/LOCATION_CHANGE") {
-  //   return 0;
+  } else if (action.type === "server/INIT") {
+    return action.active_repo;
   } else {
     return state;
   }
@@ -75,7 +74,28 @@ export function discoveredRepos(state = [], action) {
 }
 
 export function repoDetails(state = {branch: null}, action) {
-  if (action.type === "CHANGE_BRANCH") {
+  if (action.type === "server/INIT" && action.active_repo && !action.first_init) {
+    // validate a page, returning times by default
+    // if a user adds a route that makes no sense, lets catch and "redirect" to
+    // `/app/user/repo/times`.
+
+    return Object.assign({}, state, {
+      timecard: Object.assign({}, action.timecard, {
+        card: action.timecard.card.reverse(),
+      }),
+      users: action.users,
+      branches: action.branches,
+      commits: action.commits,
+      repos: action.repos,
+      stats: action.stats,
+      sections_visible: state.sections_visible || [],
+
+      show_share_modal: false,
+      _comesfrom: [...action.active_repo, action.branch],
+      _tab: action.page,
+    });
+
+  } else if (action.type === "CHANGE_BRANCH") {
     return Object.assign({}, state, {
       branch: action.branch,
       timecard: null, // reset the timecard so the view reloads
@@ -93,16 +113,33 @@ export function repoDetails(state = {branch: null}, action) {
       show_share_modal: false,
     });
 
+  // switch the active tab
+  } else if (action.type === "SWITCH_REPO_TAB") {
+    return Object.assign({}, state, {
+      error: null,
+      _tab: action.tab,
+    });
+
   // the current repo's branches
   } else if (action.type === "server/BRANCHES_FOR") {
     return Object.assign({}, state, {branches: action.branches, error: null});
+
+  // the commit history for the branch
+  } else if (action.type === "server/COMMITS_FOR") {
+    return Object.assign({}, state, {commits: action.commits, error: null});
 
   // the timecard assosiated with a repository
   } else if (action.type === "server/TIMECARD") {
     if (
       action.user === state._comesfrom[0] &&
       action.repo === state._comesfrom[1] &&
-      action.branch === state._comesfrom[2]
+
+      // also, check to be sure the currently-shown thing is on the current
+      // branch (ie, the user can switch branches which changes everything)
+      // also, when the timecard loads initially, the timecard may not be
+      // populated (because of the order of things). So, if not specified, just
+      // assume the current branch is the right one.
+      action.branch === (state._comesfrom[2] || state.branch)
     ) {
       // merge the new repo query and the old, since they belong to the same repo
       // or, if there wasn't a timecard to start with, just return the new card.
@@ -121,6 +158,7 @@ export function repoDetails(state = {branch: null}, action) {
         // the page we are on, and whether we can advance to the next page
         _page: action.page,
         _canpaginateforward: action.canpaginateforward,
+        _comesfrom: [action.user, action.repo, action.branch],
         error: null,
       });
     } else {
@@ -159,6 +197,29 @@ export function repoDetails(state = {branch: null}, action) {
       error: null,
     });
 
+  } else if (action.type === "EXPAND_COLLAPSE_TIMECARD") {
+    if (action.state && !state.sections_visible) {
+      // expand the timecard and we don't have any expanded already
+      return Object.assign({}, state, {
+        sections_visible: [action.day],
+        error: null,
+      });
+    } else if (action.state && state.sections_visible.indexOf(action.day) === -1) {
+      // expand the timecard section when we haven't already expanded the section
+      return Object.assign({}, state, {
+        sections_visible: state.sections_visible.concat([action.day]),
+        error: null,
+      });
+    } else if (!action.state) {
+      // close the section
+      return Object.assign({}, state, {
+        sections_visible: state.sections_visible.filter((i) => i !== action.day),
+        error: null,
+      });
+    } else {
+      return state;
+    }
+
 
   // No timecard in the repo?
   } else if (action.type === "server/ERROR" && action.error === "NO_TIMECARD_IN_REPO") {
@@ -167,6 +228,10 @@ export function repoDetails(state = {branch: null}, action) {
               or if you have, push up your changes
               ${state.default_branch ? " to "+state.default_branch : ''}.`,
     });
+
+  // clear errors on route change
+  } else if (action.type === "@@router/LOCATION_CHANGE") {
+    return Object.assign({}, state, {error: null});
 
   } else {
     return state;

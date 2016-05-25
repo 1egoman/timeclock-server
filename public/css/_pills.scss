@@ -1,0 +1,21 @@
+// a mixin to create navs that become bold when selected rather than changing a
+// background color. Include this in the root tab container (ie, a .nav-pills or
+// .nav-tabs)
+@mixin nav-pills-bolded($color: $brand-primary) {
+  li {
+    width: 100%;
+    @media (min-width: $screen-sm-min) {
+      width: auto;
+      &:first-child a { padding-left: 0em; }
+    }
+
+    // !important = override .nav default styles
+    &.active a { color: $color !important; }
+    a {
+      background-color: transparent !important;
+      color: $gray-light !important;
+      font-weight: bold;
+      font-size: 1.6rem;
+    }
+  }
+}

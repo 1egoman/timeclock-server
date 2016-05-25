@@ -3,8 +3,7 @@
 // the title for a repo
 @mixin repo-title($size: 1.6em) {
   font-size: $size;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  @include text-overflow;
   .repo-name {
     font-weight: bold;
   }
@@ -18,12 +17,19 @@
   background-color: transparent;
 }
 
+// the container around `repoDetails` and friends
+.repo-container {
+  @extend .container-fluid;
+  padding: 0px;
+}
+
 .repos {
   @extend .list-group;
   @include clearfix;
+  padding: 0.5em;
 
   &.repos-disabled {
-    opacity: 0.5;
+    // opacity: 0.5;
   }
 
   .repos-controls {
@@ -44,16 +50,22 @@
     @include empty-pane;
     p .click { cursor: pointer; }
   }
+
+  li {
+    list-style-type: none;
+  }
 }
 
 .repo {
   @extend .list-group-item;
-  cursor: pointer;
+  @include clearfix;
+  cursor: default;
   position: relative;
-
-  &.repo-selected {
-    background: $select-color;
-  }
+  color: $text-color;
+  padding: 0rem;
+  min-height: 8rem;
+  overflow-x: hidden;
+  &:last-child { margin-bottom: 0.25rem; }
 
   // private repo badge
   .repo-lock { display: none; }
@@ -67,68 +79,196 @@
 
   .repo-delete {
     position: absolute;
-    bottom: 0.75em;
-    right: 0.75em;
+    right: 1em;
+    top: 1em;
     @extend .text-danger;
+    @media (min-width: $screen-md-min) {
+      top: initial;
+      bottom: 1em;
+    }
   }
 
   h1 {
     @include repo-title;
   }
+
+  .repo-text-container {
+    float: left;
+    padding-left: 1em;
+    padding-right: 1em;
+    width: 100%;
+    cursor: pointer;
+    @media (min-width: $screen-md-min) {
+      width: auto;
+    }
+    p {
+      @include text-ellipsis;
+      display: block;
+    }
+  }
+
+  // a colored summary of the client name
+  .repo-quick-summary-container {
+    width: 100%;
+    padding: 0.5rem;
+    float: left;
+    text-align: left;
+    padding-left: 1.5rem;
+    color: #fff;
+
+    border-bottom-left-radius: $border-radius-base;
+    border-bottom-right-radius: $border-radius-base;
+    @include text-ellipsis;
+
+    // full-width: pin to right
+    @media (min-width: $screen-md-min) {
+      width: 12rem;
+      float: right;
+      height: 3rem;
+      border-bottom-right-radius: 0rem;
+    }
+  }
 }
 
-$top-pane-height: 96px;
-$details-left-margin: 20px;
 .repo-details {
-  padding-left: $details-left-margin;
   background: #fff;
-  padding-bottom: 2em;
+  position: relative;
 
+  // the top themed section (based of timecard primary color theme)
   .repo-details-header {
-    height: $top-pane-height;
-    background: #fff;
+    background-color: $brand-primary; // the user-specified color
+    transition: 0.25s ease all; // fade in the new color
+    padding: 3em 1em;
     z-index: 1000;
+    min-height: 3.6em;
     @include clearfix;
 
-    h1 {
-      @include repo-title(2em);
-    }
+    // the user/repo section and provider badge
+    .repo-details-name {
+      @extend .container;
 
-    .repo-details-branch-select {
-      width: 200px;
-      margin-left: 2px;
-      margin-bottom: 8px;
-      float: left;
-    }
-
-    // the box to get a link to the report
-    // and print it
-    .repo-details-report-link {
-      width: 400px;
-      float: left;
-      margin: 0em 0.5em;
-      @include clearfix;
-
-      input[type=text] {
-        width: 200px;
-        float: left;
+      h1 {
+        @include repo-title(2em);
+        margin-bottom: 0px;
+        margin-right: 16px;
+        color: #fff;
       }
 
-      .repo-details-print-report {
+      // provider badge
+      .repo-provider-badge {
+        position: absolute;
+        top: 0.2em;
+        right: 0.2em;
+        font-size: 1em;
         float: right;
-        width: 100px;
-      }
-
-      .repo-details-report-share {
-        float: right;
-        width: 100px;
+        span { color: #fff; }
+        @media (min-width: $screen-sm-min) {
+          font-size: 2em;
+        }
       }
     }
   }
 
-  .repo-details-badge {
-    margin-left: 0.5em;
-    cursor: pointer;
+  // the white seperator bar between body and header
+  .repo-details-break-bar {
+    @extend .container;
+    padding-bottom: 1em;
+
+    // the branch box / share info
+    .repo-details-secondary {
+      float: left;
+      margin-top: 20px;
+      margin-left: 0px;
+      width: 100%;
+      @media (min-width: $screen-md-min) {
+        height: 4.8rem;
+      }
+
+      // the box to switch branch
+      .repo-details-branch-select {
+        width: 100%;
+        margin-left: 2px;
+        margin-bottom: 8px;
+        float: left;
+        @media (min-width: $screen-sm-min) {
+          width: 200px;
+        }
+      }
+
+      // the box to get a link to the report
+      // and print it
+      .repo-details-report-link {
+        width: 100%;
+        float: left;
+        @include clearfix;
+
+        @media (min-width: $screen-sm-min) {
+          width: 350px;
+          margin: 0em 0.5em;
+        }
+
+        // un-round the right button corners
+        input[type=text] {
+          border-top-right-radius: 0px;
+          border-bottom-right-radius: 0px;
+        }
+        .btn-success { border-radius: 0px; }
+        .btn-info {
+          border-top-left-radius: 0px;
+          border-bottom-left-radius: 0px;
+        }
+
+        input[type=text] {
+          width: 50%;
+          float: left;
+          @media (min-width: $screen-sm-min) {
+            width: 200px;
+          }
+        }
+        button {
+          width: 25%;
+          @media (min-width: $screen-sm-min) {
+            width: auto;
+          }
+        }
+      }
+
+      // the repo sumamry infographic in the right of the white bar
+      .repo-details-repo-summary {
+        float: right;
+        width: 100%;
+        margin-top: 0.8rem;
+        @media (min-width: $screen-sm-min) {
+          margin-top: 0rem;
+        }
+        @media (min-width: $screen-md-min) {
+          width: auto;
+        }
+      }
+    }
+
+    // the tabs for switching context
+    .repo-details-tabswitcher {
+      float: left;
+      margin-top: 0.5rem;
+
+      // space icons from text
+      i.fa { margin-right: 0.33rem; }
+
+      // each of the items themselves
+      @include nav-pills-bolded;
+    }
+  }
+
+  // the main body section
+  .repo-details-body {
+    position: relative;
+    background-color: $body-bg;
+    @include clearfix;
+
+    .repo-details-body-wrapper {
+      @extend .container;
+    }
   }
 
   // repo-details-badge popover
@@ -151,13 +291,28 @@ $details-left-margin: 20px;
 
   // the table of all the times
   .repo-details-report-table {
+    position: relative;
     margin-top: 20px;
     width: 100%;
     border: 0px;
+    @extend .table-responsive;
 
-    // already-paid times
-    .disabled {
-      background-color: $gray-lighter;
+    .repo-details-report-table-indicators {
+      min-width: 100px;
+      float: right;
+      display: inline-block;
+      margin-left: 20px;
+      position: relative;
+      left: -20px;
+
+      i {
+        background: #fff;
+        padding: 0.4rem;
+        border-radius: $border-radius-base;
+      }
+    }
+
+    .repo-details-report-table-day {
     }
 
     .avatar-col, .avatar-img {
@@ -174,40 +329,15 @@ $details-left-margin: 20px;
   // shown when the specified timecard is empty
   .timecard.timecard-is-empty {
     @include empty-pane;
-    padding-top: 0.2em;
+    padding-top: 0.2rem;
+    margin: 2rem;
     h1 {
-      font-size: 2em;
+      font-size: 2rem;
     }
+    a { cursor: pointer; }
   }
 }
 
-.repo-details.repo-details-import {
-  padding-left: 20px;
-  padding-right: 20px;
-
-  & > h2 {
-    text-align: center;
-    padding-top: 0.75em;
-  }
-
-  .repos {
-    cursor: default;
-
-    .btn-pick-me {
-      @extend .pull-right;
-      margin-top: -38px;
-    }
-  }
-
-  .btn-load-more {
-    width: 16em;
-    margin: 0.5em auto;
-    display: block;
-  }
-}
-
-.repo-provider-badge {
-  margin: 0.75rem;
-  font-size: 2.25rem;
-  span { color: $text-color;  }
+a[role=menuitem] {
+  &, &:focus, &:active, &:hover { text-decoration: none; }
 }

@@ -1,9 +1,10 @@
+<% style = ab.bgColor || 'primary' %>
 <% include header %>
 
-<div class="features-group primary">
-  <div class="features features-hero">
+<div class="features-group <%= ab.bgColor || 'primary' %>">
+  <div class="features features-hero <%= ab.bgColor || 'primary' %>">
     <h1>Waltz makes</h1>
-    <h2>beautiful version-controlled invoices</h2>
+    <h2>beautiful version-controlled timesheets</h2>
     <h3>for freelance developers.</h3>
 
     <div class="features-getting-started-buttons">
@@ -67,7 +68,7 @@
               Sat Feb 21 2016
               <span class="right">
                 12:25:42 to 12:38:54
-              </span>background
+              </span>
             </li>
             <li class="enabled">
               Sat Feb 21 2016
@@ -88,106 +89,153 @@
   </div>
 </div>
 
-<div class="features-group white">
+<div class="features-group white first-section">
   <a name="learnmore"></a>
-  <div class="features feature-collapse">
-    <ul role="tablist">
-      <li role="presentation" class="active">
-        <a href="#great-by-default" aria-controls="great-by-default" role="tab" data-toggle="tab">
-          <h4>Great by default</h4>
-          <p>
-            Provide a name, a tagline, and a template, and Waltz will do the rest. Don't
-            like our templates? With minimal knowlege, design your own. Beautiful invoices
-            were never so easy!
-          </p>
-        </a>
-      </li>
-      <li role="presentation">
-        <a href="#version-controlled" aria-controls="version-controlled" role="tab" data-toggle="tab">
-          <h4>Version controlled</h4>
-          <p>
-            Because invoices are stored with your code, easily diff invoices across branches to
-            quickly determine the time spent on individual features.
-          </p>
-        </a>
-      </li>
-      <li role="presentation">
-        <a href="#collaborative" aria-controls="collaborative" role="tab" data-toggle="tab">
-          <h4>Collaborative</h4>
-          <p>
-            Because we integrate with pre-existing codebases, the collaborative workflow
-            one uses when working on a project works across invoices in a similar
-            manner.
-          </p>
-        </a>
-      </li>
-      <li role="presentation">
-        <a href="#own-your-data" aria-controls="own-your-data" role="tab" data-toggle="tab">
-          <h4>Own your data</h4>
-          <p>
-            When your data is in your hands, you can ensure what should stay private will.
-            Should you ever want to migrate data to another service, it's easily accessible
-            and versioned along with your code.
-          </p>
-        </a>
-      </li>
-    </ul>
-    <div class="tab-content">
-      <div role="tabpanel" class="tab-pane active" id="great-by-default">
-        <img class="img-full" src="/img/features/great-by-default.svg" />
+  <div class="features feature-collapse spreadsheet-section">
+    <div class="text">
+      <h2>Manage time without spreadsheets</h2>
+      <p>
+        A spreadsheet can easily turn into an unmanageable behemoth that is a chore to
+        use. Instead, Waltz will tell you how long you've worked and how much
+        you've earned so you can spend less time managing and more time doing. 
+      </p>
+    </div>
+    <div class="glyph glyph-invoice">
+      <div class="spreadsheet">
+        <table>
+          <tr>
+            <td>Paid for?</td>
+            <td>Date</td>
+            <td>Minutes</td>
+            <td>Task</td>
+          </tr>
+          <tr>
+            <td>Yes</td>
+            <td>5/4/16</td>
+            <td>20</td>
+            <td>Fixing a bug</td>
+          </tr>
+          <tr>
+            <td>No</td>
+            <td>5/4/16</td>
+            <td>50</td>
+            <td>Coordinating with others</td>
+          </tr>
+          <tr>
+            <td>No</td>
+            <td>5/4/16</td>
+            <td>150</td>
+            <td>Writing some new code</td>
+          </tr>
+        </table>
       </div>
-      <div role="tabpanel" class="tab-pane" id="version-controlled">
-        <img class="img-full" src="/img/features/version-controlled.svg" />
+      <div class="invoice">
+        <div class="invoice-header">
+          <h3>Today</h3>
+        </div>
+        <ul class="invoice-items">
+          <li style="width: 40%;" class="sm"></li>
+          <li class="price"></li>
+          <li style="width: 50%;" class="md"></li>
+          <li class="price"></li>
+          <li style="width: 80%;" class="lg"></li>
+          <li class="price"></li>
+          <li style="width: 40%;" class="sm"></li>
+          <li class="price"></li>
+          <li style="width: 60%;" class="md"></li>
+          <li class="price"></li>
+        </ul>
       </div>
-      <div role="tabpanel" class="tab-pane" id="collaborative">
-        <img class="img-full" src="/img/features/collaborative.svg" />
-      </div>
-      <div role="tabpanel" class="tab-pane" id="own-your-data">
-        <img class="img-full" src="/img/features/own-your-data.svg" />
-      </div>
+    </div>
+  </div>
+  <div class="features feature-collapse versioned-section">
+    <div class="text">
+      <h2>Version controlled</h2>
+      <p>
+        Because timesheets are stored with your code, easily diff work times across branches to
+        quickly determine the time spent on individual features.
+      </p>
+    </div>
+    <div class="glyph glyph-versioned">
+      <div class="timecard-state one">Today</div>
+      <div class="timecard-state two">Yesterday</div>
+      <div class="timecard-state three">Last Week</div>
+    </div>
+  </div>
+  <div class="features feature-collapse owndata-section">
+    <div class="text">
+      <h2>Own your data</h2>
+      <p>
+        When your data is in your hands, you can ensure what should stay private will.
+        Should you ever want to migrate data to another service, it's easily accessible
+        and versioned along with your code.
+      </p>
+    </div>
+    <div class="glyph glyph-owndata">
+      <img src="/img/paw.svg" />
+      <i class="fa fa-lock"></i>
     </div>
   </div>
 </div>
 
-<div class="features features-more">
-  <h1>And, that's not all...</h1>
-
-  <div class="feature feature-right">
-    <img src="/img/features/bandaid.svg" />
-    <div class="content content-large">
-    <h2>Limit long work periods</h2>
+<div class="features features-metrics">
+  <a name="metrics"></a>
+  <div class="text">
+    <h1>Metrics that matter</h1>
     <p>
-      Working for a long duration without a break can lead to adverse health effects.
-      Waltz can warn you when you work too long for one sitting, giving you metrics
-      to increase your daily well-being.
+      Other than a simple way to manage time, Waltz also gives you insight into
+      your work trends. When we give you data that easily summarizes the state of
+      a project and its clients, you get a clearer view into who contributed, what
+      has been completed, and when a task has been completed.
     </p>
-    </div>
   </div>
-
-  <div class="feature feature-right">
-    <img src="/img/features/readmebuttons.svg" />
-    <div class="content content-large">
-      <h2>Badges</h2>
-      <p>
-        At a glance, show the amount of unpaid time for any project, on any
-        branch, at any time on a project's <code>README.md</code>.
-      </p>
-    </div>
-  </div>
-
-  <div class="feature feature-right">
-    <img src="/img/features/heart.svg" />
-    <div class="content content-large">
-      <h2>We &lt;3 Open Source</h2>
-      <p>
-        As a thank you to the many open source projects behind Waltz, open source
-        projects get a free, all access pass. Private repos only cost a few
-        dollars a piece - for more information about private repositories, 
-        <a href="/pricing">take a look at our pricing details.</a>
-      </p>
+  
+  <div class="right">
+    <div class="chart-one">
+      <canvas id="chart-one" width="500" height="400"></canvas>
     </div>
   </div>
 </div>
 
-<% include install_prompt %>
+<div class="features-group success flipped">
+  <div class="features feature-collapse white">
+    <div class="text full">
+      <h1 class="text-center">Get started in 10 minutes.</h1>
+      <% include get_started_buttons %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.0/Chart.js"></script>
+<script type="text/javascript">
+var ctx = document.getElementById("chart-one").getContext("2d");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        datasets: [{
+            label: 'Hours of work',
+            data: [5, 6, 8, 10, 7],
+            backgroundColor: "#51c4c4",
+            }, {
+              label: 'Commits',
+              data: [8, 10, 5, 15, 8],
+              backgroundColor: "#995fd4",
+            }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+
+
+<% includeGSAP = true %>
 <% include footer %>

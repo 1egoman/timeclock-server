@@ -6,3 +6,4 @@ public/components
 
 public/bundle.js
 scripts/*.js
+coverage/

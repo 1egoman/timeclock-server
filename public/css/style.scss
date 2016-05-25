@@ -16,6 +16,9 @@ $select-color: #E4FFFF;
 $brand-primary-dark: #397979;
 
 @import "button";
+@import "pills";
+@import "ellipsis";
+
 @import "home";
 @import "report";
 @import "error";
@@ -29,10 +32,15 @@ $brand-primary-dark: #397979;
 
 @import "nav";
 @import "repository";
+@import "commits";
 @import "timedelta";
 @import "settings";
 @import "importrepo";
 @import "loading";
+@import "repotabs";
+@import "reposettings";
+@import "reposummary";
+@import "repometrics";
 
 a {
   color: #00B7FF;

@@ -8,11 +8,15 @@ import {
   openRepoImportDialog,
   changeBranch,
   getBranches,
+  getCommits,
   getTimecard,
   askUserToCreateNewTimecard,
   changeStagingTimecardData,
   deleteRepo,
   shareWithEmails,
+  switchRepoTab,
+  expandCollapseTimecardSection,
+  initializeRepo,
 } from '../../actions/repo';
 
 describe('actions/repo.js', function() {
@@ -81,6 +85,32 @@ describe('actions/repo.js', function() {
         type: "server/GET_BRANCHES",
         user: "username",
         repo: "repository",
+      });
+    });
+  });
+  describe('getCommits', function() {
+    it('should create the event', function() {
+      assert.deepEqual(getCommits({user: "username", repo: "repository"}, "master"), {
+        type: "server/GET_COMMITS",
+        user: "username",
+        repo: "repository",
+        ref: "master"
+      });
+    });
+    it('should create the event, without a branch', function() {
+      assert.deepEqual(getCommits({user: "username", repo: "repository"}), {
+        type: "server/GET_COMMITS",
+        user: "username",
+        repo: "repository",
+        ref: null,
+      });
+    });
+    it('should create the event, without a branch, defaulting to repo default_branch', function() {
+      assert.deepEqual(getCommits({user: "username", repo: "repository", default_branch: "master"}), {
+        type: "server/GET_COMMITS",
+        user: "username",
+        repo: "repository",
+        ref: "master",
       });
     });
   });
@@ -153,6 +183,39 @@ describe('actions/repo.js', function() {
         message: "Lorem Ipsum.",
         user: "a-user",
         repo: "a-repo",
+      });
+    });
+  });
+  describe('switchRepoTab', function() {
+    it('should create the event', function() {
+      assert.deepEqual(switchRepoTab("tab"), {
+        type: "SWITCH_REPO_TAB",
+        tab: "tab",
+      });
+    });
+  });
+  describe('initializeRepo', function() {
+    it('should create the event', function() {
+      assert.deepEqual(initializeRepo("user", "repo"), {
+        type: "server/REINIT",
+        user: "user",
+        repo: "repo",
+      });
+    });
+  });
+  describe('expandCollapseTimecardSection', function() {
+    it('should create an expanding event', function() {
+      assert.deepEqual(expandCollapseTimecardSection(4, true), {
+        type: "EXPAND_COLLAPSE_TIMECARD",
+        day: 4,
+        state: true,
+      });
+    });
+    it('should create a collapsing event', function() {
+      assert.deepEqual(expandCollapseTimecardSection(4, false), {
+        type: "EXPAND_COLLAPSE_TIMECARD",
+        day: 4,
+        state: false,
       });
     });
   });

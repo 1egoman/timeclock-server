@@ -1,0 +1,17 @@
+.repo-settings {
+  padding: 2rem 0rem;
+
+  .repo-details-badge {
+    padding-bottom: 1rem;
+    margin-left: 0.5em;
+  }
+  
+  .nav-pills {
+    @include nav-pills-bolded;
+  }
+  pre {
+    white-space: normal;
+    min-height: 1.8em;
+    margin-top: 0.33em;
+  }
+}

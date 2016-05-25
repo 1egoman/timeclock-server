@@ -8,7 +8,10 @@ import {
   askUserToCreateNewTimecard,
   changeStagingTimecardData,
 } from '../actions/repo';
-import {Modal, Button, Input} from 'react-bootstrap';
+import {Modal, Button, Input, OverlayTrigger, Tooltip} from 'react-bootstrap';
+import Loading from './loading';
+import {reduxForm} from 'redux-form';
+import {CompactPicker as ColorPicker} from 'react-color';
 
 export function createNewTimecardModal({
   confirm_timecard_for,
@@ -20,7 +23,7 @@ export function createNewTimecardModal({
 }) {
   return <Modal
       show={confirm_timecard_for !== null}
-      onHide={confirmNewTimecard(false)}
+      onHide={confirmNewTimecard.bind(this, false)}
     >
       <Modal.Header closeButton>
         <Modal.Title>
@@ -31,7 +34,6 @@ export function createNewTimecardModal({
       </Modal.Header>
       <Modal.Body>
         <div className="modal-new-timecard">
-          <img src="/img/add_timecard_web.svg" className="center-block" />
           <p>
             We'll make a commit to this repository's <strong>
               {confirm_timecard_for.default_branch}
@@ -51,9 +53,27 @@ export function createNewTimecardModal({
             label="Project Tagline"
             onChange={changeStagingTimecardData("tagline")}
           />
+          <Input
+            type="text"
+            placeholder="John Smith"
+            label="Client Name"
+            onChange={changeStagingTimecardData("clientName")}
+          />
+
+          {/* Primary and Secondary Colors */}
+          <div className="color-picker">
+            <label>Primary Color</label>
+            <ColorPicker
+              color={timecard_template.primaryColor}
+              onChangeComplete={changeStagingTimecardData("primaryColor")}
+            />
+          </div>
 
           {/* Create a timecard on the default branch */}
-          <Button bsStyle="primary" onClick={importNewRepo(confirm_timecard_for, true, timecard_template)}>
+          <Button
+            bsStyle="primary"
+            onClick={importNewRepo.bind(this, confirm_timecard_for, true, timecard_template)}
+          >
             Create new timecard
           </Button>
       </div>
@@ -66,6 +86,8 @@ const ImportRepoComponent = ({
   confirm_timecard_for,
   repo_import_page,
   new_timecard_staging,
+  user,
+  organisations,
 
   importNewRepo,
   toImportRepoPage,
@@ -85,50 +107,68 @@ const ImportRepoComponent = ({
       timecard_template: {
         name: new_timecard_staging.name || confirm_timecard_for.repo,
         tagline: new_timecard_staging.tagline || confirm_timecard_for.desc,
+        clientName: new_timecard_staging.clientName,
+        primaryColor: new_timecard_staging.primaryColor || "#51c4c4",
+        secondaryColor: new_timecard_staging.secondaryColor || confirm_timecard_for.secondaryColor,
       },
 
       changeStagingTimecardData,
       importNewRepo,
       confirmNewTimecard,
-    })
+    });
+  }
+
+  let body;
+  if (_.isEmpty(discovered_repos)) {
+    body = <Loading spinner />
+  } else {
+    body = <div>
+      <img className="header" src="/img/import_repo_header.svg" />
+
+      <ul className="repos">
+        {discovered_repos.map((repo, ct) => {
+          return <RepoComponent
+            key={ct}
+            repo={repo}
+            selected={false}
+          >
+            {
+              repo.has_timecard ? 
+                <OverlayTrigger overlay={
+                  <Tooltip id="timecard-in-project">A timecard is already in the project!</Tooltip>
+                }>
+                  <button
+                    className="btn btn-success btn-pick-me"
+                    onClick={importNewRepo(repo)}
+                  >
+                    <i className="fa fa-plus-square" />
+                  </button>
+                </OverlayTrigger>
+              :
+                <button
+                  className="btn btn-info btn-pick-me"
+                  onClick={confirmNewTimecard.bind(this, repo.user, repo.repo)}
+                >
+                  <i className="fa fa-upload" />
+                </button>
+            }
+          </RepoComponent>;
+        })}
+      </ul>
+      <button
+        className="btn btn-primary btn-load-more"
+        onClick={toImportRepoPage.bind(this, _.isEmpty(discovered_repos) ? 0 : ++repo_import_page)}
+      >Load More Repositories</button>
+    </div>;
   }
 
   return <div className="repo-details repo-details-import">
-    <h2>Import a new Repository</h2>
     {newTimecardModal}
-
-    <ul className="repos">
-      {Object.keys(discovered_repos).map((key, ct) => {
-        return <div key={ct}>
-          <h4>{key}</h4>
-          {discovered_repos[key].map((repo, ct) => {
-            return <RepoComponent
-              key={ct}
-              repo={repo}
-              selected={false}
-            >
-              {
-                repo.has_timecard ? 
-                <button className="btn btn-success btn-pick-me" onClick={importNewRepo(repo)}>Import</button> :
-                <button
-                  className="btn btn-info btn-pick-me"
-                  onClick={confirmNewTimecard(repo.user, repo.repo)}
-                >Create new Timecard</button>
-              }
-            </RepoComponent>
-          })}
-        </div>;
-      })}
-    </ul>
-
-    <button
-      className="btn btn-primary btn-load-more"
-      onClick={toImportRepoPage(++repo_import_page)}
-    >Load More Repositories</button>
+    {body}
   </div>;
 }
 
-const ImportRepo  = connect((store, ownProps) => {
+let ImportRepo = connect((store, ownProps) => {
   // first, filter out all ther repos that already are added
   let filtered_discovered_repos = store.discovered_repos.filter((repo) => {
     return !store.repos.some((i) => {
@@ -138,7 +178,7 @@ const ImportRepo  = connect((store, ownProps) => {
 
   return {
     // group the discovered repos by their respective user
-    discovered_repos: _.groupBy(filtered_discovered_repos, (repo) => repo.user),
+    discovered_repos: filtered_discovered_repos,
     repo_import_page: store.discovered_repos_page,
 
     // for repos that don't already have a timecard, give the user an option to
@@ -151,20 +191,29 @@ const ImportRepo  = connect((store, ownProps) => {
       );
     }),
     new_timecard_staging: store.new_timecard_staging,
+    user: store.user,
   };
 }, (dispatch, ownProps) => {
   return {
     importNewRepo(repo, createTimecard, timecardTempl) {
-      return () => dispatch(importFromGithubRepo(repo, createTimecard, timecardTempl));
+      dispatch(importFromGithubRepo(repo, createTimecard, timecardTempl));
     },
     toImportRepoPage(page) {
-      return () => dispatch(requestAllUserRepos(page));
+      dispatch(requestAllUserRepos(page));
     },
     confirmNewTimecard(user, repo) {
-      return () => dispatch(askUserToCreateNewTimecard(user, repo));
+      dispatch(askUserToCreateNewTimecard(user, repo));
     },
     changeStagingTimecardData(name) {
-      return (event) => dispatch(changeStagingTimecardData(name, event.target.value));
+      return (event) => {
+        if (event.target && typeof event.target.value === "string") { // text inputs
+          dispatch(changeStagingTimecardData(name, event.target.value));
+        } else if (event.hex) { // color pickers
+          dispatch(changeStagingTimecardData(name, `#${event.hex}`));
+        } else {
+          dispatch(changeStagingTimecardData(name, event));
+        }
+      };
     },
   };
 })(ImportRepoComponent);

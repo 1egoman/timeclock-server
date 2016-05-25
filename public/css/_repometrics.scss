@@ -1,0 +1,249 @@
+.repo-metrics.contributors-modal {
+  // contributor progress bars
+  .progress { height: 40px; }
+  .progress-bar {
+    font-size: 1.2em;
+    padding-top: 0.5em;
+  }
+
+  // a list of all contributors to the timecard
+  .contributors {
+    list-style-type: none;
+    padding-left: 0rem;
+
+    .contributor-item {
+      font-size: 1rem;
+      padding-bottom: 0.2rem;
+      @include clearfix;
+
+      h3 {
+        margin-top: 0.4em;
+        font-size: 1.6em;
+      }
+      .avatar-img {
+        height: 5.4em;
+        float: left;
+        padding-right: 1em;
+      }
+      span {
+        font-size: 1.1em;
+      }
+    }
+  }
+}
+
+.repo-metrics {
+  margin: 3rem 0rem;
+
+  // the "hey we don't have enough data to give you decent data" view
+  &.repo-metrics-client-placeholder {
+    .panel-body {
+      position: relative;
+      min-height: 500px;
+      font-size: 1.4em;
+    }
+
+    .bg-img, .text {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+
+    .bg-img {
+      background-image: url(/img/client_metrics_placeholder.png);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 76%;
+      width: 100%;
+      height: 100%;
+      -webkit-filter: blur(5px);
+      -moz-filter: blur(5px);
+      -o-filter: blur(5px);
+      -ms-filter: blur(5px);
+      filter: blur(5px);
+    }
+
+    .text {
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      margin-top: 2em;
+      padding: 2em;
+    }
+  }
+
+  .average-modal {
+    @include clearfix;
+
+    .average-stat {
+      font-size: 3em;
+      text-align: center;
+      display: block;
+
+      .unit {
+        font-size: 0.7em;
+        margin-left: 0.3em;
+      }
+    }
+    .average-stat.sm {
+      font-size: 1.4em;
+    }
+  }
+
+  // explain where the data is coming from
+  footer {
+    font-size: 0.8em;
+    height: auto;
+    display: block;
+    color: $gray-light;
+    margin: 0rem;
+    text-align: center;
+  }
+}
+
+.repo-metrics.repo-metrics-client {
+  width: 100%;
+
+  .client-score-disambiguation {
+    height: 5rem;
+
+    // how good is the client?
+    .client-score {
+      position: relative;
+      font-size: 3rem;
+      min-height: 5rem;
+      cursor: default;
+
+      // dividing line
+      &::before {
+        content: " ";
+        background-color: $brand-primary;
+        display: block;
+        height: 3.2px;
+        width: 11rem;
+        position: absolute;
+        top: 5.4rem;
+        left: 0.5rem;
+        transform: rotate(-45deg);
+      }
+      &.good::before { background-color: $brand-success; }
+      &.ok::before{ background-color: $brand-warning; }
+      &.bad::before{ background-color: $brand-danger; }
+
+      .numerator {
+        font-size: 1.6em;
+        font-weight: bold;
+      }
+      &.good .numerator { color: $brand-success; }
+      &.ok .numerator { color: $brand-warning; }
+      &.bad .numerator { color: $brand-danger; }
+
+      .denominator {
+        position: absolute;
+        top: 2em;
+        left: 2em;
+      }
+    }
+
+    // each client stat
+    ul {
+      padding: 1rem;
+      margin-top: 4.8rem;
+      @media (min-width: $screen-md-min) {
+        margin-top: 0rem;
+      }
+
+      li {
+        list-style-type: none;
+        font-size: 1.2em;
+        font-weight: bold;
+        margin: 1em 0em;
+
+        // the units
+        .label {
+          font-size: 0.6em;
+          color: $text-color;
+          font-weight: normal;
+          text-align: left;
+          margin-left: 0em;
+          display: block;
+
+          // bring collapsed labels to right of units on big screens
+          @media (min-width: $screen-sm-min) {
+            display: inline;
+            font-size: 0.85em;
+          }
+        }
+      }
+    }
+  }
+
+  // the chart showing how much a client pays
+  .client-score-payment-chart {
+    margin-top: 3rem;
+    padding-top: 1.4rem;
+    width: 100%;
+    @media (min-width: $screen-md-min) {
+      float: left;
+      border-top: 2px solid $gray-lighter;
+    }
+
+    h4 {
+      text-align: center;
+      margin-bottom: 0.8em;
+      margin-top: 1.4em;
+      font-size: 2em;
+      cursor: default;
+      @media (min-width: $screen-md-min) {
+        font-size: 1em;
+        margin-top: 0.8em;
+      }
+
+      i { margin-left: 0.3em; }
+    }
+
+    // "Only availible for hourly payments"
+    .well {
+      margin: 2rem auto;
+      color: $gray;
+      width: 70%;
+      text-align: center;
+    }
+  }
+
+  // client info
+  .client-card {
+    // add some space when in a bigger view
+    @media (min-width: $screen-md-min) { margin-left: 1em; }
+
+    .percent {
+      font-size: 3em;
+      margin: 0.6em 0em;
+      display: block;
+      font-weight: bold;
+      &::after { content: "%"; }
+    }
+
+    // the amount the client paid
+    .client-card-payment-amount {
+      float: left;
+      font-size: 1.2em;
+      white-space: nowrap;
+      max-width: 0px;
+      @media (min-width: $screen-md-min) {
+        font-size: 1.25em;
+      }
+
+      .static { float: left; }
+      .a-unit {
+        margin: 0.2em;
+        float: left;
+        font-size: 1.4em;
+
+        .formatted-time {
+          font-weight: bold;
+          margin-right: 0.2em;
+        }
+      }
+    }
+  }
+}

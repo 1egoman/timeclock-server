@@ -1,7 +1,13 @@
 <% if (!user) { %>
-  <a ref="learnmore" class="btn btn-outline btn-white btn-xl btn-50 smooth" href="#learnmore">Learn More</a>
-  <a ref="signin" class="btn btn-outline btn-white btn-xl btn-50" href="/login">Sign in with Github</a>
-  <small>It doesn't cost anything to get started, and you can cancel at any time.</small>
+  <% if (typeof ab.ctaButtonColor !== "undefined" && ab.ctaButtonColor === "green") { %>
+    <a ref="learnmore" class="btn btn-outline btn-white btn-xl btn-50" href="/features">Learn More</a>
+    <a ref="signin" class="btn btn-success btn-xl btn-50" href="/login">Sign in with Github</a>
+    <small>Waltz is free to use for all public projects.</small>
+  <% } else { %>
+    <a ref="learnmore" class="btn btn-outline btn-white btn-xl btn-50" href="/features">Learn More</a>
+    <a ref="signin" class="btn btn-outline btn-white btn-xl btn-50" href="/login">Sign in with Github</a>
+    <small>Waltz is free to use for all public projects.</small>
+  <% } %>
 <% } else { %>
   <a class="btn btn-outline btn-white btn-xl btn-50" href="/auth/logout">Logout <%= user.username %></a>
   <a class="btn btn-outline btn-white btn-xl btn-50" href="/app">Let's get started</a>
